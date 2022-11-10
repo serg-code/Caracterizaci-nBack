@@ -5,11 +5,10 @@ namespace App\Models;
 class Respuesta
 {
 
-    public string $mensaje;
-
     public function __construct(
         public int $codigoHttp = 200,
         public string $titulo = 'succes',
+        public string $mensaje = '',
         public array $data = [],
     )
     {

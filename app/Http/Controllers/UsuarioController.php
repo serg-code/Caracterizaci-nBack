@@ -30,16 +30,16 @@ class UsuarioController extends Controller
         $validacion = Validator::make(
             $request->all(),
             [
-                'nombre' => 'required',
-                'correo' => 'required|email|unique:users,email',
-                'contrasena' => 'required',
+                'name' => 'required',
+                'email' => 'required|email|unique:users,email',
+                'password' => 'required',
             ],
             [
-                'nombre.required' => 'La contraseña es necesaria',
-                'correo.required' => 'El correo es necesario',
-                'correo.email' => 'El correo ingresado debe se un correo valido',
-                'correo.unique' => 'El correo no es valido',
-                'contrasena' => 'La contraseña es requerida',
+                'name.required' => 'La contraseña es necesaria',
+                'email.required' => 'El correo es necesario',
+                'email.email' => 'El correo ingresado debe se un correo valido',
+                'email.unique' => 'El correo no es valido',
+                'password' => 'La contraseña es requerida',
             ]
         );
 
@@ -48,6 +48,7 @@ class UsuarioController extends Controller
             $respuesta = new Respuesta(
                 400,
                 'Bad Request',
+                'Valide los datos',
                 array(
                     $validacion->getMessageBag()
                 )
@@ -55,11 +56,7 @@ class UsuarioController extends Controller
             return response()->json($respuesta, $respuesta->codigoHttp);
         }
 
-        $usuario = new User([
-            'name' => $request->input('nombre'),
-            'email' => $request->input('correo'),
-            'password' => $request->input('contrasena'),
-        ]);
+        $usuario = new User($request->all());
         $usuario->save();
         $respuesta = new Respuesta(
             codigoHttp: 200,
