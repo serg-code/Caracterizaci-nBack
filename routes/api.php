@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +13,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request)
-{
-    return $request->user();
-});
-
 Route::apiResource('usuarios', App\Http\Controllers\UsuarioController::class)->only(['store', 'show']);
+Route::post('saludo', [\App\Http\Controllers\SaludoController::class, 'Saludar'])->middleware('auth:sanctum');
