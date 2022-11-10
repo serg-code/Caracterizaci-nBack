@@ -9,7 +9,7 @@ class Respuesta
         public int $codigoHttp = 200,
         public string $titulo = 'succes',
         public string $mensaje = '',
-        public array $data = [],
+        public  $data = null,
     )
     {
     }

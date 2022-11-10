@@ -49,9 +49,7 @@ class UsuarioController extends Controller
                 400,
                 'Bad Request',
                 'Valide los datos',
-                array(
-                    $validacion->getMessageBag()
-                )
+                $validacion->getMessageBag()
             );
             return response()->json($respuesta, $respuesta->codigoHttp);
         }
