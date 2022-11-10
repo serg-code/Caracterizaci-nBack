@@ -25,5 +25,9 @@ Route::post('login', [
 Route::post('saludo', [
     \App\Http\Controllers\LoginController::class,
     'saludar'
-])
-    ->middleware('auth:sanctum');
+])->middleware('auth:sanctum');
+
+Route::post('logout', [
+    \App\Http\Controllers\LoginController::class,
+    'cerrar'
+])->middleware('auth:sanctum');

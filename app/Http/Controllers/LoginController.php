@@ -70,4 +70,16 @@ class LoginController extends Controller
         $respuesta->mensaje = 'Todo va bien';
         return response()->json(data: $respuesta, status: $respuesta->codigoHttp);
     }
+
+    public function cerrar(Request $request)
+    {
+        $request->user()->currentAccessToken()->delete();
+        $respuesta = new Respuesta();
+        $respuesta->mensaje = 'Ha terminado la sesion';
+
+        return response()->json(
+            data: $respuesta,
+            status: $respuesta->codigoHttp
+        );
+    }
 }
