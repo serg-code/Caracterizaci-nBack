@@ -1,7 +1,9 @@
 <?php
 
 use App\Models\Departamento;
+use App\Models\Municipio;
 use App\Models\Respuesta;
+use GuzzleHttp\Psr7\Response;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,11 +37,5 @@ Route::get('/departamentos', function ()
 {
     $respuesta = new Respuesta();
     $respuesta->data = Departamento::all();
-    return response()->json($respuesta, $respuesta->codigoHttp);
-});
-Route::get('/departamentos/{id}', function ($id)
-{
-    $respuesta = new Respuesta();
-    $respuesta->data = Departamento::find($id);
     return response()->json($respuesta, $respuesta->codigoHttp);
 });

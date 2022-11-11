@@ -5,24 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Departamento extends Model
+class Municipio extends Model
 {
     use HasFactory;
 
-    protected $table = 'departamentos';
-
+    protected $table = 'municipios';
     protected $primaryKey = 'codigo_dane';
-
     protected $keyType = 'string';
 
     protected $fillable = [
         'codigo_dane',
         'nombre',
+        'cod_dpto',
     ];
 
-    //relacion 1:n
-    public function Municipios()
+    //relacion de n:1
+    public function departamento()
     {
-        return $this->hasMany(Municipio::class, 'codigo_dane');
+        return $this->belongsTo(Departamento::class, 'cod_dpto');
     }
 }
