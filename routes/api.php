@@ -13,20 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::apiResource('usuarios', App\Http\Controllers\UsuarioController::class)
-    ->only(['store', 'show', 'update']);
+
+Route::post('/usuarios', [\App\Http\Controllers\UsuarioController::class, 'store']);
+Route::apiResource('usuarios', \App\Http\Controllers\UsuarioController::class, ['middleware' => ['auth:sanctum']])
+    ->only(['update', 'show', 'delete']);
 
 Route::post('login', [
     \App\Http\Controllers\LoginController::class,
     'login'
 ]);
 
-Route::post('saludo', [
-    \App\Http\Controllers\LoginController::class,
-    'saludar'
-])->middleware('auth:sanctum');
-
-Route::post('logout', [
-    \App\Http\Controllers\LoginController::class,
-    'cerrar'
-])->middleware('auth:sanctum');
+Route::group(['middleware' => ['auth:sanctum']], function ()
+{
+    Route::post('saludo', [\App\Http\Controllers\LoginController::class, 'saludar']);
+    Route::post('logout', [\App\Http\Controllers\LoginController::class, 'cerrar']);
+});

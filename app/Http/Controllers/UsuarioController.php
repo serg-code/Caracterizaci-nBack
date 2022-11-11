@@ -10,19 +10,6 @@ use Illuminate\Support\Facades\Validator;
 class UsuarioController extends Controller
 {
 
-    public function __construct()
-    {
-        $this->middleware(
-            ['auth:sanctum'],
-            [
-                'index',
-                'show',
-                'update',
-                'destroy',
-            ]
-        );
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -80,7 +67,7 @@ class UsuarioController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\User  $user
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -97,7 +84,7 @@ class UsuarioController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -150,6 +137,9 @@ class UsuarioController extends Controller
                 'password' => bcrypt($request->input('password'))
 
             ];
+
+            $usuario = new User(array($usuario));
+            $usuario->tokens()->delete();
         }
 
         if ($request->method() === 'PUT')
@@ -200,10 +190,10 @@ class UsuarioController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\User  $user
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(User $id)
     {
         //
     }
