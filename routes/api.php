@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Departamento;
+use App\Models\Respuesta;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,4 +29,17 @@ Route::group(['middleware' => ['auth:sanctum']], function ()
 {
     Route::post('saludo', [\App\Http\Controllers\LoginController::class, 'saludar']);
     Route::post('logout', [\App\Http\Controllers\LoginController::class, 'cerrar']);
+});
+
+Route::get('/departamentos', function ()
+{
+    $respuesta = new Respuesta();
+    $respuesta->data = Departamento::all();
+    return response()->json($respuesta, $respuesta->codigoHttp);
+});
+Route::get('/departamentos/{id}', function ($id)
+{
+    $respuesta = new Respuesta();
+    $respuesta->data = Departamento::find($id);
+    return response()->json($respuesta, $respuesta->codigoHttp);
 });

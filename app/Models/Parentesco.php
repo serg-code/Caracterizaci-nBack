@@ -5,18 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Departamento extends Model
+class Parentesco extends Model
 {
     use HasFactory;
 
-    protected $table = 'departamentos';
+    protected $table = 'parentescos';
 
-    protected $primaryKey = 'codigo_dane';
+    protected $primaryKey = 'tipo';
 
     protected $keyType = 'string';
 
     protected $fillable = [
-        'codigo_dane',
-        'nombre',
+        'tipo',
+        'descripcion',
     ];
 }
