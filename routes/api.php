@@ -14,8 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::apiResource('usuarios', App\Http\Controllers\UsuarioController::class)
-    ->only(['store', 'show']);
-
+    ->only(['store', 'show', 'update']);
 
 Route::post('login', [
     \App\Http\Controllers\LoginController::class,

@@ -9,6 +9,20 @@ use Illuminate\Support\Facades\Validator;
 
 class UsuarioController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware(
+            ['auth:sanctum'],
+            [
+                'index',
+                'show',
+                'update',
+                'destroy',
+            ]
+        );
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -69,9 +83,14 @@ class UsuarioController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show($id)
     {
-        //
+        $usuario = User::find($id);
+        $respuesta = new Respuesta();
+        $respuesta->data = [
+            'usuario' => $usuario
+        ];
+        return response()->json($respuesta, $respuesta->codigoHttp);
     }
 
     /**
@@ -81,9 +100,101 @@ class UsuarioController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
-        //
+        //3|xfH7Fgu0TNTm4X8KG8iUygKKwdYScIwvC6IXPbi8
+        //6|LuaDnZ5hlgFuesg8qt5EPHEtL4wI8Fel5j3PAYmZ
+        $usuario = User::find($id);
+        $usuarioAuth = $request->user();
+
+        if (empty($usuarioAuth) || empty($usuario) || $usuarioAuth->id !== $usuario->id)
+        {
+            $respuesta = new Respuesta(
+                401,
+                'Unauthorized',
+                'No puede realizar esta accion'
+            );
+            return response()->json($respuesta, $respuesta->codigoHttp);
+        }
+
+        $actualizar = [];
+
+        //saber si la peticion va por PUT o PATCH
+        if ($request->method() === 'PATCH')
+        {
+            $validador = Validator::make(
+                $request->all(),
+                [
+                    'password' => 'required',
+                    'confirmPassword' => 'required|same:password',
+                ],
+                [
+                    'password.required' => 'La contraseña es necesaria',
+                    'confirmPassword.required' => 'Se necesita confirmar la contraseña',
+                    'confirmPassword.same' => 'Las contraseñas no coinciden '
+                ]
+            );
+
+            if ($validador->fails())
+            {
+                $respuesta = new Respuesta(
+                    400,
+                    'Bad request',
+                    'algunos datos no son validos',
+                    $validador->getMessageBag()
+                );
+                return response()->json($respuesta, $respuesta->codigoHttp);
+            }
+
+            $actualizar = [
+                'password' => bcrypt($request->input('password'))
+
+            ];
+        }
+
+        if ($request->method() === 'PUT')
+        {
+            $datos = $request->all();
+            $validador = Validator::make(
+                $datos,
+                [
+                    'name' => 'required',
+                    'email' => 'required|email|unique:users,email',
+                ],
+                [
+                    'name.required' => 'El nombre es necesario',
+                    'email.required' => 'El correo es necesario',
+                    'email.email' => 'El correo debe ser valido',
+                    'email.unique' => 'Este correo no es valido',
+                ]
+            );
+
+            if ($validador->fails())
+            {
+                $respuesta = new Respuesta(
+                    400,
+                    'Bad request',
+                    'algunos datos no son validos',
+                    $validador->getMessageBag()
+                );
+                return response()->json($respuesta, $respuesta->codigoHttp);
+            }
+
+            $actualizar = [
+                'name' => $datos['name'],
+                'email' => $datos['email'],
+            ];
+        }
+
+        $usuarioActualizado = new User();
+        $usuarioActualizado->where('id', '=', $usuario->id)
+            ->update($actualizar);
+
+        $respuesta = new Respuesta();
+        $respuesta->data = [
+            'actual' => $actualizar,
+        ];
+        return response()->json($respuesta, $respuesta->codigoHttp);
     }
 
     /**
