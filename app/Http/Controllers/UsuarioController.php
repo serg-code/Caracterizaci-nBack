@@ -181,9 +181,6 @@ class UsuarioController extends Controller
             ->update($actualizar);
 
         $respuesta = new Respuesta();
-        $respuesta->data = [
-            'actual' => $actualizar,
-        ];
         return response()->json($respuesta, $respuesta->codigoHttp);
     }
 
