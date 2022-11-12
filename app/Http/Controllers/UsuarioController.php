@@ -138,7 +138,6 @@ class UsuarioController extends Controller
 
             ];
 
-            $usuario = new User(array($usuario));
             $usuario->tokens()->delete();
         }
 
