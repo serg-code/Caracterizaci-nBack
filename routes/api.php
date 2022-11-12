@@ -1,9 +1,7 @@
 <?php
 
 use App\Models\Departamento;
-use App\Models\Municipio;
 use App\Models\Respuesta;
-use GuzzleHttp\Psr7\Response;
 use Illuminate\Support\Facades\Route;
 
 /*

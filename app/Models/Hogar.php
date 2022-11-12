@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Hogar extends Model
 {
     use HasFactory;
+
+    protected $table = 'hogar';
+    protected $primaryKey = 'id';
+    protected $keyType = 'string';
+    protected $fillable = [
+        'id',
+        'zonas',
+        'municipio',
+        'barrio',
+        'direccion',
+        'geolocalizacion'
+    ];
 }
