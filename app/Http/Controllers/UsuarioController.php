@@ -193,4 +193,14 @@ class UsuarioController extends Controller
     {
         //
     }
+
+    public function actual(Request $request)
+    {
+        $respuesta = new Respuesta();
+        $respuesta->data = [
+            'usuario' => User::find($request->user()->id),
+        ];
+
+        return response()->json($respuesta, $respuesta->codigoHttp);
+    }
 }
