@@ -17,7 +17,13 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        //
+        $usuarios = User::all();
+        $respuesta = new Respuesta();
+        $respuesta->data = [
+            'usuarios' => $usuarios
+        ];
+
+        return response()->json($respuesta, $respuesta->codigoHttp);
     }
 
     /**
@@ -175,8 +181,7 @@ class UsuarioController extends Controller
             ];
         }
 
-        $usuarioActualizado = new User();
-        $usuarioActualizado->where('id', '=', $usuario->id)
+        User::where('id', '=', $usuario->id)
             ->update($actualizar);
 
         $respuesta = new Respuesta();
@@ -189,16 +194,37 @@ class UsuarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $usuario = User::find($id);
+        $usuarioAuth = $request->user();
+
+        if (empty($usuarioAuth) || empty($usuario) || $usuarioAuth->id !== $usuario->id)
+        {
+            $respuesta = new Respuesta(
+                403,
+                'Forbiden',
+                'Algo ha salido mal'
+            );
+            return response()->json($respuesta, $respuesta->codigoHttp);
+        }
+
+        $usuario->update(['activo' => false]);
+        $usuario->tokens()->delete();
+        $repuesta = new Respuesta(
+            200,
+            'succes',
+            'Usuario desactivado exitosamente'
+        );
+        return response()->json($repuesta, $repuesta->codigoHttp);
     }
 
     public function actual(Request $request)
     {
+        $usuario = $request->user();
         $respuesta = new Respuesta();
         $respuesta->data = [
-            'usuario' => User::find($request->user()->id),
+            'usuario' => User::find($usuario->id),
         ];
 
         return response()->json($respuesta, $respuesta->codigoHttp);
