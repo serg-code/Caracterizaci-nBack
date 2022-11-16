@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table)
         {
-            $table->boolean('ñ')->default(true)->after('password');
+            $table->boolean('activo')->default(true)->after('password');
         });
     }
 
@@ -28,7 +28,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table)
         {
-            $table->dropColumn('ñ');
+            $table->dropColumn('activo');
         });
     }
 };
