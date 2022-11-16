@@ -56,6 +56,8 @@ class LoginController extends Controller
             $respuesta = new Respuesta();
             $respuesta->data = [
                 'token' => $usuario->createToken($request->input('device'))->plainTextToken,
+                'tipoToken' => 'Bearer',
+                'usuario' => $usuario,
             ];
 
             return response()->json(

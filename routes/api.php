@@ -17,7 +17,8 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::post('/usuarios', [\App\Http\Controllers\UsuarioController::class, 'store']);
-Route::apiResource('usuarios', \App\Http\Controllers\UsuarioController::class, ['middleware' => ['auth:sanctum']]);
+Route::apiResource('usuarios', \App\Http\Controllers\UsuarioController::class, ['middleware' => ['auth:sanctum']])
+    ->except(['store']);
 
 Route::post('login', [
     \App\Http\Controllers\LoginController::class,
