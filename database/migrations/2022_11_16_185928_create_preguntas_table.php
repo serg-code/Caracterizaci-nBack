@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('preguntas', function (Blueprint $table)
         {
-
             $table->string('ref_campo');
             $table->string('ref_seccion');
             $table->string('descripcion');
@@ -28,6 +27,8 @@ return new class extends Migration
             ]);
             $table->boolean('estado')->default(0);
             $table->timestamps();
+
+            $table->foreign('ref_seccion')->references('ref_seccion')->on('secciones');
         });
     }
 

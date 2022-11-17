@@ -38,3 +38,5 @@ Route::get('/departamentos', function ()
     $respuesta->data = Departamento::all();
     return response()->json($respuesta, $respuesta->codigoHttp);
 });
+
+Route::post('preguntas', [\App\Http\Controllers\secciones\SeccionesController::class, 'store']);
