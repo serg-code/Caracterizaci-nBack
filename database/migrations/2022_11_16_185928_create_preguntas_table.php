@@ -29,7 +29,6 @@ return new class extends Migration
             $table->timestamps();
 
             $table->primary('ref_campo');
-            $table->foreign('ref_seccion')->references('ref_seccion')->on('secciones');
         });
     }
 
