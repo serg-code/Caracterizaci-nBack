@@ -49,7 +49,6 @@ class Pregunta extends Model
             $pregunta->save();
         }
 
-        // dd(empty($datos['opciones']));
         if (!empty($datos['opciones']))
         {
             foreach ($datos['opciones'] as $opcion)
@@ -60,38 +59,6 @@ class Pregunta extends Model
                 ];
                 $opciondb = new Opcion($datosOpcion);
                 $opciondb->save();
-            }
-        }
-    }
-
-    public static function guardarPreguntaa($datos)
-    {
-        $preguntadb = DB::selectOne("SELECT * FROM preguntas WHERE ref_campo=?", [$datos->ref_campo]);
-
-        if ($preguntadb === null)
-        {
-            // dd($datos);
-            $pregunta = new Pregunta([
-                'ref_campo' => $datos->ref_campo,
-                'ref_seccion' => $datos->ref_seccion,
-                'descripcion' => $datos->descripcion,
-                'tipo' => $datos->tipo,
-            ]);
-            $pregunta->save();
-
-            // $estadoOpcion = empty
-            dd($datos);
-            if (empty($datos->opciones))
-            {
-                foreach ($datos->opciones as $opcion)
-                {
-                    $datosOpcion = [
-                        'ref_campo' => $pregunta->ref_campo,
-                        'pregunta_opcion' => $opcion['pregunta_opcion'],
-                    ];
-                    $opciondb = new Opcion($datosOpcion);
-                    $opciondb->save();
-                }
             }
         }
     }
