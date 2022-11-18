@@ -18,8 +18,7 @@ return new class extends Migration
             $table->id();
             $table->string('ref_campo');
             $table->string('pregunta_opcion');
-            $table->string('valor', 3)
-                ->nullable()->comment('El valor que tiene la opcion');
+            $table->integer('valor')->default(0)->comment('El puntaje que tiene la opcion');
             $table->timestamps();
 
             $table->foreign('ref_campo')->references('ref_campo')->on('preguntas');

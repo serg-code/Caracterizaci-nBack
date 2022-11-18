@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\secciones;
 
 use App\Http\Controllers\Controller;
+use App\Models\Opcion;
 use App\Models\Pregunta;
 use App\Models\Respuesta;
 use App\Models\Seccion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class PreguntasController extends Controller
@@ -23,10 +25,12 @@ class PreguntasController extends Controller
 
         foreach ($preguntas as $pregunta)
         {
+            $opciones = Opcion::all();
             $preguntaEstructura = [
-                'descipcion' => $pregunta->descripcion,
                 'ref_seccion' => $pregunta->ref_seccion,
-                'opciones' => [],
+                'ref_campo' => $pregunta->ref_campo,
+                'descipcion' => $pregunta->descripcion,
+                'opciones' => $opciones,
             ];
             $listado["$pregunta->ref_campo"] = (object) $preguntaEstructura;
         }
@@ -73,19 +77,17 @@ class PreguntasController extends Controller
             return response()->json($respuesta, $respuesta->codigoHttp);
         }
 
+        $seccionInput = $request->input('seccion');
+        $secciondb = DB::selectOne('SELECT * FROM secciones WHERE ref_seccion=?', [$seccionInput]);
 
-        $seccion = new Seccion(['ref_seccion' => $request->input('seccion')]);
-        $seccion->save();
-
-        foreach ($request->input('preguntas') as $pregunta)
+        if (empty($secciondb))
         {
-            $pregunta['ref_seccion'] = $seccion->ref_seccion;
-            Pregunta::guardarPregunta($pregunta);
+            $seccion = new Seccion(['ref_seccion' => $seccionInput]);
+            $seccion->save();
+            return $this->guardarPreguntas($request->input('preguntas'), $seccion->ref_seccion);
         }
 
-
-        $respuesta = new Respuesta();
-        return response()->json($respuesta, $respuesta->codigoHttp);
+        return $this->guardarPreguntas($request->input('preguntas'), $secciondb->ref_seccion);
     }
 
     /**
@@ -120,5 +122,17 @@ class PreguntasController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function guardarPreguntas(array $preguntas, $seccion)
+    {
+        foreach ($preguntas as $pregunta)
+        {
+            $pregunta['ref_seccion'] = $seccion;
+            Pregunta::guardarPregunta($pregunta);
+        }
+
+        $respuesta = new Respuesta();
+        return response()->json($respuesta, $respuesta->codigoHttp);
     }
 }

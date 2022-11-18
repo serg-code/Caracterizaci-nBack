@@ -4,12 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Pregunta extends Model
 {
     use HasFactory;
 
     protected $table = 'preguntas';
+
+    protected $primatyKey = 'ref_campo';
+
+    protected $keyType = 'string';
 
     protected $fillable = [
         'ref_campo',
@@ -29,20 +34,30 @@ class Pregunta extends Model
         return $this->belongsTo(Seccion::class, 'ref_seccion');
     }
 
-    public static function guardarPregunta(array $datos)
+    public function opciones()
     {
-        $pregunta = new Pregunta($datos);
-        $pregunta->save();
+        return $this->hasMany(Opcion::class, 'ref_campo');
+    }
+
+    public static function guardarPregunta($datos)
+    {
+        $preguntadb = DB::selectOne("SELECT * FROM preguntas WHERE ref_campo=?", [$datos['ref_campo']]);
+
+        if (empty($preguntadb))
+        {
+            $pregunta = new Pregunta($datos);
+            $pregunta->save();
+        }
 
         if (!empty($datos['opciones']))
         {
             foreach ($datos['opciones'] as $opcion)
             {
-                $datos = [
-                    'ref_campo' => $pregunta->ref_campo,
+                $datosOpcion = [
+                    'ref_campo' => $datos['ref_campo'],
                     'pregunta_opcion' => $opcion['pregunta_opcion'],
                 ];
-                $opciondb = new Opcion($datos);
+                $opciondb = new Opcion($datosOpcion);
                 $opciondb->save();
             }
         }
