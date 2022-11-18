@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('Fumigar_vivienda');
             $table->string('Secretaría_ha_fumigado');
             $table->string('Acido_borico_cucarachas');
+         
             $table->timestamps();
 
             
