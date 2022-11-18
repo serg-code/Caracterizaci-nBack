@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\secciones;
 
 use App\Http\Controllers\Controller;
+use App\Models\Opcion;
 use App\Models\Pregunta;
 use App\Models\Respuesta;
 use App\Models\Seccion;
@@ -23,10 +24,11 @@ class PreguntasController extends Controller
 
         foreach ($preguntas as $pregunta)
         {
+            $opciones = Opcion::all();
             $preguntaEstructura = [
                 'descipcion' => $pregunta->descripcion,
                 'ref_seccion' => $pregunta->ref_seccion,
-                'opciones' => [],
+                'opciones' => $opciones,
             ];
             $listado["$pregunta->ref_campo"] = (object) $preguntaEstructura;
         }

@@ -29,6 +29,11 @@ class Pregunta extends Model
         return $this->belongsTo(Seccion::class, 'ref_seccion');
     }
 
+    public function opciones()
+    {
+        return $this->hasMany(Opcion::class, 'ref_campo');
+    }
+
     public static function guardarPregunta(array $datos)
     {
         $pregunta = new Pregunta($datos);
