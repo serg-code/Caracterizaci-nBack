@@ -8,6 +8,7 @@ use App\Models\Pregunta;
 use App\Models\Respuesta;
 use App\Models\Seccion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class PreguntasController extends Controller
@@ -77,24 +78,16 @@ class PreguntasController extends Controller
         }
 
         $seccionInput = $request->input('seccion');
-        $seccion = Seccion::find($seccionInput);
+        $secciondb = DB::selectOne('SELECT * FROM secciones WHERE ref_seccion=?', [$seccionInput]);
 
-        if (empty($seccion))
+        if (empty($secciondb))
         {
-            $seccion = new Seccion(['ref_seccion' => $request->input('seccion')]);
+            $seccion = new Seccion(['ref_seccion' => $seccionInput]);
             $seccion->save();
+            return $this->guardarPreguntas($request->input('preguntas'), $seccion->ref_seccion);
         }
 
-
-        foreach ($request->input('preguntas') as $pregunta)
-        {
-            $pregunta['ref_seccion'] = $seccion->ref_seccion;
-            Pregunta::guardarPregunta((object)$pregunta);
-        }
-
-
-        $respuesta = new Respuesta();
-        return response()->json($respuesta, $respuesta->codigoHttp);
+        return $this->guardarPreguntas($request->input('preguntas'), $secciondb->ref_seccion);
     }
 
     /**
@@ -129,5 +122,17 @@ class PreguntasController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function guardarPreguntas(array $preguntas, $seccion)
+    {
+        foreach ($preguntas as $pregunta)
+        {
+            $pregunta['ref_seccion'] = $seccion;
+            Pregunta::guardarPregunta($pregunta);
+        }
+
+        $respuesta = new Respuesta();
+        return response()->json($respuesta, $respuesta->codigoHttp);
     }
 }

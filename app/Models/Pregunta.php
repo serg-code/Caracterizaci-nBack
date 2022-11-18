@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Pregunta extends Model
 {
@@ -11,7 +12,7 @@ class Pregunta extends Model
 
     protected $table = 'preguntas';
 
-    protected $primaryKey = 'ref_campo';
+    protected $primatyKey = 'ref_campo';
 
     protected $keyType = 'string';
 
@@ -40,22 +41,55 @@ class Pregunta extends Model
 
     public static function guardarPregunta($datos)
     {
-        $pregunta = Pregunta::find($datos->ref_campo);
+        $preguntadb = DB::selectOne("SELECT * FROM preguntas WHERE ref_campo=?", [$datos['ref_campo']]);
 
-        if (empty($pregunta))
+        if (empty($preguntadb))
         {
             $pregunta = new Pregunta($datos);
             $pregunta->save();
+        }
 
-            if (!empty($datos['opciones']))
+        // dd(empty($datos['opciones']));
+        if (!empty($datos['opciones']))
+        {
+            foreach ($datos['opciones'] as $opcion)
             {
-                foreach ($datos['opciones'] as $opcion)
+                $datosOpcion = [
+                    'ref_campo' => $datos['ref_campo'],
+                    'pregunta_opcion' => $opcion['pregunta_opcion'],
+                ];
+                $opciondb = new Opcion($datosOpcion);
+                $opciondb->save();
+            }
+        }
+    }
+
+    public static function guardarPreguntaa($datos)
+    {
+        $preguntadb = DB::selectOne("SELECT * FROM preguntas WHERE ref_campo=?", [$datos->ref_campo]);
+
+        if ($preguntadb === null)
+        {
+            // dd($datos);
+            $pregunta = new Pregunta([
+                'ref_campo' => $datos->ref_campo,
+                'ref_seccion' => $datos->ref_seccion,
+                'descripcion' => $datos->descripcion,
+                'tipo' => $datos->tipo,
+            ]);
+            $pregunta->save();
+
+            // $estadoOpcion = empty
+            dd($datos);
+            if (empty($datos->opciones))
+            {
+                foreach ($datos->opciones as $opcion)
                 {
-                    $datos = [
+                    $datosOpcion = [
                         'ref_campo' => $pregunta->ref_campo,
                         'pregunta_opcion' => $opcion['pregunta_opcion'],
                     ];
-                    $opciondb = new Opcion($datos);
+                    $opciondb = new Opcion($datosOpcion);
                     $opciondb->save();
                 }
             }
