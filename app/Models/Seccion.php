@@ -16,6 +16,10 @@ class Seccion extends Model
 
     protected $table = 'secciones';
 
+    protected $primaryKey = 'ref_seccion';
+
+    protected $keyType = 'string';
+
     protected $fillable = [
         'ref_seccion',
     ];

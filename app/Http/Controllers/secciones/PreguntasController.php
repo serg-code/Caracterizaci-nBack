@@ -26,8 +26,9 @@ class PreguntasController extends Controller
         {
             $opciones = Opcion::all();
             $preguntaEstructura = [
-                'descipcion' => $pregunta->descripcion,
                 'ref_seccion' => $pregunta->ref_seccion,
+                'ref_campo' => $pregunta->ref_campo,
+                'descipcion' => $pregunta->descripcion,
                 'opciones' => $opciones,
             ];
             $listado["$pregunta->ref_campo"] = (object) $preguntaEstructura;
@@ -75,14 +76,20 @@ class PreguntasController extends Controller
             return response()->json($respuesta, $respuesta->codigoHttp);
         }
 
+        $seccionInput = $request->input('seccion');
+        $seccion = Seccion::find($seccionInput);
 
-        $seccion = new Seccion(['ref_seccion' => $request->input('seccion')]);
-        $seccion->save();
+        if (empty($seccion))
+        {
+            $seccion = new Seccion(['ref_seccion' => $request->input('seccion')]);
+            $seccion->save();
+        }
+
 
         foreach ($request->input('preguntas') as $pregunta)
         {
             $pregunta['ref_seccion'] = $seccion->ref_seccion;
-            Pregunta::guardarPregunta($pregunta);
+            Pregunta::guardarPregunta((object)$pregunta);
         }
 
 

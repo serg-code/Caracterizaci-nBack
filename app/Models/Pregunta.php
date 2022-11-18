@@ -11,6 +11,10 @@ class Pregunta extends Model
 
     protected $table = 'preguntas';
 
+    protected $primaryKey = 'ref_campo';
+
+    protected $keyType = 'string';
+
     protected $fillable = [
         'ref_campo',
         'ref_seccion',
@@ -34,21 +38,26 @@ class Pregunta extends Model
         return $this->hasMany(Opcion::class, 'ref_campo');
     }
 
-    public static function guardarPregunta(array $datos)
+    public static function guardarPregunta($datos)
     {
-        $pregunta = new Pregunta($datos);
-        $pregunta->save();
+        $pregunta = Pregunta::find($datos->ref_campo);
 
-        if (!empty($datos['opciones']))
+        if (empty($pregunta))
         {
-            foreach ($datos['opciones'] as $opcion)
+            $pregunta = new Pregunta($datos);
+            $pregunta->save();
+
+            if (!empty($datos['opciones']))
             {
-                $datos = [
-                    'ref_campo' => $pregunta->ref_campo,
-                    'pregunta_opcion' => $opcion['pregunta_opcion'],
-                ];
-                $opciondb = new Opcion($datos);
-                $opciondb->save();
+                foreach ($datos['opciones'] as $opcion)
+                {
+                    $datos = [
+                        'ref_campo' => $pregunta->ref_campo,
+                        'pregunta_opcion' => $opcion['pregunta_opcion'],
+                    ];
+                    $opciondb = new Opcion($datos);
+                    $opciondb->save();
+                }
             }
         }
     }
