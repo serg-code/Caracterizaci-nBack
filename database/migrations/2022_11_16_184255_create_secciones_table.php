@@ -15,12 +15,10 @@ return new class extends Migration
     {
         Schema::create('secciones', function (Blueprint $table)
         {
-            $table->uuid('hogar_id')->nullable();
             $table->string('ref_seccion')->unique();
             $table->timestamps();
 
             $table->primary('ref_seccion');
-            $table->foreign('hogar_id')->references('id')->on('hogar');
         });
     }
 

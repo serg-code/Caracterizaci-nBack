@@ -34,11 +34,16 @@ class Pregunta extends Model
         $pregunta = new Pregunta($datos);
         $pregunta->save();
 
-        if (!empty($datos['opcion']))
+        if (!empty($datos['opciones']))
         {
             foreach ($datos['opciones'] as $opcion)
             {
-                $opciondb = '';
+                $datos = [
+                    'ref_campo' => $pregunta->ref_campo,
+                    'pregunta_opcion' => $opcion['pregunta_opcion'],
+                ];
+                $opciondb = new Opcion($datos);
+                $opciondb->save();
             }
         }
     }

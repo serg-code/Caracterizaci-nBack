@@ -25,9 +25,10 @@ return new class extends Migration
                 'seleccion',
                 'seleccion multiple',
             ]);
-            $table->boolean('estado')->default(0);
+            $table->boolean('estado')->default(1);
             $table->timestamps();
 
+            $table->primary('ref_campo');
             $table->foreign('ref_seccion')->references('ref_seccion')->on('secciones');
         });
     }

@@ -62,6 +62,38 @@ class SeccionesController extends Controller
         return response()->json($respuesta, $respuesta->codigoHttp);
     }
 
+    public function index(string $seccion)
+    {
+        $listadoPreguntas = Pregunta::where('ref_seccion', '=', $seccion)->get();
+        $preguntas = [];
+
+        // foreach ($listadoPreguntas as $pregunta)
+        // {
+        //     $arr = [
+        //         "$pregunta->ref_campo" => [
+        //             'descripcion' => $pregunta->descripcion,
+        //             'opciones' => []
+        //         ]
+        //     ];
+
+        //     array_push($preguntas, $arr);
+        // }
+
+        $secciones = Seccion::all();
+        foreach ($secciones as $seccion)
+        {
+            $pregunta = $seccion->preguntas();
+            array_push($preguntas, $pregunta);
+        }
+
+        $respuesta = new Respuesta();
+        $respuesta->data = [
+            'preguntas' => $preguntas,
+            'seccion' => $secciones,
+        ];
+        return response()->json($respuesta, $respuesta->codigoHttp);
+    }
+
 
     public function storea(Request $request)
     {

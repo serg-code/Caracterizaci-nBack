@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('hogar', function (Blueprint $table)
         {
             $table->uuid('id')->unique();
-            $table->string('zonas');
+            $table->string('zona');
             $table->string('municipio');
-            $table->string('barrio');
+            $table->string('barrio')->comment('barrio / vereda');
             $table->string('direccion');
             $table->string('geolocalizacion');
             $table->timestamps();
