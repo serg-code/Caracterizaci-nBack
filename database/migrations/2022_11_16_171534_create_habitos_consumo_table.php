@@ -19,18 +19,11 @@ return new class extends Migration
             $table->string('consumo_huevos_crudos');
             $table->string('alimentos_perecederos');
             $table->string('hierve_leche');
-            $table->string('lavar_frutasYverduras');
-            $table->string('alimentos_crudos_separados_de_cocidos');
+            $table->string('lavar_frutas_verduras');
+            $table->string('alimentos_crudos_separados_cocidos');
             $table->timestamps();
 
             $table->foreign('hogar_id')->references('id')->on('hogar');
-            // $table->foreign([
-            //     'consumo_huevos_crudos',
-            //     'alimentos_perecederos',
-            //     'hierve_leche',
-            //     'lavar_frutas_verduras',
-            //     'alimentos_crudos_separados_de_cocidos'
-            // ])->references('ref_campo')->on('preguntas');
         });
     }
 
