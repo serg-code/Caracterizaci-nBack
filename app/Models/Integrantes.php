@@ -27,6 +27,11 @@ class Integrantes extends Model
         'cabeza_familia',
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
     public function hogar()
     {
         return $this->hasMany(Hogar::class, 'hogar_id');

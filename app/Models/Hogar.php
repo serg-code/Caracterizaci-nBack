@@ -20,4 +20,9 @@ class Hogar extends Model
         'direccion',
         'geolocalizacion'
     ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
 }

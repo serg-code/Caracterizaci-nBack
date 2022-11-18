@@ -9,16 +9,6 @@ class Pregunta extends Model
 {
     use HasFactory;
 
-    // public function __construct(
-    //     public string $refCampo = '',
-    //     public string $refSeccion = '',
-    //     public string $descripcion = '',
-    //     public string $tipo = '',
-    //     public bool $estado = false
-    // )
-    // {
-    // }
-
     protected $table = 'preguntas';
 
     protected $fillable = [
@@ -26,6 +16,30 @@ class Pregunta extends Model
         'ref_seccion',
         'descripcion',
         'tipo',
-        'estado'
+        'estado',
     ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
+    public function seccion()
+    {
+        return $this->belongsTo(Seccion::class, 'ref_seccion');
+    }
+
+    public static function guardarPregunta(array $datos)
+    {
+        $pregunta = new Pregunta($datos);
+        $pregunta->save();
+
+        if (!empty($datos['opcion']))
+        {
+            foreach ($datos['opciones'] as $opcion)
+            {
+                $opciondb = '';
+            }
+        }
+    }
 }

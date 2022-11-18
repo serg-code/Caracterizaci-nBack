@@ -19,6 +19,11 @@ class Municipio extends Model
         'cod_dpto',
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
     //relacion de n:1
     public function departamento()
     {

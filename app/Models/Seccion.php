@@ -17,7 +17,16 @@ class Seccion extends Model
     protected $table = 'secciones';
 
     protected $fillable = [
-        'hogar_id',
         'ref_seccion',
     ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
+    public function preguntas()
+    {
+        return $this->hasMany(Pregunta::class, 'ref_seccion');
+    }
 }
