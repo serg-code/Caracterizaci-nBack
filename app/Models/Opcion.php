@@ -5,24 +5,26 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Hogar extends Model
+class Opcion extends Model
 {
     use HasFactory;
 
-    protected $table = 'hogar';
-    protected $primaryKey = 'id';
-    protected $keyType = 'string';
+    protected $table = 'opciones';
+
     protected $fillable = [
         'id',
-        'zonas',
-        'municipio',
-        'barrio',
-        'direccion',
-        'geolocalizacion'
+        'ref_campo',
+        'pregunta_opcion',
+        'valor',
     ];
 
     protected $hidden = [
         'created_at',
         'updated_at',
     ];
+
+    public function pregunta()
+    {
+        return $this->belongsTo(Pregunta::class, 'ref_campo');
+    }
 }

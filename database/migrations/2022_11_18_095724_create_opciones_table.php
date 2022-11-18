@@ -13,17 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('hogar', function (Blueprint $table)
+        Schema::create('opciones', function (Blueprint $table)
         {
-            $table->uuid('id')->unique();
-            $table->string('zona');
-            $table->string('municipio');
-            $table->string('barrio')->comment('barrio / vereda');
-            $table->string('direccion');
-            $table->string('geolocalizacion');
+            $table->id();
+            $table->string('ref_campo');
+            $table->string('pregunta_opcion');
+            $table->string('valor', 3)
+                ->nullable()->comment('El valor que tiene la opcion');
             $table->timestamps();
 
-            $table->primary('id');
+            $table->foreign('ref_campo')->references('ref_campo')->on('preguntas');
         });
     }
 
@@ -34,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hogar');
+        Schema::dropIfExists('opciones');
     }
 };

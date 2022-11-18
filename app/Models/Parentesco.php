@@ -19,4 +19,9 @@ class Parentesco extends Model
         'tipo',
         'descripcion',
     ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
 }

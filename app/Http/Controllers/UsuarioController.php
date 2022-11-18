@@ -63,6 +63,7 @@ class UsuarioController extends Controller
 
         $usuario = new User($request->all());
         $usuario->save();
+        $usuario->assignRole('Usuario');
         $respuesta = new Respuesta(
             codigoHttp: 200,
             titulo: 'Created'

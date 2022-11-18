@@ -17,7 +17,6 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::post('/usuarios', [\App\Http\Controllers\UsuarioController::class, 'store']);
-Route::apiResource('usuarios', \App\Http\Controllers\UsuarioController::class, ['middleware' => ['auth:sanctum']]);
 
 Route::post('login', [
     \App\Http\Controllers\LoginController::class,
@@ -29,6 +28,8 @@ Route::group(['middleware' => ['auth:sanctum']], function ()
     Route::get('usuario', [\App\Http\Controllers\UsuarioController::class, 'actual']);
     Route::post('saludo', [\App\Http\Controllers\LoginController::class, 'saludar']);
     Route::post('logout', [\App\Http\Controllers\LoginController::class, 'cerrar']);
+    Route::apiResource('usuarios', \App\Http\Controllers\UsuarioController::class)
+        ->except(['store']);
 });
 
 Route::get('/departamentos', function ()
@@ -36,4 +37,10 @@ Route::get('/departamentos', function ()
     $respuesta = new Respuesta();
     $respuesta->data = Departamento::all();
     return response()->json($respuesta, $respuesta->codigoHttp);
+});
+
+
+Route::group([], function ()
+{
+    Route::apiResource('preguntas', \App\Http\Controllers\secciones\PreguntasController::class);
 });

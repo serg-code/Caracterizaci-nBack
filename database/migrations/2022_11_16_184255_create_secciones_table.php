@@ -13,9 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table)
+        Schema::create('secciones', function (Blueprint $table)
         {
-            $table->boolean('activo')->default(true)->after('password');
+            $table->string('ref_seccion')->unique();
+            $table->timestamps();
+
+            $table->primary('ref_seccion');
         });
     }
 
@@ -26,9 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table)
-        {
-            $table->dropColumn('activo');
-        });
+        Schema::dropIfExists('secciones');
     }
 };
