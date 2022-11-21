@@ -42,5 +42,6 @@ Route::get('/departamentos', function ()
 
 Route::group([], function ()
 {
-    Route::apiResource('preguntas', \App\Http\Controllers\secciones\PreguntasController::class);
+    Route::apiResource('preguntas', \App\Http\Controllers\secciones\PreguntasController::class)
+        ->only(['index']);
 });
