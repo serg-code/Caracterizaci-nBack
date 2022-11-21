@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('integrantes', function (Blueprint $table)
         {
             $table->uuid('id')->unique();
-            $table->string('tipo_identificacion');
+            $table->integer('tipo_identificacion');
             $table->string('identificacion');
             $table->string('primer_nombre');
             $table->string('segundo_nombre');
@@ -39,6 +39,7 @@ return new class extends Migration
 
             $table->primary('id');
             $table->foreign('hogar_id')->references('id')->on('hogar');
+            $table->foreign('tipo_identificacion')->references('id')->on('tipo_identificacion');
         });
     }
 
