@@ -17,6 +17,7 @@ return new class extends Migration
         {
             $table->uuid('id')->unique();
             $table->string('zona');
+            $table->string('departamento');
             $table->string('municipio');
             $table->string('barrio')->comment('barrio / vereda');
             $table->string('direccion');

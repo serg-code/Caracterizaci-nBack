@@ -44,4 +44,5 @@ Route::group([], function ()
 {
     Route::apiResource('preguntas', \App\Http\Controllers\secciones\PreguntasController::class)
         ->only(['index']);
+    Route::post('/hogar', [\App\Http\Controllers\HogarController::class, 'crearHogar']);
 });
