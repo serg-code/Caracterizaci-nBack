@@ -22,17 +22,13 @@ class PreguntasController extends Controller
     {
         $preguntas = Pregunta::all();
         $listado = array();
+        // $preguntas = Pregunta::find("consumo_huevos_crudos");
 
         foreach ($preguntas as $pregunta)
         {
-            $opciones = Opcion::all();
-            $preguntaEstructura = [
-                'ref_seccion' => $pregunta->ref_seccion,
-                'ref_campo' => $pregunta->ref_campo,
-                'descipcion' => $pregunta->descripcion,
-                'opciones' => $opciones,
-            ];
-            $listado["$pregunta->ref_campo"] = (object) $preguntaEstructura;
+            //obtener las opciones de las preguntas
+            $pregunta->opciones;
+            $listado["$pregunta->ref_campo"] = (object) $pregunta;
         }
 
         $respuesta = new Respuesta();

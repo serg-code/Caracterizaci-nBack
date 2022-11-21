@@ -12,7 +12,7 @@ class Pregunta extends Model
 
     protected $table = 'preguntas';
 
-    protected $primatyKey = 'ref_campo';
+    protected $primaryKey = 'ref_campo';
 
     protected $keyType = 'string';
 
