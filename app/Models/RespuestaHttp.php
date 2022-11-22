@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-class Respuesta
+class RespuestaHttp
 {
 
     public function __construct(

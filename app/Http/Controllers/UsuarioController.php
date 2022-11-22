@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Respuesta;
+use App\Models\RespuestaHttp;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -18,7 +18,7 @@ class UsuarioController extends Controller
     public function index()
     {
         $usuarios = User::all();
-        $respuesta = new Respuesta();
+        $respuesta = new RespuestaHttp();
         $respuesta->data = [
             'usuarios' => $usuarios
         ];
@@ -52,7 +52,7 @@ class UsuarioController extends Controller
 
         if ($validacion->fails())
         {
-            $respuesta = new Respuesta(
+            $respuesta = new RespuestaHttp(
                 400,
                 'Bad Request',
                 'Valide los datos',
@@ -64,7 +64,7 @@ class UsuarioController extends Controller
         $usuario = new User($request->all());
         $usuario->save();
         $usuario->assignRole('Usuario');
-        $respuesta = new Respuesta(
+        $respuesta = new RespuestaHttp(
             codigoHttp: 200,
             titulo: 'Created'
         );
@@ -80,7 +80,7 @@ class UsuarioController extends Controller
     public function show($id)
     {
         $usuario = User::find($id);
-        $respuesta = new Respuesta();
+        $respuesta = new RespuestaHttp();
         $respuesta->data = [
             'usuario' => $usuario
         ];
@@ -103,7 +103,7 @@ class UsuarioController extends Controller
 
         if (empty($usuarioAuth) || empty($usuario) || $usuarioAuth->id !== $usuario->id)
         {
-            $respuesta = new Respuesta(
+            $respuesta = new RespuestaHttp(
                 401,
                 'Unauthorized',
                 'No puede realizar esta accion'
@@ -131,7 +131,7 @@ class UsuarioController extends Controller
 
             if ($validador->fails())
             {
-                $respuesta = new Respuesta(
+                $respuesta = new RespuestaHttp(
                     400,
                     'Bad request',
                     'algunos datos no son validos',
@@ -167,7 +167,7 @@ class UsuarioController extends Controller
 
             if ($validador->fails())
             {
-                $respuesta = new Respuesta(
+                $respuesta = new RespuestaHttp(
                     400,
                     'Bad request',
                     'algunos datos no son validos',
@@ -185,7 +185,7 @@ class UsuarioController extends Controller
         User::where('id', '=', $usuario->id)
             ->update($actualizar);
 
-        $respuesta = new Respuesta();
+        $respuesta = new RespuestaHttp();
         return response()->json($respuesta, $respuesta->codigoHttp);
     }
 
@@ -202,7 +202,7 @@ class UsuarioController extends Controller
 
         if (empty($usuarioAuth) || empty($usuario) || $usuarioAuth->id !== $usuario->id)
         {
-            $respuesta = new Respuesta(
+            $respuesta = new RespuestaHttp(
                 403,
                 'Forbiden',
                 'Algo ha salido mal'
@@ -212,7 +212,7 @@ class UsuarioController extends Controller
 
         $usuario->update(['activo' => false]);
         $usuario->tokens()->delete();
-        $repuesta = new Respuesta(
+        $repuesta = new RespuestaHttp(
             200,
             'succes',
             'Usuario desactivado exitosamente'
@@ -223,7 +223,7 @@ class UsuarioController extends Controller
     public function actual(Request $request)
     {
         $usuario = $request->user();
-        $respuesta = new Respuesta();
+        $respuesta = new RespuestaHttp();
         $respuesta->data = [
             'usuario' => User::find($usuario->id),
         ];

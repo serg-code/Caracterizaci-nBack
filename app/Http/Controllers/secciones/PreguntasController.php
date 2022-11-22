@@ -4,11 +4,8 @@ namespace App\Http\Controllers\secciones;
 
 use App\Http\Controllers\Controller;
 use App\Models\Pregunta;
-use App\Models\Respuesta;
-use App\Models\Seccion;
+use App\Models\RespuestaHttp;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
 
 class PreguntasController extends Controller
 {
@@ -19,22 +16,8 @@ class PreguntasController extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD
         $listado = Pregunta::PreguntasOpciones();
-=======
-        $preguntas = Pregunta::all();
-        $listado = array();
-        // $preguntas = Pregunta::find("consumo_huevos_crudos");
-
-        foreach ($preguntas as $pregunta)
-        {
-            //obtener las opciones de las preguntas
-            $pregunta->opciones;
-            $listado["$pregunta->ref_campo"] = (object) $pregunta;
-        }
->>>>>>> 67db98b6719f44c1444c1f556676a44de3ba9d50
-
-        $respuesta = new Respuesta();
+        $respuesta = new RespuestaHttp();
         $respuesta->data = [
             "preguntas" => $listado,
         ];
@@ -49,44 +32,8 @@ class PreguntasController extends Controller
      */
     public function store(Request $request)
     {
-        $validacion = Validator::make(
-            $request->all(),
-            [
-                'seccion' => 'required',
-                'preguntas' => 'required|array',
-            ],
-            [
-                'seccion.required' => 'La seccion es necesaria',
-                'preguntas.required' => 'El listado de preguntas es necesario',
-                'preguntas.array' => 'El listado de preguntas debe ser un array',
-            ]
-        );
-
-        if ($validacion->fails())
-        {
-            $respuesta = new Respuesta(
-                400,
-                'Bad request',
-                'Algunos datos son invalidos',
-                [
-                    'errores' => $validacion->getMessageBag(),
-                ]
-            );
-
-            return response()->json($respuesta, $respuesta->codigoHttp);
-        }
-
-        $seccionInput = $request->input('seccion');
-        $secciondb = DB::selectOne('SELECT * FROM secciones WHERE ref_seccion=?', [$seccionInput]);
-
-        if (empty($secciondb))
-        {
-            $seccion = new Seccion(['ref_seccion' => $seccionInput]);
-            $seccion->save();
-            return $this->guardarPreguntas($request->input('preguntas'), $seccion->ref_seccion);
-        }
-
-        return $this->guardarPreguntas($request->input('preguntas'), $secciondb->ref_seccion);
+        $respuesta = new RespuestaHttp();
+        return response()->json($respuesta, $respuesta->codigoHttp);
     }
 
     /**
@@ -131,7 +78,7 @@ class PreguntasController extends Controller
             Pregunta::guardarPregunta($pregunta);
         }
 
-        $respuesta = new Respuesta();
+        $respuesta = new RespuestaHttp();
         return response()->json($respuesta, $respuesta->codigoHttp);
     }
 }

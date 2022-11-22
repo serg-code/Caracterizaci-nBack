@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Respuesta;
+use App\Models\RespuestaHttp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -29,7 +29,7 @@ class LoginController extends Controller
         //validar si los datos recibidos son validos
         if ($validacion->fails())
         {
-            $respuesta = new Respuesta(
+            $respuesta = new RespuestaHttp(
                 codigoHttp: 400,
                 titulo: 'Bad request',
                 data: $validacion->getMessageBag()
@@ -43,7 +43,7 @@ class LoginController extends Controller
             $usuario = $request->user();
             if ($usuario->activo === 0)
             {
-                $respuesta = new Respuesta(
+                $respuesta = new RespuestaHttp(
                     403,
                     'Forbidden',
                     'El usuario no está activo',
@@ -51,7 +51,7 @@ class LoginController extends Controller
                 return response()->json($respuesta, $respuesta->codigoHttp);
             }
 
-            $respuesta = new Respuesta();
+            $respuesta = new RespuestaHttp();
             $respuesta->data = [
                 'token' => $usuario->createToken($request->input('device'))->plainTextToken,
                 'tipoToken' => 'Bearer',
@@ -64,7 +64,7 @@ class LoginController extends Controller
             );
         }
 
-        $respuesta = new Respuesta(
+        $respuesta = new RespuestaHttp(
             codigoHttp: 400,
             titulo: 'Bad request',
             mensaje: 'Credenciales invalidas'
@@ -74,7 +74,7 @@ class LoginController extends Controller
 
     public function saludar(Request $request)
     {
-        $respuesta = new Respuesta();
+        $respuesta = new RespuestaHttp();
         $respuesta->mensaje = 'Todo va bien';
         return response()->json(data: $respuesta, status: $respuesta->codigoHttp);
     }
@@ -82,7 +82,7 @@ class LoginController extends Controller
     public function cerrar(Request $request)
     {
         $request->user()->currentAccessToken()->delete();
-        $respuesta = new Respuesta();
+        $respuesta = new RespuestaHttp();
         $respuesta->mensaje = 'Ha terminado la sesion';
 
         return response()->json(

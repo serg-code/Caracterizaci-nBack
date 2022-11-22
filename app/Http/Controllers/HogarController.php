@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Hogar;
-use App\Models\Respuesta;
+use App\Models\RespuestaHttp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -33,14 +33,14 @@ class HogarController extends Controller
 
         if ($validador->fails())
         {
-            $respuesta = new Respuesta(400, 'bad request', 'Valide la informaicon', $validador->getMessageBag());
+            $respuesta = new RespuestaHttp(400, 'bad request', 'Valide la informaicon', $validador->getMessageBag());
             return response()->json($respuesta, $respuesta->codigoHttp);
         }
 
         $hogar = new Hogar($request->all());
         $hogar->save();
 
-        $respuesta = new Respuesta();
+        $respuesta = new RespuestaHttp();
         $respuesta->data = [
             'hogar' => $hogar,
         ];

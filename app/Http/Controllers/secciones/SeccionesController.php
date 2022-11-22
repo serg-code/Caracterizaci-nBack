@@ -4,8 +4,7 @@ namespace App\Http\Controllers\secciones;
 
 use App\Http\Controllers\Controller;
 use App\Models\Pregunta;
-use App\Models\Respuesta;
-use App\Models\Seccion;
+use App\Models\RespuestaHttp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -19,78 +18,13 @@ class SeccionesController extends Controller
      */
     public function store(Request $request)
     {
-        $validacion = Validator::make(
-            $request->all(),
-            [
-                'seccion' => 'required',
-                'preguntas' => 'required|array',
-            ],
-            [
-                'seccion.required' => 'La seccion es necesaria',
-                'preguntas.required' => 'El listado de preguntas es necesario',
-                'preguntas.array' => 'El listado de preguntas debe ser un array',
-            ]
-        );
-
-        if ($validacion->fails())
-        {
-            $respuesta = new Respuesta(
-                400,
-                'Bad request',
-                'Algunos datos son invalidos',
-                [
-                    'errores' => $validacion->getMessageBag(),
-                ]
-            );
-
-            return response()->json($respuesta, $respuesta->codigoHttp);
-        }
-
-
-        $seccion = new Seccion(['ref_seccion' => $request->input('seccion')]);
-        $seccion->save();
-
-        foreach ($request->input('preguntas') as $pregunta)
-        {
-            $pregunta = new Pregunta($pregunta);
-            $pregunta->ref_seccion = $seccion->ref_seccion;
-            $pregunta->save();
-        }
-
-
-        $respuesta = new Respuesta();
+        $respuesta = new RespuestaHttp();
         return response()->json($respuesta, $respuesta->codigoHttp);
     }
 
     public function index(string $seccion)
     {
-        $listadoPreguntas = Pregunta::where('ref_seccion', '=', $seccion)->get();
-        $preguntas = [];
-
-        // foreach ($listadoPreguntas as $pregunta)
-        // {
-        //     $arr = [
-        //         "$pregunta->ref_campo" => [
-        //             'descripcion' => $pregunta->descripcion,
-        //             'opciones' => []
-        //         ]
-        //     ];
-
-        //     array_push($preguntas, $arr);
-        // }
-
-        $secciones = Seccion::all();
-        foreach ($secciones as $seccion)
-        {
-            $pregunta = $seccion->preguntas();
-            array_push($preguntas, $pregunta);
-        }
-
-        $respuesta = new Respuesta();
-        $respuesta->data = [
-            'preguntas' => $preguntas,
-            'seccion' => $secciones,
-        ];
+        $respuesta = new RespuestaHttp();
         return response()->json($respuesta, $respuesta->codigoHttp);
     }
 
@@ -110,7 +44,7 @@ class SeccionesController extends Controller
 
         if ($validacion->fails())
         {
-            $respuesta = new Respuesta(
+            $respuesta = new RespuestaHttp(
                 400,
                 'Bad request',
                 'Algunos datos son invalidos',
@@ -131,7 +65,7 @@ class SeccionesController extends Controller
             }
         }
 
-        $respuesta = new Respuesta();
+        $respuesta = new RespuestaHttp();
         $respuesta->data = [
             'listado' => $request->input('listado'),
         ];
