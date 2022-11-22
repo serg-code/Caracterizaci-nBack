@@ -18,8 +18,8 @@ class OpcionesSeeder extends Seeder
         Opcion::guardarOpcion(["id" => "1", "ref_campo" => "tipo_familia", "pregunta_opcion" => "Nuclear", "valor" => "1"]);
         Opcion::guardarOpcion(["id" => "2", "ref_campo" => "tipo_familia", "pregunta_opcion" => "Extensa - compuesta", "valor" => "3"]);
         Opcion::guardarOpcion(["id" => "3", "ref_campo" => "tipo_familia", "pregunta_opcion" => "Monoparental", "valor" => "5"]);
-        Opcion::guardarOpcion(["id" => "4", "ref_campo" => "duermen_niños_niñas_adultos", "pregunta_opcion" => "No", "valor" => "1"]);
-        Opcion::guardarOpcion(["id" => "5", "ref_campo" => "duermen_niños_niñas_adultos", "pregunta_opcion" => "Sí", "valor" => "3"]);
+        Opcion::guardarOpcion(["id" => "4", "ref_campo" => "duermen_ninos_ninas_adultos", "pregunta_opcion" => "No", "valor" => "1"]);
+        Opcion::guardarOpcion(["id" => "5", "ref_campo" => "duermen_ninos_ninas_adultos", "pregunta_opcion" => "Sí", "valor" => "3"]);
         Opcion::guardarOpcion(["id" => "6", "ref_campo" => "problemas_alcohol", "pregunta_opcion" => "No", "valor" => "1"]);
         Opcion::guardarOpcion(["id" => "7", "ref_campo" => "problemas_alcohol", "pregunta_opcion" => "Sí", "valor" => "3"]);
         Opcion::guardarOpcion(["id" => "8", "ref_campo" => "consume_tranquilizantes", "pregunta_opcion" => "No", "valor" => "1"]);
@@ -35,8 +35,8 @@ class OpcionesSeeder extends Seeder
         Opcion::guardarOpcion(["id" => "18", "ref_campo" => "lavar_manos_antes_preparar_alimentos", "pregunta_opcion" => "Siempre", "valor" => "0"]);
         Opcion::guardarOpcion(["id" => "19", "ref_campo" => "fumigar_vivienda", "pregunta_opcion" => "No", "valor" => "1"]);
         Opcion::guardarOpcion(["id" => "20", "ref_campo" => "fumigar_vivienda", "pregunta_opcion" => "Sí", "valor" => "3"]);
-        Opcion::guardarOpcion(["id" => "21", "ref_campo" => "secretaría_fumigado", "pregunta_opcion" => "No", "valor" => "1"]);
-        Opcion::guardarOpcion(["id" => "22", "ref_campo" => "secretaría_fumigado", "pregunta_opcion" => "Sí", "valor" => "3"]);
+        Opcion::guardarOpcion(["id" => "21", "ref_campo" => "secretaria_fumigado", "pregunta_opcion" => "No", "valor" => "1"]);
+        Opcion::guardarOpcion(["id" => "22", "ref_campo" => "secretaria_fumigado", "pregunta_opcion" => "Sí", "valor" => "3"]);
         Opcion::guardarOpcion(["id" => "23", "ref_campo" => "acido_borico_cucarachas", "pregunta_opcion" => "No", "valor" => "1"]);
         Opcion::guardarOpcion(["id" => "24", "ref_campo" => "acido_borico_cucarachas", "pregunta_opcion" => "Sí", "valor" => "3"]);
         Opcion::guardarOpcion(["id" => "25", "ref_campo" => "consumo_huevos_crudos", "pregunta_opcion" => "No", "valor" => "1"]);
