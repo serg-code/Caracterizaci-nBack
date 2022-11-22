@@ -35,6 +35,11 @@ class Integrantes extends Model
 
     public function hogar()
     {
-        return $this->hasMany(Hogar::class, 'hogar_id');
+        return $this->hasMany(Hogar::class, 'id');
+    }
+
+    public function tipoIdentificacion()
+    {
+        return $this->belongsTo(TipoIdentifacion::class, 'tipo_identificacion');
     }
 }

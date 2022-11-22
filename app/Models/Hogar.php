@@ -28,4 +28,11 @@ class Hogar extends Model
         'created_at',
         'updated_at',
     ];
+
+    public function integrantes()
+    {
+        return $this->hasMany(Integrantes::class, 'hogar_id');
+    }
+
+    //? relacion con municipios y deperatamentos
 }

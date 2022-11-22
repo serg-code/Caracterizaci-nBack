@@ -28,4 +28,9 @@ class TipoIdentifacion extends Model
         $tipoIdentificacion = new TipoIdentifacion($datos);
         $tipoIdentificacion->save();
     }
+
+    public function integrantes()
+    {
+        return $this->hasMany(Integrantes::class, 'tipo_identificacion');
+    }
 }
