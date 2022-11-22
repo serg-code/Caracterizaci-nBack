@@ -18,6 +18,7 @@ class Hogar extends Model
         'zona',
         'departamento',
         'municipio',
+        'tipo',
         'barrio',
         'direccion',
         'geolocalizacion'

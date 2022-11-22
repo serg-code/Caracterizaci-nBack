@@ -17,8 +17,9 @@ return new class extends Migration
         {
             $table->uuid('id')->unique();
             $table->string('zona');
-            $table->string('departamento');
-            $table->string('municipio');
+            $table->string('cod_dpto', 2)->comment('codigo dane del departamento');
+            $table->string('cod_mun', 3)->comment('codigo dane del municipio');
+            $table->integer('tipo');
             $table->string('barrio')->comment('barrio / vereda');
             $table->string('direccion');
             $table->string('geolocalizacion');

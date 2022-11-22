@@ -11,6 +11,8 @@ class TipoIdentifacion extends Model
 
     protected $table = 'tipo_identificacion';
 
+    protected $keyType = 'string';
+
     protected $fillable = [
         'id',
         'tipo',
