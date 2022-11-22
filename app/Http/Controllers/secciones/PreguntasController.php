@@ -19,15 +19,7 @@ class PreguntasController extends Controller
      */
     public function index()
     {
-        $preguntas = Pregunta::all();
-        $listado = array();
-
-        foreach ($preguntas as $pregunta)
-        {
-            //obtener las opciones de las preguntas
-            $pregunta->opciones;
-            $listado["$pregunta->ref_campo"] = (object) $pregunta;
-        }
+        $listado = Pregunta::PreguntasOpciones();
 
         $respuesta = new Respuesta();
         $respuesta->data = [

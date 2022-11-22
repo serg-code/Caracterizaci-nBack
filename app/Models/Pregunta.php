@@ -62,4 +62,18 @@ class Pregunta extends Model
             }
         }
     }
+
+    public static function PreguntasOpciones(): ?array
+    {
+        $preguntas = Pregunta::all();
+        $listado = [];
+
+        foreach ($preguntas as $pregunta)
+        {
+            //obtener las opciones de las preguntas
+            $pregunta->opciones;
+            $listado["$pregunta->ref_campo"] = (object) $pregunta;
+        }
+        return $listado;
+    }
 }
