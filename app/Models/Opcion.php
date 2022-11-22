@@ -27,4 +27,10 @@ class Opcion extends Model
     {
         return $this->belongsTo(Pregunta::class, 'ref_campo');
     }
+
+    public function guardarPregunta(array $datosOpcion)
+    {
+        $pregunta = new Opcion($datosOpcion);
+        $pregunta->save();
+    }
 }
