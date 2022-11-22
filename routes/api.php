@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\Departamento;
-use App\Models\Respuesta;
+use App\Models\RespuestaHttp;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,7 +37,7 @@ Route::group(['middleware' => ['auth:sanctum']], function ()
 
 Route::get('/departamentos', function ()
 {
-    $respuesta = new Respuesta();
+    $respuesta = new RespuestaHttp();
     $respuesta->data = Departamento::all();
     return response()->json($respuesta, $respuesta->codigoHttp);
 });
