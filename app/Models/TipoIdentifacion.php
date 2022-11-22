@@ -5,9 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TipoIdentifaciones extends Model
+class TipoIdentifacion extends Model
 {
     use HasFactory;
+
+    protected $table = 'tipo_identificacion';
 
     protected $fillable = [
         'id',
