@@ -12,7 +12,7 @@ class Pregunta extends Model
 
     protected $table = 'preguntas';
 
-    protected $primatyKey = 'ref_campo';
+    protected $primaryKey = 'ref_campo';
 
     protected $keyType = 'string';
 
@@ -61,5 +61,19 @@ class Pregunta extends Model
                 $opciondb->save();
             }
         }
+    }
+
+    public static function PreguntasOpciones(): ?array
+    {
+        $preguntas = Pregunta::all();
+        $listado = [];
+
+        foreach ($preguntas as $pregunta)
+        {
+            //obtener las opciones de las preguntas
+            $pregunta->opciones;
+            $listado["$pregunta->ref_campo"] = (object) $pregunta;
+        }
+        return $listado;
     }
 }

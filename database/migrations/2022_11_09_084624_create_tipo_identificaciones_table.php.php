@@ -13,18 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('hogar', function (Blueprint $table)
+        Schema::create('tipo_identificacion', function (Blueprint $table)
         {
-            $table->uuid('id')->unique();
-            $table->string('zona');
-            $table->string('departamento');
-            $table->string('municipio');
-            $table->string('barrio')->comment('barrio / vereda');
-            $table->string('direccion');
-            $table->string('geolocalizacion');
+            $table->integer('id')->autoIncrement();
+            $table->string('tipo', 20)->comment('Tipo de identificacion');
             $table->timestamps();
-
-            $table->primary('id');
         });
     }
 
@@ -35,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hogar');
+        Schema::dropIfExists('tipo_identificacion');
     }
 };

@@ -17,7 +17,7 @@ return new class extends Migration
         {
             $table->char('hogar_id', 36);
             $table->string('tipo_familia');
-            $table->string('duermen_niños_niñas_adultos');
+            $table->string('duermen_ninos_ninas_adultos');
             $table->string('problemas_alcohol');
             $table->string('consume_tranquilizantes');
             $table->string('relaciones_cordiales_respetuosasa');

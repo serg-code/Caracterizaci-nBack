@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\secciones;
 
 use App\Http\Controllers\Controller;
-use App\Models\Opcion;
 use App\Models\Pregunta;
 use App\Models\Respuesta;
 use App\Models\Seccion;
@@ -20,20 +19,20 @@ class PreguntasController extends Controller
      */
     public function index()
     {
+<<<<<<< HEAD
+        $listado = Pregunta::PreguntasOpciones();
+=======
         $preguntas = Pregunta::all();
         $listado = array();
+        // $preguntas = Pregunta::find("consumo_huevos_crudos");
 
         foreach ($preguntas as $pregunta)
         {
-            $opciones = Opcion::all();
-            $preguntaEstructura = [
-                'ref_seccion' => $pregunta->ref_seccion,
-                'ref_campo' => $pregunta->ref_campo,
-                'descipcion' => $pregunta->descripcion,
-                'opciones' => $opciones,
-            ];
-            $listado["$pregunta->ref_campo"] = (object) $preguntaEstructura;
+            //obtener las opciones de las preguntas
+            $pregunta->opciones;
+            $listado["$pregunta->ref_campo"] = (object) $pregunta;
         }
+>>>>>>> 67db98b6719f44c1444c1f556676a44de3ba9d50
 
         $respuesta = new Respuesta();
         $respuesta->data = [

@@ -30,6 +30,9 @@ Route::group(['middleware' => ['auth:sanctum']], function ()
     Route::post('logout', [\App\Http\Controllers\LoginController::class, 'cerrar']);
     Route::apiResource('usuarios', \App\Http\Controllers\UsuarioController::class)
         ->except(['store']);
+    Route::apiResource('preguntas', \App\Http\Controllers\secciones\PreguntasController::class)
+        ->only(['index']);
+    Route::post('/hogar', [\App\Http\Controllers\HogarController::class, 'crearHogar']);
 });
 
 Route::get('/departamentos', function ()
@@ -42,5 +45,5 @@ Route::get('/departamentos', function ()
 
 Route::group([], function ()
 {
-    Route::apiResource('preguntas', \App\Http\Controllers\secciones\PreguntasController::class);
+    Route::get('tipo-identificacion', [\App\Http\Controllers\TipoIdentificacionController::class, 'index']);
 });
