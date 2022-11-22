@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         $listadoSeeders = [
             new RolesSeeder(),
             new PreguntaSeeder(),
+            new OpcionesSeeder(),
         ];
 
         $this->correrSeeders($listadoSeeders);
