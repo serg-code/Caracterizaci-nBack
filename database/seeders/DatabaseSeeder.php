@@ -14,13 +14,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $listadoSeeders = [
+            new RolesSeeder(),
+        ];
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        $this->correrSeeders($listadoSeeders);
+    }
 
-        \App\Models\User::factory(5)->create();
-        \App\Models\Departamento::factory(10)->create();
+    public function correrSeeders(array $listadoSeeders)
+    {
+        foreach ($listadoSeeders as $seeder)
+        {
+            $seeder->run();
+        }
     }
 }

@@ -19,7 +19,20 @@ class PreguntasController extends Controller
      */
     public function index()
     {
+<<<<<<< HEAD
         $listado = Pregunta::PreguntasOpciones();
+=======
+        $preguntas = Pregunta::all();
+        $listado = array();
+        // $preguntas = Pregunta::find("consumo_huevos_crudos");
+
+        foreach ($preguntas as $pregunta)
+        {
+            //obtener las opciones de las preguntas
+            $pregunta->opciones;
+            $listado["$pregunta->ref_campo"] = (object) $pregunta;
+        }
+>>>>>>> 67db98b6719f44c1444c1f556676a44de3ba9d50
 
         $respuesta = new Respuesta();
         $respuesta->data = [
