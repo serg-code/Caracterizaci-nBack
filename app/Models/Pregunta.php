@@ -66,6 +66,11 @@ class Pregunta extends Model
     public static function PreguntasOpciones(): ?array
     {
         $preguntas = Pregunta::all();
+        return Pregunta::FormatoRespuesta($preguntas);
+    }
+
+    public static function FormatoRespuesta($preguntas): ?array
+    {
         $listado = [];
 
         foreach ($preguntas as $pregunta)
