@@ -13,11 +13,17 @@ class TipoIdentifacion extends Model
 
     protected $fillable = [
         'id',
-        'tipo_identificacion',
+        'tipo',
     ];
 
     protected $hidden = [
         'created_at',
         'updated_at',
     ];
+
+    public static function guardarIdentificacion(array $datos)
+    {
+        $tipoIdentificacion = new TipoIdentifacion($datos);
+        $tipoIdentificacion->save();
+    }
 }

@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('lavar_manos_antes_comer');
             $table->string('lavar_manos_antes_preparar_alimentos');
             $table->string('fumigar_vivienda');
-            $table->string('secretaría_fumigado');
+            $table->string('secretaria_fumigado');
             $table->string('acido_borico_cucarachas');
 
             $table->timestamps();

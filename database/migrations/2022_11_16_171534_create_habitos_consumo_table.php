@@ -18,7 +18,7 @@ return new class extends Migration
             $table->char('hogar_id', 36);
             $table->string('consumo_huevos_crudos');
             $table->string('alimentos_perecederos');
-            $table->string('c');
+            $table->string('hierve_leche');
             $table->string('lavar_frutas_verduras');
             $table->string('alimentos_crudos_separados_cocidos');
             $table->timestamps();
