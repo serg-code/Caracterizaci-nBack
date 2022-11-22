@@ -27,7 +27,7 @@ class PreguntaSeeder extends Seeder
         Pregunta::guardarPregunta(["ref_campo" => "acido_borico_cucarachas", "ref_seccion" => "factore_protectores ", "descripcion" => "¿Utiliza acído boríco para las cucarachas?", "tipo" => "selección"]);
         Pregunta::guardarPregunta(["ref_campo" => "consumo_huevos_crudos", "ref_seccion" => "habitos_consumo ", "descripcion" => "¿Alguien de la familia acostumbra a consumir huevos crudos?", "tipo" => "selección"]);
         Pregunta::guardarPregunta(["ref_campo" => "alimentos_perecederos", "ref_seccion" => "habitos_consumo ", "descripcion" => "¿Los alimentos perecederos se almacenan protegídos y refrígerados?", "tipo" => "selección"]);
-        Pregunta::guardarPregunta(["ref_campo" => "alimentos_perecederos", "ref_seccion" => "habitos_consumo ", "descripcion" => "¿Habitualmente hierve la leche?", "tipo" => "selección"]);
+        Pregunta::guardarPregunta(["ref_campo" => "Hierve_leche", "ref_seccion" => "habitos_consumo ", "descripcion" => "¿Habitualmente hierve la leche?", "tipo" => "selección"]);
         Pregunta::guardarPregunta(["ref_campo" => "lavar_frutas_verduras", "ref_seccion" => "habitos_consumo ", "descripcion" => "¿Lava las frutas y verduras antes de consumirlas?", "tipo" => "selección"]);
         Pregunta::guardarPregunta(["ref_campo" => "alimentos_crudos_separados_cocidos", "ref_seccion" => "habitos_consumo ", "descripcion" => "¿Los alimentso crudos se almacenan separados de los cocidos? (verificar)", "tipo" => "selección"]);
     }
