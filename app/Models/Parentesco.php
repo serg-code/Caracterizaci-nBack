@@ -25,6 +25,5 @@ class Parentesco extends Model
     {
         $parentesco = new Parentesco($datos);
         $parentesco->save();
-        return $parentesco;
     }
 }

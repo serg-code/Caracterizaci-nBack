@@ -25,6 +25,12 @@ class Departamento extends Model
         'updated_at',
     ];
 
+    public static function GuardarDepartamento(array $datos)
+    {
+        $departamento = new Departamento($datos);
+        $departamento->save();
+    }
+
     //relacion 1:n
     public function Municipios()
     {
