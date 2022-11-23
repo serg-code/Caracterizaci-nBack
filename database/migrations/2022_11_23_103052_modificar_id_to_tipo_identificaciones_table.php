@@ -13,11 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('parentescos', function (Blueprint $table)
+        Schema::table('tipo_identificacion', function (Blueprint $table)
         {
-            $table->id();
-            $table->string('descripcion');
-            $table->timestamps();
+            $table->string('id', 5)->change();
         });
     }
 
@@ -28,6 +26,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('parentescos');
+        Schema::table('tipo_identificaciones', function (Blueprint $table)
+        {
+            //
+        });
     }
 };

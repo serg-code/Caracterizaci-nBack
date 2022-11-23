@@ -11,12 +11,8 @@ class Parentesco extends Model
 
     protected $table = 'parentescos';
 
-    protected $primaryKey = 'tipo';
-
-    protected $keyType = 'string';
-
     protected $fillable = [
-        'tipo',
+        'id',
         'descripcion',
     ];
 
@@ -24,4 +20,11 @@ class Parentesco extends Model
         'created_at',
         'updated_at',
     ];
+
+    public static function GuardarParentesco(array $datos)
+    {
+        $parentesco = new Parentesco($datos);
+        $parentesco->save();
+        return $parentesco;
+    }
 }

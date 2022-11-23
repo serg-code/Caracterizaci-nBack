@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             new PreguntaSeeder(),
             new OpcionesSeeder(),
             new IdentificacionSeeder(),
+            new ParentescoSeeder(),
         ];
 
         $this->correrSeeders($listadoSeeders);
