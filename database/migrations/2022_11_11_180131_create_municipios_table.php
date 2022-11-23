@@ -17,7 +17,7 @@ return new class extends Migration
         {
             $table->char('codigo_dane', 10)->unique();
             $table->string('nombre');
-            $table->char('cod_dpto');
+            $table->char('cod_dpto', 2);
             $table->timestamps();
 
             $table->primary('codigo_dane');

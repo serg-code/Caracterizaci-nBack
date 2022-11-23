@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::table('integrantes', function (Blueprint $table)
         {
+            $table->string('tipo_identificacion', 5)->change();
             $table->foreign('hogar_id')->references('id')->on('hogar');
         });
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Hogar;
+use App\Models\Integrantes;
 use App\Models\RespuestaHttp;
 use App\Models\secciones\FactoresProtectores;
 use App\Models\secciones\HabitosConsumo;
@@ -40,9 +41,14 @@ class RespuestasController extends Controller
         //recorrer integrantes
         if (!empty($datos['integrantes']))
         {
-            # code...
+            foreach ($datos['integrantes'] as $integrante)
+            {
+                $integrante['id'] = $integrante['uuid'];
+                $integrante['hogar_id'] = $hogar->id;
+                $integrantedb = new Integrantes($integrante);
+                $integrantedb->save();
+            }
         }
-
 
         $respuesta = new RespuestaHttp();
         $respuesta->data = [
