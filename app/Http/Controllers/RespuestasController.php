@@ -26,10 +26,11 @@ class RespuestasController extends Controller
         {
             foreach ($datos['secciones'] as $seccionRespuesta)
             {
-                $seccionRespuesta['respuestas'][0]['hogar_id'] = $hogar->id;
+                //agregar id del hogar
+                $seccionRespuesta['respuestas']['hogar_id'] = $hogar->id;
                 $respuesta = $this->detectarSeccion(
                     $seccionRespuesta['ref_seccion'],
-                    $seccionRespuesta['respuestas'][0]
+                    $seccionRespuesta['respuestas']
                 );
                 !empty($respuesta) ? $respuesta->save() : null;
             }
