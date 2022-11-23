@@ -23,6 +23,8 @@ class DatabaseSeeder extends Seeder
             new OpcionesSeeder(),
             new IdentificacionSeeder(),
             new ParentescoSeeder(),
+            new DepartamentosSeeder(),
+            new MunicipiosSeeder(),
         ];
 
         $this->correrSeeders($listadoSeeders);
