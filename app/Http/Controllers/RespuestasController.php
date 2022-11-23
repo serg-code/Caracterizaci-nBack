@@ -25,16 +25,7 @@ class RespuestasController extends Controller
         //recorrer secciones
         if (!empty($datos['secciones']))
         {
-            foreach ($datos['secciones'] as $seccionRespuesta)
-            {
-                //agregar id del hogar
-                $seccionRespuesta['respuestas']['hogar_id'] = $hogar->id;
-                $respuesta = $this->detectarSeccion(
-                    $seccionRespuesta['ref_seccion'],
-                    $seccionRespuesta['respuestas']
-                );
-                !empty($respuesta) ? $respuesta->save() : null;
-            }
+            $this->recorrerSecciones($datos['secciones'], $hogar);
         }
 
 
@@ -47,6 +38,8 @@ class RespuestasController extends Controller
                 $integrante['hogar_id'] = $hogar->id;
                 $integrantedb = new Integrantes($integrante);
                 $integrantedb->save();
+
+                $this->recorrerSecciones($integrante['secciones'], $hogar);
             }
         }
 
@@ -64,5 +57,19 @@ class RespuestasController extends Controller
             'factores_protectores' => new FactoresProtectores($datosGuardar),
         ];
         return !empty($secciones[$seccion]) ? $secciones[$seccion] : null;
+    }
+
+    public function recorrerSecciones(array $secciones, Hogar $hogar)
+    {
+        foreach ($secciones as $seccionRespuesta)
+        {
+            //agregar id del hogar
+            $seccionRespuesta['respuestas']['hogar_id'] = $hogar->id;
+            $respuesta = $this->detectarSeccion(
+                $seccionRespuesta['ref_seccion'],
+                $seccionRespuesta['respuestas']
+            );
+            !empty($respuesta) ? $respuesta->save() : null;
+        }
     }
 }
