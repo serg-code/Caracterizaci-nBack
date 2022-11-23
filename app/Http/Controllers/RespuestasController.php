@@ -43,10 +43,11 @@ class RespuestasController extends Controller
             }
         }
 
-        $respuesta = new RespuestaHttp();
-        $respuesta->data = [
-            'hogar' => $hogar
-        ];
+        $respuesta = new RespuestaHttp(
+            201,
+            'Created',
+            'Formularios guardados exitosamente'
+        );
         return response()->json($respuesta, $respuesta->codigoHttp);
     }
 

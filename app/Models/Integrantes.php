@@ -14,6 +14,7 @@ class Integrantes extends Model
     protected $primaryKey = 'id';
     protected $keyType = 'string';
     protected $fillable = [
+        'id',
         'tipo_identificacion',
         'identificacion',
         'primer_nombre',
