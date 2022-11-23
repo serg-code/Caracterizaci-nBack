@@ -15,10 +15,13 @@ class IdentificacionSeeder extends Seeder
      */
     public function run()
     {
-        TipoIdentifacion::guardarIdentificacion(['id' => 'CC', 'tipo' => 'Cedula de ciudadania']);
+        TipoIdentifacion::guardarIdentificacion(['id' => 'NUIP', 'tipo' => 'Número Unico de Identificación Personal']);
+        TipoIdentifacion::guardarIdentificacion(['id' => 'RC', 'tipo' => 'Registro Civil']);
         TipoIdentifacion::guardarIdentificacion(['id' => 'TI', 'tipo' => 'Targeta de identidad']);
+        TipoIdentifacion::guardarIdentificacion(['id' => 'CC', 'tipo' => 'Cedula de ciudadania']);
         TipoIdentifacion::guardarIdentificacion(['id' => 'CE', 'tipo' => 'Cedula de extranjeria']);
         TipoIdentifacion::guardarIdentificacion(['id' => 'PA', 'tipo' => 'Pasaporte']);
+        TipoIdentifacion::guardarIdentificacion(['id' => 'SINID', 'tipo' => 'SINID']);
         TipoIdentifacion::guardarIdentificacion(['id' => 'CD', 'tipo' => 'Carne diplomatico']);
         TipoIdentifacion::guardarIdentificacion(['id' => 'SC', 'tipo' => 'Salvoconducto']);
         TipoIdentifacion::guardarIdentificacion(['id' => 'PE', 'tipo' => 'Permiso especial de permanencia']);
