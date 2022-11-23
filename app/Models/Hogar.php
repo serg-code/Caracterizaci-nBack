@@ -31,19 +31,26 @@ class Hogar extends Model
 
     public static function guardarHogar(array $datos): ?Hogar
     {
-        $hogar = new Hogar([
-            'id' => $datos['uuid'],
-            'zona' => $datos['zona'],
-            'cod_dpto' => $datos['cod_dpto'],
-            'cod_mun' => $datos['cod_mun'],
-            'tipo' => $datos['tipo'],
-            'barrio' => $datos['barrio'],
-            'direccion' => $datos['direccion'],
-            'geolocalizacion' => $datos['geolocalizacion'],
-        ]);
-        $hogar->save();
+        try
+        {
+            $hogar = new Hogar([
+                'id' => $datos['uuid'],
+                'zona' => $datos['zona'],
+                'cod_dpto' => $datos['cod_dpto'],
+                'cod_mun' => $datos['cod_mun'],
+                'tipo' => $datos['tipo'],
+                'barrio' => $datos['barrio'],
+                'direccion' => $datos['direccion'],
+                'geolocalizacion' => $datos['geolocalizacion'],
+            ]);
+            $hogar->save();
 
-        return $hogar;
+            return $hogar;
+        }
+        catch (\Throwable $th)
+        {
+            return Hogar::find($datos['uuid']);
+        }
     }
 
     public function integrantes()

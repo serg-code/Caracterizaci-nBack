@@ -15,18 +15,17 @@ return new class extends Migration
     {
         Schema::create('factores_protectores', function (Blueprint $table)
         {
-            $table->char('hogar_id', 36);
-            $table->string('tipo_familia');
-            $table->string('duermen_ninos_ninas_adultos');
-            $table->string('problemas_alcohol');
-            $table->string('consume_tranquilizantes');
-            $table->string('relaciones_cordiales_respetuosasa');
-            $table->string('lavar_manos_antes_comer');
-            $table->string('lavar_manos_antes_preparar_alimentos');
-            $table->string('fumigar_vivienda');
-            $table->string('secretaria_fumigado');
-            $table->string('acido_borico_cucarachas');
-
+            $table->uuid('hogar_id', 36);
+            $table->string('tipo_familia')->nullable();
+            $table->string('duermen_ninos_ninas_adultos')->nullable();
+            $table->string('problemas_alcohol')->nullable();
+            $table->string('consume_tranquilizantes')->nullable();
+            $table->string('relaciones_cordiales_respetuosasa')->nullable();
+            $table->string('lavar_manos_antes_comer')->nullable();
+            $table->string('lavar_manos_antes_preparar_alimentos')->nullable();
+            $table->string('fumigar_vivienda')->nullable();
+            $table->string('secretaria_fumigado')->nullable();
+            $table->string('acido_borico_cucarachas')->nullable();
             $table->timestamps();
 
 
