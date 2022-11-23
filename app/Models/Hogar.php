@@ -29,6 +29,23 @@ class Hogar extends Model
         'updated_at',
     ];
 
+    public static function guardarHogar(array $datos): ?Hogar
+    {
+        $hogar = new Hogar([
+            'id' => $datos['uuid'],
+            'zona' => $datos['zona'],
+            'cod_dpto' => $datos['cod_dpto'],
+            'cod_mun' => $datos['cod_mun'],
+            'tipo' => $datos['tipo'],
+            'barrio' => $datos['barrio'],
+            'direccion' => $datos['direccion'],
+            'geolocalizacion' => $datos['geolocalizacion'],
+        ]);
+        $hogar->save();
+
+        return $hogar;
+    }
+
     public function integrantes()
     {
         return $this->hasMany(Integrantes::class, 'hogar_id');
