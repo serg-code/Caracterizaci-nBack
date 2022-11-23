@@ -14,6 +14,7 @@ class Integrantes extends Model
     protected $primaryKey = 'id';
     protected $keyType = 'string';
     protected $fillable = [
+        'id',
         'tipo_identificacion',
         'identificacion',
         'primer_nombre',
@@ -35,6 +36,11 @@ class Integrantes extends Model
 
     public function hogar()
     {
-        return $this->hasMany(Hogar::class, 'hogar_id');
+        return $this->hasMany(Hogar::class, 'id');
+    }
+
+    public function tipoIdentificacion()
+    {
+        return $this->belongsTo(TipoIdentifacion::class, 'tipo_identificacion');
     }
 }

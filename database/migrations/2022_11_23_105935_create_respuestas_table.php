@@ -13,11 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('parentescos', function (Blueprint $table)
+        Schema::create('respuestas', function (Blueprint $table)
         {
-            $table->id();
-            $table->string('descripcion');
+            $table->uuid('hogar_uuid');
+            $table->string('ref_campo');
+            $table->integer('puntaje')->nullable();
+            $table->string('pregunta');
+            $table->string('respuesta');
             $table->timestamps();
+
+            $table->foreign('hogar_uuid')->references('id')->on('hogar');
         });
     }
 
@@ -28,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('parentescos');
+        Schema::dropIfExists('respuestas');
     }
 };

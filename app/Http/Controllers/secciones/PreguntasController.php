@@ -44,7 +44,14 @@ class PreguntasController extends Controller
      */
     public function show($id)
     {
-        //
+        $listadoPreguntas = Pregunta::where('ref_seccion', '=', $id)->get();
+        $listado = Pregunta::FormatoRespuesta($listadoPreguntas);
+
+        $respuesta = new RespuestaHttp();
+        $respuesta->data = [
+            'preguntas' => $listado,
+        ];
+        return response()->json($respuesta, $respuesta->codigoHttp);
     }
 
     /**

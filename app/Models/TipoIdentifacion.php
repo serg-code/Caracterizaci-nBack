@@ -11,13 +11,26 @@ class TipoIdentifacion extends Model
 
     protected $table = 'tipo_identificacion';
 
+    protected $keyType = 'string';
+
     protected $fillable = [
         'id',
-        'tipo_identificacion',
+        'tipo',
     ];
 
     protected $hidden = [
         'created_at',
         'updated_at',
     ];
+
+    public static function guardarIdentificacion(array $datos)
+    {
+        $tipoIdentificacion = new TipoIdentifacion($datos);
+        $tipoIdentificacion->save();
+    }
+
+    public function integrantes()
+    {
+        return $this->hasMany(Integrantes::class, 'tipo_identificacion');
+    }
 }

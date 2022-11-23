@@ -13,11 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('parentescos', function (Blueprint $table)
+        Schema::table('integrantes', function (Blueprint $table)
         {
-            $table->id();
-            $table->string('descripcion');
-            $table->timestamps();
+            $table->string('tipo_identificacion', 5)->change();
+            $table->foreign('hogar_id')->references('id')->on('hogar');
         });
     }
 
@@ -28,6 +27,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('parentescos');
+        Schema::table('integrantes', function (Blueprint $table)
+        {
+            //
+        });
     }
 };

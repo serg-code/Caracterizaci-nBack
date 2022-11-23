@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('parentescos', function (Blueprint $table)
+        Schema::table('hogar', function (Blueprint $table)
         {
-            $table->id();
-            $table->string('descripcion');
-            $table->timestamps();
+            $table->foreign('cod_dpto')->references('codigo_dane')->on('departamentos');
+            $table->foreign('cod_mun')->references('codigo_dane')->on('municipios');
+            $table->foreign('tipo')->references('id')->on('tipo_hogar');
         });
     }
 
@@ -28,6 +28,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('parentescos');
+        Schema::table('hogar', function (Blueprint $table)
+        {
+            //
+        });
     }
 };

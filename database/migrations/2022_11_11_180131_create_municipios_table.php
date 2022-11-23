@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('municipios', function (Blueprint $table)
         {
-            $table->char('codigo_dane', 2)->unique();
+            $table->char('codigo_dane', 10)->unique();
             $table->string('nombre');
-            $table->char('cod_dpto');
+            $table->char('cod_dpto', 2);
             $table->timestamps();
 
             $table->primary('codigo_dane');

@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('tipo_identificacion', function (Blueprint $table)
         {
             $table->string('id', 3)->unique();
-            $table->string('tipo', 20)->comment('Tipo de identificacion');
+            $table->string('tipo')->comment('Tipo de identificacion');
             $table->timestamps();
 
             $table->primary('id');

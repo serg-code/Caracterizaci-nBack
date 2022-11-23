@@ -31,14 +31,13 @@ return new class extends Migration
                 'concubinato',
                 'separación en proceso judicial'
             ]);
-            $table->char('hogar_id', 36);
+            $table->uuid('hogar_id');
             $table->string('telefono', 10);
             $table->string('correo');
             $table->enum('cabeza_familia', ['si', 'no']);
             $table->timestamps();
 
             $table->primary('id');
-            $table->foreign('hogar_id')->references('id')->on('hogar');
             $table->foreign('tipo_identificacion')->references('id')->on('tipo_identificacion');
         });
     }

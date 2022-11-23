@@ -24,9 +24,20 @@ class Municipio extends Model
         'updated_at',
     ];
 
+    public static function GuardarMunicipio(array $municipioDatos = [])
+    {
+        $municipio = new Municipio($municipioDatos);
+        $municipio->save();
+    }
+
     //relacion de n:1
     public function departamento()
     {
         return $this->belongsTo(Departamento::class, 'cod_dpto');
+    }
+
+    public function MunicipioHogar()
+    {
+        return $this->hasMany(Hogar::class, 'cod_mun');
     }
 }
