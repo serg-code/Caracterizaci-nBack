@@ -18,7 +18,7 @@ return new class extends Migration
             $table->uuid('id')->unique();
             $table->string('zona')->nullable();
             $table->string('cod_dpto', 2)->comment('codigo dane del departamento')->nullable();
-            $table->string('cod_mun', 3)->comment('codigo dane del municipio')->nullable();
+            $table->string('cod_mun', 10)->comment('codigo dane del municipio')->nullable();
             $table->integer('tipo')->nullable();
             $table->string('barrio')->comment('barrio / vereda')->nullable();
             $table->string('direccion')->nullable();
