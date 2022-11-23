@@ -35,4 +35,9 @@ class Municipio extends Model
     {
         return $this->belongsTo(Departamento::class, 'cod_dpto');
     }
+
+    public function MunicipioHogar()
+    {
+        return $this->hasMany(Hogar::class, 'cod_mun');
+    }
 }

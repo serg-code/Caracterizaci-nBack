@@ -58,5 +58,18 @@ class Hogar extends Model
         return $this->hasMany(Integrantes::class, 'hogar_id');
     }
 
-    //? relacion con municipios y deperatamentos
+    public function respuestas()
+    {
+        return $this->hasMany(Respuesta::class, 'hogar_uuid');
+    }
+
+    public function departamento()
+    {
+        return $this->belongsTo(Departamento::class, 'codigo_dane');
+    }
+
+    public function municipio()
+    {
+        return $this->belongsTo(Municipio::class, 'codigo_dane');
+    }
 }
