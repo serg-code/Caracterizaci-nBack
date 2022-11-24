@@ -4,14 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Models\Hogar;
 use App\Models\Integrantes;
+use App\Models\Pregunta;
 use App\Models\RespuestaHttp;
 use App\Models\secciones\FactoresProtectores;
 use App\Models\secciones\HabitosConsumo;
 use Illuminate\Http\Request;
 
+/**
+ * * buscar id de las opcioens que sean necesarias
+ * * validar las opcioens
+ * * reglas de negocio
+ */
+
 class RespuestasController extends Controller
 {
-    public function guardarRespuestas(Request $request)
+    public function guardarRespuestasSeccion(Request $request)
     {
         $datos = $request->input('hogar');
         $hogar = Hogar::guardarHogar($datos);
@@ -51,7 +58,7 @@ class RespuestasController extends Controller
         return response()->json($respuesta, $respuesta->codigoHttp);
     }
 
-    public function detectarSeccion(string $seccion, array $datosGuardar)
+    public function detectarSeccion(string $seccion, ?array $datosGuardar = [])
     {
         $secciones = [
             'habitos_consumo' => new HabitosConsumo($datosGuardar),
@@ -72,5 +79,86 @@ class RespuestasController extends Controller
             );
             !empty($respuesta) ? $respuesta->save() : null;
         }
+    }
+
+    public function guardarRespuesta(Request $request)
+    {
+        $datos = $request->input('hogar');
+        $hogar = Hogar::guardarHogar($datos);
+
+        if (empty($hogar))
+        {
+            $respuesta = new RespuestaHttp(400, 'Bad request', 'No se encontraton datos');
+        }
+
+        if (!empty($datos['secciones']))
+        {
+            foreach ($datos['secciones'] as $dato)
+            {
+
+                foreach ($dato['respuestas'] as $respuestaClave => $respuestaValor)
+                {
+                    $pregunta = Pregunta::ObtenerPregunta($respuestaClave);
+
+                    if (empty($pregunta))
+                    {
+                        $respuesta = new RespuestaHttp(
+                            400,
+                            'bad request',
+                            'error al buscar la pregunta',
+                            [
+                                'errores' => [
+                                    'pregunta' => "$respuestaClave no es una pregunta valida",
+                                ]
+                            ]
+                        );
+                        return response()->json($respuesta, $respuesta->codigoHttp);
+                    }
+
+                    if (!$this->buscarOpciones($pregunta, $respuestaValor))
+                    {
+                        $respuesta = new RespuestaHttp(
+                            400,
+                            'bad request',
+                            'error al buscar la pregunta',
+                            [
+                                'errores' => [
+                                    'respuesta' => [
+                                        'pregunta' => $pregunta->descripcion,
+                                        'respuesta' => "$respuestaValor no es una respuesta valida valida para la pregunta",
+                                    ]
+                                ]
+                            ]
+                        );
+                        return response()->json($respuesta, $respuesta->codigoHttp);
+                    }
+
+                    if (!empty($pregunta) && !empty($pregunta->opciones))
+                    {
+                        $respuesta = new RespuestaHttp();
+                        $respuesta->data = [
+                            'data' => $pregunta,
+                        ];
+                        return response()->json($respuesta, $respuesta->codigoHttp);
+                    }
+                }
+            }
+        }
+    }
+
+    public function buscarOpciones(Pregunta $pregunta, $respuesta): bool
+    {
+        $estado = false;
+
+        foreach ($pregunta->opciones as $opcion)
+        {
+            if ($opcion->valor == $respuesta)
+            {
+                $estado = true;
+                break;
+            }
+        }
+
+        return $estado;
     }
 }

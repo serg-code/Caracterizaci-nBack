@@ -81,4 +81,16 @@ class Pregunta extends Model
         }
         return $listado;
     }
+
+    public static function ObtenerPregunta(string $refcampo = ''): array|Pregunta
+    {
+        $pregunta = Pregunta::where('ref_campo', '=', $refcampo)->first();
+
+        if (empty($pregunta))
+        {
+            return [];
+        }
+
+        return $pregunta;
+    }
 }
