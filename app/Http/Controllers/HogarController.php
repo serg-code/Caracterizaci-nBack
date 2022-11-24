@@ -9,7 +9,34 @@ use Illuminate\Support\Facades\Validator;
 
 class HogarController extends Controller
 {
-    public function crearHogar(Request $request)
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $listadoHogares = Hogar::all();
+
+        $respuesta = new RespuestaHttp(
+            200,
+            'Succes',
+            'Listado de Hogares',
+            [
+                'hogares' => $listadoHogares,
+            ]
+        );
+
+        return response()->json($respuesta, $respuesta->codigoHttp);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
     {
         $validador = Validator::make(
             $request->all(),
@@ -45,5 +72,44 @@ class HogarController extends Controller
             'hogar' => $hogar,
         ];
         return response()->json($respuesta, $respuesta->codigoHttp);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $hogar = Hogar::find($id);
+
+        $respuesta = new RespuestaHttp();
+        $respuesta->data = ['hogar' => $hogar];
+
+        return response()->json($respuesta, $respuesta->codigoHttp);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
     }
 }

@@ -32,8 +32,10 @@ Route::group(['middleware' => ['auth:sanctum']], function ()
         ->except(['store']);
     Route::apiResource('preguntas', \App\Http\Controllers\secciones\PreguntasController::class)
         ->only(['index', 'show']);
-    Route::post('hogar', [\App\Http\Controllers\HogarController::class, 'crearHogar']);
-    Route::post('respuestas', [\App\Http\Controllers\RespuestasController::class, 'guardarRespuestas']);
+    Route::apiResource('hogar', \App\Http\Controllers\HogarController::class)
+        ->only(['index', 'store', 'show']);
+    Route::post('respuestas', [\App\Http\Controllers\RespuestasController::class, 'guardarRespuestasSeccion']);
+    Route::post('respuestas/validar', [\App\Http\Controllers\RespuestasController::class, 'guardarRespuesta']);
 });
 
 Route::get('/departamentos', function ()
