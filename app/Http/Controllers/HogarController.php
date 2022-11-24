@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Dev\RespuestaHttp;
 use App\Models\Hogar;
-use App\Models\RespuestaHttp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\RespuestaHttp;
+use App\Dev\RespuestaHttp;
 use App\Models\TipoIdentifacion;
 
 class TipoIdentificacionController extends Controller

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Dev\RespuestaHttp;
 use App\Models\Hogar;
 use App\Models\Integrantes;
 use App\Models\Pregunta;
-use App\Models\RespuestaHttp;
 use App\Models\secciones\FactoresProtectores;
 use App\Models\secciones\HabitosConsumo;
 use Illuminate\Http\Request;
@@ -85,65 +85,87 @@ class RespuestasController extends Controller
     {
         $datos = $request->input('hogar');
         $hogar = Hogar::guardarHogar($datos);
+        $errores = [];
+        $respuesta = new RespuestaHttp();
 
         if (empty($hogar))
         {
-            $respuesta = new RespuestaHttp(400, 'Bad request', 'No se encontraton datos');
+            $respuesta->cambiar(
+                400,
+                'Bad request',
+                'No se encontraton datos',
+                ['error' => 'No se encontraron datos del hogar']
+            );
+            return response()->json($respuesta, $respuesta->codigoHttp);
         }
 
-        if (!empty($datos['secciones']))
-        {
-            foreach ($datos['secciones'] as $dato)
-            {
+        /**
+         * * 1 Validar que las secciones existan
+         * * 2 Recorrer cada seccion para obtener sus respuestas
+         * * 3 validar que las opciones y su pongaje sea valido
+         * * 4 Enviar respuesta
+         */
 
-                foreach ($dato['respuestas'] as $respuestaClave => $respuestaValor)
-                {
-                    $pregunta = Pregunta::ObtenerPregunta($respuestaClave);
+        // if (empty($datos['secciones']))
+        // {
+        //     array_push($errores, 'No se encontraron secciones');
+        // }
 
-                    if (empty($pregunta))
-                    {
-                        $respuesta = new RespuestaHttp(
-                            400,
-                            'bad request',
-                            'error al buscar la pregunta',
-                            [
-                                'errores' => [
-                                    'pregunta' => "$respuestaClave no es una pregunta valida",
-                                ]
-                            ]
-                        );
-                        return response()->json($respuesta, $respuesta->codigoHttp);
-                    }
+        // if (!empty($datos['secciones']))
+        // {
+        //     foreach ($datos['secciones'] as $dato)
+        //     {
 
-                    if (!$this->buscarOpciones($pregunta, $respuestaValor))
-                    {
-                        $respuesta = new RespuestaHttp(
-                            400,
-                            'bad request',
-                            'error al buscar la pregunta',
-                            [
-                                'errores' => [
-                                    'respuesta' => [
-                                        'pregunta' => $pregunta->descripcion,
-                                        'respuesta' => "$respuestaValor no es una respuesta valida valida para la pregunta",
-                                    ]
-                                ]
-                            ]
-                        );
-                        return response()->json($respuesta, $respuesta->codigoHttp);
-                    }
+        //         foreach ($dato['respuestas'] as $respuestaClave => $respuestaValor)
+        //         {
+        //             $pregunta = Pregunta::ObtenerPregunta($respuestaClave);
 
-                    if (!empty($pregunta) && !empty($pregunta->opciones))
-                    {
-                        $respuesta = new RespuestaHttp();
-                        $respuesta->data = [
-                            'data' => $pregunta,
-                        ];
-                        return response()->json($respuesta, $respuesta->codigoHttp);
-                    }
-                }
-            }
-        }
+        //             if (empty($pregunta))
+        //             {
+        //                 $respuesta = new RespuestaHttp(
+        //                     400,
+        //                     'bad request',
+        //                     'error al buscar la pregunta',
+        //                     [
+        //                         'errores' => [
+        //                             'pregunta' => "$respuestaClave no es una pregunta valida",
+        //                         ]
+        //                     ]
+        //                 );
+        //                 return response()->json($respuesta, $respuesta->codigoHttp);
+        //             }
+
+        //             if (!$this->buscarOpciones($pregunta, $respuestaValor))
+        //             {
+        //                 $respuesta = new RespuestaHttp(
+        //                     400,
+        //                     'bad request',
+        //                     'error al buscar la pregunta',
+        //                     [
+        //                         'errores' => [
+        //                             'respuesta' => [
+        //                                 'pregunta' => $pregunta->descripcion,
+        //                                 'respuesta' => "$respuestaValor no es una respuesta valida valida para la pregunta",
+        //                             ]
+        //                         ]
+        //                     ]
+        //                 );
+        //                 return response()->json($respuesta, $respuesta->codigoHttp);
+        //             }
+
+        //             if (!empty($pregunta) && !empty($pregunta->opciones))
+        //             {
+        //                 $respuesta = new RespuestaHttp();
+        //                 $respuesta->data = [
+        //                     'data' => $pregunta,
+        //                 ];
+        //                 return response()->json($respuesta, $respuesta->codigoHttp);
+        //             }
+        //         }
+        //     }
+        // }
+
+        return response()->json($respuesta, $respuesta->codigoHttp);
     }
 
     public function buscarOpciones(Pregunta $pregunta, $respuesta): bool

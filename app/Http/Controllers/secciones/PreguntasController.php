@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\secciones;
 
+use App\Dev\RespuestaHttp;
 use App\Http\Controllers\Controller;
 use App\Models\Pregunta;
-use App\Models\RespuestaHttp;
 use Illuminate\Http\Request;
 
 class PreguntasController extends Controller

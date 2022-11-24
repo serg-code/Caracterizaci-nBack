@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Dev;
 
 class RespuestaHttp
 {
@@ -17,11 +17,13 @@ class RespuestaHttp
     public function cambiar(
         int $codigoHttp = 200,
         string $titulo = 'succes',
+        string $mensaje = '',
         array $data = [],
     )
     {
         $this->codigoHttp = $codigoHttp;
         $this->titulo = $titulo;
+        $this->mensaje = $mensaje;
         $this->data = $data;
     }
 }
