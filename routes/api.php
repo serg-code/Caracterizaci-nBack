@@ -1,7 +1,7 @@
 <?php
 
+use App\Dev\RespuestaHttp;
 use App\Models\Departamento;
-use App\Models\RespuestaHttp;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,12 +38,13 @@ Route::group(['middleware' => ['auth:sanctum']], function ()
     Route::post('respuestas/validar', [\App\Http\Controllers\RespuestasController::class, 'guardarRespuesta']);
 });
 
-Route::get('/departamentos', function ()
-{
-    $respuesta = new RespuestaHttp();
-    $respuesta->data = Departamento::all();
-    return response()->json($respuesta, $respuesta->codigoHttp);
-});
+Route::get('departamento', [\App\Http\Controllers\ubicaciones\DepartamentosController::class, 'listarDepartamentos']);
+Route::get('municipio/{codigoDepartamento}', [\App\Http\Controllers\ubicaciones\MunicipiosController::class, 'mostrarMunicipiosDepartamento']);
+
+Route::apiResource('departamento', \App\Http\Controllers\ubicaciones\DepartamentosController::class)
+    ->only(['index']);
+Route::apiResource('municipio', \App\Http\Controllers\ubicaciones\MunicipiosController::class)
+    ->only(['show']);
 
 
 Route::group([], function ()

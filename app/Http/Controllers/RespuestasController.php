@@ -10,12 +10,6 @@ use App\Models\secciones\FactoresProtectores;
 use App\Models\secciones\HabitosConsumo;
 use Illuminate\Http\Request;
 
-/**
- * * buscar id de las opcioens que sean necesarias
- * * validar las opcioens
- * * reglas de negocio
- */
-
 class RespuestasController extends Controller
 {
     public function guardarRespuestasSeccion(Request $request)
@@ -168,7 +162,7 @@ class RespuestasController extends Controller
         return response()->json($respuesta, $respuesta->codigoHttp);
     }
 
-    public function buscarOpciones(Pregunta $pregunta, $respuesta): bool
+    public function buscarRespuestaOpcion(Pregunta $pregunta, $respuesta): bool
     {
         $estado = false;
 

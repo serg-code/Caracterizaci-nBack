@@ -34,7 +34,7 @@ class Departamento extends Model
     //relacion 1:n
     public function Municipios()
     {
-        return $this->hasMany(Municipio::class, 'codigo_dane');
+        return $this->hasMany(Municipio::class, 'cod_dpto');
     }
 
     public function DepartamentoHogar()
