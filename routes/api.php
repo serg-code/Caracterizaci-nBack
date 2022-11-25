@@ -35,7 +35,7 @@ Route::group(['middleware' => ['auth:sanctum']], function ()
     Route::apiResource('hogar', \App\Http\Controllers\HogarController::class)
         ->only(['index', 'store', 'show']);
     Route::post('respuestas', [\App\Http\Controllers\RespuestasController::class, 'guardarRespuestasSeccion']);
-    Route::post('respuestas/validar', [\App\Http\Controllers\RespuestasController::class, 'guardarRespuesta']);
+    Route::post('respuestas/completo', [\App\Http\Controllers\RespuestasController::class, 'guardarRespuesta']);
 });
 
 Route::get('departamento', [\App\Http\Controllers\ubicaciones\DepartamentosController::class, 'listarDepartamentos']);

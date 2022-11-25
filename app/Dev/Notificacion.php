@@ -6,8 +6,8 @@ class Notificacion
 {
 
     public function __construct(
-        public string $estado,
-        public readonly $datos
+        public string $estado = 'error',
+        public $datos = [],
     )
     {
     }
