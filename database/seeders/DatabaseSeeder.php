@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,9 +13,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $usuario = new User(['name' => 'admin', 'email' => 'mail@mail.com', 'password' => '123asd']);
-        $usuario->save();
-
         $listadoSeeders = [
             new RolesSeeder(),
             new PreguntaSeeder(),
@@ -25,6 +21,7 @@ class DatabaseSeeder extends Seeder
             new ParentescoSeeder(),
             new DepartamentosSeeder(),
             new MunicipiosSeeder(),
+            new UsuariosSeeder(),
         ];
 
         $this->correrSeeders($listadoSeeders);
