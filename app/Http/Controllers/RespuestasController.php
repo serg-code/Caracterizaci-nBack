@@ -11,7 +11,6 @@ use App\Models\Respuesta;
 use App\Models\secciones\FactoresProtectores;
 use App\Models\secciones\HabitosConsumo;
 use Illuminate\Http\Request;
-use Ramsey\Uuid\Type\Integer;
 
 class RespuestasController extends Controller
 {
@@ -50,7 +49,10 @@ class RespuestasController extends Controller
         $respuesta = new RespuestaHttp(
             201,
             'Created',
-            'Formularios guardados exitosamente'
+            'Formularios guardados exitosamente',
+            [
+                'hogar' => $hogar,
+            ]
         );
         return response()->json($respuesta, $respuesta->codigoHttp);
     }

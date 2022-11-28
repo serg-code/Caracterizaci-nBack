@@ -33,16 +33,7 @@ class Hogar extends Model
     {
         try
         {
-            $hogar = new Hogar([
-                'id' => $datos['uuid'],
-                'zona' => $datos['zona'],
-                'cod_dpto' => $datos['cod_dpto'],
-                'cod_mun' => $datos['cod_mun'],
-                'tipo' => $datos['tipo'],
-                'barrio' => $datos['barrio'],
-                'direccion' => $datos['direccion'],
-                'geolocalizacion' => $datos['geolocalizacion'],
-            ]);
+            $hogar = new Hogar($datos);
             $hogar->save();
 
             return $hogar;

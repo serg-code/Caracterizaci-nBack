@@ -249,7 +249,7 @@ class UsuarioController extends Controller
 
     protected function calcularInicioPaginacion(int $pagina, int $cantidadMostar): int
     {
-        if ($pagina === 1)
+        if ($pagina === 1 || $pagina <= 0)
         {
             return 0;
         }
