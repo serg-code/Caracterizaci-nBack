@@ -24,9 +24,9 @@ class OpcionesSeeder extends Seeder
         Opcion::guardarOpcion(["id" => "7", "ref_campo" => "problemas_alcohol", "pregunta_opcion" => "Sí", "valor" => "3"]);
         Opcion::guardarOpcion(["id" => "8", "ref_campo" => "consume_tranquilizantes", "pregunta_opcion" => "No", "valor" => "1"]);
         Opcion::guardarOpcion(["id" => "9", "ref_campo" => "consume_tranquilizantes", "pregunta_opcion" => "Sí", "valor" => "3"]);
-        Opcion::guardarOpcion(["id" => "10", "ref_campo" => "relaciones_cordiales_respetuosasa", "pregunta_opcion" => "Malas", "valor" => "5"]);
-        Opcion::guardarOpcion(["id" => "11", "ref_campo" => "relaciones_cordiales_respetuosasa", "pregunta_opcion" => "Regulares", "valor" => "3"]);
-        Opcion::guardarOpcion(["id" => "12", "ref_campo" => "relaciones_cordiales_respetuosasa", "pregunta_opcion" => "Buenas", "valor" => "0"]);
+        Opcion::guardarOpcion(["id" => "10", "ref_campo" => "relaciones_cordiales_respetuosas", "pregunta_opcion" => "Malas", "valor" => "5"]);
+        Opcion::guardarOpcion(["id" => "11", "ref_campo" => "relaciones_cordiales_respetuosas", "pregunta_opcion" => "Regulares", "valor" => "3"]);
+        Opcion::guardarOpcion(["id" => "12", "ref_campo" => "relaciones_cordiales_respetuosas", "pregunta_opcion" => "Buenas", "valor" => "0"]);
         Opcion::guardarOpcion(["id" => "13", "ref_campo" => "lavar_manos_antes_comer", "pregunta_opcion" => "Nunca", "valor" => "5"]);
         Opcion::guardarOpcion(["id" => "14", "ref_campo" => "lavar_manos_antes_comer", "pregunta_opcion" => "A veces", "valor" => "3"]);
         Opcion::guardarOpcion(["id" => "15", "ref_campo" => "lavar_manos_antes_comer", "pregunta_opcion" => "Siempre", "valor" => "0"]);
