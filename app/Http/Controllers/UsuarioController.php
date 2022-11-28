@@ -17,7 +17,23 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        $usuarios = User::all();
+        $datosUrl = $_GET;
+        if (empty($datosUrl))
+        {
+            $usuarios = User::limit(20)->get();
+            $respuesta = new RespuestaHttp();
+            $respuesta->data = [
+                'usuarios' => $usuarios
+            ];
+
+            return response()->json($respuesta, $respuesta->codigoHttp);
+        }
+
+        $pagina = $datosUrl['pagina'] ?? 1;
+        $cantidadLimite = $datosUrl['cantidad'] ?? env('LIMITEPAGINA_USUARIO', 20);
+        $inicioLista = $this->calcularInicioPaginacion($pagina, $cantidadLimite);
+
+        $usuarios = User::offset($inicioLista)->limit($cantidadLimite)->get();
         $respuesta = new RespuestaHttp();
         $respuesta->data = [
             'usuarios' => $usuarios
@@ -229,5 +245,15 @@ class UsuarioController extends Controller
         ];
 
         return response()->json($respuesta, $respuesta->codigoHttp);
+    }
+
+    protected function calcularInicioPaginacion(int $pagina, int $cantidadMostar): int
+    {
+        if ($pagina === 1)
+        {
+            return 0;
+        }
+
+        return ($cantidadMostar * ($pagina - 1));
     }
 }
