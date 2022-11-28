@@ -13,6 +13,7 @@ class Respuesta extends Model
 
     protected $fillable = [
         'hogar_uuid',
+        'ref_seccion',
         'ref_campo',
         'puntaje',
         'pregunta',
