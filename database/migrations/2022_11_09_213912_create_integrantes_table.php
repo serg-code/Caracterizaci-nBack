@@ -27,7 +27,7 @@ return new class extends Migration
                 'soltero',
                 'casado',
                 'divorciado',
-                'viudo ',
+                'viudo',
                 'concubinato',
                 'separación en proceso judicial'
             ]);
