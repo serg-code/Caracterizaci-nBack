@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('intgrantes', function (Blueprint $table) {
-            $table->string('puntaje_max')->nullable()->after('segundo_apellido');
+        Schema::table('integrantes', function (Blueprint $table) {
+            $table->string('puntaje_max')->nullable();
         });
     }
 
@@ -25,7 +25,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('intgrantes', function (Blueprint $table) {
+        Schema::table('integrantes', function (Blueprint $table) {
             $table -> dropColumn('puntaje_max');
         });
     }
