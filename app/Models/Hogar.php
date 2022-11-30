@@ -12,7 +12,7 @@ class Hogar extends Model
 
     protected $table = 'hogar';
     protected $primaryKey = 'id';
-    protected $keyType = 'string';
+    protected $keyType = 'uuid';
     protected $fillable = [
         'id',
         'zona',
@@ -31,17 +31,17 @@ class Hogar extends Model
 
     public static function guardarHogar(array $datos): ?Hogar
     {
-        try
+        $hogar =  Hogar::find($datos['uuid'] ?? 'uuid');
+
+        if (empty($hogar))
         {
             $hogar = new Hogar($datos);
             $hogar->save();
 
             return $hogar;
         }
-        catch (\Throwable $th)
-        {
-            return Hogar::find($datos['uuid']);
-        }
+
+        return $hogar;
     }
 
     public function integrantes()

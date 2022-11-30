@@ -6,13 +6,13 @@ use App\Dev\Notificacion;
 use App\Dev\RespuestaHttp;
 use App\Models\Hogar;
 use App\Models\Integrantes;
-use App\Models\Opcion;
 use App\Models\Pregunta;
 use App\Models\Respuesta;
 use App\Models\secciones\FactoresProtectores;
 use App\Models\secciones\HabitosConsumo;
 use Illuminate\Http\Request;
 
+//? validar el tipo de respuesta a guardar
 class RespuestasController extends Controller
 {
     public function guardarRespuestasSeccion(Request $request)
