@@ -13,16 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('respuestas_hogar', function (Blueprint $table)
+        Schema::create('respuestas_integrantes', function (Blueprint $table)
         {
-            $table->id('id');
+            $table->id();
             $table->uuid('hogar_uuid');
+            $table->uuid('id_integrantes');
             $table->string('ref_campo');
             $table->integer('puntaje')->nullable();
             $table->string('pregunta');
             $table->string('respuesta');
             $table->timestamps();
 
+            $table->foreign('hogar_uuid')->references('id')->on('hogar');
             $table->foreign('id_integrantes')->references('id')->on('integrantes');
         });
     }

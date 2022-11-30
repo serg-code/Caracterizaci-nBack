@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('respuestas_hogar', function (Blueprint $table)
         {
-            $table->id('id');
+            $table->id();
             $table->uuid('hogar_uuid');
             $table->string('ref_campo');
             $table->integer('puntaje')->nullable();
