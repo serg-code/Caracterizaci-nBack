@@ -13,8 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('respuestas', function (Blueprint $table)
+        Schema::create('respuestas_hogar', function (Blueprint $table)
         {
+            $table->id('id');
             $table->uuid('hogar_uuid');
             $table->string('ref_campo');
             $table->integer('puntaje')->nullable();
@@ -33,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('respuestas');
+        Schema::dropIfExists('respuestas_hogar');
     }
 };
