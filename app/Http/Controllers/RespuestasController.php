@@ -6,6 +6,7 @@ use App\Dev\Notificacion;
 use App\Dev\RespuestaHttp;
 use App\Models\Hogar;
 use App\Models\Integrantes;
+use App\Models\Opcion;
 use App\Models\Pregunta;
 use App\Models\Respuesta;
 use App\Models\secciones\FactoresProtectores;

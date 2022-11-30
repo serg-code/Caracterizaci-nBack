@@ -10,7 +10,7 @@ class RespuestaIntegrante extends Model
 {
     use HasFactory;
 
-    protected $table = 'respuestas_hogar';
+    protected $table = 'respuestas_integrantes';
 
     protected $fillable = [
         'id',
