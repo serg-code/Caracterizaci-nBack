@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('induccion', function (Blueprint $table) {
+        Schema::create('inducciones', function (Blueprint $table) {
             $table->id()->primary();
             $table->enum('curso_vida', ['Primera Infancia','Infancia','Adolescencia','Juventud','Adultez','Vejez','Preconcepcional','Maternoperinatal','Sin curso vida']);
             $table->string('tipo_atencion');
@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('edad_maxima');
             $table->string('grupo_etario');
             $table->string('frecuencia');
+            $table->timestamps('deleted_at');
             $table->timestamps();
         });
     }
@@ -33,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('induccion');
+        Schema::dropIfExists('inducciones');
     }
 };
