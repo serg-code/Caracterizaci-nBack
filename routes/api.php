@@ -39,12 +39,9 @@ Route::group(['middleware' => ['auth:sanctum']], function ()
 });
 
 Route::get('departamento', [\App\Http\Controllers\ubicaciones\DepartamentosController::class, 'listarDepartamentos']);
-Route::get('municipio/{codigoDepartamento}', [\App\Http\Controllers\ubicaciones\MunicipiosController::class, 'mostrarMunicipiosDepartamento']);
-
-Route::apiResource('departamento', \App\Http\Controllers\ubicaciones\DepartamentosController::class)
-    ->only(['index']);
-Route::apiResource('municipio', \App\Http\Controllers\ubicaciones\MunicipiosController::class)
-    ->only(['show']);
+Route::get('municipio/{codigoDepartamento}', [
+    \App\Http\Controllers\ubicaciones\MunicipiosController::class, 'mostrarMunicipiosDepartamento'
+]);
 
 
 Route::group([], function ()
