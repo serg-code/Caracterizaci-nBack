@@ -20,9 +20,11 @@ class UsuarioController extends Controller
     public function index()
     {
         $datosUrl = $_GET;
+        $cantidadPaginar = $datosUrl['cantidad'] ?? env('LIMITEPAGINA_USUARIO', 20);
+
         if (empty($datosUrl))
         {
-            $usuarios = User::paginate(20);
+            $usuarios = User::paginate($cantidadPaginar);
             $respuesta = new RespuestaHttp();
             $respuesta->data = [
                 'usuarios' => $usuarios
@@ -31,10 +33,9 @@ class UsuarioController extends Controller
             return response()->json($respuesta, $respuesta->codigoHttp);
         }
 
-        $cantidadLimite = $datosUrl['cantidad'] ?? 20;
         $usuarios = QueryBuilder::for(User::class)
             ->allowedFilters(['id', 'email', 'activo', 'created_at'])
-            ->paginate($cantidadLimite);
+            ->paginate($cantidadPaginar);
 
         $respuesta = new RespuestaHttp();
         $respuesta->data = [
