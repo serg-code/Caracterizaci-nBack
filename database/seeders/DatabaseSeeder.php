@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         $listadoSeeders = [
             new RolesSeeder(),
+            new SeccionesSeeder(),
             new PreguntaSeeder(),
             new OpcionesSeeder(),
             new IdentificacionSeeder(),
