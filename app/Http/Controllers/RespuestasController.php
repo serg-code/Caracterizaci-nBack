@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Dev\Encuesta\SeccionesHogar;
+use App\Dev\Encuesta\SeccionesIntegrante;
 use App\Dev\Notificacion;
 use App\Dev\RespuestaHttp;
 use App\Models\Hogar;
 use App\Models\Integrantes;
 use App\Models\Pregunta;
 use App\Models\Respuesta;
-use App\Models\secciones\FactoresProtectores;
-use App\Models\secciones\HabitosConsumo;
 use Illuminate\Http\Request;
 
 //? validar el tipo de respuesta a guardar
 class RespuestasController extends Controller
 {
-    public function guardarRespuestasSeccion(Request $request)
+    public function guardarRespuestaParcial(Request $request)
     {
         $datos = $request->input('hogar');
         $hogar = Hogar::guardarHogar($datos);
@@ -29,7 +29,8 @@ class RespuestasController extends Controller
         //recorrer secciones
         if (!empty($datos['secciones']))
         {
-            $this->recorrerSecciones($datos['secciones'], $hogar);
+            $seccionesHogar = new SeccionesHogar($hogar, $datos['secciones']);
+            $seccionesHogar->recorrer();
         }
 
 
@@ -38,12 +39,10 @@ class RespuestasController extends Controller
         {
             foreach ($datos['integrantes'] as $integrante)
             {
-                $integrante['id'] = $integrante['uuid'];
-                $integrante['hogar_id'] = $hogar->id;
-                $integrantedb = new Integrantes($integrante);
-                $integrantedb->save();
 
-                $this->recorrerSecciones($integrante['secciones'], $hogar);
+                $integrante = Integrantes::guardarIntegrante($integrante);
+                $seccionesIntegrante = new SeccionesIntegrante($integrante, $seccionesHogar);
+                $seccionesIntegrante->recorrerSecciones();
             }
         }
 
@@ -58,34 +57,11 @@ class RespuestasController extends Controller
         return response()->json($respuesta, $respuesta->codigoHttp);
     }
 
-    public function detectarSeccion(string $seccion, ?array $datosGuardar = [])
-    {
-        $secciones = [
-            'habitos_consumo' => new HabitosConsumo($datosGuardar),
-            'factores_protectores' => new FactoresProtectores($datosGuardar),
-        ];
-        return !empty($secciones[$seccion]) ? $secciones[$seccion] : null;
-    }
-
-    public function recorrerSecciones(array $secciones, Hogar $hogar)
-    {
-        foreach ($secciones as $seccionRespuesta)
-        {
-            //agregar id del hogar
-            $seccionRespuesta['respuestas']['hogar_id'] = $hogar->id;
-            $respuesta = $this->detectarSeccion(
-                $seccionRespuesta['ref_seccion'],
-                $seccionRespuesta['respuestas']
-            );
-            !empty($respuesta) ? $respuesta->save() : null;
-        }
-    }
-
     public function guardarRespuesta(Request $request)
     {
         $datos = $request->input('hogar');
         $respuesta = new RespuestaHttp();
-        $hogar = Hogar::find($datos['uuid']);
+        $hogar = Hogar::guardarHogar($datos);
         $errores = [];
 
         if (empty($hogar) || empty($datos['secciones']))
