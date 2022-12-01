@@ -12,15 +12,15 @@ class inducciones extends Model
 
 
             protected $fillable = [
-                'Primera Infancia',
-                'Infancia',
-                'Adolescencia',
-                'Juventud',
-                'Adultez',
-                'Vejez',
-                'Preconcepcional',
-                'Maternoperinatal',
-                'Sin curso vida'
+                'primera infancia',
+                'infancia',
+                'adolescencia',
+                'juventud',
+                'adultez',
+                'vejez',
+                'preconcepcional',
+                'maternoperinatal',
+                'sin curso vida'
             ];
 
             protected $hidden = [

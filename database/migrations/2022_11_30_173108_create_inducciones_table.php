@@ -17,15 +17,15 @@ return new class extends Migration
         {
             $table->id();
             $table->enum('curso_vida', [
-                'Primera Infancia',
-                'Infancia',
-                'Adolescencia',
-                'Juventud',
-                'Adultez',
-                'Vejez',
-                'Preconcepcional',
-                'Maternoperinatal',
-                'Sin curso vida'
+                'primera infancia',
+                'infancia',
+                'adolescencia',
+                'juventud',
+                'adultez',
+                'vejez',
+                'preconcepcional',
+                'maternoperinatal',
+                'sin curso vida'
             ]);
             $table->string('tipo_atencion');
             $table->string('genero');
