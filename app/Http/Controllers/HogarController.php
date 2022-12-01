@@ -28,9 +28,7 @@ class HogarController extends Controller
                 200,
                 'Succes',
                 'Listado de Hogares',
-                [
-                    'hogares' => $listadoHogares,
-                ]
+                $listadoHogares
             );
 
             return response()->json($respuesta, $respuesta->codigoHttp);
@@ -45,9 +43,7 @@ class HogarController extends Controller
             200,
             'succes',
             'listado de hogares',
-            [
-                'hogares' => $hogares,
-            ]
+            $hogares
         );
 
         return response()->json($respuesta, $respuesta->codigoHttp);

@@ -26,9 +26,7 @@ class UsuarioController extends Controller
         {
             $usuarios = User::paginate($cantidadPaginar);
             $respuesta = new RespuestaHttp();
-            $respuesta->data = [
-                'usuarios' => $usuarios
-            ];
+            $respuesta->data = $usuarios;
 
             return response()->json($respuesta, $respuesta->codigoHttp);
         }
@@ -38,9 +36,7 @@ class UsuarioController extends Controller
             ->paginate($cantidadPaginar);
 
         $respuesta = new RespuestaHttp();
-        $respuesta->data = [
-            'usuarios' => $usuarios
-        ];
+        $respuesta->data = $usuarios;
 
         return response()->json($respuesta, $respuesta->codigoHttp);
     }

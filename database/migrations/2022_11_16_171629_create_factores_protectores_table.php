@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('duermen_ninos_ninas_adultos')->nullable();
             $table->string('problemas_alcohol')->nullable();
             $table->string('consume_tranquilizantes')->nullable();
-            $table->string('relaciones_cordiales_respetuosasa')->nullable();
+            $table->string('relaciones_cordiales_respetuosas')->nullable();
             $table->string('lavar_manos_antes_comer')->nullable();
             $table->string('lavar_manos_antes_preparar_alimentos')->nullable();
             $table->string('fumigar_vivienda')->nullable();
