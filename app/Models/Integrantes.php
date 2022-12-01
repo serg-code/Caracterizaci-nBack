@@ -12,7 +12,7 @@ class Integrantes extends Model
 
     protected $table = 'integrantes';
     protected $primaryKey = 'id';
-    protected $keyType = 'string';
+    protected $keyType = 'uuid';
     protected $fillable = [
         'id',
         'tipo_identificacion',
@@ -42,5 +42,19 @@ class Integrantes extends Model
     public function tipoIdentificacion()
     {
         return $this->belongsTo(TipoIdentifacion::class, 'tipo_identificacion');
+    }
+
+    public static function guardarIntegrante(array $datos): Integrantes
+    {
+        $integrante = Integrantes::find($datos['uuid'] ?? '');
+
+        if (empty($integrante))
+        {
+            $integrante = new Integrantes($datos);
+            $integrante->save();
+            return $integrante;
+        }
+
+        return $integrante;
     }
 }
