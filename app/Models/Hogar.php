@@ -31,7 +31,7 @@ class Hogar extends Model
 
     public static function guardarHogar(array $datos): ?Hogar
     {
-        $hogar =  Hogar::find($datos['uuid'] ?? 'uuid');
+        $hogar =  Hogar::find($datos['id'] ?? 'uuid');
 
         if (empty($hogar))
         {

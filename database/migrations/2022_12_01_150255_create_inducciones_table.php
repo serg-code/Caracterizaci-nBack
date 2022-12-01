@@ -33,6 +33,7 @@ return new class extends Migration
             $table->string('edad_maxima');
             $table->string('grupo_etario');
             $table->string('frecuencia');
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }
