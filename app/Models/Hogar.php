@@ -16,8 +16,8 @@ class Hogar extends Model
     protected $fillable = [
         'id',
         'zona',
-        'departamento',
-        'municipio',
+        'cod_dpto',
+        'cod_mun',
         'tipo',
         'barrio',
         'direccion',
