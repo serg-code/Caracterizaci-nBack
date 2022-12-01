@@ -6,6 +6,7 @@ use App\Dev\RespuestaHttp;
 use App\Models\Hogar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class HogarController extends Controller
 {
@@ -16,14 +17,36 @@ class HogarController extends Controller
      */
     public function index()
     {
-        $listadoHogares = Hogar::all();
+        $datosUrl = $_GET;
+        $cantidadPaginar = $datosUrl['cantidad'] ?? env('LIMITEPAGINA_USUARIO', 20);
+
+        if (empty($datosUrl))
+        {
+            $listadoHogares = Hogar::paginate($cantidadPaginar);
+
+            $respuesta = new RespuestaHttp(
+                200,
+                'Succes',
+                'Listado de Hogares',
+                [
+                    'hogares' => $listadoHogares,
+                ]
+            );
+
+            return response()->json($respuesta, $respuesta->codigoHttp);
+        }
+
+        //filtro de usuarios
+        $hogares = QueryBuilder::for(Hogar::class)
+            ->allowedFields(['id', 'zona', 'cod_dpto', 'cod_mun', 'tipo'])
+            ->paginate($cantidadPaginar);
 
         $respuesta = new RespuestaHttp(
             200,
-            'Succes',
-            'Listado de Hogares',
+            'succes',
+            'listado de hogares',
             [
-                'hogares' => $listadoHogares,
+                'hogares' => $hogares,
             ]
         );
 
