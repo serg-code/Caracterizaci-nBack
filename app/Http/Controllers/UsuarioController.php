@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Dev\RespuestaHttp;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class UsuarioController extends Controller
 {
@@ -20,7 +22,7 @@ class UsuarioController extends Controller
         $datosUrl = $_GET;
         if (empty($datosUrl))
         {
-            $usuarios = User::limit(20)->get();
+            $usuarios = User::paginate(20);
             $respuesta = new RespuestaHttp();
             $respuesta->data = [
                 'usuarios' => $usuarios
@@ -29,11 +31,11 @@ class UsuarioController extends Controller
             return response()->json($respuesta, $respuesta->codigoHttp);
         }
 
-        $pagina = $datosUrl['pagina'] ?? 1;
-        $cantidadLimite = $datosUrl['cantidad'] ?? env('LIMITEPAGINA_USUARIO', 20);
-        $inicioLista = $this->calcularInicioPaginacion($pagina, $cantidadLimite);
+        $cantidadLimite = $datosUrl['cantidad'] ?? 20;
+        $usuarios = QueryBuilder::for(User::class)
+            ->allowedFilters(['id', 'email', 'activo', 'created_at'])
+            ->paginate($cantidadLimite);
 
-        $usuarios = User::offset($inicioLista)->limit($cantidadLimite)->get();
         $respuesta = new RespuestaHttp();
         $respuesta->data = [
             'usuarios' => $usuarios
