@@ -11,6 +11,7 @@ use App\Models\Integrantes;
 use App\Models\Pregunta;
 use App\Models\Respuesta;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 //? validar el tipo de respuesta a guardar
 class RespuestasController extends Controller
@@ -54,6 +55,35 @@ class RespuestasController extends Controller
                 'hogar' => $hogar,
             ]
         );
+        return response()->json($respuesta, $respuesta->codigoHttp);
+    }
+
+    public function actualizarRespuesta(Request $request)
+    {
+        $datos = $request->input('hogar');
+
+        $validacion = Validator::make(
+            $datos,
+            [
+                'id' => 'required'
+            ],
+            [
+                'id.required' => 'El id es necesario para realizar esta accion',
+            ]
+        );
+
+        if ($validacion->fails())
+        {
+            $respuesta = new RespuestaHttp(400, 'Bad Request', 'Datos erroneos', $validacion->getMessageBag());
+            return response()->json($respuesta, $respuesta->codigoHttp);
+        }
+
+        $hogar = Hogar::actualizarUsuario($datos);
+        $respuesta = new RespuestaHttp();
+        $respuesta->data = [
+            'hogar' => $hogar,
+        ];
+
         return response()->json($respuesta, $respuesta->codigoHttp);
     }
 

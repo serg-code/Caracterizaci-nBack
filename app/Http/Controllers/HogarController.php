@@ -123,7 +123,15 @@ class HogarController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $datos = $request->all();
+        $datos['id'] = $id;
+
+        $hogar = Hogar::actualizarUsuario($datos);
+
+        $respuesta = new RespuestaHttp();
+        $respuesta->data = ['hogar' => $hogar];
+
+        return response()->json($respuesta, $respuesta->codigoHttp);
     }
 
     /**

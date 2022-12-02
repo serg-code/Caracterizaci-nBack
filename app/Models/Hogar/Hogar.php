@@ -47,6 +47,29 @@ class Hogar extends Model
         return $hogar;
     }
 
+    public static function actualizarUsuario(array $datos): ?Hogar
+    {
+        $hogar =  Hogar::find($datos['id'] ?? 'uuid');
+
+        if (!empty($hogar))
+        {
+            $hogar->update([
+                'zona' => $datos['zona'] ?? $hogar->zona,
+                'cod_dpto' => $datos['cod_dpto'] ?? $hogar->cod_dpto,
+                'cod_mun' => $datos['cod_mun'] ?? $hogar->cod_mun,
+                'tipo' => $datos['tipo'] ?? $hogar->tipo,
+                'barrio' => $datos['barrio'] ?? $hogar->barrio,
+                'direccion' => $datos['direccion'] ?? $hogar->direccion,
+                'geolocalizacion' => $datos['geolocalizacion'] ?? $hogar->geolocalizacion,
+                'encuesta' => $datos['encuesta'] ?? $hogar->encuesta,
+            ]);
+
+            return $hogar;
+        }
+
+        return null;
+    }
+
     public function integrantes()
     {
         return $this->hasMany(Integrantes::class, 'hogar_id');

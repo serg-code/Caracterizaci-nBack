@@ -1,7 +1,5 @@
 <?php
 
-use App\Dev\RespuestaHttp;
-use App\Models\Departamento;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,8 +35,9 @@ Route::group(['middleware' => ['auth:sanctum']], function ()
     Route::apiResource('preguntas', \App\Http\Controllers\secciones\PreguntasController::class)
         ->only(['index', 'show']);
     Route::apiResource('hogar', \App\Http\Controllers\HogarController::class)
-        ->only(['index', 'store', 'show']);
+        ->only(['index', 'store', 'show', 'update']);
     Route::post('respuestas', [\App\Http\Controllers\RespuestasController::class, 'guardarRespuestaParcial']);
+    Route::put('respuestas', [\App\Http\Controllers\RespuestasController::class, 'actualizarRespuesta']);
     Route::post('respuestas/completo', [\App\Http\Controllers\RespuestasController::class, 'guardarRespuesta']);
 });
 
