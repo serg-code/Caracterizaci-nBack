@@ -21,6 +21,8 @@ class Hogar extends Model
         'cod_dpto',
         'cod_mun',
         'tipo',
+        'puntaje_max',
+        'puntaje_obtenido',
         'barrio',
         'direccion',
         'geolocalizacion',
