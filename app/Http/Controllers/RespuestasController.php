@@ -79,6 +79,20 @@ class RespuestasController extends Controller
         }
 
         $hogar = Hogar::actualizarUsuario($datos);
+
+        if (empty($hogar))
+        {
+            $respuesta = new RespuestaHttp(
+                404,
+                'Not found',
+                'No encontramos el hogar',
+                [
+                    'error' => 'No se ha encontrado el hogar con el id'
+                ]
+            );
+
+            return response()->json($respuesta, $respuesta->codigoHttp);
+        }
         $respuesta = new RespuestaHttp();
         $respuesta->data = [
             'hogar' => $hogar,
