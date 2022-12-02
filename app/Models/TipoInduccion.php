@@ -5,19 +5,24 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Inducciones extends Model
+class TipoInduccion extends Model
 {
     use HasFactory;
 
-    protected $table = 'inducciones';
+    protected $table = 'tipos_induccion';
 
     protected $fillable = [
-        'id',
-        'id_tipo_induccion',
-        'id_integrante',
+        'curso_vida',
+        'tipo_atencion',
+        'genero',
+        'edad_minima',
+        'edad_maxima',
+        'grupo_etario',
+        'frecuencia',
     ];
 
     protected $hidden = [
+        'deleted_at',
         'created_at',
         'updated_at',
     ];

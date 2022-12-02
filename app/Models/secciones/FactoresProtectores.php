@@ -2,6 +2,7 @@
 
 namespace App\Models\secciones;
 
+use App\Models\Hogar;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,7 +18,7 @@ class FactoresProtectores extends Model
         'duermen_ninos_ninas_adultos',
         'problemas_alcohol',
         'consume_tranquilizantes',
-        'relaciones_cordiales_respetuosasa',
+        'relaciones_cordiales_respetuosas',
         'lavar_manos_antes_comer',
         'lavar_manos_antes_preparar_alimentos',
         'fumigar_vivienda',
@@ -29,4 +30,9 @@ class FactoresProtectores extends Model
         'created_at',
         'updated_at',
     ];
+
+    public function hogar()
+    {
+        return $this->belongsTo(Hogar::class, 'hogar_id');
+    }
 }

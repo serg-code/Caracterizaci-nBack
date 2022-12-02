@@ -16,7 +16,24 @@ return new class extends Migration
         Schema::create('tipos_induccion', function (Blueprint $table)
         {
             $table->id();
-            $table->string('descripcion');
+            $table->enum('curso_vida', [
+                'primera infancia',
+                'infancia',
+                'adolescencia',
+                'juventud',
+                'adultez',
+                'vejez',
+                'preconcepcional',
+                'maternoperinatal',
+                'sin curso vida'
+            ]);
+            $table->string('tipo_atencion');
+            $table->string('genero');
+            $table->string('edad_minima');
+            $table->string('edad_maxima');
+            $table->string('grupo_etario');
+            $table->string('frecuencia');
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }

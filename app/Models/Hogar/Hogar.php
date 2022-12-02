@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Hogar;
 
+use App\Models\secciones\FactoresProtectores;
+use App\Models\secciones\HabitosConsumo;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -16,14 +18,15 @@ class Hogar extends Model
     protected $fillable = [
         'id',
         'zona',
-        'departamento',
-        'municipio',
+        'cod_dpto',
+        'cod_mun',
         'tipo',
         'puntaje_max',
         'puntaje_obtenido',
         'barrio',
         'direccion',
-        'geolocalizacion'
+        'geolocalizacion',
+        'encuesta',
     ];
 
     protected $hidden = [
@@ -64,5 +67,20 @@ class Hogar extends Model
     public function municipio()
     {
         return $this->belongsTo(Municipio::class, 'codigo_dane');
+    }
+
+    public function factoresProtectores()
+    {
+        return $this->hasMany(FactoresProtectores::class, 'hogar_id');
+    }
+
+    public function habitosConsumo()
+    {
+        return $this->hasMany(HabitosConsumo::class, 'hogar_id');
+    }
+
+    public function tipoHogar()
+    {
+        return $this->belongsTo(TipoHogar::class, 'tipo');
     }
 }

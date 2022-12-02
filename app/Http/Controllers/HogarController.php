@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Dev\RespuestaHttp;
-use App\Models\Hogar;
+use App\Models\Hogar\Hogar;
+use App\Models\secciones\FactoresProtectores;
+use App\Models\secciones\HabitosConsumo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -28,9 +30,7 @@ class HogarController extends Controller
                 200,
                 'Succes',
                 'Listado de Hogares',
-                [
-                    'hogares' => $listadoHogares,
-                ]
+                $listadoHogares
             );
 
             return response()->json($respuesta, $respuesta->codigoHttp);
@@ -45,9 +45,7 @@ class HogarController extends Controller
             200,
             'succes',
             'listado de hogares',
-            [
-                'hogares' => $hogares,
-            ]
+            $hogares
         );
 
         return response()->json($respuesta, $respuesta->codigoHttp);
@@ -106,9 +104,12 @@ class HogarController extends Controller
     public function show($id)
     {
         $hogar = Hogar::find($id);
+        $hogar->integrantes;
+        $hogar->factoresProtectores = FactoresProtectores::where('hogar_id', '=', $id)->latest()->first();
+        $hogar->habitosConsumo = HabitosConsumo::where('hogar_id', '=', $id)->latest()->first();
 
         $respuesta = new RespuestaHttp();
-        $respuesta->data = ['hogar' => $hogar];
+        $respuesta->data = $hogar;
 
         return response()->json($respuesta, $respuesta->codigoHttp);
     }

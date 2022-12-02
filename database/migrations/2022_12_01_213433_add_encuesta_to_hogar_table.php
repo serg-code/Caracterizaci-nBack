@@ -13,12 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('inducciones', function (Blueprint $table)
+        Schema::table('hogar', function (Blueprint $table)
         {
-            $table->id();
-            $table->bigInteger('id_tipo_induccion');
-            $table->uuid('id_integrante');
-            $table->timestamps();
+            $table->text('encuesta')->nullable()->after('geolocalizacion')->comment('json de la encuesta');
         });
     }
 
@@ -29,6 +26,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('inducciones');
+        Schema::table('hogar', function (Blueprint $table)
+        {
+            $table->dropColumn('encuesta');
+        });
     }
 };

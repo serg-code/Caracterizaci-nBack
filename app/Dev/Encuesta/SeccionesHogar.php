@@ -2,7 +2,7 @@
 
 namespace App\Dev\Encuesta;
 
-use App\Models\Hogar;
+use App\Models\Hogar\Hogar;
 use App\Models\secciones\FactoresProtectores;
 use App\Models\secciones\HabitosConsumo;
 
