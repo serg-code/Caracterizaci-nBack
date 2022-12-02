@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Inducciones;
+use App\Models\TipoInduccion;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -15,7 +15,7 @@ class InduccionesSeeder extends Seeder
      */
     public function run()
     {
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 1,
             'curso_vida' => 'primera infancia',
             'tipo_atencion' => 'atencion en salud medica',
@@ -27,7 +27,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 2,
             'curso_vida' => 'primera infancia',
             'tipo_atencion' => 'atencion en salud medica',
@@ -39,7 +39,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 3,
             'curso_vida' => 'primera infancia',
             'tipo_atencion' => 'atencion en salud medica',
@@ -51,7 +51,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 4,
             'curso_vida' => 'primera infancia',
             'tipo_atencion' => 'atencion en salud medica',
@@ -63,7 +63,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 5,
             'curso_vida' => 'primera infancia',
             'tipo_atencion' => 'atencion en salud medica',
@@ -75,7 +75,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 6,
             'curso_vida' => 'primera infancia',
             'tipo_atencion' => 'atencion en salud medica',
@@ -87,7 +87,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 7,
             'curso_vida' => 'primera infancia',
             'tipo_atencion' => 'atencion en salud enefermeria',
@@ -99,7 +99,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 8,
             'curso_vida' => 'primera infancia',
             'tipo_atencion' => 'atencion en salud enefermeria',
@@ -111,7 +111,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 9,
             'curso_vida' => 'primera infancia',
             'tipo_atencion' => 'atencion en salud enefermeria',
@@ -123,7 +123,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 10,
             'curso_vida' => 'primera infancia',
             'tipo_atencion' => 'atencion en salud enefermeria',
@@ -135,7 +135,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 11,
             'curso_vida' => 'primera infancia',
             'tipo_atencion' => 'atencion en salud enefermeria',
@@ -147,7 +147,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 12,
             'curso_vida' => 'primera infancia',
             'tipo_atencion' => 'atencion en salud enefermeria',
@@ -159,7 +159,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 13,
             'curso_vida' => 'primera infancia',
             'tipo_atencion' => 'atencion en salud bucal',
@@ -171,7 +171,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 14,
             'curso_vida' => 'primera infancia',
             'tipo_atencion' => 'atencion para la promocion',
@@ -183,7 +183,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 15,
             'curso_vida' => 'primera infancia',
             'tipo_atencion' => 'aplicacion de fluor',
@@ -195,7 +195,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 16,
             'curso_vida' => 'primera infancia',
             'tipo_atencion' => 'profilaxis y remocion de placa',
@@ -207,7 +207,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 17,
             'curso_vida' => 'primera infancia',
             'tipo_atencion' => 'vacunacion',
@@ -219,7 +219,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 18,
             'curso_vida' => 'infancia',
             'tipo_atencion' => 'atencion en salud medica',
@@ -231,7 +231,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 19,
             'curso_vida' => 'infancia',
             'tipo_atencion' => 'atencion en salud medica',
@@ -243,7 +243,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 20,
             'curso_vida' => 'infancia',
             'tipo_atencion' => 'atencion en salud medica',
@@ -255,7 +255,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 21,
             'curso_vida' => 'infancia',
             'tipo_atencion' => 'atencion en salud enefermeria',
@@ -267,7 +267,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 22,
             'curso_vida' => 'infancia',
             'tipo_atencion' => 'atencion en salud enefermeria',
@@ -279,7 +279,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 23,
             'curso_vida' => 'infancia',
             'tipo_atencion' => 'atencion en salud enefermeria',
@@ -291,7 +291,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 24,
             'curso_vida' => 'infancia',
             'tipo_atencion' => 'atencion en salud bucal',
@@ -303,7 +303,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 25,
             'curso_vida' => 'infancia',
             'tipo_atencion' => 'aplicación de fluor',
@@ -315,7 +315,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 26,
             'curso_vida' => 'infancia',
             'tipo_atencion' => 'profilaxis y remocion de placa',
@@ -327,7 +327,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 27,
             'curso_vida' => 'infancia',
             'tipo_atencion' => 'vacunacion VPH',
@@ -339,7 +339,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 28,
             'curso_vida' => 'adolescencia',
             'tipo_atencion' => 'atencion en salud medica',
@@ -351,7 +351,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 29,
             'curso_vida' => 'adolescencia',
             'tipo_atencion' => 'atencion en salud medica',
@@ -363,7 +363,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 30,
             'curso_vida' => 'adolescencia',
             'tipo_atencion' => 'atencion en salud medica',
@@ -375,7 +375,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 31,
             'curso_vida' => 'adolescencia',
             'tipo_atencion' => 'atencion en salud enefermeria',
@@ -387,7 +387,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 32,
             'curso_vida' => 'adolescencia',
             'tipo_atencion' => 'atencion en salud enefermeria',
@@ -399,7 +399,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 33,
             'curso_vida' => 'adolescencia',
             'tipo_atencion' => 'atencion en salud enefermeria',
@@ -411,7 +411,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 34,
             'curso_vida' => 'adolescencia',
             'tipo_atencion' => 'atencion en salud bucal',
@@ -423,7 +423,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 35,
             'curso_vida' => 'adolescencia',
             'tipo_atencion' => 'atencion en salud para la asesoria',
@@ -435,7 +435,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 36,
             'curso_vida' => 'adolescencia',
             'tipo_atencion' => 'aplicacion de fluor',
@@ -447,7 +447,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 37,
             'curso_vida' => 'adolescencia',
             'tipo_atencion' => 'profilaxis y remocion de placa',
@@ -459,7 +459,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 38,
             'curso_vida' => 'adolescencia',
             'tipo_atencion' => 'vacunacion',
@@ -471,7 +471,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 39,
             'curso_vida' => 'juventud',
             'tipo_atencion' => 'atencion en salud medica',
@@ -483,7 +483,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 40,
             'curso_vida' => 'juventud',
             'tipo_atencion' => 'atencion en salud medica',
@@ -495,7 +495,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 41,
             'curso_vida' => 'juventud',
             'tipo_atencion' => 'atencion en salud enefermeria',
@@ -507,7 +507,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 42,
             'curso_vida' => 'juventud',
             'tipo_atencion' => 'atencion en salud enefermeria',
@@ -519,7 +519,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 43,
             'curso_vida' => 'juventud',
             'tipo_atencion' => 'atencion en salud enefermeria',
@@ -531,7 +531,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 44,
             'curso_vida' => 'juventud',
             'tipo_atencion' => 'atencion en salud enefermeria',
@@ -543,7 +543,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 45,
             'curso_vida' => 'juventud',
             'tipo_atencion' => 'atencion en salud enefermeria',
@@ -555,7 +555,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 46,
             'curso_vida' => 'juventud',
             'tipo_atencion' => 'atencion en salud enefermeria',
@@ -567,7 +567,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 47,
             'curso_vida' => 'juventud',
             'tipo_atencion' => 'atencion en salud enefermeria',
@@ -579,7 +579,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 48,
             'curso_vida' => 'juventud',
             'tipo_atencion' => 'atencion en salud enefermeria',
@@ -591,7 +591,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 49,
             'curso_vida' => 'juventud',
             'tipo_atencion' => 'atencion en salud enefermeria',
@@ -603,7 +603,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 50,
             'curso_vida' => 'juventud',
             'tipo_atencion' => 'atencion en salud bucal',
@@ -615,7 +615,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 51,
             'curso_vida' => 'juventud',
             'tipo_atencion' => 'tamizaje de cancer de cuello uterino (citologia)',
@@ -627,7 +627,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 52,
             'curso_vida' => 'juventud',
             'tipo_atencion' => 'atencion en salud para la asesoria',
@@ -639,7 +639,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 53,
             'curso_vida' => 'juventud',
             'tipo_atencion' => 'profilaxis y remocion de placa',
@@ -651,7 +651,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 54,
             'curso_vida' => 'juventud',
             'tipo_atencion' => 'vacunacion',
@@ -663,7 +663,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 55,
             'curso_vida' => 'adultez',
             'tipo_atencion' => 'atencion en salud medica',
@@ -675,7 +675,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 56,
             'curso_vida' => 'adultez',
             'tipo_atencion' => 'atencion en salud bucal',
@@ -687,7 +687,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 57,
             'curso_vida' => 'adultez',
             'tipo_atencion' => 'tamizaje de cancer de cuello uterino (citologia)',
@@ -699,7 +699,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 58,
             'curso_vida' => 'adultez',
             'tipo_atencion' => 'tamizaje de cancer de mama (mamografia)',
@@ -711,7 +711,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 59,
             'curso_vida' => 'adultez',
             'tipo_atencion' => 'tamizaje para cancer de mama (valoracion clinica de la mama)',
@@ -723,7 +723,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 60,
             'curso_vida' => 'adultez',
             'tipo_atencion' => 'tamizaje para cancer de prostata (PSA)',
@@ -735,7 +735,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 61,
             'curso_vida' => 'adultez',
             'tipo_atencion' => 'tamizaje para cancer de prostata (tacto rectal)',
@@ -747,7 +747,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 62,
             'curso_vida' => 'adultez',
             'tipo_atencion' => 'atencion en salud para la asesoria en anticoncepcion',
@@ -759,7 +759,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 63,
             'curso_vida' => 'adultez',
             'tipo_atencion' => 'profilaxis y remocion de placa',
@@ -771,7 +771,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 64,
             'curso_vida' => 'adultez',
             'tipo_atencion' => 'vacunacion',
@@ -783,7 +783,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 65,
             'curso_vida' => 'adultez',
             'tipo_atencion' => 'tamizaje para cancer de colon (sangre oculta en materia fecal por inmunoquímica)',
@@ -795,7 +795,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 66,
             'curso_vida' => 'vejez',
             'tipo_atencion' => 'atencion en salud medica',
@@ -807,7 +807,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 67,
             'curso_vida' => 'vejez',
             'tipo_atencion' => 'atencion en salud bucal',
@@ -819,7 +819,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 68,
             'curso_vida' => 'vejez',
             'tipo_atencion' => 'tamizaje de cancer de cuello uterino (citologia)',
@@ -831,7 +831,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 69,
             'curso_vida' => 'vejez',
             'tipo_atencion' => 'tamizaje para cancer de mama (mamografia)',
@@ -843,7 +843,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 70,
             'curso_vida' => 'vejez',
             'tipo_atencion' => 'tamizaje para cancer de mama (valoracion clinica de la mama)',
@@ -855,7 +855,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 71,
             'curso_vida' => 'vejez',
             'tipo_atencion' => 'tamizaje para cancer de prostata (PSA)',
@@ -867,7 +867,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 72,
             'curso_vida' => 'vejez',
             'tipo_atencion' => 'tamizaje para cancer de prostata (tacto rectal)',
@@ -879,7 +879,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 73,
             'curso_vida' => 'vejez',
             'tipo_atencion' => 'atencion en salud para la asesoria en anticoncepcion',
@@ -891,7 +891,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 74,
             'curso_vida' => 'vejez',
             'tipo_atencion' => 'profilaxis y remocion de placa',
@@ -903,7 +903,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 75,
             'curso_vida' => 'vejez',
             'tipo_atencion' => 'vacunacion',
@@ -915,7 +915,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 76,
             'curso_vida' => 'vejez',
             'tipo_atencion' => 'tamizaje para cancer de colon (sangre oculta en materia fecal por inmunoquímica)',
@@ -927,7 +927,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 77,
             'curso_vida' => 'preconcepcional',
             'tipo_atencion' => 'atencion en salud medica o Enfermeria',
@@ -939,7 +939,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 78,
             'curso_vida' => 'preconcepcional',
             'tipo_atencion' => 'laboratorio clinico para cuidado preconcepcional: antigeno de superficie de hepatitis B; tamizaje pa',
@@ -951,7 +951,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 79,
             'curso_vida' => 'preconcepcional',
             'tipo_atencion' => 'asesoría y provisión anticonceptiva post IVE',
@@ -963,7 +963,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 80,
             'curso_vida' => 'maternoperinatal',
             'tipo_atencion' => 'atencion para el cuidado prenatal consulta medicina general',
@@ -975,7 +975,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 81,
             'curso_vida' => 'maternoperinatal',
             'tipo_atencion' => 'atencion para el cuidado prenatal consulta enfermeria',
@@ -987,7 +987,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 82,
             'curso_vida' => 'maternoperinatal',
             'tipo_atencion' => 'atencion en salud por odontologia',
@@ -999,7 +999,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 83,
             'curso_vida' => 'maternoperinatal',
             'tipo_atencion' => 'atencion para el cuidado prenatal consulta medicina especializada obstetra',
@@ -1011,7 +1011,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 84,
             'curso_vida' => 'maternoperinatal',
             'tipo_atencion' => 'atencion para el cuidado prenatal consulta nutricion',
@@ -1023,7 +1023,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 85,
             'curso_vida' => 'maternoperinatal',
             'tipo_atencion' => 'consulta por Psicologia',
@@ -1035,7 +1035,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 86,
             'curso_vida' => 'maternoperinatal',
             'tipo_atencion' => 'suplementacion con micronutrientes',
@@ -1047,7 +1047,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 87,
             'curso_vida' => 'maternoperinatal',
             'tipo_atencion' => 'laboratorio clinico control prenatal: urocultivo; hemograma; hemoclasificacion; glicemia; vih prueba',
@@ -1059,7 +1059,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 88,
             'curso_vida' => 'maternoperinatal',
             'tipo_atencion' => 'vacunacion: toxoide tetánico; difteria tosferina influenza',
@@ -1071,7 +1071,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 89,
             'curso_vida' => 'maternoperinatal',
             'tipo_atencion' => 'ecografía obstétrica transabdominal',
@@ -1083,7 +1083,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 90,
             'curso_vida' => 'maternoperinatal',
             'tipo_atencion' => 'ecografía de detalle anatómico',
@@ -1095,7 +1095,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 91,
             'curso_vida' => 'maternoperinatal',
             'tipo_atencion' => 'interrupcion voluntaria del embarazo ',
@@ -1107,7 +1107,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 92,
             'curso_vida' => 'maternoperinatal',
             'tipo_atencion' => 'asesoría y provisión anticonceptiva post IVE',
@@ -1119,7 +1119,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 93,
             'curso_vida' => 'maternoperinatal',
             'tipo_atencion' => 'curso preparación para la maternidad y paternidad',
@@ -1131,7 +1131,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 94,
             'curso_vida' => 'maternoperinatal',
             'tipo_atencion' => 'atencion del parto',
@@ -1143,7 +1143,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 95,
             'curso_vida' => 'maternoperinatal',
             'tipo_atencion' => 'atencion del puerperio',
@@ -1155,7 +1155,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 96,
             'curso_vida' => 'maternoperinatal',
             'tipo_atencion' => 'atencion para el cuidado del recién nacido pediatría',
@@ -1167,7 +1167,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 97,
             'curso_vida' => 'maternoperinatal',
             'tipo_atencion' => 'atencion para el seguimiento del recién nacido laboratorios tsh neonatal hemograma; serología hemocl',
@@ -1179,7 +1179,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 98,
             'curso_vida' => 'sin curso vida',
             'tipo_atencion' => 'consulta medica TBC',
@@ -1191,7 +1191,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 99,
             'curso_vida' => 'sin curso vida',
             'tipo_atencion' => 'consulta medica enfermedad de hansen',
@@ -1203,7 +1203,7 @@ class InduccionesSeeder extends Seeder
             'deleted_at' => NULL
         ]);
 
-        Inducciones::create([
+        TipoInduccion::create([
             'id' => 100,
             'curso_vida' => 'maternoperinatal',
             'tipo_atencion' => 'consulta medica por sifilis',
