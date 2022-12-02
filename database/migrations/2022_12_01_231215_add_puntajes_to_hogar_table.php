@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::table('hogar', function (Blueprint $table)
         {
-            $table->string('puntaje_obtenido')->default(0)->after('encuesta');
-            $table->string('puntaje_max')->default(0)->after('encuesta');
+            $table->integer('puntaje_obtenido')->default(0)->after('encuesta');
+            $table->integer('puntaje_max')->default(0)->after('encuesta');
         });
     }
 
