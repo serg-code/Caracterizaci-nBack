@@ -13,8 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('hogar', function (Blueprint $table) {
-            $table->string('puntaje_max')->nullable();
+        Schema::table('hogar', function (Blueprint $table)
+        {
+            $table->string('puntaje_obtenido')->default(0)->after('encuesta');
+            $table->string('puntaje_max')->default(0)->after('encuesta');
         });
     }
 
@@ -25,8 +27,10 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('hogar', function (Blueprint $table) {
-            $table -> dropColumn('puntaje_max');
+        Schema::table('hogar', function (Blueprint $table)
+        {
+            $table->dropColumn('puntaje_max');
+            $table->dropColumn('puntaje_obtenido');
         });
     }
 };
