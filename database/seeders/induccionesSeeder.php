@@ -23,7 +23,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 0,
             'edad_maxima' => 1,
             'grupo_etario' => '1 mes',
-            'frecuencia' => '1 vez al año\r',
+            'frecuencia' => '1 vez al año',
             'deleted_at' => NULL
         ]);
 
@@ -35,7 +35,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 4,
             'edad_maxima' => 5,
             'grupo_etario' => '4 a 5 meses',
-            'frecuencia' => '1 vez vl año\r',
+            'frecuencia' => '1 vez vl año',
             'deleted_at' => NULL
         ]);
 
@@ -47,7 +47,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 12,
             'edad_maxima' => 18,
             'grupo_etario' => '12 a 18 meses',
-            'frecuencia' => '1 vez alvaño\r',
+            'frecuencia' => '1 vez alvaño',
             'deleted_at' => NULL
         ]);
 
@@ -59,7 +59,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 24,
             'edad_maxima' => 29,
             'grupo_etario' => '24 a 29 meses',
-            'frecuencia' => '1 vez alvaño\r',
+            'frecuencia' => '1 vez alvaño',
             'deleted_at' => NULL
         ]);
 
@@ -71,7 +71,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 36,
             'edad_maxima' => 36,
             'grupo_etario' => '3 años',
-            'frecuencia' => '1 vez al año\r',
+            'frecuencia' => '1 vez al año',
             'deleted_at' => NULL
         ]);
 
@@ -83,7 +83,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 60,
             'edad_maxima' => 60,
             'grupo_etario' => '5 años',
-            'frecuencia' => '1 vez al año\r',
+            'frecuencia' => '1 vez al año',
             'deleted_at' => NULL
         ]);
 
@@ -95,7 +95,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 2,
             'edad_maxima' => 3,
             'grupo_etario' => '2 a 3 meses',
-            'frecuencia' => '1 vez vl año\r',
+            'frecuencia' => '1 vez vl año',
             'deleted_at' => NULL
         ]);
 
@@ -107,7 +107,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 6,
             'edad_maxima' => 8,
             'grupo_etario' => '6 a 8 meses',
-            'frecuencia' => '1 vez vl año\r',
+            'frecuencia' => '1 vez vl año',
             'deleted_at' => NULL
         ]);
 
@@ -119,7 +119,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 9,
             'edad_maxima' => 11,
             'grupo_etario' => '9 a 11 meses',
-            'frecuencia' => '1 vez av año\r',
+            'frecuencia' => '1 vez av año',
             'deleted_at' => NULL
         ]);
 
@@ -131,7 +131,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 19,
             'edad_maxima' => 23,
             'grupo_etario' => '19 a 23 meses',
-            'frecuencia' => '1 vez alvaño\r',
+            'frecuencia' => '1 vez alvaño',
             'deleted_at' => NULL
         ]);
 
@@ -143,7 +143,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 30,
             'edad_maxima' => 35,
             'grupo_etario' => '30 a 35 meses',
-            'frecuencia' => '1 vez alvaño\r',
+            'frecuencia' => '1 vez alvaño',
             'deleted_at' => NULL
         ]);
 
@@ -155,7 +155,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 48,
             'edad_maxima' => 48,
             'grupo_etario' => '4 años',
-            'frecuencia' => '1 vez al año\r',
+            'frecuencia' => '1 vez al año',
             'deleted_at' => NULL
         ]);
 
@@ -167,7 +167,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 6,
             'edad_maxima' => 60,
             'grupo_etario' => 'de 6 meses a 5 años',
-            'frecuencia' => '2 Vecvs al año\r',
+            'frecuencia' => '2 Vecvs al año',
             'deleted_at' => NULL
         ]);
 
@@ -179,7 +179,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 1,
             'edad_maxima' => 6,
             'grupo_etario' => 'de 1 a 6 meses',
-            'frecuencia' => 'segun criverio medico\r',
+            'frecuencia' => 'segun criverio medico',
             'deleted_at' => NULL
         ]);
 
@@ -191,7 +191,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 12,
             'edad_maxima' => 60,
             'grupo_etario' => 'de 1 Año a 5 años',
-            'frecuencia' => '2 veces al año\r',
+            'frecuencia' => '2 veces al año',
             'deleted_at' => NULL
         ]);
 
@@ -203,7 +203,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 12,
             'edad_maxima' => 60,
             'grupo_etario' => 'de 1 Año a 5 años',
-            'frecuencia' => '2 veces al año\r',
+            'frecuencia' => '2 veces al año',
             'deleted_at' => NULL
         ]);
 
@@ -215,7 +215,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 0,
             'edad_maxima' => 60,
             'grupo_etario' => 'de 0 a 5 años',
-            'frecuencia' => 'segun esquema nacional-BCG\r',
+            'frecuencia' => 'segun esquema nacional-BCG',
             'deleted_at' => NULL
         ]);
 
@@ -227,7 +227,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 72,
             'edad_maxima' => 72,
             'grupo_etario' => '6 años',
-            'frecuencia' => '1 vez al año\r',
+            'frecuencia' => '1 vez al año',
             'deleted_at' => NULL
         ]);
 
@@ -239,7 +239,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 96,
             'edad_maxima' => 96,
             'grupo_etario' => '8 años',
-            'frecuencia' => '1 vez al año\r',
+            'frecuencia' => '1 vez al año',
             'deleted_at' => NULL
         ]);
 
@@ -251,7 +251,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 120,
             'edad_maxima' => 120,
             'grupo_etario' => '10 años',
-            'frecuencia' => '1 vez al año\r',
+            'frecuencia' => '1 vez al año',
             'deleted_at' => NULL
         ]);
 
@@ -263,7 +263,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 84,
             'edad_maxima' => 84,
             'grupo_etario' => '7 años',
-            'frecuencia' => '1 vez al año\r',
+            'frecuencia' => '1 vez al año',
             'deleted_at' => NULL
         ]);
 
@@ -275,7 +275,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 108,
             'edad_maxima' => 108,
             'grupo_etario' => '9 años',
-            'frecuencia' => '1 vez al año\r',
+            'frecuencia' => '1 vez al año',
             'deleted_at' => NULL
         ]);
 
@@ -287,7 +287,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 132,
             'edad_maxima' => 132,
             'grupo_etario' => '11 años',
-            'frecuencia' => '1 vez al año\r',
+            'frecuencia' => '1 vez al año',
             'deleted_at' => NULL
         ]);
 
@@ -299,7 +299,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 72,
             'edad_maxima' => 132,
             'grupo_etario' => 'de 6 a 11 años',
-            'frecuencia' => '2 veces al año\r',
+            'frecuencia' => '2 veces al año',
             'deleted_at' => NULL
         ]);
 
@@ -311,7 +311,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 72,
             'edad_maxima' => 132,
             'grupo_etario' => 'de 6 a 11 años',
-            'frecuencia' => '2 veces al año\r',
+            'frecuencia' => '2 veces al año',
             'deleted_at' => NULL
         ]);
 
@@ -323,7 +323,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 72,
             'edad_maxima' => 132,
             'grupo_etario' => 'de 6 a 11 años',
-            'frecuencia' => '2 veces al año\r',
+            'frecuencia' => '2 veces al año',
             'deleted_at' => NULL
         ]);
 
@@ -335,7 +335,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 108,
             'edad_maxima' => 132,
             'grupo_etario' => 'de 9 a 11 años',
-            'frecuencia' => 'segun esquema nacional\r',
+            'frecuencia' => 'segun esquema nacional',
             'deleted_at' => NULL
         ]);
 
@@ -347,7 +347,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 144,
             'edad_maxima' => 144,
             'grupo_etario' => '12 años',
-            'frecuencia' => '1 vez al año\r',
+            'frecuencia' => '1 vez al año',
             'deleted_at' => NULL
         ]);
 
@@ -359,7 +359,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 168,
             'edad_maxima' => 168,
             'grupo_etario' => '14 años',
-            'frecuencia' => '1 vez al año\r',
+            'frecuencia' => '1 vez al año',
             'deleted_at' => NULL
         ]);
 
@@ -371,7 +371,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 192,
             'edad_maxima' => 192,
             'grupo_etario' => '16 años',
-            'frecuencia' => '1 vez al año\r',
+            'frecuencia' => '1 vez al año',
             'deleted_at' => NULL
         ]);
 
@@ -383,7 +383,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 156,
             'edad_maxima' => 156,
             'grupo_etario' => '13 años',
-            'frecuencia' => '1 vez al año\r',
+            'frecuencia' => '1 vez al año',
             'deleted_at' => NULL
         ]);
 
@@ -395,7 +395,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 180,
             'edad_maxima' => 180,
             'grupo_etario' => '15 años',
-            'frecuencia' => '1 vez al año\r',
+            'frecuencia' => '1 vez al año',
             'deleted_at' => NULL
         ]);
 
@@ -407,7 +407,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 204,
             'edad_maxima' => 204,
             'grupo_etario' => '17 años',
-            'frecuencia' => '1 vez al año\r',
+            'frecuencia' => '1 vez al año',
             'deleted_at' => NULL
         ]);
 
@@ -419,7 +419,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 144,
             'edad_maxima' => 204,
             'grupo_etario' => 'de 12 a 17 años',
-            'frecuencia' => '2 veces al año\r',
+            'frecuencia' => '2 veces al año',
             'deleted_at' => NULL
         ]);
 
@@ -431,7 +431,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 144,
             'edad_maxima' => 840,
             'grupo_etario' => 'mujeres y hombres en edad fertil',
-            'frecuencia' => 'por demanda\r',
+            'frecuencia' => 'por demanda',
             'deleted_at' => NULL
         ]);
 
@@ -443,7 +443,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 144,
             'edad_maxima' => 204,
             'grupo_etario' => 'de 12 a 17 años',
-            'frecuencia' => '2 veces al año\r',
+            'frecuencia' => '2 veces al año',
             'deleted_at' => NULL
         ]);
 
@@ -455,7 +455,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 144,
             'edad_maxima' => 204,
             'grupo_etario' => 'de 12 a 17 años',
-            'frecuencia' => '2 veces al año\r',
+            'frecuencia' => '2 veces al año',
             'deleted_at' => NULL
         ]);
 
@@ -467,7 +467,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 144,
             'edad_maxima' => 204,
             'grupo_etario' => 'de 12 a 17 años',
-            'frecuencia' => 'segun esquema nacional\r',
+            'frecuencia' => 'segun esquema nacional',
             'deleted_at' => NULL
         ]);
 
@@ -479,7 +479,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 240,
             'edad_maxima' => 240,
             'grupo_etario' => '20 años',
-            'frecuencia' => '1 vez al año\r',
+            'frecuencia' => '1 vez al año',
             'deleted_at' => NULL
         ]);
 
@@ -491,7 +491,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 300,
             'edad_maxima' => 300,
             'grupo_etario' => '25 años',
-            'frecuencia' => '1 vez al año\r',
+            'frecuencia' => '1 vez al año',
             'deleted_at' => NULL
         ]);
 
@@ -503,7 +503,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 216,
             'edad_maxima' => 216,
             'grupo_etario' => '18 años',
-            'frecuencia' => '1 vez al año\r',
+            'frecuencia' => '1 vez al año',
             'deleted_at' => NULL
         ]);
 
@@ -515,7 +515,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 228,
             'edad_maxima' => 228,
             'grupo_etario' => '19 años',
-            'frecuencia' => '1 vez al año\r',
+            'frecuencia' => '1 vez al año',
             'deleted_at' => NULL
         ]);
 
@@ -527,7 +527,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 252,
             'edad_maxima' => 252,
             'grupo_etario' => '21 años',
-            'frecuencia' => '1 vez al año\r',
+            'frecuencia' => '1 vez al año',
             'deleted_at' => NULL
         ]);
 
@@ -539,7 +539,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 264,
             'edad_maxima' => 264,
             'grupo_etario' => '22 años',
-            'frecuencia' => '1 vez al año\r',
+            'frecuencia' => '1 vez al año',
             'deleted_at' => NULL
         ]);
 
@@ -551,7 +551,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 276,
             'edad_maxima' => 276,
             'grupo_etario' => '23 años',
-            'frecuencia' => '1 vez al año\r',
+            'frecuencia' => '1 vez al año',
             'deleted_at' => NULL
         ]);
 
@@ -563,7 +563,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 288,
             'edad_maxima' => 288,
             'grupo_etario' => '24 años',
-            'frecuencia' => '1 vez al año\r',
+            'frecuencia' => '1 vez al año',
             'deleted_at' => NULL
         ]);
 
@@ -575,7 +575,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 312,
             'edad_maxima' => 312,
             'grupo_etario' => '26 años',
-            'frecuencia' => '1 vez al año\r',
+            'frecuencia' => '1 vez al año',
             'deleted_at' => NULL
         ]);
 
@@ -587,7 +587,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 324,
             'edad_maxima' => 324,
             'grupo_etario' => '27 años',
-            'frecuencia' => '1 vez al año\r',
+            'frecuencia' => '1 vez al año',
             'deleted_at' => NULL
         ]);
 
@@ -599,7 +599,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 336,
             'edad_maxima' => 336,
             'grupo_etario' => '28 años',
-            'frecuencia' => '1 vez al año\r',
+            'frecuencia' => '1 vez al año',
             'deleted_at' => NULL
         ]);
 
@@ -611,7 +611,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 216,
             'edad_maxima' => 336,
             'grupo_etario' => 'de 18 a 28 años',
-            'frecuencia' => '1 vez al año\r',
+            'frecuencia' => '1 vez al año',
             'deleted_at' => NULL
         ]);
 
@@ -623,7 +623,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 300,
             'edad_maxima' => 336,
             'grupo_etario' => 'mujeres de 25 a 28 años',
-            'frecuencia' => 'segun esquema 1-1-3\r',
+            'frecuencia' => 'segun esquema 1-1-3',
             'deleted_at' => NULL
         ]);
 
@@ -635,7 +635,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 144,
             'edad_maxima' => 840,
             'grupo_etario' => 'mujeres y hombres en edad fertil',
-            'frecuencia' => 'por demanda\r',
+            'frecuencia' => 'por demanda',
             'deleted_at' => NULL
         ]);
 
@@ -647,7 +647,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 216,
             'edad_maxima' => 336,
             'grupo_etario' => 'de 18 a 28 años',
-            'frecuencia' => '1 vez al año\r',
+            'frecuencia' => '1 vez al año',
             'deleted_at' => NULL
         ]);
 
@@ -659,7 +659,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 216,
             'edad_maxima' => 336,
             'grupo_etario' => 'de 18 a 28 años',
-            'frecuencia' => 'segun esquema nacional\r',
+            'frecuencia' => 'segun esquema nacional',
             'deleted_at' => NULL
         ]);
 
@@ -671,7 +671,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 348,
             'edad_maxima' => 708,
             'grupo_etario' => '29-59 años',
-            'frecuencia' => '1 vez al año\r',
+            'frecuencia' => '1 vez al año',
             'deleted_at' => NULL
         ]);
 
@@ -683,7 +683,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 348,
             'edad_maxima' => 708,
             'grupo_etario' => '29-59 años',
-            'frecuencia' => '1 vez cada dos años\r',
+            'frecuencia' => '1 vez cada dos años',
             'deleted_at' => NULL
         ]);
 
@@ -695,7 +695,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 348,
             'edad_maxima' => 708,
             'grupo_etario' => 'mujeres de 29-59 años',
-            'frecuencia' => 'segun esquema -1-1-3\r',
+            'frecuencia' => 'segun esquema -1-1-3',
             'deleted_at' => NULL
         ]);
 
@@ -707,7 +707,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 600,
             'edad_maxima' => 708,
             'grupo_etario' => 'mujeres de 50 a 59 años',
-            'frecuencia' => '1 vez cada dos años\r',
+            'frecuencia' => '1 vez cada dos años',
             'deleted_at' => NULL
         ]);
 
@@ -719,7 +719,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 480,
             'edad_maxima' => 719,
             'grupo_etario' => 'mujeres a partir de los 40 años',
-            'frecuencia' => '1 vez al año\r',
+            'frecuencia' => '1 vez al año',
             'deleted_at' => NULL
         ]);
 
@@ -731,7 +731,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 600,
             'edad_maxima' => 719,
             'grupo_etario' => 'hombres a partir de los 50 años',
-            'frecuencia' => '1 vez cada 5 años\r',
+            'frecuencia' => '1 vez cada 5 años',
             'deleted_at' => NULL
         ]);
 
@@ -743,7 +743,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 600,
             'edad_maxima' => 719,
             'grupo_etario' => 'hombres a partir de los 50 años',
-            'frecuencia' => '1 vez cada 5 años\r',
+            'frecuencia' => '1 vez cada 5 años',
             'deleted_at' => NULL
         ]);
 
@@ -755,7 +755,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 144,
             'edad_maxima' => 840,
             'grupo_etario' => 'mujeres y hombres en edad fertil',
-            'frecuencia' => 'por demanda\r',
+            'frecuencia' => 'por demanda',
             'deleted_at' => NULL
         ]);
 
@@ -767,7 +767,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 348,
             'edad_maxima' => 708,
             'grupo_etario' => 'de 29 a 59 años',
-            'frecuencia' => '1 vez cada dos años\r',
+            'frecuencia' => '1 vez cada dos años',
             'deleted_at' => NULL
         ]);
 
@@ -779,7 +779,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 348,
             'edad_maxima' => 708,
             'grupo_etario' => 'de 29 a 59 años',
-            'frecuencia' => 'segun esquema nacional\r',
+            'frecuencia' => 'segun esquema nacional',
             'deleted_at' => NULL
         ]);
 
@@ -791,7 +791,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 600,
             'edad_maxima' => 708,
             'grupo_etario' => 'de 50 a 59 años',
-            'frecuencia' => '1 vez cada dos años\r',
+            'frecuencia' => '1 vez cada dos años',
             'deleted_at' => NULL
         ]);
 
@@ -803,7 +803,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 720,
             'edad_maxima' => 2400,
             'grupo_etario' => 'de 60 años y mas',
-            'frecuencia' => '1 vez cada tres años\r',
+            'frecuencia' => '1 vez cada tres años',
             'deleted_at' => NULL
         ]);
 
@@ -815,7 +815,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 720,
             'edad_maxima' => 2400,
             'grupo_etario' => 'de 60 años y mas',
-            'frecuencia' => '1 vez cada dos años\r',
+            'frecuencia' => '1 vez cada dos años',
             'deleted_at' => NULL
         ]);
 
@@ -827,7 +827,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 720,
             'edad_maxima' => 828,
             'grupo_etario' => 'mujeres de 60 a 69 años',
-            'frecuencia' => 'segun esquema -1-1-3\r',
+            'frecuencia' => 'segun esquema -1-1-3',
             'deleted_at' => NULL
         ]);
 
@@ -839,7 +839,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 720,
             'edad_maxima' => 828,
             'grupo_etario' => 'mujeres de 60 a 69 años',
-            'frecuencia' => '1 vez cada dos años\r',
+            'frecuencia' => '1 vez cada dos años',
             'deleted_at' => NULL
         ]);
 
@@ -851,7 +851,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 720,
             'edad_maxima' => 828,
             'grupo_etario' => 'mujeres de 60 a 69 años',
-            'frecuencia' => '1 vez al año\r',
+            'frecuencia' => '1 vez al año',
             'deleted_at' => NULL
         ]);
 
@@ -863,7 +863,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 720,
             'edad_maxima' => 900,
             'grupo_etario' => 'hombres de 60 a 75 años',
-            'frecuencia' => '1 vez cada 5 años\r',
+            'frecuencia' => '1 vez cada 5 años',
             'deleted_at' => NULL
         ]);
 
@@ -875,7 +875,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 720,
             'edad_maxima' => 900,
             'grupo_etario' => 'hombres de 60 a 75 años',
-            'frecuencia' => '1 vez cada 5 años\r',
+            'frecuencia' => '1 vez cada 5 años',
             'deleted_at' => NULL
         ]);
 
@@ -887,7 +887,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 144,
             'edad_maxima' => 660,
             'grupo_etario' => 'hombres sexualmente activos',
-            'frecuencia' => 'por demanda\r',
+            'frecuencia' => 'por demanda',
             'deleted_at' => NULL
         ]);
 
@@ -899,7 +899,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 720,
             'edad_maxima' => 2400,
             'grupo_etario' => 'de 60 años y mas',
-            'frecuencia' => '1 vez cada 2 años\r',
+            'frecuencia' => '1 vez cada 2 años',
             'deleted_at' => NULL
         ]);
 
@@ -911,7 +911,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 720,
             'edad_maxima' => 2400,
             'grupo_etario' => 'de 60 años y mas',
-            'frecuencia' => 'segun esquema nacional\r',
+            'frecuencia' => 'segun esquema nacional',
             'deleted_at' => NULL
         ]);
 
@@ -923,7 +923,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 720,
             'edad_maxima' => 900,
             'grupo_etario' => 'de 60 años a 75 años',
-            'frecuencia' => '1 vez cada dos años\r',
+            'frecuencia' => '1 vez cada dos años',
             'deleted_at' => NULL
         ]);
 
@@ -935,7 +935,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 216,
             'edad_maxima' => 660,
             'grupo_etario' => 'mujeres en edad fertil (preconcepcional)',
-            'frecuencia' => '1 vez al año\r',
+            'frecuencia' => '1 vez al año',
             'deleted_at' => NULL
         ]);
 
@@ -947,7 +947,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 216,
             'edad_maxima' => 660,
             'grupo_etario' => 'mujeres en edad fertil (preconcepcional)',
-            'frecuencia' => 'de acuerdo riesgo\r',
+            'frecuencia' => 'de acuerdo riesgo',
             'deleted_at' => NULL
         ]);
 
@@ -959,7 +959,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 216,
             'edad_maxima' => 660,
             'grupo_etario' => 'mujeres en edad fertil',
-            'frecuencia' => '\r',
+            'frecuencia' => '',
             'deleted_at' => NULL
         ]);
 
@@ -971,7 +971,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 120,
             'edad_maxima' => 660,
             'grupo_etario' => 'mujeres en edad fertil',
-            'frecuencia' => 'de acuerdo riesgo\r',
+            'frecuencia' => 'de acuerdo riesgo',
             'deleted_at' => NULL
         ]);
 
@@ -983,7 +983,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 120,
             'edad_maxima' => 660,
             'grupo_etario' => 'mujeres en edad fertil',
-            'frecuencia' => 'de acuerdo riesgo\r',
+            'frecuencia' => 'de acuerdo riesgo',
             'deleted_at' => NULL
         ]);
 
@@ -995,7 +995,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 120,
             'edad_maxima' => 660,
             'grupo_etario' => 'mujeres en edad fertil',
-            'frecuencia' => '1 vez al año\r',
+            'frecuencia' => '1 vez al año',
             'deleted_at' => NULL
         ]);
 
@@ -1007,7 +1007,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 120,
             'edad_maxima' => 660,
             'grupo_etario' => 'mujeres en edad fertil',
-            'frecuencia' => 'evaluacion semana 36\r',
+            'frecuencia' => 'evaluacion semana 36',
             'deleted_at' => NULL
         ]);
 
@@ -1019,7 +1019,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 120,
             'edad_maxima' => 660,
             'grupo_etario' => 'mujeres en edad fertil',
-            'frecuencia' => 'de acuerdo riesgo\r',
+            'frecuencia' => 'de acuerdo riesgo',
             'deleted_at' => NULL
         ]);
 
@@ -1031,7 +1031,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 120,
             'edad_maxima' => 660,
             'grupo_etario' => 'mujeres en edad fertil',
-            'frecuencia' => 'de acuerdo riesgo\r',
+            'frecuencia' => 'de acuerdo riesgo',
             'deleted_at' => NULL
         ]);
 
@@ -1043,7 +1043,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 120,
             'edad_maxima' => 660,
             'grupo_etario' => 'mujeres en edad fertil',
-            'frecuencia' => 'de acuerdo riesgo\r',
+            'frecuencia' => 'de acuerdo riesgo',
             'deleted_at' => NULL
         ]);
 
@@ -1055,7 +1055,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 120,
             'edad_maxima' => 660,
             'grupo_etario' => 'mujeres en edad fertil',
-            'frecuencia' => 'de acuerdo riesgo\r',
+            'frecuencia' => 'de acuerdo riesgo',
             'deleted_at' => NULL
         ]);
 
@@ -1067,7 +1067,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 120,
             'edad_maxima' => 660,
             'grupo_etario' => 'mujeres en edad fertil',
-            'frecuencia' => 'segun esquema nacional\r',
+            'frecuencia' => 'segun esquema nacional',
             'deleted_at' => NULL
         ]);
 
@@ -1079,7 +1079,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 120,
             'edad_maxima' => 660,
             'grupo_etario' => 'mujeres en edad fertil',
-            'frecuencia' => '\r',
+            'frecuencia' => '',
             'deleted_at' => NULL
         ]);
 
@@ -1091,7 +1091,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 120,
             'edad_maxima' => 660,
             'grupo_etario' => 'mujeres en edad fertil',
-            'frecuencia' => '\r',
+            'frecuencia' => '',
             'deleted_at' => NULL
         ]);
 
@@ -1103,7 +1103,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 120,
             'edad_maxima' => 660,
             'grupo_etario' => 'mujeres en edad fertil',
-            'frecuencia' => 'de acuerdo riesgo\r',
+            'frecuencia' => 'de acuerdo riesgo',
             'deleted_at' => NULL
         ]);
 
@@ -1115,7 +1115,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 120,
             'edad_maxima' => 660,
             'grupo_etario' => 'mujeres en edad fertil',
-            'frecuencia' => '\r',
+            'frecuencia' => '',
             'deleted_at' => NULL
         ]);
 
@@ -1127,7 +1127,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 120,
             'edad_maxima' => 660,
             'grupo_etario' => 'mujeres en edad fertil',
-            'frecuencia' => 'de acuerdo riesgo\r',
+            'frecuencia' => 'de acuerdo riesgo',
             'deleted_at' => NULL
         ]);
 
@@ -1139,7 +1139,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 120,
             'edad_maxima' => 660,
             'grupo_etario' => 'mujeres en edad fertil',
-            'frecuencia' => '\r',
+            'frecuencia' => '',
             'deleted_at' => NULL
         ]);
 
@@ -1151,7 +1151,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 120,
             'edad_maxima' => 660,
             'grupo_etario' => 'mujeres puerperas',
-            'frecuencia' => '\r',
+            'frecuencia' => '',
             'deleted_at' => NULL
         ]);
 
@@ -1163,7 +1163,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 120,
             'edad_maxima' => 660,
             'grupo_etario' => 'recien nacido',
-            'frecuencia' => '\r',
+            'frecuencia' => '',
             'deleted_at' => NULL
         ]);
 
@@ -1175,7 +1175,7 @@ class InduccionesSeeder extends Seeder
             'edad_minima' => 120,
             'edad_maxima' => 660,
             'grupo_etario' => 'recien nacido',
-            'frecuencia' => '\r',
+            'frecuencia' => '',
             'deleted_at' => NULL
         ]);
 

@@ -19,6 +19,8 @@ class Hogar extends Model
         'departamento',
         'municipio',
         'tipo',
+        'puntaje_max',
+        'puntaje_obtenido',
         'barrio',
         'direccion',
         'geolocalizacion'
