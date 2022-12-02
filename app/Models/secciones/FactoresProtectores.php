@@ -2,7 +2,7 @@
 
 namespace App\Models\secciones;
 
-use App\Models\Hogar;
+use App\Models\Hogar\Hogar;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -34,5 +34,10 @@ class FactoresProtectores extends Model
     public function hogar()
     {
         return $this->belongsTo(Hogar::class, 'hogar_id');
+    }
+
+    public function eliminar()
+    {
+        FactoresProtectores::where('hogar_id', '=', $this->hogar_id)->delete();
     }
 }

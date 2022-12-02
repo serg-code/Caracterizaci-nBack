@@ -2,7 +2,7 @@
 
 namespace App\Models\secciones;
 
-use App\Models\Hogar;
+use App\Models\Hogar\Hogar;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -29,5 +29,10 @@ class HabitosConsumo extends Model
     public function hogar()
     {
         return $this->belongsTo(Hogar::class, 'hogar_id');
+    }
+
+    public function eliminar()
+    {
+        HabitosConsumo::where('hogar_id', '=', $this->hogar_id)->delete();
     }
 }

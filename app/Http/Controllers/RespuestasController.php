@@ -27,28 +27,9 @@ class RespuestasController extends Controller
             return response()->json($respuesta, $respuesta->codigoHttp);
         }
 
-        //recorrer secciones
-        if (!empty($datos['secciones']))
-        {
-            $seccionesHogar = new SeccionesHogar($hogar, $datos['secciones']);
-            $seccionesHogar->recorrer();
-        }
+        $this->recorrerSecciones($hogar, $datos['secciones']);
 
-
-        //recorrer integrantes
-        if (!empty($datos['integrantes']))
-        {
-            foreach ($datos['integrantes'] as $integrante)
-            {
-                $integrante['hogar_id'] = $integrante['hogar_id'] ?? $hogar->id;
-                $integrante = Integrantes::guardarIntegrante($integrante);
-                if (!empty($integrante['secciones']))
-                {
-                    $seccionesIntegrante = new SeccionesIntegrante($integrante, $seccionesHogar);
-                    $seccionesIntegrante->recorrerSecciones();
-                }
-            }
-        }
+        $this->recorrerIntegrantes($hogar, $datos['integrantes']);
 
         $respuesta = new RespuestaHttp(
             201,
@@ -96,12 +77,41 @@ class RespuestasController extends Controller
 
             return response()->json($respuesta, $respuesta->codigoHttp);
         }
+
+        $this->recorrerSecciones($hogar, $datos['secciones']);
+
         $respuesta = new RespuestaHttp();
         $respuesta->data = [
             'hogar' => $hogar,
         ];
 
         return response()->json($respuesta, $respuesta->codigoHttp);
+    }
+
+    protected function recorrerSecciones(Hogar $hogar, array $secciones = [])
+    {
+        if (!empty($secciones))
+        {
+            $seccionesHogar = new SeccionesHogar($hogar, $secciones);
+            $seccionesHogar->recorrer();
+        }
+    }
+
+    protected function recorrerIntegrantes(Hogar $hogar, array $integrantes = [])
+    {
+        if (!empty($integrantes))
+        {
+            foreach ($integrantes as $integrante)
+            {
+                $integrante['hogar_id'] = $integrante['hogar_id'] ?? $hogar->id;
+                $integrante = Integrantes::guardarIntegrante($integrante);
+                // if (!empty($integrante['secciones']))
+                // {
+                //     $seccionesIntegrante = new SeccionesIntegrante($integrante, $seccionesHogar);
+                //     $seccionesIntegrante->recorrerSecciones();
+                // }
+            }
+        }
     }
 
     public function guardarRespuesta(Request $request)

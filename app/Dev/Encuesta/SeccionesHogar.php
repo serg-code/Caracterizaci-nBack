@@ -5,6 +5,7 @@ namespace App\Dev\Encuesta;
 use App\Models\Hogar\Hogar;
 use App\Models\secciones\FactoresProtectores;
 use App\Models\secciones\HabitosConsumo;
+use Illuminate\Support\Facades\DB;
 
 class SeccionesHogar
 {
@@ -28,7 +29,7 @@ class SeccionesHogar
                     $seccion['ref_seccion'],
                     $seccion['respuestas']
                 );
-                !empty($respuesta) ? $respuesta->save() : null;
+                !empty($respuesta) ? $this->guardarRespuesta($respuesta) : null;
             }
         }
     }
@@ -41,5 +42,11 @@ class SeccionesHogar
             'factores_protectores' => new FactoresProtectores($datosGuardar),
             default => null,
         };
+    }
+
+    protected function guardarRespuesta($respuesta)
+    {
+        $respuesta->eliminar();
+        $respuesta->save();
     }
 }
