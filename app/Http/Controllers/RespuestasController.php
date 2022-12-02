@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Dev\Encuesta\SeccionesHogar;
-use App\Dev\Encuesta\SeccionesIntegrante;
 use App\Dev\Notificacion;
 use App\Dev\RespuestaHttp;
 use App\Models\Hogar\Hogar;
@@ -13,7 +12,10 @@ use App\Models\Respuesta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-//? validar el tipo de respuesta a guardar
+/**
+ * todo: validar el tipo de respuesta a guardar
+ * todo: calcular los puntajes
+ */
 class RespuestasController extends Controller
 {
     public function guardarRespuestaParcial(Request $request)
@@ -28,7 +30,6 @@ class RespuestasController extends Controller
         }
 
         $this->recorrerSecciones($hogar, $datos['secciones']);
-
         $this->recorrerIntegrantes($hogar, $datos['integrantes']);
 
         $respuesta = new RespuestaHttp(
@@ -63,7 +64,6 @@ class RespuestasController extends Controller
         }
 
         $hogar = Hogar::actualizarUsuario($datos);
-
         if (empty($hogar))
         {
             $respuesta = new RespuestaHttp(

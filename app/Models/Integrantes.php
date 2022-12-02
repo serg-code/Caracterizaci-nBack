@@ -27,6 +27,8 @@ class Integrantes extends Model
         'telefono',
         'correo',
         'cabeza_familia',
+        'puntaje_obtenido',
+        'puntaje_max',
     ];
 
     protected $hidden = [
