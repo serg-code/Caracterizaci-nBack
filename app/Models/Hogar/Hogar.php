@@ -2,6 +2,10 @@
 
 namespace App\Models\Hogar;
 
+use App\Models\Departamento;
+use App\Models\Integrantes;
+use App\Models\Municipio;
+use App\Models\Respuesta;
 use App\Models\secciones\FactoresProtectores;
 use App\Models\secciones\HabitosConsumo;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;

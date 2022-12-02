@@ -15,6 +15,7 @@ class Integrantes extends Model
     protected $keyType = 'uuid';
     protected $fillable = [
         'id',
+        'hogar_id',
         'tipo_identificacion',
         'identificacion',
         'primer_nombre',
@@ -23,7 +24,6 @@ class Integrantes extends Model
         'segundo_apellido',
         'rh',
         'estado_civil',
-        'hogar_id',
         'telefono',
         'correo',
         'cabeza_familia',

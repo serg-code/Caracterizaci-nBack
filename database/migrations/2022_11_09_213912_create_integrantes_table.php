@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('integrantes', function (Blueprint $table)
         {
             $table->uuid('id')->unique();
+            $table->uuid('hogar_id');
             $table->string('tipo_identificacion', 3);
             $table->string('identificacion');
             $table->string('primer_nombre');
@@ -31,7 +32,6 @@ return new class extends Migration
                 'concubinato',
                 'separación en proceso judicial'
             ]);
-            $table->uuid('hogar_id');
             $table->string('telefono', 10);
             $table->string('correo');
             $table->enum('cabeza_familia', ['si', 'no']);
