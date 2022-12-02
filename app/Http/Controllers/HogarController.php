@@ -104,7 +104,7 @@ class HogarController extends Controller
     public function show($id)
     {
         $hogar = Hogar::find($id);
-        $hogar->integrantes;
+        // $hogar->integrantes;
         $hogar->factoresProtectores = FactoresProtectores::where('hogar_id', '=', $id)->latest()->first();
         $hogar->habitosConsumo = HabitosConsumo::where('hogar_id', '=', $id)->latest()->first();
 

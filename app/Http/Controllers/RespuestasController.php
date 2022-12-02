@@ -40,10 +40,13 @@ class RespuestasController extends Controller
         {
             foreach ($datos['integrantes'] as $integrante)
             {
-
+                $integrante['hogar_id'] = $integrante['hogar_id'] ?? $hogar->id;
                 $integrante = Integrantes::guardarIntegrante($integrante);
-                $seccionesIntegrante = new SeccionesIntegrante($integrante, $seccionesHogar);
-                $seccionesIntegrante->recorrerSecciones();
+                if (!empty($integrante['secciones']))
+                {
+                    $seccionesIntegrante = new SeccionesIntegrante($integrante, $seccionesHogar);
+                    $seccionesIntegrante->recorrerSecciones();
+                }
             }
         }
 
