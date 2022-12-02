@@ -111,8 +111,6 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //3|xfH7Fgu0TNTm4X8KG8iUygKKwdYScIwvC6IXPbi8
-        //6|LuaDnZ5hlgFuesg8qt5EPHEtL4wI8Fel5j3PAYmZ
         $usuario = User::find($id);
         $usuarioAuth = $request->user();
 
