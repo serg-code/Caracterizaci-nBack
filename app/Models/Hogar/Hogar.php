@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Hogar;
 
 use App\Models\secciones\FactoresProtectores;
 use App\Models\secciones\HabitosConsumo;
@@ -23,7 +23,8 @@ class Hogar extends Model
         'tipo',
         'barrio',
         'direccion',
-        'geolocalizacion'
+        'geolocalizacion',
+        'encuesta',
     ];
 
     protected $hidden = [
@@ -74,5 +75,10 @@ class Hogar extends Model
     public function habitosConsumo()
     {
         return $this->hasMany(HabitosConsumo::class, 'hogar_id');
+    }
+
+    public function tipoHogar()
+    {
+        return $this->belongsTo(TipoHogar::class, 'tipo');
     }
 }

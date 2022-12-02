@@ -6,7 +6,7 @@ use App\Dev\Encuesta\SeccionesHogar;
 use App\Dev\Encuesta\SeccionesIntegrante;
 use App\Dev\Notificacion;
 use App\Dev\RespuestaHttp;
-use App\Models\Hogar;
+use App\Models\Hogar\Hogar;
 use App\Models\Integrantes;
 use App\Models\Pregunta;
 use App\Models\Respuesta;
