@@ -102,6 +102,9 @@ class HogarController extends Controller
     public function show($id)
     {
         $hogar = Hogar::find($id);
+        $hogar->integrantes;
+        $hogar->factoresProtectores;
+        $hogar->habitosConsumo;
 
         $respuesta = new RespuestaHttp();
         $respuesta->data = ['hogar' => $hogar];

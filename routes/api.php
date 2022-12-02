@@ -42,12 +42,6 @@ Route::group(['middleware' => ['auth:sanctum']], function ()
     Route::post('respuestas/completo', [\App\Http\Controllers\RespuestasController::class, 'guardarRespuesta']);
 });
 
-Route::get('departamento', [\App\Http\Controllers\ubicaciones\DepartamentosController::class, 'listarDepartamentos']);
-Route::get('municipio/{codigoDepartamento}', [
-    \App\Http\Controllers\ubicaciones\MunicipiosController::class, 'mostrarMunicipiosDepartamento'
-]);
-
-
 Route::group([], function ()
 {
     Route::get('tipo-identificacion', [\App\Http\Controllers\TipoIdentificacionController::class, 'index']);

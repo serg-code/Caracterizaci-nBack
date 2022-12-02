@@ -2,6 +2,7 @@
 
 namespace App\Models\secciones;
 
+use App\Models\Hogar;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -24,4 +25,9 @@ class HabitosConsumo extends Model
         'created_at',
         'updated_at',
     ];
+
+    public function hogar()
+    {
+        return $this->belongsTo(Hogar::class, 'hogar_id');
+    }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\secciones\FactoresProtectores;
+use App\Models\secciones\HabitosConsumo;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -62,5 +64,15 @@ class Hogar extends Model
     public function municipio()
     {
         return $this->belongsTo(Municipio::class, 'codigo_dane');
+    }
+
+    public function factoresProtectores()
+    {
+        return $this->hasMany(FactoresProtectores::class, 'hogar_id');
+    }
+
+    public function habitosConsumo()
+    {
+        return $this->hasMany(HabitosConsumo::class, 'hogar_id');
     }
 }
