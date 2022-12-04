@@ -123,9 +123,7 @@ class UsuarioController extends Controller
             return response()->json($respuesta, $respuesta->codigoHttp);
         }
 
-        $actualizar = [];
-
-        $respuesta = Usuario::modificarUsuario($request, $usuario);
+        $respuesta = Usuario::modificarUsuario($usuario, $request->method(), $request->all());
         return response()->json($respuesta, $respuesta->codigoHttp);
     }
 

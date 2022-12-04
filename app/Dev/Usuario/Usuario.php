@@ -4,20 +4,19 @@ namespace App\Dev\Usuario;
 
 use App\Dev\RespuestaHttp;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class Usuario
 {
 
-    public static function modificarUsuario(Request $request, User $usuario): RespuestaHttp
+    public static function modificarUsuario(User $usuario, string $metodo, array $datos): RespuestaHttp
     {
         $actualizar = [];
 
-        if ($request->method() === 'PATCH')
+        if ($metodo === 'PATCH')
         {
             $validador = Validator::make(
-                $request->all(),
+                $datos,
                 [
                     'password' => 'required',
                     'confirmPassword' => 'required|same:password',
@@ -40,17 +39,14 @@ class Usuario
             }
 
             $actualizar = [
-                'password' => bcrypt($request->input('password'))
-
+                'password' => $datos['password'],
             ];
 
             $usuario->tokens()->delete();
         }
 
-        if ($request->method() === 'PUT')
+        if ($metodo === 'PUT')
         {
-            $datos = $request->all();
-
             $actualizar = [
                 'name' => $datos['name'] ?? $usuario->name,
                 'email' => $datos['email'] ?? $usuario->email,
