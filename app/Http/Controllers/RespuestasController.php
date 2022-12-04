@@ -31,6 +31,7 @@ class RespuestasController extends Controller
 
         $this->recorrerSecciones($hogar, $datos['secciones']);
         $this->recorrerIntegrantes($hogar, $datos['integrantes']);
+        $hogar->integrantes;
 
         $respuesta = new RespuestaHttp(
             201,
