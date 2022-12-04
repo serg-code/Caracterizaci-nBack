@@ -24,7 +24,8 @@ class UsuarioController extends Controller
 
         if (empty($datosUrl))
         {
-            $usuarios = User::paginate($cantidadPaginar);
+            $usuarios = User::where('id', '!=', 1)
+                ->paginate($cantidadPaginar);
             $respuesta = new RespuestaHttp();
             $respuesta->data = $usuarios;
 
@@ -33,6 +34,7 @@ class UsuarioController extends Controller
 
         $usuarios = QueryBuilder::for(User::class)
             ->allowedFilters(['id', 'email', 'activo', 'created_at'])
+            ->where('id', '!=', 1)
             ->paginate($cantidadPaginar);
 
         $respuesta = new RespuestaHttp();
@@ -237,8 +239,13 @@ class UsuarioController extends Controller
     {
         $usuario = $request->user();
         $respuesta = new RespuestaHttp();
+        $usuario = User::find($usuario->id);
+        $usuario->permissions;
+        $usuario->roles;
+        $usuario->getAllPermissions();
         $respuesta->data = [
-            'usuario' => User::find($usuario->id),
+            // 'usuario' => User::find($usuario->id),
+            'usuario' => $usuario
         ];
 
         return response()->json($respuesta, $respuesta->codigoHttp);
