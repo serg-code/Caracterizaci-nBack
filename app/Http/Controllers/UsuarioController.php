@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Dev\RespuestaHttp;
+use App\Dev\Usuario\Usuario;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Spatie\QueryBuilder\QueryBuilder;
 
@@ -21,15 +21,13 @@ class UsuarioController extends Controller
     {
         $datosUrl = $_GET;
         $cantidadPaginar = $datosUrl['cantidad'] ?? env('LIMITEPAGINA_USUARIO', 20);
+        $respuesta = new RespuestaHttp();
 
         if (empty($datosUrl))
         {
             $usuarios = User::where('id', '!=', 1)
                 ->paginate($cantidadPaginar);
-            $respuesta = new RespuestaHttp();
             $respuesta->data = $usuarios;
-
-            return response()->json($respuesta, $respuesta->codigoHttp);
         }
 
         $usuarios = QueryBuilder::for(User::class)
@@ -37,7 +35,6 @@ class UsuarioController extends Controller
             ->where('id', '!=', 1)
             ->paginate($cantidadPaginar);
 
-        $respuesta = new RespuestaHttp();
         $respuesta->data = $usuarios;
 
         return response()->json($respuesta, $respuesta->codigoHttp);
@@ -128,79 +125,7 @@ class UsuarioController extends Controller
 
         $actualizar = [];
 
-        //saber si la peticion va por PUT o PATCH
-        if ($request->method() === 'PATCH')
-        {
-            $validador = Validator::make(
-                $request->all(),
-                [
-                    'password' => 'required',
-                    'confirmPassword' => 'required|same:password',
-                ],
-                [
-                    'password.required' => 'La contraseña es necesaria',
-                    'confirmPassword.required' => 'Se necesita confirmar la contraseña',
-                    'confirmPassword.same' => 'Las contraseñas no coinciden '
-                ]
-            );
-
-            if ($validador->fails())
-            {
-                $respuesta = new RespuestaHttp(
-                    400,
-                    'Bad request',
-                    'algunos datos no son validos',
-                    $validador->getMessageBag()
-                );
-                return response()->json($respuesta, $respuesta->codigoHttp);
-            }
-
-            $actualizar = [
-                'password' => bcrypt($request->input('password'))
-
-            ];
-
-            $usuario->tokens()->delete();
-        }
-
-        if ($request->method() === 'PUT')
-        {
-            $datos = $request->all();
-            $validador = Validator::make(
-                $datos,
-                [
-                    'name' => 'required',
-                    'email' => 'required|email|unique:users,email',
-                ],
-                [
-                    'name.required' => 'El nombre es necesario',
-                    'email.required' => 'El correo es necesario',
-                    'email.email' => 'El correo debe ser valido',
-                    'email.unique' => 'Este correo no es valido',
-                ]
-            );
-
-            if ($validador->fails())
-            {
-                $respuesta = new RespuestaHttp(
-                    400,
-                    'Bad request',
-                    'algunos datos no son validos',
-                    $validador->getMessageBag()
-                );
-                return response()->json($respuesta, $respuesta->codigoHttp);
-            }
-
-            $actualizar = [
-                'name' => $datos['name'],
-                'email' => $datos['email'],
-            ];
-        }
-
-        User::where('id', '=', $usuario->id)
-            ->update($actualizar);
-
-        $respuesta = new RespuestaHttp();
+        $respuesta = Usuario::modificarUsuario($request, $usuario);
         return response()->json($respuesta, $respuesta->codigoHttp);
     }
 
