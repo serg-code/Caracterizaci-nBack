@@ -2,6 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\model\cuidados_domiciliarios;
+use Database\Seeders\seeder\accidenteseeder;
+use Database\Seeders\seeder\cuidado_enfermedadesSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -24,6 +27,9 @@ class DatabaseSeeder extends Seeder
             new MunicipiosSeeder(),
             new UsuariosSeeder(),
             new InduccionesSeeder(),
+            new Cuidado_enfermedadesSeeder(),
+            new Cuidados_domiciliarios(),
+            new Accidenteseeder(),
         ];
 
         $this->correrSeeders($listadoSeeders);
