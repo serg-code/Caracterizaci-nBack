@@ -112,8 +112,9 @@ class UsuarioController extends Controller
     {
         $usuario = User::find($id);
         $usuarioAuth = $request->user();
+        $actualizarUsuario = new Usuario($usuario, $request);
 
-        if (empty($usuarioAuth) || empty($usuario) || $usuarioAuth->id !== $usuario->id)
+        if (empty($usuarioAuth) || empty($usuario) || !$actualizarUsuario->permitir())
         {
             $respuesta = new RespuestaHttp(
                 401,
@@ -123,7 +124,7 @@ class UsuarioController extends Controller
             return response()->json($respuesta, $respuesta->codigoHttp);
         }
 
-        $respuesta = Usuario::modificarUsuario($usuario, $request->method(), $request->all());
+        $respuesta = $actualizarUsuario->modificarUsuario();
         return response()->json($respuesta, $respuesta->codigoHttp);
     }
 

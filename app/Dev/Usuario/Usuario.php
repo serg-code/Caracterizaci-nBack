@@ -4,14 +4,46 @@ namespace App\Dev\Usuario;
 
 use App\Dev\RespuestaHttp;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class Usuario
 {
 
-    public static function modificarUsuario(User $usuario, string $metodo, array $datos): RespuestaHttp
+    public function __construct(
+        public ?User $usuario,
+        protected Request $request,
+    )
     {
+    }
+
+    public function permitir(): bool
+    {
+        if ($this->usuario->id !== $this->request->user()->id)
+        {
+            // $this->usuario->getAllPermissions();
+            $usuarioHacePeticion = $this->request->user();
+            $usuarioHacePeticion->getRoleNames();
+
+            foreach ($usuarioHacePeticion->roles as $rol)
+            {
+                if ($rol->name == 'Super Administrator' || $rol->name == 'Administrator')
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    public function modificarUsuario(): RespuestaHttp
+    {
+
+        // $usuarioAuth->id !== $this->usuario->id
         $actualizar = [];
+        $datos = $this->request->all();
+        $metodo = $this->request->method();
 
         if ($metodo === 'PATCH')
         {
@@ -42,24 +74,24 @@ class Usuario
                 'password' => $datos['password'],
             ];
 
-            $usuario->tokens()->delete();
+            $this->usuario->tokens()->delete();
         }
 
         if ($metodo === 'PUT')
         {
             $actualizar = [
-                'name' => $datos['name'] ?? $usuario->name,
-                'email' => $datos['email'] ?? $usuario->email,
+                'name' => $datos['name'] ?? $this->usuario->name,
+                'email' => $datos['email'] ?? $this->usuario->email,
             ];
         }
 
-        $usuario->update($actualizar);
+        $this->usuario->update($actualizar);
         return new RespuestaHttp(
             200,
             'succes',
             'Usuario modificado',
             [
-                'usuario' => $usuario
+                'usuario' => $this->usuario
             ]
         );
     }
