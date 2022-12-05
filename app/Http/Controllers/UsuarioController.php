@@ -164,12 +164,10 @@ class UsuarioController extends Controller
         $usuario = $request->user();
         $respuesta = new RespuestaHttp();
         $usuario = User::find($usuario->id);
-        $usuario->permissions;
-        $usuario->roles;
-        $usuario->getAllPermissions();
+
         $respuesta->data = [
             // 'usuario' => User::find($usuario->id),
-            'usuario' => $usuario
+            'usuario' => $usuario,
         ];
 
         return response()->json($respuesta, $respuesta->codigoHttp);

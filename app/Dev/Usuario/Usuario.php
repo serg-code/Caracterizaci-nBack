@@ -19,22 +19,33 @@ class Usuario
 
     public function permitir(): bool
     {
-        if ($this->usuario->id !== $this->request->user()->id)
+        $usuarioHacePeticion = $this->request->user();
+        if ($this->validarId() && $usuarioHacePeticion->hasRole(['Administrador', 'Super Administrador']))
         {
-            // $this->usuario->getAllPermissions();
-            $usuarioHacePeticion = $this->request->user();
-            $usuarioHacePeticion->getRoleNames();
+            return true;
+        }
 
-            foreach ($usuarioHacePeticion->roles as $rol)
-            {
-                if ($rol->name == 'Super Administrador' || $rol->name == 'Administrador')
-                {
-                    return true;
-                }
-            }
+        if ($this->usuario->id === $this->request->user()->id)
+        {
+            return true;
         }
 
         return false;
+    }
+
+    protected function validarId(): bool
+    {
+        return ($this->usuario->id !== $this->request->user()->id);
+    }
+
+    public function validaroRoles(User $usuario, array $roles): bool
+    {
+        return $usuario->hasRole($roles);
+    }
+
+    public function validarPermiso(User $usuario, array $permisos): bool
+    {
+        return $usuario->hasAnyPermission($permisos);
     }
 
     public function modificarUsuario(): RespuestaHttp
