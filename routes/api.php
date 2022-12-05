@@ -31,9 +31,11 @@ Route::group(['middleware' => ['auth:sanctum']], function ()
     Route::apiResource('usuarios', \App\Http\Controllers\UsuarioController::class)
         ->except(['store']);
 
-    Route::put('permisos/{id_usuario}', [\App\Http\Controllers\PermisosController::class, 'otorgarPermisos']);
-    Route::put('roles/{id_usuario}', [\App\Http\Controllers\PermisosController::class, 'otorgarRol']);
-    Route::delete('roles/{id_usuario}', [\App\Http\Controllers\PermisosController::class, 'revocarRol']);
+    Route::get('/roles', [\App\Http\Controllers\RolesController::class, 'listarRoles']);
+
+    Route::put('permisos/{idUsuario}', [\App\Http\Controllers\PermisosController::class, 'otorgarPermisos']);
+    Route::put('roles/{idUsuario}', [\App\Http\Controllers\RolesController::class, 'otorgarRol']);
+    Route::delete('roles/{idUsuario}', [\App\Http\Controllers\RolesController::class, 'revocarRol']);
 
     Route::apiResource('preguntas', \App\Http\Controllers\secciones\PreguntasController::class)
         ->only(['index', 'show']);
@@ -44,6 +46,8 @@ Route::group(['middleware' => ['auth:sanctum']], function ()
     Route::post('respuestas', [\App\Http\Controllers\RespuestasController::class, 'guardarRespuestaParcial']);
     Route::put('respuestas', [\App\Http\Controllers\RespuestasController::class, 'actualizarRespuesta']);
     Route::post('respuestas/completo', [\App\Http\Controllers\RespuestasController::class, 'guardarRespuesta']);
+
+    Route::get('tipos', [\App\Http\Controllers\TipoController::class, 'obtenerTipos']);
 });
 
 Route::group([], function ()

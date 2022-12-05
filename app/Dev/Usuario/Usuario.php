@@ -38,12 +38,12 @@ class Usuario
         return ($this->usuario->id !== $this->request->user()->id);
     }
 
-    public function validaroRoles(User $usuario, array $roles): bool
+    public static function validaroRoles(User $usuario, array $roles): bool
     {
         return $usuario->hasRole($roles);
     }
 
-    public function validarPermiso(User $usuario, array $permisos): bool
+    public static function validarPermiso(User $usuario, array $permisos): bool
     {
         return $usuario->hasAnyPermission($permisos);
     }
@@ -110,6 +110,11 @@ class Usuario
     public function otorgarRol(string $rol)
     {
         $this->usuario->assignRole($rol);
+    }
+
+    public function otorgarPermiso(string $permiso)
+    {
+        $this->usuario->can($permiso);
     }
 
     public function revocarRol(string $rol)

@@ -46,10 +46,7 @@ class RolesSeeder extends Seeder
         ]);
 
         //* permisos usuario
-        $this->agregarPermisos($rolUsuario, [
-            $editarUsuario,
-            $listarRoles,
-        ]);
+        $this->agregarPermisos($rolUsuario, []);
     }
 
     /**
