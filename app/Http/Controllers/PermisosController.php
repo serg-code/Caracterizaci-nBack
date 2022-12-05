@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Dev\RespuestaHttp;
 use App\Dev\Usuario\Usuario;
+use App\Dev\Validacion\RolValidacion;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
 class PermisosController extends Controller
 {
@@ -19,28 +19,15 @@ class PermisosController extends Controller
     {
         $usuario = User::find($id_usuario);
         $controlUsuario = new Usuario($usuario, $request);
+        $errores = RolValidacion::validar($request);
 
-        $validador = Validator::make(
-            $request->all(),
-            [
-                'rol' => 'required|exists:roles,name',
-            ],
-            [
-                'rol.required' => 'El rol es necesario',
-                'rol.exists' => 'El rol declarado no es valido',
-            ]
-        );
-
-        if ($validador->fails() || !$controlUsuario->permitir())
+        if (!empty($errores) || !$controlUsuario->permitir())
         {
-
             $respuesta = new RespuestaHttp(
                 400,
                 'Bad request',
                 'No puede realizar esta accion',
-                [
-                    $validador->getMessageBag(),
-                ]
+                $errores
             );
             return response()->json($respuesta, $respuesta->codigoHttp);
         }
@@ -61,28 +48,16 @@ class PermisosController extends Controller
     {
         $usuario = User::find($id_usuario);
         $controlUsuario = new Usuario($usuario, $request);
+        $errores = RolValidacion::validar($request);
 
-        $validador = Validator::make(
-            $request->all(),
-            [
-                'rol' => 'required|exists:roles,name',
-            ],
-            [
-                'rol.required' => 'El rol es necesario',
-                'rol.exists' => 'El rol declarado no es valido',
-            ]
-        );
-
-        if ($validador->fails() || !$controlUsuario->permitir())
+        if (!empty($errores) || !$controlUsuario->permitir())
         {
 
             $respuesta = new RespuestaHttp(
                 400,
                 'Bad request',
                 'No puede realizar esta accion',
-                [
-                    $validador->getMessageBag(),
-                ]
+                $errores
             );
             return response()->json($respuesta, $respuesta->codigoHttp);
         }
