@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::post('/usuarios', [\App\Http\Controllers\UsuarioController::class, 'store']);
-
 Route::post('login', [
     \App\Http\Controllers\LoginController::class,
     'login'
@@ -28,14 +27,16 @@ Route::group(['middleware' => ['auth:sanctum']], function ()
      * http://sosaludaps.backend.test/api/usuarios/?filter[email]=example&cantidad=cantidad_listar
      */
     Route::get('usuario', [\App\Http\Controllers\UsuarioController::class, 'actual']);
-    Route::post('saludo', [\App\Http\Controllers\LoginController::class, 'saludar']);
     Route::post('logout', [\App\Http\Controllers\LoginController::class, 'cerrar']);
     Route::apiResource('usuarios', \App\Http\Controllers\UsuarioController::class)
         ->except(['store']);
+
     Route::apiResource('preguntas', \App\Http\Controllers\secciones\PreguntasController::class)
         ->only(['index', 'show']);
+
     Route::apiResource('hogar', \App\Http\Controllers\HogarController::class)
-        ->only(['index', 'store', 'show', 'update']);
+        ->except(['destroy']);
+
     Route::post('respuestas', [\App\Http\Controllers\RespuestasController::class, 'guardarRespuestaParcial']);
     Route::put('respuestas', [\App\Http\Controllers\RespuestasController::class, 'actualizarRespuesta']);
     Route::post('respuestas/completo', [\App\Http\Controllers\RespuestasController::class, 'guardarRespuesta']);
