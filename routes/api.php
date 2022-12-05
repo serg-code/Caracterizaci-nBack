@@ -31,6 +31,10 @@ Route::group(['middleware' => ['auth:sanctum']], function ()
     Route::apiResource('usuarios', \App\Http\Controllers\UsuarioController::class)
         ->except(['store']);
 
+    Route::put('permisos/{id_usuario}', [\App\Http\Controllers\PermisosController::class, 'otorgarPermisos']);
+    Route::put('roles/{id_usuario}', [\App\Http\Controllers\PermisosController::class, 'otorgarRol']);
+    Route::delete('roles/{id_usuario}', [\App\Http\Controllers\PermisosController::class, 'revocarRol']);
+
     Route::apiResource('preguntas', \App\Http\Controllers\secciones\PreguntasController::class)
         ->only(['index', 'show']);
 

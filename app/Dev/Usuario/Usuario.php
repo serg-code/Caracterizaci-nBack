@@ -12,7 +12,7 @@ class Usuario
 
     public function __construct(
         public ?User $usuario,
-        protected Request $request,
+        protected ?Request $request,
     )
     {
     }
@@ -27,7 +27,7 @@ class Usuario
 
             foreach ($usuarioHacePeticion->roles as $rol)
             {
-                if ($rol->name == 'Super Administrator' || $rol->name == 'Administrator')
+                if ($rol->name == 'Super Administrador' || $rol->name == 'Administrador')
                 {
                     return true;
                 }
@@ -94,5 +94,15 @@ class Usuario
                 'usuario' => $this->usuario
             ]
         );
+    }
+
+    public function otorgarRol(string $rol)
+    {
+        $this->usuario->assignRole($rol);
+    }
+
+    public function revocarRol(string $rol)
+    {
+        $this->usuario->removeRole($rol);
     }
 }
