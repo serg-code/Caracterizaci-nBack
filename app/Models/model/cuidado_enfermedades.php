@@ -1,0 +1,50 @@
+<?php
+
+namespace App\Models\model;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class cuidado_enfermedades extends Model
+{
+    use HasFactory;
+
+    protected $table = 'cuidado_enfermedades';
+
+    protected $fillable = [
+        'id_integrante',
+        'cancer',
+        'artritis_remautidea',
+        'vih_sida',
+        'hemofilia',
+        'insuficiencia_renal',
+        'fuma',
+        'actividad_fisica',
+        'vacuna_fiebre_amarilla',
+        'enfermedades_cronicas',
+        'diabetes',
+        'hipertencion_trimestral',
+        'diabetes_trimestral',
+        'tension_sistolica',
+        'tension_diastolica',
+        'hemoglobina_glococilada',
+        'enfermedades_costosas',
+    ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
+    public function pregunta()
+    {
+        return $this->belongsTo(Pregunta::class, 'ref_campo');
+    }
+
+    public static function guardarcuidado_enfermedades(array $datoscuidado_enfermedades)
+    {
+        $pregunta = new cuidado_enfermedades($datoscuidado_enfermedades);
+        $pregunta->save();
+    }
+}
+
