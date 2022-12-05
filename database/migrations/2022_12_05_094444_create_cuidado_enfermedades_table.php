@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('cuidado_enfermedades', function (Blueprint $table) {
-            $table->uuid('hogar_id', 36);
+            $table->uuid('id_integrante')->unique();
             $table->string('cancer')->nullable();
             $table->string('artritis_remautidea')->nullable();
             $table->string('vih_sida')->nullable();
@@ -32,6 +32,8 @@ return new class extends Migration
             $table->string('hemoglobina_glococilada')->nullable();
             $table->string('enfermedades_costosas')->nullable();
             $table->timestamps();
+            
+            $table->foreign('id_integrante')->references('id')->on('integrantes');            
         });
     }
 
