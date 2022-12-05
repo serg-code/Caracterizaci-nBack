@@ -5,11 +5,40 @@ namespace App\Http\Controllers;
 use App\Dev\RespuestaHttp;
 use App\Dev\Usuario\Usuario;
 use App\Dev\Validacion\RolValidacion;
+use App\Models\Permisos\Roles;
 use App\Models\User;
 use Illuminate\Http\Request;
 
 class RolesController extends Controller
 {
+
+    public function listarRoles(Request $request)
+    {
+
+        $usuario = $request->user();
+        if (!Usuario::validaroRoles($usuario, ['Super Administrador', 'Administrador']))
+        {
+            $respuesta = new RespuestaHttp(
+                401,
+                'unautorized',
+                'algo ha salido mal'
+            );
+            return response()->json($respuesta, $respuesta->codigoHttp);
+        }
+
+        $roles = Roles::all();
+        $respuesta = new RespuestaHttp(
+            200,
+            'succes',
+            'listado de roles',
+            [
+                $roles
+            ]
+        );
+
+        return response()->json($respuesta, $respuesta->codigoHttp);
+    }
+
     public function otorgarRol(Request $request, $idUsuario)
     {
         $usuario = User::find($idUsuario);
