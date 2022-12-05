@@ -112,6 +112,11 @@ class Usuario
         $this->usuario->assignRole($rol);
     }
 
+    public function otorgarPermiso(string $permiso)
+    {
+        $this->usuario->can($permiso);
+    }
+
     public function revocarRol(string $rol)
     {
         $this->usuario->removeRole($rol);
