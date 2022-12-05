@@ -44,6 +44,8 @@ Route::group(['middleware' => ['auth:sanctum']], function ()
     Route::post('respuestas', [\App\Http\Controllers\RespuestasController::class, 'guardarRespuestaParcial']);
     Route::put('respuestas', [\App\Http\Controllers\RespuestasController::class, 'actualizarRespuesta']);
     Route::post('respuestas/completo', [\App\Http\Controllers\RespuestasController::class, 'guardarRespuesta']);
+
+    Route::get('tipos', [\App\Http\Controllers\TipoController::class, 'obtenerTipos']);
 });
 
 Route::group([], function ()
