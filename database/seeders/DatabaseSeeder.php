@@ -14,19 +14,28 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $listadoSeeders = [
+            //autentificacion
             new RolesSeeder(),
-            new SeccionesSeeder(),
-            new PreguntaSeeder(),
-            new OpcionesSeeder(),
+
+            //tablas tipo
             new IdentificacionSeeder(),
             new ParentescoSeeder(),
+            new InduccionesSeeder(),
+
+            new SeccionesSeeder(),
+
+            //preguntas
+            new PreguntaSeeder(),
+
+            //opciones
+            new OpcionesSeeder(),
+
+            //departamentos y municipios
             new DepartamentosSeeder(),
             new MunicipiosSeeder(),
+
+            //usuarios
             new UsuariosSeeder(),
-            new InduccionesSeeder(),
-            // new Cuidado_enfermedadesSeeder(),
-            // new Cuidados_domiciliarios(),
-            // new Accidenteseeder(),
         ];
 
         $this->correrSeeders($listadoSeeders);
