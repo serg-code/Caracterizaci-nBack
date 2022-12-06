@@ -16,6 +16,8 @@ class cuidados_domiciliariosSeeder extends Seeder
      */
     public function run()
     {
+        Opcion::create(["id" => "77", "ref_campo" => "cuidados_domiciliarios", "pregunta_opcion" => "no", "valor" => "1"]);
+        Opcion::create(["id" => "78", "ref_campo" => "cuidados_domiciliarios", "pregunta_opcion" => "si", "valor" => "3"]);
         Opcion::create(["id" => "79", "ref_campo" => "diagnostico_principal", "pregunta_opcion" => "texto", "valor" => "0"]);
         Opcion::create(["id" => "80", "ref_campo" => "Causa", "pregunta_opcion" => "Domiciliarío cronico", "valor" => "0"]);
         Opcion::create(["id" => "81", "ref_campo" => "Causa", "pregunta_opcion" => "Domiciliarío agudo", "valor" => "0"]);
