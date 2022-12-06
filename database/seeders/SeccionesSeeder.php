@@ -19,5 +19,8 @@ class SeccionesSeeder extends Seeder
         Seccion::create(['ref_seccion' => 'habitos_consumo']);
 
         //* secciones del integrante
+        Seccion::create(['ref_seccion' => 'accidentes']);
+        Seccion::create(['ref_seccion' => 'cuidados_domiciliario']);
+        Seccion::create(['ref_seccion' => 'cuidado_enfermedades']);
     }
 }
