@@ -16,7 +16,7 @@ class AccidentesSeeder extends Seeder
     public function run()
     {
         Pregunta::create(["ref_campo" => "accidentes_transito", "ref_seccion" => "accidentes", "descripcion" => "¿Ha sufrido accidentes de transito?", "tipo" => "seleccion"]);
-        Pregunta::create(["ref_campo" => "tipo_lesión", "ref_seccion" => "accidentes", "descripcion" => "Tipo de lesión", "tipo" => "seleccion multiple"]);
+        Pregunta::create(["ref_campo" => "tipo_lesion", "ref_seccion" => "accidentes", "descripcion" => "Tipo de lesión", "tipo" => "seleccion"]);
         Pregunta::create(["ref_campo" => "accidentes_laborales", "ref_seccion" => "accidentes", "descripcion" => "¿Ha sufrido accidentes laborales?", "tipo" => "seleccion"]);
     }
 }
