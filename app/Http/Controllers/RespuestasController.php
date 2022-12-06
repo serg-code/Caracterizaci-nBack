@@ -80,6 +80,7 @@ class RespuestasController extends Controller
         }
 
         $this->recorrerSecciones($hogar, $datos['secciones']);
+        $this->recorrerIntegrantes($hogar, $datos['integrantes']);
 
         $respuesta = new RespuestaHttp();
         $respuesta->data = [
@@ -91,10 +92,15 @@ class RespuestasController extends Controller
 
     protected function recorrerSecciones(Hogar $hogar, array $secciones = [])
     {
+
         if (!empty($secciones))
         {
             $seccionesHogar = new SeccionesHogar($hogar, $secciones);
             $seccionesHogar->recorrer();
+            $hogar->puntaje_obtenido = $seccionesHogar->obtenerPuntaje();
+            $hogar->update(
+                $hogar->attributesToArray()
+            );
         }
     }
 
