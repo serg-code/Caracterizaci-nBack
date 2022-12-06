@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models\model;
+namespace App\Models\Secciones\Integrantes;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class cuidados_domiciliarios extends Model
+class CuidadoDomiciliario extends Model
 {
     use HasFactory;
 
@@ -33,7 +33,7 @@ class cuidados_domiciliarios extends Model
 
     public static function guardarcuidado_domiciliarios(array $datoscuidado_domiciliarios)
     {
-        $pregunta = new cuidados_domiciliarios($datoscuidado_domiciliarios);
+        $pregunta = new CuidadoDomiciliario($datoscuidado_domiciliarios);
         $pregunta->save();
     }
 }

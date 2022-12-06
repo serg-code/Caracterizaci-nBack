@@ -3,8 +3,8 @@
 namespace App\Dev\Encuesta;
 
 use App\Models\Hogar\Hogar;
-use App\Models\secciones\FactoresProtectores;
-use App\Models\secciones\HabitosConsumo;
+use App\Models\Secciones\Hogar\FactoresProtectores;
+use App\Models\Secciones\Hogar\HabitosConsumo;
 use Illuminate\Support\Facades\DB;
 
 class SeccionesHogar

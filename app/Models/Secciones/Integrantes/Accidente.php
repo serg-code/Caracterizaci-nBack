@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Models\model;
+namespace App\Models\Secciones\Integrantes;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class accidentes extends Model
+class Accidente extends Model
 {
     use HasFactory;
+
     protected $table = 'accidentes';
 
     protected $fillable = [
@@ -29,8 +30,7 @@ class accidentes extends Model
 
     public static function guardaraccidentes(array $datosaccidente)
     {
-        $pregunta = new accidentes($datosaccidente);
+        $pregunta = new Accidente($datosaccidente);
         $pregunta->save();
     }
 }
-

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models\model;
+namespace App\Models\Secciones\Integrantes;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class cuidado_enfermedades extends Model
+class CuidadoEnfermedad extends Model
 {
     use HasFactory;
 
@@ -43,8 +43,7 @@ class cuidado_enfermedades extends Model
 
     public static function guardarcuidado_enfermedades(array $datoscuidado_enfermedades)
     {
-        $pregunta = new cuidado_enfermedades($datoscuidado_enfermedades);
+        $pregunta = new CuidadoEnfermedad($datoscuidado_enfermedades);
         $pregunta->save();
     }
 }
-

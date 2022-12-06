@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Dev\RespuestaHttp;
 use App\Models\Hogar\Hogar;
-use App\Models\secciones\FactoresProtectores;
-use App\Models\secciones\HabitosConsumo;
+use App\Models\Secciones\Hogar\FactoresProtectores;
+use App\Models\Secciones\Hogar\HabitosConsumo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Spatie\QueryBuilder\QueryBuilder;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\secciones;
+namespace App\Models\Secciones\Hogar;
 
 use App\Models\Hogar\Hogar;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
