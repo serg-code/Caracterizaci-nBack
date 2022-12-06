@@ -21,9 +21,10 @@ return new class extends Migration
             $table->enum('tipo', [
                 'numero',
                 'texto',
-                'texto largo',
+                'texto_largo',
                 'seleccion',
-                'seleccion multiple',
+                'fecha',
+                'seleccion_multiple',
             ]);
             $table->boolean('estado')->default(1);
             $table->timestamps();
