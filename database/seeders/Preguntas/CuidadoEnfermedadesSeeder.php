@@ -30,6 +30,6 @@ class CuidadoEnfermedadesSeeder extends Seeder
         Pregunta::create(["ref_campo" => "tension_sistolica", "ref_seccion" => "cuidado_enfermedades", "descripcion" => "Tensión arterial sistolica", "tipo" => "numero"]);
         Pregunta::create(["ref_campo" => "tension_diastolica", "ref_seccion" => "cuidado_enfermedades", "descripcion" => "Tensión arterial diastolica", "tipo" => "numero"]);
         Pregunta::create(["ref_campo" => "hemoglobina_glococilada", "ref_seccion" => "cuidado_enfermedades", "descripcion" => "Valor de la hemoglobina glococilada", "tipo" => "numero"]);
-        Pregunta::create(["ref_campo" => "enfermedades_costosas", "ref_seccion" => "cuidado_enfermedades", "descripcion" => "Enfermedades costosas", "tipo" => "seleccion multiple"]);
+        Pregunta::create(["ref_campo" => "enfermedades_costosas", "ref_seccion" => "cuidado_enfermedades", "descripcion" => "Enfermedades costosas", "tipo" => "seleccion"]);
     }
 }

@@ -20,6 +20,6 @@ class CuidadoDomiciliarioSeeder extends Seeder
         Pregunta::create(["ref_campo" => "causa", "ref_seccion" => "cuidados_domiciliario", "descripcion" => "Causa", "tipo" => "seleccion"]);
         Pregunta::create(["ref_campo" => "fecha_inicio_domiciliario", "ref_seccion" => "cuidados_domiciliario", "descripcion" => "Fecha de inicio del cuidado domiciliario", "tipo" => "seleccion"]);
         Pregunta::create(["ref_campo" => "oxigeno_domiciliario", "ref_seccion" => "cuidados_domiciliario", "descripcion" => "¿Recibe oxigeno domiciliario?", "tipo" => "seleccion"]);
-        Pregunta::create(["ref_campo" => "plan_aprobado", "ref_seccion" => "cuidados_domiciliario", "descripcion" => "Plan aprobado", "tipo" => "seleccion multiple"]);
+        Pregunta::create(["ref_campo" => "plan_aprobado", "ref_seccion" => "cuidados_domiciliario", "descripcion" => "Plan aprobado", "tipo" => "seleccion"]);
     }
 }
