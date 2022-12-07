@@ -50,7 +50,7 @@ Route::group(['middleware' => ['auth:sanctum']], function ()
     Route::get('tipos', [\App\Http\Controllers\TipoController::class, 'obtenerTipos']);
 
     Route::apiResource('integrante', \App\Http\Controllers\IntegrantesController::class)
-        ->only(['store', 'show']);
+        ->only(['store', 'show', 'destroy']);
 });
 
 Route::group([], function ()

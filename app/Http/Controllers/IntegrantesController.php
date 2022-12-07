@@ -107,6 +107,24 @@ class IntegrantesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $integrante = Integrantes::find($id);
+
+        if (empty($integrante))
+        {
+            $respuesta = new RespuestaHttp(
+                404,
+                'not found',
+                'Integrante no encontrado',
+            );
+            return response()->json($respuesta, $respuesta->codigoHttp);
+        }
+
+        $integrante->delete();
+        $respuesta = new RespuestaHttp(
+            200,
+            'succes',
+            'Integrante eliminado'
+        );
+        return response()->json($respuesta, $respuesta->codigoHttp);
     }
 }

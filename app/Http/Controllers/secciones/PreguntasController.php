@@ -17,16 +17,11 @@ class PreguntasController extends Controller
     public function index()
     {
         //secciones hogar
-        // $factores_protectores = Pregunta::where('ref_seccion', '=', 'factores_protectores')->get();
-        // $habitos_consumo = Pregunta::where('ref_seccion', '=', 'habitos_consumo')->get();
         $seccionesHogar = Pregunta::where('ref_seccion', '=', 'factores_protectores')
             ->orWhere('ref_seccion', '=', 'habitos_consumo')
             ->get();
 
         //secciones integrantes
-        // $accidentes = Pregunta::where('ref_seccion', '=', 'accidentes')->get();
-        // $cuidado_enfermedades = Pregunta::where('ref_seccion', '=', 'cuidado_enfermedades')->get();
-        // $cuidados_domiciliario = Pregunta::where('ref_seccion', '=', 'cuidados_domiciliario')->get();
         $seccionesIntegrante = Pregunta::where('ref_seccion', '=', 'accidentes')
             ->orWhere('ref_seccion', '=', 'cuidado_enfermedades')
             ->orWhere('ref_seccion', '=', 'cuidados_domiciliario')
@@ -37,14 +32,6 @@ class PreguntasController extends Controller
         $respuesta->data = [
             "hogar" => Pregunta::FormatoRespuesta($seccionesHogar),
             "integrantes" => Pregunta::FormatoRespuesta($seccionesIntegrante),
-            // "hogar" => [
-            //     Pregunta::FormatoRespuesta($seccionesHogar),
-            // ],
-            // "integrantes" => [
-            //     "accidentes" => Pregunta::FormatoRespuesta($accidentes),
-            //     "cuidado_enfermedades" => Pregunta::FormatoRespuesta($cuidado_enfermedades),
-            //     "cuidados_domiciliario" => Pregunta::FormatoRespuesta($cuidados_domiciliario),
-            // ],
         ];
         return response()->json($respuesta, $respuesta->codigoHttp);
     }
