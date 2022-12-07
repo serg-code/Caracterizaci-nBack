@@ -2,7 +2,6 @@
 
 namespace App\Dev\Encuesta;
 
-use App\Dev\Notificacion;
 use App\Models\Hogar\Hogar;
 use App\Models\Pregunta;
 

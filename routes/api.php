@@ -48,6 +48,9 @@ Route::group(['middleware' => ['auth:sanctum']], function ()
     Route::post('respuestas/completo', [\App\Http\Controllers\RespuestasController::class, 'guardarRespuesta']);
 
     Route::get('tipos', [\App\Http\Controllers\TipoController::class, 'obtenerTipos']);
+
+    Route::apiResource('integrante', \App\Http\Controllers\IntegrantesController::class)
+        ->only(['store', 'show']);
 });
 
 Route::group([], function ()
