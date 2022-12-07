@@ -5,8 +5,6 @@ namespace App\Dev\Encuesta;
 use App\Dev\Notificacion;
 use App\Models\Hogar\Hogar;
 use App\Models\Pregunta;
-use App\Models\Secciones\Hogar\FactoresProtectores;
-use App\Models\Secciones\Hogar\HabitosConsumo;
 
 class SeccionesHogar
 {
@@ -28,7 +26,7 @@ class SeccionesHogar
             $seccion['respuestas']['hogar_id'] = $this->hogar->id;
             if (!empty($seccion['ref_seccion']) && !empty($seccion['respuestas']))
             {
-                $respuesta = $this->seleccionarSeccion(
+                $respuesta = Secciones::seleccionarSeccion(
                     $seccion['ref_seccion'],
                     $seccion['respuestas']
                 );
@@ -38,16 +36,6 @@ class SeccionesHogar
                 $this->guardarRespuesta($respuesta);
             }
         }
-    }
-
-    public function seleccionarSeccion(?string $seccion = '', ?array $datosGuardar = [])
-    {
-        return match ($seccion)
-        {
-            'habitos_consumo' => new HabitosConsumo($datosGuardar),
-            'factores_protectores' => new FactoresProtectores($datosGuardar),
-            default => null,
-        };
     }
 
     protected function guardarRespuesta($respuesta)
