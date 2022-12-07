@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Dev\Encuesta\OpcionPregunta;
 use App\Dev\Encuesta\SeccionesHogar;
 use App\Dev\Notificacion;
 use App\Dev\RespuestaHttp;
@@ -47,20 +48,11 @@ class RespuestasController extends Controller
     {
         $datos = $request->input('hogar');
 
-        $validacion = Validator::make(
-            $datos,
-            [
-                'id' => 'required'
-            ],
-            [
-                'id.required' => 'El id es necesario para realizar esta accion',
-            ]
-        );
+        $validacion = $this->validarDatosActualizacion($datos);
 
-        if ($validacion->fails())
+        if (!empty($validacion))
         {
-            $respuesta = new RespuestaHttp(400, 'Bad Request', 'Datos erroneos', $validacion->getMessageBag());
-            return response()->json($respuesta, $respuesta->codigoHttp);
+            return response()->json($validacion, $validacion->codigoHttp);
         }
 
         $hogar = Hogar::actualizarHogar($datos);
@@ -87,39 +79,6 @@ class RespuestasController extends Controller
         ];
 
         return response()->json($respuesta, $respuesta->codigoHttp);
-    }
-
-    protected function recorrerSecciones(Hogar $hogar, array $secciones = [])
-    {
-
-        if (!empty($secciones))
-        {
-            $seccionesHogar = new SeccionesHogar($hogar, $secciones);
-            $seccionesHogar->recorrer();
-            $hogar->puntaje_obtenido = $seccionesHogar->obtenerPuntaje();
-            $hogar->update(
-                $hogar->attributesToArray()
-            );
-        }
-    }
-
-    protected function recorrerIntegrantes(Hogar $hogar, array $integrantes = [])
-    {
-        if (empty($integrantes))
-        {
-            return null;
-        }
-
-        foreach ($integrantes as $integrante)
-        {
-            $integrante['hogar_id'] = $integrante['hogar_id'] ?? $hogar->id;
-            $integrante = Integrantes::guardarIntegrante($integrante);
-            // if (!empty($integrante['secciones']))
-            // {
-            //     $seccionesIntegrante = new SeccionesIntegrante($integrante, $seccionesHogar);
-            //     $seccionesIntegrante->recorrerSecciones();
-            // }
-        }
     }
 
     public function guardarRespuesta(Request $request)
@@ -159,7 +118,7 @@ class RespuestasController extends Controller
                 }
 
                 //validar que valor de la opcion sea igual al del puntaje de la opcion
-                $respuestaEsOpcion = $this->buscarRespuestaOpcion($respuestaValor, $pregunta->opciones);
+                $respuestaEsOpcion = OpcionPregunta::buscarRespuestaOpcion($respuestaValor, $pregunta->opciones);
                 if ($respuestaEsOpcion->estado === 'error')
                 {
                     array_push(
@@ -187,23 +146,56 @@ class RespuestasController extends Controller
         return response()->json($respuesta, $respuesta->codigoHttp);
     }
 
-    public function buscarRespuestaOpcion($respuesta, $opcionesPregunta = []): Notificacion
+    protected function recorrerSecciones(Hogar $hogar, array $secciones = [])
     {
-        $estado = new Notificacion();
 
-        if (empty($opcionesPregunta))
+        if (!empty($secciones))
         {
-            return new Notificacion('encontrado', ['respuesta' => $opcionesPregunta]);
+            $seccionesHogar = new SeccionesHogar($hogar, $secciones);
+            $seccionesHogar->recorrer();
+            $hogar->puntaje_obtenido = $seccionesHogar->obtenerPuntaje();
+            $hogar->update(
+                $hogar->attributesToArray()
+            );
+        }
+    }
+
+    protected function recorrerIntegrantes(Hogar $hogar, array $integrantes = [])
+    {
+        if (empty($integrantes))
+        {
+            return null;
         }
 
-        foreach ($opcionesPregunta as $opcion)
+        foreach ($integrantes as $integrante)
         {
-            if ($opcion->valor == $respuesta)
-            {
-                return new Notificacion('encontrado', ['puntaje' => $opcion->valor, 'respuesta' => $opcion->pregunta_opcion]);
-            }
+            $integrante['hogar_id'] = $integrante['hogar_id'] ?? $hogar->id;
+            $integrante = Integrantes::guardarIntegrante($integrante);
+            // if (!empty($integrante['secciones']))
+            // {
+            //     $seccionesIntegrante = new SeccionesIntegrante($integrante, $seccionesHogar);
+            //     $seccionesIntegrante->recorrerSecciones();
+            // }
+        }
+    }
+
+    protected function validarDatosActualizacion($datos): ?RespuestaHttp
+    {
+        $validacion = Validator::make(
+            $datos,
+            [
+                'id' => 'required'
+            ],
+            [
+                'id.required' => 'El id es necesario para realizar esta accion',
+            ]
+        );
+
+        if ($validacion->fails())
+        {
+            return new RespuestaHttp(400, 'Bad Request', 'Datos erroneos', $validacion->getMessageBag());
         }
 
-        return $estado;
+        return null;
     }
 }
