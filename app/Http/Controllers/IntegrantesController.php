@@ -84,7 +84,22 @@ class IntegrantesController extends Controller
      */
     public function show($id)
     {
-        //
+        $integrante = Integrantes::find($id);
+
+        if (empty($integrante))
+        {
+            return $this->noEncontrado();
+        }
+
+        $respuesta = new RespuestaHttp(
+            200,
+            'succes',
+            'integrante encontrado',
+            [
+                "integrante" => $integrante,
+            ]
+        );
+        return response()->json($respuesta, $respuesta->codigoHttp);
     }
 
     /**
@@ -100,12 +115,7 @@ class IntegrantesController extends Controller
 
         if (empty($integrante))
         {
-            $respuesta = new RespuestaHttp(
-                404,
-                'not found',
-                'Integrante no encontrado',
-            );
-            return response()->json($respuesta, $respuesta->codigoHttp);
+            return $this->noEncontrado();
         }
 
         $integrante->update($request->all());
@@ -132,12 +142,7 @@ class IntegrantesController extends Controller
 
         if (empty($integrante))
         {
-            $respuesta = new RespuestaHttp(
-                404,
-                'not found',
-                'Integrante no encontrado',
-            );
-            return response()->json($respuesta, $respuesta->codigoHttp);
+            return $this->noEncontrado();
         }
 
         $integrante->delete();
@@ -145,6 +150,16 @@ class IntegrantesController extends Controller
             200,
             'succes',
             'Integrante eliminado'
+        );
+        return response()->json($respuesta, $respuesta->codigoHttp);
+    }
+
+    protected function noEncontrado()
+    {
+        $respuesta = new RespuestaHttp(
+            404,
+            'not found',
+            'Integrante no encontrado',
         );
         return response()->json($respuesta, $respuesta->codigoHttp);
     }
