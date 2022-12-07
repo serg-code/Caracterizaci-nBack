@@ -2,7 +2,6 @@
 
 namespace App\Dev\Encuesta;
 
-use App\Models\Hogar\Hogar;
 use App\Models\Secciones\Hogar\FactoresProtectores;
 use App\Models\Secciones\Hogar\HabitosConsumo;
 use App\Models\Secciones\Integrantes\Accidente;
@@ -27,5 +26,16 @@ class Secciones
 
             default => null,
         };
+    }
+
+    public static function recorrerSecciones(array $secciones = []): ?array
+    {
+        $datos = array_map(function ($seccion)
+        {
+            // code ...
+            // $tipoSeccion = Secciones::seleccionarSeccion($seccion)
+        }, $secciones);
+
+        return $datos;
     }
 }

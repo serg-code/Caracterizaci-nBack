@@ -18,24 +18,19 @@ class SeccionesIntegrante
     {
         foreach ($this->secciones as $seccion)
         {
-            //agregar id del hogar
-            $seccion['respuestas']['hogar_id'] = $this->hogar->id;
             if (!empty($seccion['ref_seccion']) && !empty($seccion['respuestas']))
             {
-                $respuesta = $this->seleccionarSeccion(
+                $respuesta = Secciones::seleccionarSeccion(
                     $seccion['ref_seccion'],
                     $seccion['respuestas']
                 );
+
+                if (empty($respuesta))
+                {
+                    return null;
+                }
                 !empty($respuesta) ? $respuesta->save() : null;
             }
         }
-    }
-
-    public function seleccionarSeccion(?string $seccion = '', ?array $datosGuardar = [])
-    {
-        return match ($seccion)
-        {
-            default => null,
-        };
     }
 }

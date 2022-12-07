@@ -41,16 +41,15 @@ Route::group(['middleware' => ['auth:sanctum']], function ()
         ->only(['index', 'show']);
 
     Route::apiResource('hogar', \App\Http\Controllers\HogarController::class)
-        ->except(['destroy']);
+        ->only(['store']);
+    Route::apiResource('integrante', \App\Http\Controllers\IntegrantesController::class)
+        ->only(['store']);
 
     Route::post('respuestas', [\App\Http\Controllers\RespuestasController::class, 'guardarRespuestaParcial']);
     Route::put('respuestas', [\App\Http\Controllers\RespuestasController::class, 'actualizarRespuesta']);
     Route::post('respuestas/completo', [\App\Http\Controllers\RespuestasController::class, 'guardarRespuesta']);
 
     Route::get('tipos', [\App\Http\Controllers\TipoController::class, 'obtenerTipos']);
-
-    Route::apiResource('integrante', \App\Http\Controllers\IntegrantesController::class)
-        ->except(['index']);
 });
 
 Route::group([], function ()
