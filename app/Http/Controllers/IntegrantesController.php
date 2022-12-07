@@ -36,7 +36,16 @@ class IntegrantesController extends Controller
             return $this->crearIntegrante($request->all());
         }
 
-        $this->actualizarIntegrante($integrante, $request);
+        $integranteActualizado = $this->actualizarIntegrante($request);
+        $respuesta = new RespuestaHttp(
+            200,
+            'succes',
+            'Integrante Actualizado',
+            [
+                'integrante' => $integranteActualizado,
+            ]
+        );
+        return response()->json($respuesta, $respuesta->codigoHttp);
     }
 
     /**
@@ -178,26 +187,9 @@ class IntegrantesController extends Controller
         return response()->json($respuesta, $respuesta->codigoHttp);
     }
 
-    protected function actualizarIntegrante(Integrantes $integrante, Request $request)
+    protected function actualizarIntegrante(Request $request)
     {
-        $integrante->update([
-            'id' => $request->input('id', $integrante->id),
-            'hogar_id' => $request->input('hogar_id', $integrante->hogar_id),
-            'tipo_identificacion' => $request->input('tipo_identificacion', $integrante->tipo_identificacion),
-            'identificacion' => $request->input('identificacion', $integrante->identificacion),
-            'primer_nombre' => $request->input('primer_nombre', $integrante->primer_nombre),
-            'segundo_nombre' => $request->input('segundo_nombre', $integrante->segundo_nombre),
-            'primer_apellido' => $request->input('primer_apellido', $integrante->primer_apellido),
-            'segundo_apellido' => $request->input('segundo_apellido', $integrante->segundo_apellido),
-            'rh' => $request->input('rh', $integrante->rh),
-            'estado_civil' => $request->input('estado_civil', $integrante->estado_civil),
-            'telefono' => $request->input('telefono', $integrante->telefono),
-            'correo' => $request->input('correo', $integrante->correo),
-            'cabeza_familia' => $request->input('cabeza_familia', $integrante->cabeza_familia),
-            'puntaje_obtenido' => $request->input('puntaje_obtenido', $integrante->puntaje_obtenido),
-            'puntaje_max' => $request->input('puntaje_max', $integrante->puntaje_max),
-            'encuesta' => $request->input('encuesta', $integrante->encuesta),
-        ]);
+        $integrante = Integrantes::actualizarIntegrante($request->all());
 
         $respuesta = new RespuestaHttp(
             200,

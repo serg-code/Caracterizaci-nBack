@@ -59,39 +59,25 @@ class HogarController extends Controller
      */
     public function store(Request $request)
     {
-        $validador = Validator::make(
-            $request->all(),
-            [
-                'zona' => 'required',
-                'departamento' => 'required',
-                'municipio' => 'required',
-                'barrio' => 'required',
-                'direccion' => 'required',
-                'geolocalizacion' => 'required',
-            ],
-            [
-                'zona.required' => 'La zona es necesaria',
-                'departamento.required' => 'Departamento necesario',
-                'municipio.required' => 'Municion necesario',
-                'barrio.required' => 'El barrio es necesario',
-                'direccion.required' => 'La direccion es necesaria',
-                'geolocalizacion.required' => 'Los datos de geolalizacion son necesarios',
-            ]
-        );
 
-        if ($validador->fails())
+        $id = $request->input('id');
+        $hogar = Hogar::find($id);
+
+        if (empty($hogar))
         {
-            $respuesta = new RespuestaHttp(400, 'bad request', 'Valide la informaicon', $validador->getMessageBag());
-            return response()->json($respuesta, $respuesta->codigoHttp);
+            $this->crearHogar($request->all());
         }
 
-        $hogar = new Hogar($request->all());
-        $hogar->save();
-
-        $respuesta = new RespuestaHttp();
-        $respuesta->data = [
-            'hogar' => $hogar,
-        ];
+        $hogar = Hogar::actualizarHogar($request->all());
+        $hogar->integrantes;
+        $respuesta = new RespuestaHttp(
+            200,
+            'succes',
+            'hogar actualizado',
+            [
+                'hogar' => $hogar,
+            ]
+        );
         return response()->json($respuesta, $respuesta->codigoHttp);
     }
 
@@ -145,5 +131,43 @@ class HogarController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    protected function crearHogar($datos)
+    {
+        $validador = Validator::make(
+            $datos,
+            [
+                'zona' => 'required',
+                'departamento' => 'required',
+                'municipio' => 'required',
+                'barrio' => 'required',
+                'direccion' => 'required',
+                'geolocalizacion' => 'required',
+            ],
+            [
+                'zona.required' => 'La zona es necesaria',
+                'departamento.required' => 'Departamento necesario',
+                'municipio.required' => 'Municion necesario',
+                'barrio.required' => 'El barrio es necesario',
+                'direccion.required' => 'La direccion es necesaria',
+                'geolocalizacion.required' => 'Los datos de geolalizacion son necesarios',
+            ]
+        );
+
+        if ($validador->fails())
+        {
+            $respuesta = new RespuestaHttp(400, 'bad request', 'Valide la informaicon', $validador->getMessageBag());
+            return response()->json($respuesta, $respuesta->codigoHttp);
+        }
+
+        $hogar = new Hogar($datos);
+        $hogar->save();
+
+        $respuesta = new RespuestaHttp();
+        $respuesta->data = [
+            'hogar' => $hogar,
+        ];
+        return response()->json($respuesta, $respuesta->codigoHttp);
     }
 }
