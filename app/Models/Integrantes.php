@@ -48,7 +48,7 @@ class Integrantes extends Model
 
     public static function guardarIntegrante(array $datos): Integrantes
     {
-        $integrante = Integrantes::find($datos['uuid'] ?? '');
+        $integrante = Integrantes::find($datos['id'] ?? '');
 
         if (empty($integrante))
         {

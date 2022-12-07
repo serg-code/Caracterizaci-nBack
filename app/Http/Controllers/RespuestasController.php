@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Validator;
 
 /**
  * todo: validar el tipo de respuesta a guardar
- * todo: calcular los puntajes
  */
 class RespuestasController extends Controller
 {
@@ -64,7 +63,7 @@ class RespuestasController extends Controller
             return response()->json($respuesta, $respuesta->codigoHttp);
         }
 
-        $hogar = Hogar::actualizarUsuario($datos);
+        $hogar = Hogar::actualizarHogar($datos);
         if (empty($hogar))
         {
             $respuesta = new RespuestaHttp(
@@ -106,18 +105,20 @@ class RespuestasController extends Controller
 
     protected function recorrerIntegrantes(Hogar $hogar, array $integrantes = [])
     {
-        if (!empty($integrantes))
+        if (empty($integrantes))
         {
-            foreach ($integrantes as $integrante)
-            {
-                $integrante['hogar_id'] = $integrante['hogar_id'] ?? $hogar->id;
-                $integrante = Integrantes::guardarIntegrante($integrante);
-                // if (!empty($integrante['secciones']))
-                // {
-                //     $seccionesIntegrante = new SeccionesIntegrante($integrante, $seccionesHogar);
-                //     $seccionesIntegrante->recorrerSecciones();
-                // }
-            }
+            return null;
+        }
+
+        foreach ($integrantes as $integrante)
+        {
+            $integrante['hogar_id'] = $integrante['hogar_id'] ?? $hogar->id;
+            $integrante = Integrantes::guardarIntegrante($integrante);
+            // if (!empty($integrante['secciones']))
+            // {
+            //     $seccionesIntegrante = new SeccionesIntegrante($integrante, $seccionesHogar);
+            //     $seccionesIntegrante->recorrerSecciones();
+            // }
         }
     }
 

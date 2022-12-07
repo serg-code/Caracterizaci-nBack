@@ -53,7 +53,7 @@ class Hogar extends Model
         return $hogar;
     }
 
-    public static function actualizarUsuario(array $datos): ?Hogar
+    public static function actualizarHogar(array $datos): ?Hogar
     {
         $hogar =  Hogar::find($datos['id'] ?? 'uuid');
 
