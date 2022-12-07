@@ -2,6 +2,7 @@
 
 namespace App\Dev\Encuesta;
 
+use App\Dev\Puntaje;
 use App\Models\Hogar\Hogar;
 use App\Models\Pregunta;
 
@@ -30,7 +31,9 @@ class SeccionesHogar
                     $seccion['respuestas']
                 );
 
-                $this->calcularPuntaje($respuesta);
+                $puntajeControl = new Puntaje($seccion['respuestas']);
+                $this->puntaje += $puntajeControl->getPuntaje();
+                $this->errores = array_merge($this->errores, $puntajeControl->getErrores());
 
                 $this->guardarRespuesta($respuesta);
             }
@@ -41,44 +44,6 @@ class SeccionesHogar
     {
         $respuesta->eliminar();
         $respuesta->save();
-    }
-
-    protected function calcularPuntaje($respuesta)
-    {
-        //validar que sea una seccion valida
-        if (empty($respuesta))
-        {
-            return null;
-        }
-
-        $respuestasSeccion = $respuesta->attributesToArray();
-        unset($respuestasSeccion['hogar_id']);
-        foreach ($respuestasSeccion as $clavePregunta => $respuesta)
-        {
-            $pregunta = Pregunta::ObtenerPregunta($clavePregunta);
-
-            if (empty($pregunta))
-            {
-                array_push($this->errores, "$pregunta no es una pregunta valida");
-                return null;
-            }
-
-            $opcionesPregunta = $pregunta->opciones;
-            $resultado = OpcionPregunta::buscarRespuestaOpcion($respuesta, $opcionesPregunta);
-
-            if ($resultado->estado === 'error')
-            {
-                array_push(
-                    $this->errores,
-                    "$respuesta no es una respuesta valida para $pregunta"
-                );
-            }
-
-            if ($resultado->estado === 'encontrado')
-            {
-                $this->puntaje += $resultado->datos['puntaje'] ?? 0;
-            }
-        }
     }
 
     public function obtenerPuntaje()

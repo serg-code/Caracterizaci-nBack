@@ -3,13 +3,15 @@
 namespace App\Dev\Encuesta;
 
 use App\Dev\Notificacion;
+use App\Models\Pregunta;
 
 class OpcionPregunta
 {
 
-    public static function buscarRespuestaOpcion($respuesta, $opcionesPregunta = []): Notificacion
+    public static function buscarRespuestaOpcion(Pregunta $pregunta, $respuesta): Notificacion
     {
         $estado = new Notificacion();
+        $opcionesPregunta = $pregunta->opciones;
 
         if (empty($opcionesPregunta))
         {
@@ -18,7 +20,7 @@ class OpcionPregunta
 
         foreach ($opcionesPregunta as $opcion)
         {
-            if ($opcion->valor == $respuesta)
+            if ($opcion->pregunta_opcion == $respuesta || $opcion->valor == $respuesta)
             {
                 return new Notificacion(
                     'encontrado',
