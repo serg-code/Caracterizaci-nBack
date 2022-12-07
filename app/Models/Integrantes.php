@@ -29,6 +29,7 @@ class Integrantes extends Model
         'cabeza_familia',
         'puntaje_obtenido',
         'puntaje_max',
+        'estado_registro',
     ];
 
     protected $hidden = [

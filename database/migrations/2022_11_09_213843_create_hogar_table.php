@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('barrio')->comment('barrio / vereda')->nullable();
             $table->string('direccion')->nullable();
             $table->string('geolocalizacion')->nullable();
+            $table->string('estado_registro')->nullable();
             $table->timestamps();
 
             $table->primary('id');

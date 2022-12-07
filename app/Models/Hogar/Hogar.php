@@ -68,6 +68,7 @@ class Hogar extends Model
                 'direccion' => $datos['direccion'] ?? $hogar->direccion,
                 'geolocalizacion' => $datos['geolocalizacion'] ?? $hogar->geolocalizacion,
                 'encuesta' => $datos['encuesta'] ?? $hogar->encuesta,
+                'estado_registro',
             ]);
 
             return $hogar;
