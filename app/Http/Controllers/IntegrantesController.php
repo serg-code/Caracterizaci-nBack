@@ -96,7 +96,28 @@ class IntegrantesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $integrante = Integrantes::find($id);
+
+        if (empty($integrante))
+        {
+            $respuesta = new RespuestaHttp(
+                404,
+                'not found',
+                'Integrante no encontrado',
+            );
+            return response()->json($respuesta, $respuesta->codigoHttp);
+        }
+
+        $integrante->update($request->all());
+        $respuesta = new RespuestaHttp(
+            200,
+            'succes',
+            'Integrante actualizado',
+            [
+                'integrante' => $integrante,
+            ]
+        );
+        return response()->json($respuesta, $respuesta->codigoHttp);
     }
 
     /**
