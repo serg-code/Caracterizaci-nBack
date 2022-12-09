@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Dev\Encuesta\SeccionesHogar;
 use App\Dev\RespuestaHttp;
 use App\Models\Hogar\Hogar;
 use App\Models\Secciones\Hogar\FactoresProtectores;
@@ -65,10 +66,12 @@ class HogarController extends Controller
 
         if (empty($hogar))
         {
-            $this->crearHogar($request->all());
+            return $this->crearHogar($request->all());
         }
 
         $hogar = Hogar::actualizarHogar($request->all());
+        $secciones = $request->input('secciones');
+        $hogar = $this->recorrecSecciones($hogar, $secciones);
         $hogar->integrantes;
         $respuesta = new RespuestaHttp(
             200,
@@ -111,15 +114,7 @@ class HogarController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $datos = $request->all();
-        $datos['id'] = $id;
-
-        $hogar = Hogar::actualizarUsuario($datos);
-
-        $respuesta = new RespuestaHttp();
-        $respuesta->data = ['hogar' => $hogar];
-
-        return response()->json($respuesta, $respuesta->codigoHttp);
+        // 
     }
 
     /**
@@ -139,16 +134,18 @@ class HogarController extends Controller
             $datos,
             [
                 'zona' => 'required',
-                'departamento' => 'required',
-                'municipio' => 'required',
+                'cod_dpto' => 'required|exists:departamentos,codigo_dane',
+                'cod_mun' => 'required|exists:municipios,codigo_dane',
                 'barrio' => 'required',
                 'direccion' => 'required',
                 'geolocalizacion' => 'required',
             ],
             [
                 'zona.required' => 'La zona es necesaria',
-                'departamento.required' => 'Departamento necesario',
-                'municipio.required' => 'Municion necesario',
+                'cod_dpto.required' => 'Departamento necesario',
+                'cod_dpto.exists' => 'El codigo del departamento no es valido',
+                'cod_mun.required' => 'Municion necesario',
+                'cod_mun.exists' => 'El codigo del municipio no es valido',
                 'barrio.required' => 'El barrio es necesario',
                 'direccion.required' => 'La direccion es necesaria',
                 'geolocalizacion.required' => 'Los datos de geolalizacion son necesarios',
@@ -163,11 +160,28 @@ class HogarController extends Controller
 
         $hogar = new Hogar($datos);
         $hogar->save();
+        $secciones = $datos['secciones'];
+        $hogar = $this->recorrecSecciones($hogar, $secciones);
 
         $respuesta = new RespuestaHttp();
         $respuesta->data = [
             'hogar' => $hogar,
         ];
         return response()->json($respuesta, $respuesta->codigoHttp);
+    }
+
+
+    protected function recorrecSecciones(Hogar $hogar, array $secciones = []): Hogar
+    {
+        if (empty($secciones))
+        {
+            return $hogar;
+        }
+
+        $seccionesHogar = new SeccionesHogar($hogar, $secciones);
+        $seccionesHogar->recorrer();
+        $hogar->puntaje_obtenido = $seccionesHogar->puntaje;
+        $hogar->update($hogar->attributesToArray());
+        return $hogar;
     }
 }
