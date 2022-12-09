@@ -39,6 +39,6 @@ class CuidadoDomiciliario extends Model
 
     public function eliminar()
     {
-        Accidente::where('id_integrante', '=', $this->id_integrante)->delete();
+        CuidadoDomiciliario::where('id_integrante', '=', $this->id_integrante)->delete();
     }
 }

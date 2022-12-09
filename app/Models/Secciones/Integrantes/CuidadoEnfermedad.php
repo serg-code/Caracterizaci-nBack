@@ -49,6 +49,6 @@ class CuidadoEnfermedad extends Model
 
     public function eliminar()
     {
-        Accidente::where('id_integrante', '=', $this->id_integrante)->delete();
+        CuidadoEnfermedad::where('id_integrante', '=', $this->id_integrante)->delete();
     }
 }

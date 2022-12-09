@@ -20,7 +20,7 @@ class OpcionPregunta
 
         foreach ($opcionesPregunta as $opcion)
         {
-            if ($opcion->pregunta_opcion == $respuesta || $opcion->valor == $respuesta)
+            if ($opcion->id == $respuesta)
             {
                 return new Notificacion(
                     'encontrado',

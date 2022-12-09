@@ -36,16 +36,16 @@ class IntegrantesController extends Controller
             return $this->crearIntegrante($request->all());
         }
 
-        $integranteActualizado = $this->actualizarIntegrante($request);
-        $respuesta = new RespuestaHttp(
-            200,
-            'succes',
-            'Integrante Actualizado',
-            [
-                'integrante' => $integranteActualizado,
-            ]
-        );
-        return response()->json($respuesta, $respuesta->codigoHttp);
+        return $this->actualizarIntegrante($request);
+        // $respuesta = new RespuestaHttp(
+        //     200,
+        //     'succes',
+        //     'Integrante Actualizado',
+        //     [
+        //         'integrante' => $integranteActualizado,
+        //     ]
+        // );
+        // return response()->json($respuesta, $respuesta->codigoHttp);
     }
 
     /**
@@ -76,7 +76,7 @@ class IntegrantesController extends Controller
 
     public function update(Request $request, $id)
     {
-        //
+        // code ...
     }
 
     public function destroy($id)
