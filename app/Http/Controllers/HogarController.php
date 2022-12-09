@@ -182,6 +182,7 @@ class HogarController extends Controller
         $seccionesHogar->recorrer();
         $hogar->puntaje_obtenido = $seccionesHogar->puntaje;
         $hogar->update($hogar->attributesToArray());
+
         return $hogar;
     }
 }

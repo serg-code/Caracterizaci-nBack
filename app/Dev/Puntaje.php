@@ -31,7 +31,7 @@ class Puntaje
 
     public function calcularPuntaje()
     {
-        $this->elimnarIds();
+        // $this->elimnarIds();
         foreach ($this->respuestas as $refCampo => $respuesta)
         {
             $pregunta = Pregunta::ObtenerPregunta($refCampo);

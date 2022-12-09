@@ -22,21 +22,25 @@ class SeccionesHogar
     {
         foreach ($this->secciones as $seccion)
         {
+
+            if (empty($seccion['ref_seccion']) && empty($seccion['respuestas']))
+            {
+                return null;
+            }
+
+
+            $puntajeControl = new Puntaje($seccion['respuestas']);
+            $this->puntaje += $puntajeControl->getPuntaje();
+            $this->errores = array_merge($this->errores, $puntajeControl->getErrores());
+
             //agregar id del hogar
             $seccion['respuestas']['hogar_id'] = $this->hogar->id;
-            if (!empty($seccion['ref_seccion']) && !empty($seccion['respuestas']))
-            {
-                $respuesta = Secciones::seleccionarSeccion(
-                    $seccion['ref_seccion'],
-                    $seccion['respuestas']
-                );
+            $respuesta = Secciones::seleccionarSeccion(
+                $seccion['ref_seccion'],
+                $seccion['respuestas']
+            );
 
-                $puntajeControl = new Puntaje($seccion['respuestas']);
-                $this->puntaje += $puntajeControl->getPuntaje();
-                $this->errores = array_merge($this->errores, $puntajeControl->getErrores());
-
-                $this->guardarRespuesta($respuesta);
-            }
+            $this->guardarRespuesta($respuesta);
         }
     }
 

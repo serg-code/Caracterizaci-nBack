@@ -21,20 +21,20 @@ class SeccionesIntegrante
     {
         foreach ($this->secciones as $seccion)
         {
-            $seccion['respuestas']['id_integrante'] = $this->integrante->id;
+            $puntajeControl = new Puntaje($seccion['respuestas']);
+            $this->puntaje += $puntajeControl->getPuntaje();
+            $this->errores = array_merge($this->errores, $puntajeControl->getErrores());
+
             if (empty($seccion['ref_seccion']) && empty($seccion['respuestas']))
             {
                 return null;
             }
 
+            $seccion['respuestas']['id_integrante'] = $this->integrante->id;
             $respuesta = Secciones::seleccionarSeccion(
                 $seccion['ref_seccion'],
                 $seccion['respuestas']
             );
-
-            $puntajeControl = new Puntaje($seccion['respuestas']);
-            $this->puntaje += $puntajeControl->getPuntaje();
-            $this->errores = array_merge($this->errores, $puntajeControl->getErrores());
 
             $this->guardarRespuesta($respuesta);
         }
