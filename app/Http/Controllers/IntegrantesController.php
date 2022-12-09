@@ -74,40 +74,11 @@ class IntegrantesController extends Controller
         return response()->json($respuesta, $respuesta->codigoHttp);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        $integrante = Integrantes::find($id);
-
-        if (empty($integrante))
-        {
-            return $this->noEncontrado();
-        }
-
-        $integrante->update($request->all());
-        $respuesta = new RespuestaHttp(
-            200,
-            'succes',
-            'Integrante actualizado',
-            [
-                'integrante' => $integrante,
-            ]
-        );
-        return response()->json($respuesta, $respuesta->codigoHttp);
+        //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $integrante = Integrantes::find($id);
@@ -175,6 +146,9 @@ class IntegrantesController extends Controller
         }
 
         $integrante = Integrantes::guardarIntegrante($datos);
+        $secciones = $datos['secciones'];
+        $integrante = $this->recorrecSecciones($integrante, $secciones);
+
 
         $respuesta = new RespuestaHttp(
             201,
@@ -191,6 +165,8 @@ class IntegrantesController extends Controller
     {
         $integrante = Integrantes::actualizarIntegrante($request->all());
 
+        $secciones = $request->input('secciones');
+        $integrante = $this->recorrecSecciones($integrante, $secciones);
         $respuesta = new RespuestaHttp(
             200,
             'succes',
@@ -199,12 +175,22 @@ class IntegrantesController extends Controller
                 'integrante' => $integrante,
             ]
         );
+
         return response()->json($respuesta, $respuesta->codigoHttp);
     }
 
 
-    protected function recorrecSecciones(Integrantes $integrante, array $secciones = [])
+    protected function recorrecSecciones(Integrantes $integrante, array $secciones = []): Integrantes
     {
-        $seccionesIntegrantes = new SeccionesIntegrante($integrante, $secciones);
+        if (!empty($secciones))
+        {
+            $seccionesIntegrante = new SeccionesIntegrante($integrante, $secciones);
+            $seccionesIntegrante->recorrerSecciones();
+            $integrante->puntaje_obtenido = $seccionesIntegrante->puntaje;
+            $integrante->update($integrante->attributesToArray());
+            return $integrante;
+        }
+
+        return $integrante;
     }
 }

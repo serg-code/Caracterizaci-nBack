@@ -46,4 +46,9 @@ class CuidadoEnfermedad extends Model
         $pregunta = new CuidadoEnfermedad($datoscuidado_enfermedades);
         $pregunta->save();
     }
+
+    public function eliminar()
+    {
+        Accidente::where('id_integrante', '=', $this->id_integrante)->delete();
+    }
 }

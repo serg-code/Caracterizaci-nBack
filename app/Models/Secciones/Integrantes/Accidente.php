@@ -33,4 +33,9 @@ class Accidente extends Model
         $pregunta = new Accidente($datosaccidente);
         $pregunta->save();
     }
+
+    public function eliminar()
+    {
+        Accidente::where('id_integrante', '=', $this->id_integrante)->delete();
+    }
 }

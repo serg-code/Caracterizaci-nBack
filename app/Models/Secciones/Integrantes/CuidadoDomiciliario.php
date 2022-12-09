@@ -36,4 +36,9 @@ class CuidadoDomiciliario extends Model
         $pregunta = new CuidadoDomiciliario($datoscuidado_domiciliarios);
         $pregunta->save();
     }
+
+    public function eliminar()
+    {
+        Accidente::where('id_integrante', '=', $this->id_integrante)->delete();
+    }
 }

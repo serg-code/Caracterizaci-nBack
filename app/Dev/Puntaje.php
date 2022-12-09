@@ -31,7 +31,7 @@ class Puntaje
 
     public function calcularPuntaje()
     {
-        unset($this->respuestas['hogar_id']);
+        $this->elimnarIds();
         foreach ($this->respuestas as $refCampo => $respuesta)
         {
             $pregunta = Pregunta::ObtenerPregunta($refCampo);
@@ -55,5 +55,11 @@ class Puntaje
                 $this->puntaje += $resultado->datos['puntaje'] ?? 0;
             }
         }
+    }
+
+    protected function elimnarIds()
+    {
+        unset($this->respuestas['hogar_id']);
+        unset($this->respuestas['id_integrante']);
     }
 }
