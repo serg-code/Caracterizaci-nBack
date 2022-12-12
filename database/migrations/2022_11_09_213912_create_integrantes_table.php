@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('segundo_nombre');
             $table->string('primer_apellido');
             $table->string('segundo_apellido');
-            $table->string('nombre_nacimiento');
+            $table->string('fecha_nacimiento');
             $table->enum('rh', ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']);
             $table->enum('estado_civil', [
                 'soltero',
