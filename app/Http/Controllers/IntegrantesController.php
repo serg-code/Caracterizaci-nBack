@@ -28,24 +28,43 @@ class IntegrantesController extends Controller
      */
     public function store(Request $request)
     {
-        $id = $request->input('id');
+        $validacion = Validator::make(
+            $request->all(),
+            [
+                'encuesta' => 'required',
+                'integrante' => 'required',
+            ],
+            [
+                'encuesta.required' => 'Los datos de la encuesta son necesarios',
+                'integrante.required' => 'Los datos del integrante son necesarios',
+            ]
+        );
+
+        if ($validacion->fails())
+        {
+            $respuesta = new RespuestaHttp(
+                400,
+                'Bad request',
+                'Error en algunos datos',
+                $validacion->getMessageBag()
+            );
+            return response()->json($respuesta, $respuesta->codigoHttp);
+        }
+
+
+        $integrantePeticion = $request->input('integrante');
+        $encuesta = $request->input('encuesta');
+        $integrantePeticion['encuesta'] = $encuesta;
+
+        $id = $integrantePeticion['id'];
         $integrante = Integrantes::find($id);
 
         if (empty($integrante))
         {
-            return $this->crearIntegrante($request->all());
+            return $this->crearIntegrante($integrantePeticion);
         }
 
-        return $this->actualizarIntegrante($request);
-        // $respuesta = new RespuestaHttp(
-        //     200,
-        //     'succes',
-        //     'Integrante Actualizado',
-        //     [
-        //         'integrante' => $integranteActualizado,
-        //     ]
-        // );
-        // return response()->json($respuesta, $respuesta->codigoHttp);
+        return $this->actualizarIntegrante($integrantePeticion);
     }
 
     /**
@@ -161,11 +180,11 @@ class IntegrantesController extends Controller
         return response()->json($respuesta, $respuesta->codigoHttp);
     }
 
-    protected function actualizarIntegrante(Request $request)
+    protected function actualizarIntegrante(array $datosActualizar)
     {
-        $integrante = Integrantes::actualizarIntegrante($request->all());
+        $integrante = Integrantes::actualizarIntegrante($datosActualizar);
 
-        $secciones = $request->input('secciones');
+        $secciones = $datosActualizar['secciones'];
         $integrante = $this->recorrecSecciones($integrante, $secciones);
         $respuesta = new RespuestaHttp(
             200,
