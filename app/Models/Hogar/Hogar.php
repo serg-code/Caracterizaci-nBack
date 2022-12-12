@@ -57,6 +57,10 @@ class Hogar extends Model
     {
         $hogar =  Hogar::find($datos['id'] ?? 'uuid');
 
+        $encuesta = $datos['encuesta'];
+        $hogar->encuesta = $encuesta;
+        // $hogar->encuesta = (object) $encuesta;
+
         if (!empty($hogar))
         {
             $hogar->update([

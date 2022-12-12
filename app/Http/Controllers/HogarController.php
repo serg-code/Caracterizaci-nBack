@@ -37,6 +37,7 @@ class HogarController extends Controller
             return response()->json($respuesta, $respuesta->codigoHttp);
         }
 
+        //filter search
         //filtro de usuarios
         $hogares = QueryBuilder::for(Hogar::class)
             ->allowedFields(['id', 'zona', 'cod_dpto', 'cod_mun', 'tipo'])
@@ -138,7 +139,6 @@ class HogarController extends Controller
                 'cod_mun' => 'required|exists:municipios,codigo_dane',
                 'barrio' => 'required',
                 'direccion' => 'required',
-                'geolocalizacion' => 'required',
             ],
             [
                 'zona.required' => 'La zona es necesaria',
@@ -148,7 +148,6 @@ class HogarController extends Controller
                 'cod_mun.exists' => 'El codigo del municipio no es valido',
                 'barrio.required' => 'El barrio es necesario',
                 'direccion.required' => 'La direccion es necesaria',
-                'geolocalizacion.required' => 'Los datos de geolalizacion son necesarios',
             ]
         );
 
