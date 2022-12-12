@@ -20,7 +20,7 @@ class UsuarioController extends Controller
     public function index()
     {
         $datosUrl = $_GET;
-        $cantidadPaginar = $datosUrl['cantidad'] ?? env('LIMITEPAGINA_USUARIO', 20);
+        $cantidadPaginar = $datosUrl['per_page'] ?? env('LIMITEPAGINA_USUARIO', 20);
         $respuesta = new RespuestaHttp();
 
         if (empty($datosUrl))
