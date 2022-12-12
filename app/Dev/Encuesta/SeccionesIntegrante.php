@@ -42,7 +42,10 @@ class SeccionesIntegrante
 
     protected function guardarRespuesta($respuesta)
     {
-        $respuesta->eliminar();
-        $respuesta->save();
+        if (!empty($respuesta))
+        {
+            $respuesta->eliminar();
+            $respuesta->save();
+        }
     }
 }

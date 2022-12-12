@@ -37,7 +37,7 @@ class Puntaje
             $pregunta = Pregunta::ObtenerPregunta($refCampo);
             if (empty($pregunta))
             {
-                array_push($this->errores, "$pregunta no es una pregunta valida");
+                array_push($this->errores, "$refCampo no es una pregunta valida");
                 return null;
             }
 

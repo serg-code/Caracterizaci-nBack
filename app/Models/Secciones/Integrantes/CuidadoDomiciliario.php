@@ -9,7 +9,7 @@ class CuidadoDomiciliario extends Model
 {
     use HasFactory;
 
-    protected $table = 'cuidado_domiciliarios';
+    protected $table = 'cuidados_domiciliarios';
 
     protected $fillable = [
         'id_integrante',

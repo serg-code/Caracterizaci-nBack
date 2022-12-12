@@ -31,7 +31,7 @@ class IntegrantesController extends Controller
         $validacion = Validator::make(
             $request->all(),
             [
-                'encuesta' => 'required',
+                // 'encuesta' => 'required',
                 'integrante' => 'required',
             ],
             [
@@ -53,8 +53,8 @@ class IntegrantesController extends Controller
 
 
         $integrantePeticion = $request->input('integrante');
-        $encuesta = $request->input('encuesta');
-        $integrantePeticion['encuesta'] = $encuesta;
+        // $encuesta = $request->input('encuesta');
+        // $integrantePeticion['encuesta'] = $encuesta;
 
         $id = $integrantePeticion['id'];
         $integrante = Integrantes::find($id);
