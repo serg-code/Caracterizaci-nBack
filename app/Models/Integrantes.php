@@ -22,6 +22,7 @@ class Integrantes extends Model
         'segundo_nombre',
         'primer_apellido',
         'segundo_apellido',
+        'fecha_nacimiento',
         'rh',
         'estado_civil',
         'telefono',
