@@ -86,7 +86,7 @@ class HogarController extends Controller
 
         if (empty($hogar))
         {
-            return $this->crearHogar($request->all());
+            return $this->crearHogar($request->input('hogar'));
         }
 
         $hogar = Hogar::actualizarHogar($request->all());
