@@ -43,13 +43,12 @@ class IntegrantesController extends Controller
 
         if ($validacion->fails())
         {
-            $respuesta = new RespuestaHttp(
+            return RespuestaHttp::respuesta(
                 400,
                 'Bad request',
                 'Error en algunos datos',
                 $validacion->getMessageBag()
             );
-            return response()->json($respuesta, $respuesta->codigoHttp);
         }
 
 
@@ -118,12 +117,11 @@ class IntegrantesController extends Controller
 
     protected function noEncontrado()
     {
-        $respuesta = new RespuestaHttp(
+        return RespuestaHttp::respuesta(
             404,
             'not found',
             'Integrante no encontrado',
         );
-        return response()->json($respuesta, $respuesta->codigoHttp);
     }
 
     protected function crearIntegrante(array $datos, $encuesta)
@@ -156,13 +154,12 @@ class IntegrantesController extends Controller
 
         if ($validador->fails())
         {
-            $respuesta = new RespuestaHttp(
+            return RespuestaHttp::respuesta(
                 400,
                 'Bad request',
                 'Algunos datos son erroneso',
                 $validador->getMessageBag()
             );
-            return response()->json($respuesta, $respuesta->codigoHttp);
         }
 
         $integrante = Integrantes::guardarIntegrante($datos);
@@ -171,7 +168,7 @@ class IntegrantesController extends Controller
 
         $this->actulizarEncuestaHogar($integrante->hogar_id, $encuesta);
 
-        $respuesta = new RespuestaHttp(
+        return RespuestaHttp::respuesta(
             201,
             'Created',
             'Integrante creado exitosamente',
@@ -179,7 +176,6 @@ class IntegrantesController extends Controller
                 'integrante' => $integrante,
             ]
         );
-        return response()->json($respuesta, $respuesta->codigoHttp);
     }
 
     protected function actualizarIntegrante(array $datosActualizar, array $encuesta)
@@ -191,7 +187,7 @@ class IntegrantesController extends Controller
 
         $this->actulizarEncuestaHogar($integrante->hogar_id, $encuesta);
 
-        $respuesta = new RespuestaHttp(
+        return RespuestaHttp::respuesta(
             200,
             'succes',
             'Integrante actualizado',
@@ -199,8 +195,6 @@ class IntegrantesController extends Controller
                 'integrante' => $integrante,
             ]
         );
-
-        return response()->json($respuesta, $respuesta->codigoHttp);
     }
 
 

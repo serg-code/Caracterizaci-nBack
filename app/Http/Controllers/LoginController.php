@@ -29,12 +29,12 @@ class LoginController extends Controller
         //validar si los datos recibidos son validos
         if ($validacion->fails())
         {
-            $respuesta = new RespuestaHttp(
-                codigoHttp: 400,
-                titulo: 'Bad request',
-                data: $validacion->getMessageBag()
+            return RespuestaHttp::respuesta(
+                400,
+                'Bad request',
+                'Se encontraron errores en la informacion',
+                $validacion->getMessageBag()
             );
-            return response()->json(data: $respuesta, status: $respuesta->codigoHttp);
         }
 
         //realizar la autenticacion
@@ -43,12 +43,11 @@ class LoginController extends Controller
             $usuario = $request->user();
             if ($usuario->activo === 0)
             {
-                $respuesta = new RespuestaHttp(
+                return RespuestaHttp::respuesta(
                     403,
                     'Forbidden',
                     'El usuario no está activo',
                 );
-                return response()->json($respuesta, $respuesta->codigoHttp);
             }
 
             $respuesta = new RespuestaHttp();
@@ -64,19 +63,11 @@ class LoginController extends Controller
             );
         }
 
-        $respuesta = new RespuestaHttp(
-            codigoHttp: 400,
-            titulo: 'Bad request',
-            mensaje: 'Credenciales invalidas'
+        return RespuestaHttp::respuesta(
+            400,
+            'Bad request',
+            'Credenciales invalidas'
         );
-        return response()->json($respuesta, $respuesta->codigoHttp);
-    }
-
-    public function saludar(Request $request)
-    {
-        $respuesta = new RespuestaHttp();
-        $respuesta->mensaje = 'Todo va bien';
-        return response()->json(data: $respuesta, status: $respuesta->codigoHttp);
     }
 
     public function cerrar(Request $request)

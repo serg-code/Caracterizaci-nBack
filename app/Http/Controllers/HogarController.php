@@ -28,14 +28,12 @@ class HogarController extends Controller
         {
             $listadoHogares = Hogar::paginate($cantidadPaginar);
 
-            $respuesta = new RespuestaHttp(
+            return RespuestaHttp::respuesta(
                 200,
                 'Succes',
                 'Listado de Hogares',
                 $listadoHogares
             );
-
-            return response()->json($respuesta, $respuesta->codigoHttp);
         }
 
         //filtro de usuarios
@@ -50,14 +48,12 @@ class HogarController extends Controller
             ])
             ->paginate($cantidadPaginar);
 
-        $respuesta = new RespuestaHttp(
+        return RespuestaHttp::respuesta(
             200,
             'succes',
             'listado de hogares',
             $hogares
         );
-
-        return response()->json($respuesta, $respuesta->codigoHttp);
     }
 
     /**

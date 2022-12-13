@@ -73,23 +73,23 @@ class UsuarioController extends Controller
 
         if ($validacion->fails())
         {
-            $respuesta = new RespuestaHttp(
+            return RespuestaHttp::respuesta(
                 400,
                 'Bad Request',
                 'Valide los datos',
                 $validacion->getMessageBag()
             );
-            return response()->json($respuesta, $respuesta->codigoHttp);
         }
 
         $usuario = new User($request->all());
         $usuario->save();
         $usuario->assignRole('Usuario');
-        $respuesta = new RespuestaHttp(
-            codigoHttp: 200,
-            titulo: 'Created'
+
+        return RespuestaHttp::respuesta(
+            200,
+            'Created',
+            'Usuario creado exitosamente'
         );
-        return response()->json($respuesta, $respuesta->codigoHttp);
     }
 
     /**
@@ -123,12 +123,11 @@ class UsuarioController extends Controller
 
         if (empty($usuarioAuth) || empty($usuario) || !$actualizarUsuario->permitir())
         {
-            $respuesta = new RespuestaHttp(
+            return RespuestaHttp::respuesta(
                 401,
                 'Unauthorized',
                 'No puede realizar esta accion'
             );
-            return response()->json($respuesta, $respuesta->codigoHttp);
         }
 
         $respuesta = $actualizarUsuario->modificarUsuario();
@@ -148,22 +147,20 @@ class UsuarioController extends Controller
 
         if (empty($usuarioAuth) || empty($usuario) || $usuarioAuth->id !== $usuario->id)
         {
-            $respuesta = new RespuestaHttp(
+            return RespuestaHttp::respuesta(
                 403,
                 'Forbiden',
                 'Algo ha salido mal'
             );
-            return response()->json($respuesta, $respuesta->codigoHttp);
         }
 
         $usuario->update(['activo' => false]);
         $usuario->tokens()->delete();
-        $repuesta = new RespuestaHttp(
+        return RespuestaHttp::respuesta(
             200,
             'succes',
             'Usuario desactivado exitosamente'
         );
-        return response()->json($repuesta, $repuesta->codigoHttp);
     }
 
     public function actual(Request $request)

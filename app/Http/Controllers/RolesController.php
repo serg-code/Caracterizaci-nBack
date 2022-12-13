@@ -18,16 +18,15 @@ class RolesController extends Controller
         $usuario = $request->user();
         if (!Usuario::validaroRoles($usuario, ['Super Administrador', 'Administrador']))
         {
-            $respuesta = new RespuestaHttp(
+            return RespuestaHttp::respuesta(
                 401,
                 'unautorized',
                 'algo ha salido mal'
             );
-            return response()->json($respuesta, $respuesta->codigoHttp);
         }
 
         $roles = Roles::all();
-        $respuesta = new RespuestaHttp(
+        return RespuestaHttp::respuesta(
             200,
             'succes',
             'listado de roles',
@@ -35,8 +34,6 @@ class RolesController extends Controller
                 $roles
             ]
         );
-
-        return response()->json($respuesta, $respuesta->codigoHttp);
     }
 
     public function otorgarRol(Request $request, $idUsuario)
@@ -47,17 +44,16 @@ class RolesController extends Controller
 
         if (!empty($errores) || !$controlUsuario->permitir())
         {
-            $respuesta = new RespuestaHttp(
+            return RespuestaHttp::respuesta(
                 400,
                 'Bad request',
                 'No puede realizar esta accion',
                 $errores
             );
-            return response()->json($respuesta, $respuesta->codigoHttp);
         }
 
         $controlUsuario->otorgarRol($request->input('rol'));
-        $respuesta = new RespuestaHttp(
+        return RespuestaHttp::respuesta(
             201,
             'created',
             'rol otorgado con exito',
@@ -65,7 +61,6 @@ class RolesController extends Controller
                 "usuario" => $usuario,
             ]
         );
-        return response()->json($respuesta, $respuesta->codigoHttp);
     }
 
     public function revocarRol(Request $request, $idUsuario)
@@ -77,17 +72,16 @@ class RolesController extends Controller
         if (!empty($errores) || !$controlUsuario->permitir())
         {
 
-            $respuesta = new RespuestaHttp(
+            return RespuestaHttp::respuesta(
                 400,
                 'Bad request',
                 'No puede realizar esta accion',
                 $errores
             );
-            return response()->json($respuesta, $respuesta->codigoHttp);
         }
 
         $controlUsuario->revocarRol($request->input('rol'));
-        $respuesta = new RespuestaHttp(
+        return RespuestaHttp::respuesta(
             200,
             'succes',
             'rol removido exitosamente',
@@ -95,6 +89,5 @@ class RolesController extends Controller
                 'usuario' => $usuario,
             ]
         );
-        return response()->json($respuesta, $respuesta->codigoHttp);
     }
 }

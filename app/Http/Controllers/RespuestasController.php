@@ -25,8 +25,7 @@ class RespuestasController extends Controller
 
         if (empty($hogar))
         {
-            $respuesta = new RespuestaHttp(400, 'Bad request', 'No se puede obtener el hogar');
-            return response()->json($respuesta, $respuesta->codigoHttp);
+            return RespuestaHttp::respuesta(400, 'Bad request', 'No se puede obtener el hogar');
         }
 
         $this->recorrerSecciones($hogar, $datos['secciones']);
@@ -34,7 +33,7 @@ class RespuestasController extends Controller
         $hogar = Hogar::find($hogar->id);
         $hogar->integrantes;
 
-        $respuesta = new RespuestaHttp(
+        return RespuestaHttp::respuesta(
             201,
             'Created',
             'Formularios guardados exitosamente',
@@ -42,7 +41,6 @@ class RespuestasController extends Controller
                 'hogar' => $hogar,
             ]
         );
-        return response()->json($respuesta, $respuesta->codigoHttp);
     }
 
     public function actualizarRespuesta(Request $request)
@@ -59,7 +57,7 @@ class RespuestasController extends Controller
         $hogar = Hogar::actualizarHogar($datos);
         if (empty($hogar))
         {
-            $respuesta = new RespuestaHttp(
+            return RespuestaHttp::respuesta(
                 404,
                 'Not found',
                 'No encontramos el hogar',
@@ -67,8 +65,6 @@ class RespuestasController extends Controller
                     'error' => 'No se ha encontrado el hogar con el id'
                 ]
             );
-
-            return response()->json($respuesta, $respuesta->codigoHttp);
         }
 
         $this->recorrerSecciones($hogar, $datos['secciones']);

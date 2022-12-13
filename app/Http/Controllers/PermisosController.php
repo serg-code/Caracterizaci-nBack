@@ -18,16 +18,13 @@ class PermisosController extends Controller
 
         if ($controlUsuario->permitir() || !empty($usuario) || !empty($errores))
         {
-            $respuesta = new RespuestaHttp(
-                200,
+            return RespuestaHttp::respuesta(
+                401,
                 'Bad request',
-                'algo ha salido mal',
-                []
+                'algo ha salido mal'
             );
-            return response()->json($respuesta, $respuesta->codigoHttp);
         }
 
-        $respuesta = new RespuestaHttp();
-        return response()->json($respuesta, $respuesta->codigoHttp);
+        return RespuestaHttp::respuesta();
     }
 }
