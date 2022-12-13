@@ -29,7 +29,7 @@ class Cie10Controller extends Controller
 
         //filtrar
         $listadoCie = QueryBuilder::for(Cie10::class)
-            ->allowedFields(['codigo', 'descrip'])
+            ->allowedFilters(['codigo', 'descrip'])
             ->paginate($cantidadPaginar);
 
         return RespuestaHttp::respuesta(

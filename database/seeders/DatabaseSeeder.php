@@ -49,6 +49,8 @@ class DatabaseSeeder extends Seeder
 
             //usuarios
             new UsuariosSeeder(),
+
+            new cie10Seeder(),
         ];
 
         $this->correrSeeders($listadoSeeders);

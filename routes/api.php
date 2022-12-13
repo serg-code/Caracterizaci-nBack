@@ -50,6 +50,8 @@ Route::group(['middleware' => ['auth:sanctum']], function ()
     Route::post('respuestas/completo', [\App\Http\Controllers\RespuestasController::class, 'guardarRespuesta']);
 
     Route::get('tipos', [\App\Http\Controllers\TipoController::class, 'obtenerTipos']);
+
+    Route::get('cie10', [\App\Http\Controllers\Cie10Controller::class, 'listar']);
 });
 
 Route::group([], function ()

@@ -40,7 +40,7 @@ class HogarController extends Controller
         //filter search
         //filtro de usuarios
         $hogares = QueryBuilder::for(Hogar::class)
-            ->allowedFields(['id', 'zona', 'cod_dpto', 'cod_mun', 'tipo'])
+            ->allowedFilters(['id', 'zona', 'cod_dpto', 'cod_mun', 'tipo'])
             ->paginate($cantidadPaginar);
 
         $respuesta = new RespuestaHttp(

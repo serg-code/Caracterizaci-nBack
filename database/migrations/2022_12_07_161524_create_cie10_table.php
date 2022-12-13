@@ -13,15 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('cie10', function (Blueprint $table) {
+        Schema::create('cie10', function (Blueprint $table)
+        {
             $table->string('codigo', 4)->primary()->unique();
             $table->string('descrip');
-            $table->string('rO');
-            $table->string('altoCosto');
-            $table->string('patologia');
-            $table->string('genero');
-            $table->string('eMin');
-            $table->string('eMax');
+            $table->string('rO')->nullable();
+            $table->string('altoCosto')->nullable();
+            $table->string('patologia')->nullable();
+            $table->string('genero')->nullable();
+            $table->string('eMin')->nullable();
+            $table->string('eMax')->nullable();
             $table->timestamps();
         });
     }
