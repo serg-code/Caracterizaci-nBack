@@ -9,6 +9,7 @@ use App\Models\Secciones\Hogar\FactoresProtectores;
 use App\Models\Secciones\Hogar\HabitosConsumo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class HogarController extends Controller
@@ -22,6 +23,17 @@ class HogarController extends Controller
     {
         $datosUrl = $_GET;
         $cantidadPaginar = $datosUrl['per_page'] ?? env('LIMITEPAGINA_USUARIO', 10);
+
+        $listadoHogares = Hogar::paginate($cantidadPaginar);
+
+        $respuesta = new RespuestaHttp(
+            200,
+            'Succes',
+            'Listado de Hogares',
+            $listadoHogares
+        );
+        return response()->json($respuesta, $respuesta->codigoHttp);
+
 
         if (empty($datosUrl))
         {
@@ -40,7 +52,14 @@ class HogarController extends Controller
         //filter search
         //filtro de usuarios
         $hogares = QueryBuilder::for(Hogar::class)
-            ->allowedFilters(['id', 'zona', 'cod_dpto', 'cod_mun', 'tipo'])
+            ->allowedFilters([
+                AllowedFilter::scope('search'),
+                // 'id',
+                // 'zona',
+                // 'cod_dpto',
+                // 'cod_mun',
+                // 'tipo'
+            ])
             ->paginate($cantidadPaginar);
 
         $respuesta = new RespuestaHttp(
@@ -134,11 +153,11 @@ class HogarController extends Controller
         $validador = Validator::make(
             $datos,
             [
-                'zona' => 'required',
-                'cod_dpto' => 'required|exists:departamentos,codigo_dane',
-                'cod_mun' => 'required|exists:municipios,codigo_dane',
-                'barrio' => 'required',
-                'direccion' => 'required',
+                // 'zona' => 'required',
+                // 'cod_dpto' => 'required|exists:departamentos,codigo_dane',
+                // 'cod_mun' => 'required|exists:municipios,codigo_dane',
+                // 'barrio' => 'required',
+                // 'direccion' => 'required',
             ],
             [
                 'zona.required' => 'La zona es necesaria',
@@ -158,7 +177,12 @@ class HogarController extends Controller
         }
 
         $hogar = new Hogar($datos);
+        $hogar->encuesta = 'encuesta';
         $hogar->save();
+        $hogar = Hogar::actualizarHogar([
+            'id' => $hogar->id,
+            'encuesta' => $datos['encuesta'],
+        ]);
         $secciones = $datos['secciones'];
         $hogar = $this->recorrecSecciones($hogar, $secciones);
 
