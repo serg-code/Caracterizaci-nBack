@@ -15,7 +15,6 @@ class Cie10 extends Model
     protected $fillable = [
         'codigo',
         'descrip',
-        'rO',
         'altoCosto',
         'patologia',
         'genero',

@@ -17,7 +17,6 @@ return new class extends Migration
         {
             $table->string('codigo', 4)->primary()->unique();
             $table->string('descrip');
-            $table->string('rO')->nullable();
             $table->string('altoCosto')->nullable();
             $table->string('patologia')->nullable();
             $table->string('genero')->nullable();
