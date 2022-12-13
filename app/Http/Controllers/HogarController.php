@@ -38,7 +38,6 @@ class HogarController extends Controller
             return response()->json($respuesta, $respuesta->codigoHttp);
         }
 
-        //filter search
         //filtro de usuarios
         $hogares = QueryBuilder::for(Hogar::class)
             ->allowedFilters([

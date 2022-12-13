@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Dev\RespuestaHttp;
 use App\Models\Cie10;
 use Illuminate\Http\Request;
+use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class Cie10Controller extends Controller
@@ -29,7 +30,11 @@ class Cie10Controller extends Controller
 
         //filtrar
         $listadoCie = QueryBuilder::for(Cie10::class)
-            ->allowedFilters(['codigo', 'descrip'])
+            ->allowedFilters([
+                AllowedFilter::scope('search'),
+                AllowedFilter::exact('codigo'),
+                'descrip'
+            ])
             ->paginate($cantidadPaginar);
 
         return RespuestaHttp::respuesta(
