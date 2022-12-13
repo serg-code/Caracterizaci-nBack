@@ -53,7 +53,7 @@ class User extends Authenticatable
         $this->attributes['password'] = bcrypt($valor);
     }
 
-    public function scopeSearch(Builder $query, $dato)
+    public function scopeSearch(Builder $query, $dato): Builder
     {
         return $query->where('name', 'like', "%$dato%")->orWhere('email', 'like', "%$dato%");
     }

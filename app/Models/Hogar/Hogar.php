@@ -8,6 +8,7 @@ use App\Models\Municipio;
 use App\Models\Respuesta;
 use App\Models\secciones\FactoresProtectores;
 use App\Models\secciones\HabitosConsumo;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -112,5 +113,10 @@ class Hogar extends Model
     public function tipoHogar()
     {
         return $this->belongsTo(TipoHogar::class, 'tipo');
+    }
+
+    public function scopeSearch(Builder $query, $dato): Builder
+    {
+        return $query->where('direccion', 'like', "%$dato%");
     }
 }
