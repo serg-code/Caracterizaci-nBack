@@ -19,7 +19,7 @@ class CuidadoEnfermedadesSeeder extends Seeder
         Pregunta::create(["ref_campo" => "artritis_remautidea", "ref_seccion" => "cuidado_enfermedades", "descripcion" => "Artritis remautidea", "tipo" => "seleccion"]);
         Pregunta::create(["ref_campo" => "vih_sida", "ref_seccion" => "cuidado_enfermedades", "descripcion" => "VIH- Sida", "tipo" => "seleccion"]);
         Pregunta::create(["ref_campo" => "hemofilia", "ref_seccion" => "cuidado_enfermedades", "descripcion" => "Hemofilia", "tipo" => "seleccion"]);
-        Pregunta::create(["ref_campo" => "isuficiencia_renal", "ref_seccion" => "cuidado_enfermedades", "descripcion" => "Insuficiencia renal", "tipo" => "seleccion"]);
+        Pregunta::create(["ref_campo" => "insuficiencia_renal", "ref_seccion" => "cuidado_enfermedades", "descripcion" => "Insuficiencia renal", "tipo" => "seleccion"]);
         Pregunta::create(["ref_campo" => "fuma", "ref_seccion" => "cuidado_enfermedades", "descripcion" => "Fuma", "tipo" => "seleccion"]);
         Pregunta::create(["ref_campo" => "actividad_fisica", "ref_seccion" => "cuidado_enfermedades", "descripcion" => "Actividad física periodica", "tipo" => "seleccion"]);
         Pregunta::create(["ref_campo" => "vacuna_fiebre_amarilla", "ref_seccion" => "cuidado_enfermedades", "descripcion" => "Vacuna de fiebre amarilla", "tipo" => "seleccion"]);
