@@ -80,8 +80,8 @@ class HogarController extends Controller
      */
     public function store(Request $request)
     {
-
-        $id = $request->input('id');
+        $hogarPeticion = $request->input('hogar');
+        $id = $hogarPeticion['id'];
         $hogar = Hogar::find($id);
 
         if (empty($hogar))
@@ -89,8 +89,8 @@ class HogarController extends Controller
             return $this->crearHogar($request->input('hogar'));
         }
 
-        $hogar = Hogar::actualizarHogar($request->all());
-        $secciones = $request->input('secciones');
+        $hogar = Hogar::actualizarHogar($hogarPeticion);
+        $secciones = $hogarPeticion['secciones'];
         $hogar = $this->recorrecSecciones($hogar, $secciones);
         $hogar->integrantes;
         $respuesta = new RespuestaHttp(
