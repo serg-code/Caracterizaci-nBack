@@ -7,6 +7,7 @@ use App\Dev\Usuario\Usuario;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class UsuarioController extends Controller
@@ -31,7 +32,13 @@ class UsuarioController extends Controller
         }
 
         $usuarios = QueryBuilder::for(User::class)
-            ->allowedFilters(['id', 'email', 'activo', 'created_at'])
+            ->allowedFilters([
+                AllowedFilter::scope('search'),
+                'id',
+                'email',
+                'activo',
+                'created_at'
+            ])
             ->where('id', '!=', 1)
             ->paginate($cantidadPaginar);
 
