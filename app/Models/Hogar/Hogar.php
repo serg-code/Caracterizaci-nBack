@@ -117,6 +117,12 @@ class Hogar extends Model
 
     public function scopeSearch(Builder $query, $dato): Builder
     {
-        return $query->where('direccion', 'like', "%$dato%");
+        return $query
+            ->join('departamentos', 'hogar.cod_dpto', '=', 'departamentos.codigo_dane')
+            ->join('municipios', 'hogar.cod_mun', '=', 'municipios.codigo_dane')
+            ->where('direccion', 'like', "%$dato%")
+            ->orWhere('id', 'like', "%$dato%")
+            ->orWhere('departamentos.nombre', 'like', "%$dato%")
+            ->orWhere('municipios.nombre', 'like', "%$dato%");
     }
 }

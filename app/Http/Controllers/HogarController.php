@@ -43,7 +43,7 @@ class HogarController extends Controller
         $hogares = QueryBuilder::for(Hogar::class)
             ->allowedFilters([
                 AllowedFilter::scope('search'),
-                'id',
+                AllowedFilter::exact('id'),
                 'zona',
                 'cod_dpto',
                 'cod_mun',
