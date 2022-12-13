@@ -35,7 +35,6 @@ return new class extends Migration
             ]);
             $table->string('telefono', 10);
             $table->string('correo');
-            $table->text('encuesta')->nullable();
             $table->enum('cabeza_familia', ['SI', 'NO']);
             $table->string('estado_registro')->nullable();
             $table->timestamps();
