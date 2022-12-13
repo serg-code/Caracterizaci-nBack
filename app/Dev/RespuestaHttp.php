@@ -26,4 +26,15 @@ class RespuestaHttp
         $this->mensaje = $mensaje;
         $this->data = $data;
     }
+
+    public static function respuesta(
+        int $codigoHttp = 200,
+        string $titulo = 'succes',
+        string $mensaje = '',
+        $data = null,
+    )
+    {
+        $respuesta = new RespuestaHttp($codigoHttp, $titulo, $mensaje, $data);
+        return response()->json($respuesta, $respuesta->codigoHttp);
+    }
 }
