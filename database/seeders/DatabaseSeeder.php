@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\model\cuidados_domiciliarios;
 use Database\Seeders\Opciones\accidenteseeder;
 use Database\Seeders\Opciones\cuidado_enfermedadesSeeder;
 use Database\Seeders\Opciones\cuidados_domiciliariosSeeder;

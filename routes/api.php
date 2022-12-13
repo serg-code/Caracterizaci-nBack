@@ -43,7 +43,7 @@ Route::group(['middleware' => ['auth:sanctum']], function ()
     Route::apiResource('hogar', \App\Http\Controllers\HogarController::class)
         ->only(['index', 'store', 'show']);
     Route::apiResource('integrante', \App\Http\Controllers\IntegrantesController::class)
-        ->only(['store', 'show']);
+        ->only(['store', 'show', 'destroy']);
 
     Route::post('respuestas', [\App\Http\Controllers\RespuestasController::class, 'guardarRespuestaParcial']);
     Route::put('respuestas', [\App\Http\Controllers\RespuestasController::class, 'actualizarRespuesta']);

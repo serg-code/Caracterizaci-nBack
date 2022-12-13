@@ -120,9 +120,11 @@ class Hogar extends Model
         return $query
             ->join('departamentos', 'hogar.cod_dpto', '=', 'departamentos.codigo_dane')
             ->join('municipios', 'hogar.cod_mun', '=', 'municipios.codigo_dane')
+            ->join('integrantes', 'hogar.id', '=', 'integrantes.hogar_id')
             ->where('direccion', 'like', "%$dato%")
             ->orWhere('id', 'like', "%$dato%")
             ->orWhere('departamentos.nombre', 'like', "%$dato%")
-            ->orWhere('municipios.nombre', 'like', "%$dato%");
+            ->orWhere('municipios.nombre', 'like', "%$dato%")
+            ->orWhere('integrantes.', 'like');
     }
 }
