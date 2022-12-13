@@ -24,8 +24,8 @@ class cuidado_enfermedadesSeeder extends Seeder
         Opcion::create(["id" => "40", "ref_campo" => "vih_sida", "pregunta_opcion" => "SI", "valor" => "3"]);
         Opcion::create(["id" => "41", "ref_campo" => "hemofilia", "pregunta_opcion" => "NO", "valor" => "1"]);
         Opcion::create(["id" => "42", "ref_campo" => "hemofilia", "pregunta_opcion" => "SI", "valor" => "3"]);
-        Opcion::create(["id" => "43", "ref_campo" => "isuficiencia_renal", "pregunta_opcion" => "NO", "valor" => "1"]);
-        Opcion::create(["id" => "44", "ref_campo" => "isuficiencia_renal", "pregunta_opcion" => "SI", "valor" => "3"]);
+        Opcion::create(["id" => "43", "ref_campo" => "insuficiencia_renal", "pregunta_opcion" => "NO", "valor" => "1"]);
+        Opcion::create(["id" => "44", "ref_campo" => "insuficiencia_renal", "pregunta_opcion" => "SI", "valor" => "3"]);
         Opcion::create(["id" => "45", "ref_campo" => "fuma", "pregunta_opcion" => "NO", "valor" => "1"]);
         Opcion::create(["id" => "46", "ref_campo" => "fuma", "pregunta_opcion" => "SI", "valor" => "3"]);
         Opcion::create(["id" => "47", "ref_campo" => "actividad_fisica", "pregunta_opcion" => "NO", "valor" => "1"]);
