@@ -177,18 +177,18 @@ class HogarController extends Controller
         }
 
         $hogar = new Hogar($datos);
-        $hogar->encuesta = 'encuesta';
+        $hogar->encuesta = null;
         $hogar->save();
         // $hogar = Hogar::actualizarHogar([
         //     'id' => $hogar->id,
         //     'encuesta' => $datos['encuesta'],
         // ]);
-        $secciones = $datos['secciones'];
-        if (!empty($secciones))
-        {
+        // $secciones = $datos['secciones'] ?? null;
+        // if (!empty($secciones))
+        // {
 
-            $hogar = $this->recorrecSecciones($hogar, $secciones);
-        }
+        //     $hogar = $this->recorrecSecciones($hogar, $secciones);
+        // }
 
         $respuesta = new RespuestaHttp();
         $respuesta->data = [
