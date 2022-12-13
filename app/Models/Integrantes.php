@@ -27,7 +27,6 @@ class Integrantes extends Model
         'estado_civil',
         'telefono',
         'correo',
-        'encuesta',
         'cabeza_familia',
         'puntaje_obtenido',
         'puntaje_max',
