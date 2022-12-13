@@ -33,11 +33,11 @@ class UsuarioController extends Controller
 
         $usuarios = QueryBuilder::for(User::class)
             ->allowedFilters([
-                AllowedFilter::scope('search'),
-                'id',
-                'email',
+                AllowedFilter::exact('id'),
+                'name',
+                AllowedFilter::exact('email'),
                 'activo',
-                'created_at'
+                AllowedFilter::scope('search'),
             ])
             ->where('id', '!=', 1)
             ->paginate($cantidadPaginar);

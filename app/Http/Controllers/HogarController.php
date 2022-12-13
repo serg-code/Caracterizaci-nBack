@@ -24,17 +24,6 @@ class HogarController extends Controller
         $datosUrl = $_GET;
         $cantidadPaginar = $datosUrl['per_page'] ?? env('LIMITEPAGINA_USUARIO', 10);
 
-        $listadoHogares = Hogar::paginate($cantidadPaginar);
-
-        $respuesta = new RespuestaHttp(
-            200,
-            'Succes',
-            'Listado de Hogares',
-            $listadoHogares
-        );
-        return response()->json($respuesta, $respuesta->codigoHttp);
-
-
         if (empty($datosUrl))
         {
             $listadoHogares = Hogar::paginate($cantidadPaginar);
@@ -54,11 +43,11 @@ class HogarController extends Controller
         $hogares = QueryBuilder::for(Hogar::class)
             ->allowedFilters([
                 AllowedFilter::scope('search'),
-                // 'id',
-                // 'zona',
-                // 'cod_dpto',
-                // 'cod_mun',
-                // 'tipo'
+                'id',
+                'zona',
+                'cod_dpto',
+                'cod_mun',
+                'tipo'
             ])
             ->paginate($cantidadPaginar);
 
@@ -154,10 +143,10 @@ class HogarController extends Controller
             $datos,
             [
                 // 'zona' => 'required',
-                // 'cod_dpto' => 'required|exists:departamentos,codigo_dane',
-                // 'cod_mun' => 'required|exists:municipios,codigo_dane',
+                'cod_dpto' => 'required|exists:departamentos,codigo_dane',
+                'cod_mun' => 'required|exists:municipios,codigo_dane',
                 // 'barrio' => 'required',
-                // 'direccion' => 'required',
+                'direccion' => 'required',
             ],
             [
                 'zona.required' => 'La zona es necesaria',
@@ -177,18 +166,7 @@ class HogarController extends Controller
         }
 
         $hogar = new Hogar($datos);
-        $hogar->encuesta = null;
         $hogar->save();
-        // $hogar = Hogar::actualizarHogar([
-        //     'id' => $hogar->id,
-        //     'encuesta' => $datos['encuesta'],
-        // ]);
-        // $secciones = $datos['secciones'] ?? null;
-        // if (!empty($secciones))
-        // {
-
-        //     $hogar = $this->recorrecSecciones($hogar, $secciones);
-        // }
 
         $respuesta = new RespuestaHttp();
         $respuesta->data = [
