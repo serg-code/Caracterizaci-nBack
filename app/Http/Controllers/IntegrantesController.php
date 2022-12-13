@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Dev\Encuesta\SeccionesIntegrante;
 use App\Dev\RespuestaHttp;
+use App\Models\Hogar\Hogar;
 use App\Models\Integrantes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -31,7 +32,7 @@ class IntegrantesController extends Controller
         $validacion = Validator::make(
             $request->all(),
             [
-                // 'encuesta' => 'required',
+                'encuesta' => 'required',
                 'integrante' => 'required',
             ],
             [
@@ -53,18 +54,17 @@ class IntegrantesController extends Controller
 
 
         $integrantePeticion = $request->input('integrante');
-        // $encuesta = $request->input('encuesta');
-        // $integrantePeticion['encuesta'] = $encuesta;
+        $encuesta = $request->input('encuesta');
 
         $id = $integrantePeticion['id'];
         $integrante = Integrantes::find($id);
 
         if (empty($integrante))
         {
-            return $this->crearIntegrante($integrantePeticion);
+            return $this->crearIntegrante($integrantePeticion, $encuesta);
         }
 
-        return $this->actualizarIntegrante($integrantePeticion);
+        return $this->actualizarIntegrante($integrantePeticion, $encuesta);
     }
 
     /**
@@ -126,12 +126,12 @@ class IntegrantesController extends Controller
         return response()->json($respuesta, $respuesta->codigoHttp);
     }
 
-    protected function crearIntegrante(array $datos)
+    protected function crearIntegrante(array $datos, $encuesta)
     {
         $validador = Validator::make(
             $datos,
             [
-                'hogar_id' => 'required',
+                'hogar_id' => 'required|exists:hogar,id',
                 'tipo_identificacion' => 'required|exists:tipo_identificacion,id',
                 'identificacion' => 'required',
                 'primer_nombre' => 'required',
@@ -141,7 +141,8 @@ class IntegrantesController extends Controller
                 'correo' => 'email'
             ],
             [
-                'hogar_id.required' => 'El id del hogar (hogar_id) es necesario',
+                'hogar_id.required' => 'El id del hogar es necesario',
+                'hogar_id.exists' => 'El id del hogar no es valido',
                 'tipo_identificacion.required' => 'El tipo de indentificacion es obligatorio',
                 'tipo_identificacion.exist' => 'El tipo de identificacion no es valido',
                 'identificacion.required' => 'La identificacion es obligatoria',
@@ -168,6 +169,7 @@ class IntegrantesController extends Controller
         $secciones = $datos['secciones'];
         $integrante = $this->recorrecSecciones($integrante, $secciones);
 
+        $this->actulizarEncuestaHogar($integrante->hogar_id, $encuesta);
 
         $respuesta = new RespuestaHttp(
             201,
@@ -180,12 +182,15 @@ class IntegrantesController extends Controller
         return response()->json($respuesta, $respuesta->codigoHttp);
     }
 
-    protected function actualizarIntegrante(array $datosActualizar)
+    protected function actualizarIntegrante(array $datosActualizar, array $encuesta)
     {
         $integrante = Integrantes::actualizarIntegrante($datosActualizar);
 
         $secciones = $datosActualizar['secciones'];
         $integrante = $this->recorrecSecciones($integrante, $secciones);
+
+        $this->actulizarEncuestaHogar($integrante->hogar_id, $encuesta);
+
         $respuesta = new RespuestaHttp(
             200,
             'succes',
@@ -211,5 +216,15 @@ class IntegrantesController extends Controller
         }
 
         return $integrante;
+    }
+
+    protected function actulizarEncuestaHogar(string $hogarId, array $encuesta)
+    {
+        $hogar = new Hogar();
+
+        $hogar->actualizarHogar([
+            'id' => $hogarId,
+            'encuesta' => $encuesta,
+        ]);
     }
 }
