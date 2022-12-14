@@ -5,6 +5,8 @@ namespace App\Dev;
 use App\Dev\Encuesta\SeccionesIntegrante;
 use App\Models\Hogar\Hogar;
 use App\Models\Integrantes;
+use App\Models\Pregunta;
+use App\Models\respuestas\RespuestaIntegrante;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\MessageBag;
 
@@ -116,7 +118,7 @@ class ControlIntegrante
                 'primer_apellido' => 'required',
                 'rh' => 'required',
                 'estado_civil' => 'required',
-                'correo' => 'email'
+                // 'correo' => 'email'
             ],
             [
                 'hogar_id.required' => 'El id del hogar es necesario',
@@ -138,6 +140,21 @@ class ControlIntegrante
         }
 
         return null;
+    }
+
+    public function guardadoFinal(array $respuestas)
+    {
+        foreach ($respuestas as $refCampo => $respuestaFormulario)
+        {
+            $pregunta = Pregunta::where('ref_campo', '=', $refCampo)->first();
+            $respuesta = new RespuestaIntegrante([
+                'id_integrante' => $this->integrante->id,
+                'ref_campo' => $refCampo,
+                'pregunta' => $pregunta->descripcion,
+                'respuesta' => $respuestaFormulario,
+            ]);
+            $respuesta->save();
+        }
     }
 
     public function getErrores(): array

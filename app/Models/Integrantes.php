@@ -83,6 +83,7 @@ class Integrantes extends Model
                 'puntaje_obtenido' => $datos['puntaje_obtenido'] ?? $integrante->puntaje_obtenido,
                 'puntaje_max' => $datos['puntaje_max'] ?? $integrante->puntaje_max,
                 'encuesta' => $datos['encuesta'] ?? $integrante->encuesta,
+                'estado_registro' => $datos['estado_registro'] ?? $integrante->estado_registro,
             ]);
             return $integrante;
         }

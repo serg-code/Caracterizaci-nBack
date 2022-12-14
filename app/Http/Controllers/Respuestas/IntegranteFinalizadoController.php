@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Respuestas;
 use App\Dev\ControlIntegrante;
 use App\Dev\RespuestaHttp;
 use App\Http\Controllers\Controller;
+use App\Models\respuestas\RespuestaIntegrante;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -41,33 +42,43 @@ class IntegranteFinalizadoController extends Controller
         $controlIntegrante->actualizarIntegrante(false);
         $errores = $controlIntegrante->getErrores();
 
-        if (empty($errores))
+        if (!empty($errores))
         {
-
             return RespuestaHttp::respuesta(
-                200,
-                'bien',
-                'mal',
+                400,
+                'bad request',
+                'Encontramos algunos errores en la informacion',
                 [
-                    // 'datos' => $request->all(),
-                    // 'errores' => $errores,
-                    'integrante' => $integrante,
+                    $errores,
+
                 ]
             );
         }
 
+        //* guardado final
+        $secciones = $integrante['secciones'];
+        $integrante = $controlIntegrante->getIntegrante();
+        $respuestasIintegrante = new RespuestaIntegrante(['id_integrante' => $integrante->id]);
+        $respuestasIintegrante->eliminarRespuestas();
+
+        foreach ($secciones as $seccion)
+        {
+            $respuestas = $seccion['respuestas'];
+            $controlIntegrante->guardadoFinal($respuestas);
+        }
+
+        $integrante = $integrante->actualizarIntegrante([
+            'id' => $integrante->id,
+            'estado_registro' => 'FINALIZADO'
+        ]);
+
         return RespuestaHttp::respuesta(
-            400,
-            'bad request',
-            'errores',
+            201,
+            'succes',
+            'Encuesta validada y guardada exitosamente',
             [
-                $errores,
+                'integrante' => $integrante,
             ]
         );
-        //encontrar integrante
-
-        //guardar integrante
-
-        //guardado con validacion
     }
 }

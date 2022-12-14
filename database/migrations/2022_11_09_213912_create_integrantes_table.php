@@ -20,9 +20,9 @@ return new class extends Migration
             $table->string('tipo_identificacion', 3);
             $table->string('identificacion');
             $table->string('primer_nombre');
-            $table->string('segundo_nombre');
+            $table->string('segundo_nombre')->nullable();
             $table->string('primer_apellido');
-            $table->string('segundo_apellido');
+            $table->string('segundo_apellido')->nullable();
             $table->string('fecha_nacimiento');
             $table->enum('rh', ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']);
             $table->enum('estado_civil', [
@@ -34,7 +34,7 @@ return new class extends Migration
                 'separación en proceso judicial'
             ]);
             $table->string('telefono', 10);
-            $table->string('correo');
+            $table->string('correo')->nullable();
             $table->enum('cabeza_familia', ['SI', 'NO']);
             $table->enum('estado_registro', ['ABIERTO', 'FINALIZADO'])->default('ABIERTO');
             $table->timestamps();

@@ -16,14 +16,14 @@ return new class extends Migration
         Schema::create('respuestas_integrantes', function (Blueprint $table)
         {
             $table->id();
-            $table->uuid('id_integrantes');
+            $table->uuid('id_integrante');
             $table->string('ref_campo');
             $table->integer('puntaje')->nullable();
             $table->string('pregunta');
             $table->string('respuesta');
             $table->timestamps();
 
-            $table->foreign('id_integrantes')->references('id')->on('integrantes');
+            $table->foreign('id_integrante')->references('id')->on('integrantes');
         });
     }
 

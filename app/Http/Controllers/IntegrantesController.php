@@ -136,46 +136,5 @@ class IntegrantesController extends Controller
     {
         $controlIntegrante = new ControlIntegrante($datosActualizar, $encuesta);
         return $controlIntegrante->actualizarIntegrante();
-
-        // $integrante = Integrantes::actualizarIntegrante($datosActualizar);
-
-        // $secciones = $datosActualizar['secciones'];
-        // $integrante = $this->recorrecSecciones($integrante, $secciones);
-
-        // $this->actulizarEncuestaHogar($integrante->hogar_id, $encuesta);
-
-        // return RespuestaHttp::respuesta(
-        //     200,
-        //     'succes',
-        //     'Integrante actualizado',
-        //     [
-        //         'integrante' => $integrante,
-        //     ]
-        // );
     }
-
-
-    // protected function recorrecSecciones(Integrantes $integrante, array $secciones = []): Integrantes
-    // {
-    //     if (!empty($secciones))
-    //     {
-    //         $seccionesIntegrante = new SeccionesIntegrante($integrante, $secciones);
-    //         $seccionesIntegrante->recorrerSecciones();
-    //         $integrante->puntaje_obtenido = $seccionesIntegrante->puntaje;
-    //         $integrante->update($integrante->attributesToArray());
-    //         return $integrante;
-    //     }
-
-    //     return $integrante;
-    // }
-
-    // protected function actulizarEncuestaHogar(string $hogarId, array $encuesta)
-    // {
-    //     $hogar = new Hogar();
-
-    //     $hogar->actualizarHogar([
-    //         'id' => $hogarId,
-    //         'encuesta' => $encuesta,
-    //     ]);
-    // }
 }

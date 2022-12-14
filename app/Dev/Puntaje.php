@@ -38,7 +38,6 @@ class Puntaje
             if (empty($pregunta))
             {
                 $this->errores[$refCampo] = ["$refCampo no es una pregunta valida"];
-                // array_push($this->errores, "$refCampo no es una pregunta valida");
                 return null;
             }
 
@@ -46,10 +45,6 @@ class Puntaje
             if ($resultado->estado === 'error')
             {
                 $this->errores[$refCampo] = ["$respuesta no es una respuesta valida para $refCampo"];
-                // array_push(
-                //     $this->errores,
-                //     "$respuesta no es una respuesta valida para $refCampo"
-                // );
             }
 
             if ($resultado->estado === 'encontrado')

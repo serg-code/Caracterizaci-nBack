@@ -14,13 +14,16 @@ class RespuestaIntegrante extends Model
 
     protected $fillable = [
         'id',
-        'hogar_uuid',
         'id_integrante',
-        'ref_seccion',
         'ref_campo',
         'puntaje',
         'pregunta',
         'respuesta',
+    ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at',
     ];
 
     public function hogar()
@@ -31,5 +34,10 @@ class RespuestaIntegrante extends Model
     public function integrante()
     {
         return $this->belongsTo(Integrantes::class, 'id');
+    }
+
+    public function eliminarRespuestas()
+    {
+        RespuestaIntegrante::where('id_integrante', '=', $this->id_integrante)->delete();
     }
 }
