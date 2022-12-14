@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Barrio_vereda extends Model
+class BarrioVereda extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuids;
     protected $table = 'Barrio_vereda';
     protected $primaryKey = 'id';
     protected $keyType = 'uuid';
@@ -22,4 +23,14 @@ class Barrio_vereda extends Model
         'created_at',
         'updated_at',
     ];
+
+    public function municipio()
+    {
+        return $this->hasMany(Municipio::class, 'id_municipio');
+    }
+
+    public function actualizar(array $datosActualizar)
+    {
+        $this->update($datosActualizar);
+    }
 }

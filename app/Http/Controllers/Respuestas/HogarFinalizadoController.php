@@ -10,6 +10,6 @@ class HogarFinalizadoController extends Controller
 {
     public function finalizarHogar(Request $request)
     {
-        return RespuestaHttp::respuesta(400, 'mal', 'mal', []);
+        return RespuestaHttp::respuesta(404, 'not found', 'Estamos trabajando en esta pagina');
     }
 }
