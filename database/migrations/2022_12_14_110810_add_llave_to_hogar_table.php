@@ -13,7 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('hogar', function (Blueprint $table) {
+        Schema::table('hogar', function (Blueprint $table)
+        {
             $table->foreign('barrio_vereda_id')->references('id')->on('barrio_vereda');
         });
     }
@@ -25,7 +26,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('hogar', function (Blueprint $table) {
+        Schema::table('hogar', function (Blueprint $table)
+        {
             //
         });
     }

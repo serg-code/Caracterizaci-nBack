@@ -17,12 +17,12 @@ return new class extends Migration
         {
             $table->uuid('id')->unique();
             $table->uuid('barrio_vereda_id')->comment('barrio / vereda')->nullable();
-            $table->enum('zona',[
+            $table->enum('zona', [
                 'barrio',
                 'vereda',
                 'corregimiento',
                 'rural disperso',
-             ]);
+            ])->nullable();
             $table->string('cod_dpto', 2)->comment('codigo dane del departamento')->nullable();
             $table->string('cod_mun', 10)->comment('codigo dane del municipio')->nullable();
             $table->integer('tipo')->nullable();
@@ -32,7 +32,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->primary('id');
-                    });
+        });
     }
 
     /**

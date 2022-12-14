@@ -4,18 +4,19 @@ namespace App\Dev\Encuesta;
 
 use App\Dev\Puntaje;
 use App\Models\Hogar\Hogar;
-use App\Models\Pregunta;
 
 class SeccionesHogar
 {
+    public int $puntaje;
+    protected array $errores;
 
     public function __construct(
         protected Hogar $hogar,
-        protected $secciones = [],
-        public int $puntaje = 0,
-        protected array $errores = [],
+        protected $secciones,
     )
     {
+        $this->puntaje = 0;
+        $this->errores = [];
     }
 
     public function recorrer()
@@ -53,5 +54,10 @@ class SeccionesHogar
     public function obtenerPuntaje()
     {
         return $this->puntaje;
+    }
+
+    public function getErrores(): array
+    {
+        return $this->errores;
     }
 }

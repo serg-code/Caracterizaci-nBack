@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Dev\Encuesta\SeccionesHogar;
+use App\Dev\Hogar\ActualizarHogar;
 use App\Dev\Hogar\crearHogar;
 use App\Dev\RespuestaHttp;
 use App\Models\Hogar\Hogar;
@@ -76,19 +77,10 @@ class HogarController extends Controller
             return RespuestaHttp::respuestaObjeto($respuestaCrearHogar);
         }
 
-        $hogar = Hogar::actualizarHogar($hogarPeticion);
         $secciones = $hogarPeticion['secciones'];
-        $hogar = $this->recorrecSecciones($hogar, $secciones);
-        $hogar->integrantes;
-        $respuesta = new RespuestaHttp(
-            200,
-            'succes',
-            'hogar actualizado',
-            [
-                'hogar' => $hogar,
-            ]
-        );
-        return response()->json($respuesta, $respuesta->codigoHttp);
+        $actualizarHogar = new ActualizarHogar($hogarPeticion, $secciones);
+        $respuesta = $actualizarHogar->getRespuesta();
+        return RespuestaHttp::respuestaObjeto($respuesta);
     }
 
     /**
@@ -133,21 +125,5 @@ class HogarController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-
-    protected function recorrecSecciones(Hogar $hogar, array $secciones = []): Hogar
-    {
-        if (empty($secciones))
-        {
-            return $hogar;
-        }
-
-        $seccionesHogar = new SeccionesHogar($hogar, $secciones);
-        $seccionesHogar->recorrer();
-        $hogar->puntaje_obtenido = $seccionesHogar->puntaje;
-        $hogar->update($hogar->attributesToArray());
-
-        return $hogar;
     }
 }
