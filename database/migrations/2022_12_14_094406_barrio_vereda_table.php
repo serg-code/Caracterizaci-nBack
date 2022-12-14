@@ -19,9 +19,9 @@ return new class extends Migration
         $table->string('id_municipio');
         $table->string('nombre');
         $table->enum('tipo', [
-            'barrio',
-            'vereda',
-            'corregimiento',
+            'Barrio',
+            'Vereda',
+            'Corregimiento',
          ]);
         $table->timestamps();
 
