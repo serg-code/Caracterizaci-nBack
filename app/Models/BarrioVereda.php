@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -33,5 +34,11 @@ class BarrioVereda extends Model
     public function actualizar(array $datosActualizar)
     {
         $this->update($datosActualizar);
+    }
+
+    public function scopeSearch(Builder $query, $dato)
+    {
+        return $query->join('codigo_dane', 'barrio_vereda.id_municipio', '=', 'municipios.codigo_dane')
+            ->where('municipios.nombre', 'like', "%$dato%");
     }
 }

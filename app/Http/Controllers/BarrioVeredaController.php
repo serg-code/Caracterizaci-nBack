@@ -6,6 +6,8 @@ use App\Dev\RespuestaHttp;
 use App\Models\BarrioVereda;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class BarrioVeredaController extends Controller
 {
@@ -16,7 +18,35 @@ class BarrioVeredaController extends Controller
      */
     public function index()
     {
-        //
+        $datosUrl = $_GET;
+        $cantidadPaginar = $datosUrl['per_page'] ?? env('LIMITEPAGINA_USUARIO', 10);
+
+        if (empty($datosUrl))
+        {
+            $listadoHogares = BarrioVereda::paginate($cantidadPaginar);
+
+            return RespuestaHttp::respuesta(
+                200,
+                'Succes',
+                'Listado de barrios / veredas',
+                $listadoHogares
+            );
+        }
+
+        //filtro de usuarios
+        $hogares = QueryBuilder::for(BarrioVereda::class)
+            ->allowedFilters([
+                AllowedFilter::exact('id'),
+                AllowedFilter::scope('search'),
+            ])
+            ->paginate($cantidadPaginar);
+
+        return RespuestaHttp::respuesta(
+            200,
+            'succes',
+            'listado de barrios / veredas',
+            $hogares
+        );
     }
 
     /**

@@ -22,11 +22,19 @@ class RolesSeeder extends Seeder
         $rolAdmin = Role::create(['name' => 'Administrador']);
         $rolUsuario = Role::create(['name' => 'Usuario']);
 
+        //* Usuarios
         $listarUsuario = Permission::create(['name' => 'listar usuarios']);
         $editarUsuario = Permission::create(['name' => 'editar usuarios']);
         $crearUsario = Permission::create(['name' => 'crear usuarios']);
+
+        //* roles
         $listarRoles = Permission::create(['name' => 'listar roles']);
         $editarRoles = Permission::create(['name' => 'editar roles']);
+
+        //* BarriosVeredas
+        $listarBarrioVereda = Permission::create(['name' => 'listar BarrioVereda']);
+        $editarBarrioVereda = Permission::create(['name' => 'editar BarrioVereda']);
+        $eliminarBarrioVereda = Permission::create(['name' => 'eliminar BarrioVereda']);
 
         //* permisos sueper admin
         $this->agregarPermisos($rolSuperAdmin, [
@@ -35,6 +43,9 @@ class RolesSeeder extends Seeder
             $crearUsario,
             $listarRoles,
             $editarRoles,
+            $listarBarrioVereda,
+            $editarBarrioVereda,
+            $eliminarBarrioVereda
         ]);
 
         //* permiso admin
@@ -43,6 +54,9 @@ class RolesSeeder extends Seeder
             $editarUsuario,
             $crearUsario,
             $listarRoles,
+            $listarBarrioVereda,
+            $editarBarrioVereda,
+            $eliminarBarrioVereda
         ]);
 
         //* permisos usuario

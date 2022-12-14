@@ -42,11 +42,17 @@ Route::group(['middleware' => ['auth:sanctum']], function ()
 
     Route::apiResource('hogar', \App\Http\Controllers\HogarController::class)
         ->only(['index', 'store', 'show']);
-    Route::post('hogar/completo', [\App\Http\Controllers\Respuestas\HogarFinalizadoController::class, 'finalizarHogar']);
+    Route::post(
+        'hogar/completo',
+        [\App\Http\Controllers\Respuestas\HogarFinalizadoController::class, 'finalizarHogar']
+    );
 
     Route::apiResource('integrante', \App\Http\Controllers\IntegrantesController::class)
         ->only(['store', 'show', 'destroy']);
-    Route::post('integrante/completo', [\App\Http\Controllers\Respuestas\IntegranteFinalizadoController::class, 'finalizarIntegrante']);
+    Route::post(
+        'integrante/completo',
+        [\App\Http\Controllers\Respuestas\IntegranteFinalizadoController::class, 'finalizarIntegrante']
+    );
 
     Route::post('respuestas', [\App\Http\Controllers\RespuestasController::class, 'guardarRespuestaParcial']);
     Route::put('respuestas', [\App\Http\Controllers\RespuestasController::class, 'actualizarRespuesta']);
