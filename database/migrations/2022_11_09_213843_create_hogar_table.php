@@ -16,18 +16,23 @@ return new class extends Migration
         Schema::create('hogar', function (Blueprint $table)
         {
             $table->uuid('id')->unique();
-            $table->string('zona')->nullable();
+            $table->uuid('barrio_vereda_id')->comment('barrio / vereda')->nullable();
+            $table->enum('zona',[
+                'barrio',
+                'vereda',
+                'corregimiento',
+                'rural disperso',
+             ]);
             $table->string('cod_dpto', 2)->comment('codigo dane del departamento')->nullable();
             $table->string('cod_mun', 10)->comment('codigo dane del municipio')->nullable();
             $table->integer('tipo')->nullable();
-            $table->string('barrio')->comment('barrio / vereda')->nullable();
             $table->string('direccion')->nullable();
             $table->string('geolocalizacion')->nullable();
             $table->string('estado_registro')->nullable();
             $table->timestamps();
 
             $table->primary('id');
-        });
+                    });
     }
 
     /**
