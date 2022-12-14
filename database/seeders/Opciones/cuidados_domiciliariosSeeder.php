@@ -22,7 +22,7 @@ class cuidados_domiciliariosSeeder extends Seeder
         Opcion::create(["id" => "80", "ref_campo" => "Causa", "pregunta_opcion" => "Domiciliarío cronico", "valor" => "0"]);
         Opcion::create(["id" => "81", "ref_campo" => "Causa", "pregunta_opcion" => "Domiciliarío agudo", "valor" => "0"]);
         Opcion::create(["id" => "82", "ref_campo" => "Causa", "pregunta_opcion" => "Domiciliarío ventilado", "valor" => "0"]);
-        Opcion::create(["id" => "83", "ref_campo" => "fecha_inicio_domiciliario", "pregunta_opcion" => "texto", "valor" => "0"]);
+        // Opcion::create(["id" => "83", "ref_campo" => "fecha_inicio_domiciliario", "pregunta_opcion" => "texto", "valor" => "0"]);
         Opcion::create(["id" => "84", "ref_campo" => "oxigeno_domiciliario", "pregunta_opcion" => "NO", "valor" => "1"]);
         Opcion::create(["id" => "85", "ref_campo" => "oxigeno_domiciliario", "pregunta_opcion" => "SI", "valor" => "3"]);
         Opcion::create(["id" => "86", "ref_campo" => "plan_aprobado", "pregunta_opcion" => "Estándar", "valor" => "0"]);

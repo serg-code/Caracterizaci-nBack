@@ -40,9 +40,9 @@ class cuidado_enfermedadesSeeder extends Seeder
         Opcion::create(["id" => "56", "ref_campo" => "hipertencion_trimestral", "pregunta_opcion" => "SI", "valor" => "3"]);
         Opcion::create(["id" => "57", "ref_campo" => "diabetes_trimestral", "pregunta_opcion" => "NO", "valor" => "1"]);
         Opcion::create(["id" => "58", "ref_campo" => "diabetes_trimestral", "pregunta_opcion" => "SI", "valor" => "3"]);
-        Opcion::create(["id" => "59", "ref_campo" => "tension_sistolica", "pregunta_opcion" => "numero", "valor" => "0"]);
-        Opcion::create(["id" => "60", "ref_campo" => "tension_diastolica", "pregunta_opcion" => "numero", "valor" => "0"]);
-        Opcion::create(["id" => "61", "ref_campo" => "hemoglobina_glococilada", "pregunta_opcion" => "numero", "valor" => "0"]);
+        // Opcion::create(["id" => "59", "ref_campo" => "tension_sistolica", "pregunta_opcion" => "numero", "valor" => "0"]);
+        // Opcion::create(["id" => "60", "ref_campo" => "tension_diastolica", "pregunta_opcion" => "numero", "valor" => "0"]);
+        // Opcion::create(["id" => "61", "ref_campo" => "hemoglobina_glococilada", "pregunta_opcion" => "numero", "valor" => "0"]);
         Opcion::create(["id" => "62", "ref_campo" => "enfermedades_costosas", "pregunta_opcion" => "Trauma mayor", "valor" => "20"]);
         Opcion::create(["id" => "63", "ref_campo" => "enfermedades_costosas", "pregunta_opcion" => "Enfermedad neurologica", "valor" => "20"]);
         Opcion::create(["id" => "64", "ref_campo" => "enfermedades_costosas", "pregunta_opcion" => "Transplantes ([riñon, corazón, médula, hígado)", "valor" => "20"]);

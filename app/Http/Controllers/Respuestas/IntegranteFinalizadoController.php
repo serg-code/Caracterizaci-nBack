@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Respuestas;
 
+use App\Dev\ControlIntegrante;
 use App\Dev\RespuestaHttp;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -35,6 +36,34 @@ class IntegranteFinalizadoController extends Controller
 
         $integrante = $request->input('integrante');
         $encuesta = $request->input('encuesta');
+
+        $controlIntegrante = new ControlIntegrante($integrante, $encuesta);
+        $controlIntegrante->actualizarIntegrante(false);
+        $errores = $controlIntegrante->getErrores();
+
+        if (empty($errores))
+        {
+
+            return RespuestaHttp::respuesta(
+                200,
+                'bien',
+                'mal',
+                [
+                    // 'datos' => $request->all(),
+                    // 'errores' => $errores,
+                    'integrante' => $integrante,
+                ]
+            );
+        }
+
+        return RespuestaHttp::respuesta(
+            400,
+            'bad request',
+            'errores',
+            [
+                $errores,
+            ]
+        );
         //encontrar integrante
 
         //guardar integrante

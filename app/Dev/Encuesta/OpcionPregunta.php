@@ -3,6 +3,7 @@
 namespace App\Dev\Encuesta;
 
 use App\Dev\Notificacion;
+use App\Models\Opcion;
 use App\Models\Pregunta;
 
 class OpcionPregunta
@@ -11,15 +12,16 @@ class OpcionPregunta
     public static function buscarRespuestaOpcion(Pregunta $pregunta, $respuesta): Notificacion
     {
         $estado = new Notificacion();
-        $opcionesPregunta = $pregunta->opciones;
+        $opcionesPregunta = Opcion::where('ref_campo', '=', $pregunta->ref_campo)->get();
 
-        if (empty($opcionesPregunta))
+        if (sizeof($opcionesPregunta) === 0)
         {
             return new Notificacion('encontrado', ['respuesta' => $opcionesPregunta]);
         }
 
         foreach ($opcionesPregunta as $opcion)
         {
+            // dd($opcionesPregunta);
             if ($opcion->id == $respuesta)
             {
                 return new Notificacion(

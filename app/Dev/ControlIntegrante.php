@@ -54,25 +54,27 @@ class ControlIntegrante
         );
     }
 
-    public function actualizarIntegrante()
+    public function actualizarIntegrante(bool $retorno = true)
     {
         $integrante = Integrantes::actualizarIntegrante($this->datosIntegrante);
         $this->integrante = $integrante;
 
         $secciones = $this->datosIntegrante['secciones'];
         $integrante = $this->recorrecSecciones($secciones);
-        // return RespuestaHttp::respuesta(400, 'mal', 'mal', ["datos" => $integrante]);
 
         $this->actulizarEncuestaHogar($integrante->hogar_id);
 
-        return RespuestaHttp::respuesta(
-            200,
-            'succes',
-            'Integrante actualizado',
-            [
-                'integrante' => $integrante,
-            ]
-        );
+        if ($retorno)
+        {
+            return RespuestaHttp::respuesta(
+                200,
+                'succes',
+                'Integrante actualizado',
+                [
+                    'integrante' => $integrante,
+                ]
+            );
+        }
     }
 
     protected function recorrecSecciones(array $secciones = []): Integrantes
