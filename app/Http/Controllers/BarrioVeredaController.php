@@ -61,12 +61,14 @@ class BarrioVeredaController extends Controller
             $request->all(),
             [
                 'id_municipio' => 'required|exists:municipios,codigo_dane',
-                'tipo' => 'required'
+                'tipo' => 'required',
+                'nombre' => 'required',
             ],
             [
                 'id_municipio.required' => 'El id del municipio es necesario',
                 'id_municipio.exists' => 'El id del municipio no es valido',
-                'tipo.required' => 'El tipo es necesario'
+                'tipo.required' => 'El tipo es necesario',
+                'nombre.required' => 'El nombre es necesario',
             ]
         );
 
