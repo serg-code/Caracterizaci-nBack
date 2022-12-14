@@ -22,13 +22,13 @@ class Hogar extends Model
     protected $keyType = 'uuid';
     protected $fillable = [
         'id',
+        'barrio_vereda_id',
         'zona',
         'cod_dpto',
         'cod_mun',
         'tipo',
         'puntaje_max',
         'puntaje_obtenido',
-        'barrio',
         'direccion',
         'geolocalizacion',
         'encuesta',
@@ -63,11 +63,11 @@ class Hogar extends Model
         if (!empty($hogar))
         {
             $hogar->update([
+                'barrio_vereda_id' => $datos['barrio_vereda_id'] ?? $hogar->barrio_vereda_id,
                 'zona' => $datos['zona'] ?? $hogar->zona,
                 'cod_dpto' => $datos['cod_dpto'] ?? $hogar->cod_dpto,
                 'cod_mun' => $datos['cod_mun'] ?? $hogar->cod_mun,
                 'tipo' => $datos['tipo'] ?? $hogar->tipo,
-                'barrio' => $datos['barrio'] ?? $hogar->barrio,
                 'direccion' => $datos['direccion'] ?? $hogar->direccion,
                 'geolocalizacion' => $datos['geolocalizacion'] ?? $hogar->geolocalizacion,
                 'encuesta' => $datos['encuesta'] ?? $hogar->encuesta,
