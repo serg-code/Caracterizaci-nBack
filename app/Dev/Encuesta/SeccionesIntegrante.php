@@ -48,4 +48,9 @@ class SeccionesIntegrante
             $respuesta->save();
         }
     }
+
+    public function getErrores(): array
+    {
+        return $this->errores;
+    }
 }

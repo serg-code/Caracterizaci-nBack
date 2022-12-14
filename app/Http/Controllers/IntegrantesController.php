@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Dev\ControlIntegrante;
 use App\Dev\Encuesta\SeccionesIntegrante;
-use App\Dev\Integrante;
 use App\Dev\RespuestaHttp;
 use App\Models\Hogar\Hogar;
 use App\Models\Integrantes;
@@ -127,75 +127,55 @@ class IntegrantesController extends Controller
 
     protected function crearIntegrante(array $datos, $encuesta)
     {
-        $errores = Integrante::validarCrearIntegrante($datos);
 
-        if (!empty($errores))
-        {
-            return RespuestaHttp::respuesta(
-                400,
-                'Bad request',
-                'Algunos datos son erroneso',
-                $errores
-            );
-        }
-
-        $integrante = Integrantes::guardarIntegrante($datos);
-        $secciones = $datos['secciones'];
-        $integrante = $this->recorrecSecciones($integrante, $secciones);
-
-        $this->actulizarEncuestaHogar($integrante->hogar_id, $encuesta);
-
-        return RespuestaHttp::respuesta(
-            201,
-            'Created',
-            'Integrante creado exitosamente',
-            [
-                'integrante' => $integrante,
-            ]
-        );
+        $controlIntegrante = new ControlIntegrante($datos, $encuesta);
+        return $controlIntegrante->crearIntegrante();
     }
 
     protected function actualizarIntegrante(array $datosActualizar, array $encuesta)
     {
-        $integrante = Integrantes::actualizarIntegrante($datosActualizar);
+        $controlIntegrante = new ControlIntegrante($datosActualizar, $encuesta);
+        return $controlIntegrante->actualizarIntegrante();
 
-        $secciones = $datosActualizar['secciones'];
-        $integrante = $this->recorrecSecciones($integrante, $secciones);
+        // $integrante = Integrantes::actualizarIntegrante($datosActualizar);
 
-        $this->actulizarEncuestaHogar($integrante->hogar_id, $encuesta);
+        // $secciones = $datosActualizar['secciones'];
+        // $integrante = $this->recorrecSecciones($integrante, $secciones);
 
-        return RespuestaHttp::respuesta(
-            200,
-            'succes',
-            'Integrante actualizado',
-            [
-                'integrante' => $integrante,
-            ]
-        );
+        // $this->actulizarEncuestaHogar($integrante->hogar_id, $encuesta);
+
+        // return RespuestaHttp::respuesta(
+        //     200,
+        //     'succes',
+        //     'Integrante actualizado',
+        //     [
+        //         'integrante' => $integrante,
+        //     ]
+        // );
     }
 
 
-    protected function recorrecSecciones(Integrantes $integrante, array $secciones = []): Integrantes
-    {
-        if (!empty($secciones))
-        {
-            $seccionesIntegrante = new SeccionesIntegrante($integrante, $secciones);
-            $seccionesIntegrante->recorrerSecciones();
-            $integrante->puntaje_obtenido = $seccionesIntegrante->puntaje;
-            $integrante->update($integrante->attributesToArray());
-            return $integrante;
-        }
+    // protected function recorrecSecciones(Integrantes $integrante, array $secciones = []): Integrantes
+    // {
+    //     if (!empty($secciones))
+    //     {
+    //         $seccionesIntegrante = new SeccionesIntegrante($integrante, $secciones);
+    //         $seccionesIntegrante->recorrerSecciones();
+    //         $integrante->puntaje_obtenido = $seccionesIntegrante->puntaje;
+    //         $integrante->update($integrante->attributesToArray());
+    //         return $integrante;
+    //     }
 
-        return $integrante;
-    }
+    //     return $integrante;
+    // }
 
-    protected function actulizarEncuestaHogar(string $hogarId, array $encuesta)
-    {
-        $hogar = new Hogar();
+    // protected function actulizarEncuestaHogar(string $hogarId, array $encuesta)
+    // {
+    //     $hogar = new Hogar();
 
-        $hogar->actualizarHogar([
-            'id' => $hogarId,
-            'encuesta' => $encuesta,
-        ]);
-    }
+    //     $hogar->actualizarHogar([
+    //         'id' => $hogarId,
+    //         'encuesta' => $encuesta,
+    //     ]);
+    // }
 }
