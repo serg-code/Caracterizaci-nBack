@@ -16,6 +16,7 @@ class BarrioVereda extends Model
     protected $fillable = [
         'id',
         'id_municipio',
+        'nombre',
         'tipo',
     ];
 
