@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('barrio_vereda', function (Blueprint $table)
         {
         $table->uuid('id')->primary()->unique();
-        $table->string('id_municipio')->nullable();
+        $table->string('id_municipio');
         $table->string('nombre');
         $table->enum('tipo', [
             'barrio',
