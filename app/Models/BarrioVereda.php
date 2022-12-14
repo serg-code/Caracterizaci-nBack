@@ -38,7 +38,8 @@ class BarrioVereda extends Model
 
     public function scopeSearch(Builder $query, $dato)
     {
-        return $query->join('codigo_dane', 'barrio_vereda.id_municipio', '=', 'municipios.codigo_dane')
-            ->where('municipios.nombre', 'like', "%$dato%");
+        // return $query->join('municipios', 'barrio_vereda.id_municipio', '=', 'municipios.codigo_dane')
+        //     ->where('municipios.nombre', 'like', "%$dato%");
+        return $query->where('nombre', 'like', "%$dato%");
     }
 }

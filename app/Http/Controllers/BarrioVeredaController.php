@@ -19,7 +19,7 @@ class BarrioVeredaController extends Controller
     public function index()
     {
         $datosUrl = $_GET;
-        $cantidadPaginar = $datosUrl['per_page'] ?? env('LIMITEPAGINA_USUARIO', 10);
+        $cantidadPaginar = $datosUrl['per_page'] ?? 10;
 
         if (empty($datosUrl))
         {
@@ -36,7 +36,8 @@ class BarrioVeredaController extends Controller
         //filtro de usuarios
         $hogares = QueryBuilder::for(BarrioVereda::class)
             ->allowedFilters([
-                AllowedFilter::exact('id'),
+                AllowedFilter::exact('id_municipio'),
+                AllowedFilter::exact('tipo'),
                 AllowedFilter::scope('search'),
             ])
             ->paginate($cantidadPaginar);
