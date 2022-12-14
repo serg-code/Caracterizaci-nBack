@@ -37,4 +37,9 @@ class RespuestaHttp
         $respuesta = new RespuestaHttp($codigoHttp, $titulo, $mensaje, $data);
         return response()->json($respuesta, $respuesta->codigoHttp);
     }
+
+    public static function respuestaObjeto(RespuestaHttp $respuesta)
+    {
+        return response()->json($respuesta, $respuesta->codigoHttp);
+    }
 }

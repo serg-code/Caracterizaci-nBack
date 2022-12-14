@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Dev\Encuesta\SeccionesHogar;
+use App\Dev\Hogar\crearHogar;
 use App\Dev\RespuestaHttp;
 use App\Models\Hogar\Hogar;
 use App\Models\Secciones\Hogar\FactoresProtectores;
 use App\Models\Secciones\Hogar\HabitosConsumo;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
@@ -70,7 +70,10 @@ class HogarController extends Controller
 
         if (empty($hogar))
         {
-            return $this->crearHogar($request->input('hogar'));
+            $datosHogar = $request->input('hogar');
+            $crearHogar = new crearHogar($datosHogar);
+            $respuestaCrearHogar = $crearHogar->getRespuesta();
+            return RespuestaHttp::respuestaObjeto($respuestaCrearHogar);
         }
 
         $hogar = Hogar::actualizarHogar($hogarPeticion);
@@ -130,44 +133,6 @@ class HogarController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    protected function crearHogar($datos)
-    {
-        $validador = Validator::make(
-            $datos,
-            [
-                // 'zona' => 'required',
-                'cod_dpto' => 'required|exists:departamentos,codigo_dane',
-                'cod_mun' => 'required|exists:municipios,codigo_dane',
-                // 'barrio' => 'required',
-                'direccion' => 'required',
-            ],
-            [
-                'zona.required' => 'La zona es necesaria',
-                'cod_dpto.required' => 'Departamento necesario',
-                'cod_dpto.exists' => 'El codigo del departamento no es valido',
-                'cod_mun.required' => 'Municion necesario',
-                'cod_mun.exists' => 'El codigo del municipio no es valido',
-                'barrio.required' => 'El barrio es necesario',
-                'direccion.required' => 'La direccion es necesaria',
-            ]
-        );
-
-        if ($validador->fails())
-        {
-            $respuesta = new RespuestaHttp(400, 'bad request', 'Valide la informaicon', $validador->getMessageBag());
-            return response()->json($respuesta, $respuesta->codigoHttp);
-        }
-
-        $hogar = new Hogar($datos);
-        $hogar->save();
-
-        $respuesta = new RespuestaHttp();
-        $respuesta->data = [
-            'hogar' => $hogar,
-        ];
-        return response()->json($respuesta, $respuesta->codigoHttp);
     }
 
 
