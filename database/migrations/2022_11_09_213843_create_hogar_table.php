@@ -28,7 +28,7 @@ return new class extends Migration
             $table->integer('tipo')->nullable();
             $table->string('direccion')->nullable();
             $table->string('geolocalizacion')->nullable();
-            $table->string('estado_registro')->nullable();
+            $table->enum('estado_registro', ['ABIERTO', 'FINALIZADO'])->default('ABIERTO');
             $table->timestamps();
 
             $table->primary('id');
