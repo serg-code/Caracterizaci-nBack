@@ -20,7 +20,10 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            // $table->boolean('activo')->default(true);
+            $table->string('tipo_identificacion', 3);
+            $table->string('identificacion')->unique();
+            $table->string('telefono', 10);
+            // $table->boolean('activo')->default(true); *para saber si un usuario esta activo*
             $table->rememberToken();
             $table->timestamps();
         });
