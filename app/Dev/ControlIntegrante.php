@@ -143,14 +143,13 @@ class ControlIntegrante
             return $validacion->getMessageBag();
         }
 
-        $errores = [];
-
         //* validar edad y tipo de documento
         $fechaNacimiento = $datosIntegrante['fecha_nacimiento'];
         $documento = $datosIntegrante['tipo_identificacion'];
-        $errores += $this->validarEdadDocumento($fechaNacimiento, $documento);
 
-        return $errores;
+        $errorEdad = $this->validarEdadDocumento($fechaNacimiento, $documento);
+
+        return array_merge($errorEdad, []);
     }
 
 
@@ -182,8 +181,8 @@ class ControlIntegrante
 
     protected function validarEdadDocumento(string $fechaNacimiento, string $tipoDocumento): array
     {
-        $erroes = [];
         $edad = Carbon::createFromFormat('Y-m-d', $fechaNacimiento)->age;
+        $errores = [];
 
         if ($edad < 18 && $tipoDocumento === 'CC')
         {
@@ -194,11 +193,11 @@ class ControlIntegrante
 
         if ($edad >= 18 && $tipoDocumento === 'TI')
         {
-            $erroes['tipo_documento'] = [
+            $errores['tipo_documento'] = [
                 "La persona cuenta con $edad años de edad, no es valido que utilice Targeta de identidad como tipo de documento"
             ];
         }
 
-        return $erroes;
+        return $errores;
     }
 }

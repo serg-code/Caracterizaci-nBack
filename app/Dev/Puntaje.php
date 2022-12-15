@@ -33,7 +33,6 @@ class Puntaje
     {
         foreach ($this->respuestas as $refCampo => $respuesta)
         {
-            // dd($this->respuestas);
             $pregunta = Pregunta::ObtenerPregunta($refCampo);
             if (empty($pregunta))
             {
