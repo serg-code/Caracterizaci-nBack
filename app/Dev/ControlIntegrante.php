@@ -7,6 +7,7 @@ use App\Models\Hogar\Hogar;
 use App\Models\Integrantes;
 use App\Models\Pregunta;
 use App\Models\respuestas\RespuestaIntegrante;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\MessageBag;
 
@@ -106,7 +107,7 @@ class ControlIntegrante
         ]);
     }
 
-    public function validarCrearIntegrante(array $datosIntegrante): ?MessageBag
+    public function validarCrearIntegrante(array $datosIntegrante): array|MessageBag
     {
         $validacion = Validator::make(
             $datosIntegrante,
@@ -118,6 +119,7 @@ class ControlIntegrante
                 'primer_apellido' => 'required',
                 'rh' => 'required',
                 'estado_civil' => 'required',
+                'fecha_nacimiento' => 'required|date',
                 // 'correo' => 'email'
             ],
             [
@@ -131,6 +133,8 @@ class ControlIntegrante
                 'rh.required' => 'El rh es obligatoria',
                 'estado_civil.required' => 'El estado_civil es obligatoria',
                 'correo.required' => 'El correo es obligatoria',
+                'fecha_nacimiento.required' => 'La fecha de nacimiento es necesaria',
+                'fecha_nacimiento.date' => 'La fecha de nacimiento no cumple con el formato necesario',
             ]
         );
 
@@ -139,8 +143,23 @@ class ControlIntegrante
             return $validacion->getMessageBag();
         }
 
-        return null;
+        $errores = [];
+
+        //* validar edad y tipo de documento
+        $fechaNacimiento = $datosIntegrante['fecha_nacimiento'];
+        $documento = $datosIntegrante['tipo_identificacion'];
+        $edad = Carbon::createFromFormat('Y-m-d', $fechaNacimiento)->age;
+
+        if ($edad < 18 && $documento === 'CC')
+        {
+            $errores['edad'] = [
+                'La persona no cuenta con la edad suficiente para contar con cedula de ciudadania',
+            ];
+        }
+
+        return $errores;
     }
+
 
     public function guardadoFinal(array $respuestas)
     {

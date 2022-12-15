@@ -127,7 +127,6 @@ class IntegrantesController extends Controller
 
     protected function crearIntegrante(array $datos, $encuesta)
     {
-
         $controlIntegrante = new ControlIntegrante($datos, $encuesta);
         return $controlIntegrante->crearIntegrante();
     }
