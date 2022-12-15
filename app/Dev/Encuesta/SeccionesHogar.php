@@ -23,16 +23,14 @@ class SeccionesHogar
     {
         foreach ($this->secciones as $seccion)
         {
+            $puntajeControl = new Puntaje($seccion['respuestas']);
+            $this->puntaje += $puntajeControl->getPuntaje();
+            $this->errores = array_merge($this->errores, $puntajeControl->getErrores());
 
             if (empty($seccion['ref_seccion']) && empty($seccion['respuestas']))
             {
                 return null;
             }
-
-
-            $puntajeControl = new Puntaje($seccion['respuestas']);
-            $this->puntaje += $puntajeControl->getPuntaje();
-            $this->errores = array_merge($this->errores, $puntajeControl->getErrores());
 
             //agregar id del hogar
             $seccion['respuestas']['hogar_id'] = $this->hogar->id;

@@ -7,14 +7,16 @@ use App\Models\Integrantes;
 
 class SeccionesIntegrante
 {
+    public int $puntaje;
+    protected array $errores;
 
     public function __construct(
         protected Integrantes $integrante,
         protected array $secciones = [],
-        public int $puntaje = 0,
-        protected array $errores = [],
     )
     {
+        $this->puntaje = 0;
+        $this->errores = [];
     }
 
     public function recorrerSecciones()

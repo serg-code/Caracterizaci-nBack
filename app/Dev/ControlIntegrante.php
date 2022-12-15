@@ -152,6 +152,7 @@ class ControlIntegrante
                 'ref_campo' => $refCampo,
                 'pregunta' => $pregunta->descripcion,
                 'respuesta' => $respuestaFormulario,
+                // 'puntaje' => ?,
             ]);
             $respuesta->save();
         }

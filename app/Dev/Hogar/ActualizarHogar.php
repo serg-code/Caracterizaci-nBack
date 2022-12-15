@@ -10,6 +10,7 @@ class ActualizarHogar
 {
     protected Hogar $hogar;
     protected RespuestaHttp $respuesta;
+    protected array $errores;
 
     public function __construct(
         protected array $datosActualizarHogar,
@@ -21,6 +22,7 @@ class ActualizarHogar
             'Internal Server Error',
             'Algo ha salido mal al momento de actualizar los datos del hogar'
         );
+        $this->errores = [];
         $this->actualizar();
     }
 
@@ -54,6 +56,7 @@ class ActualizarHogar
         $seccionesHogar = new SeccionesHogar($hogar, $secciones);
         $seccionesHogar->recorrer();
         $hogar->puntaje_obtenido = $seccionesHogar->puntaje;
+        $this->errores = $seccionesHogar->getErrores();
         $hogar->update($hogar->attributesToArray());
 
         return $hogar;
@@ -67,5 +70,10 @@ class ActualizarHogar
     public function getRespuesta(): RespuestaHttp
     {
         return $this->respuesta;
+    }
+
+    public function getErrores(): array
+    {
+        return $this->errores;
     }
 }

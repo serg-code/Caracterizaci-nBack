@@ -32,6 +32,7 @@ class Hogar extends Model
         'direccion',
         'geolocalizacion',
         'encuesta',
+        'estado_registro',
     ];
 
     protected $hidden = [
@@ -57,8 +58,8 @@ class Hogar extends Model
     public static function actualizarHogar(array $datos): ?Hogar
     {
         $hogar =  Hogar::find($datos['id'] ?? 'uuid');
-        $encuesta = $datos['encuesta'];
-        $hogar->encuesta = $encuesta;
+        // $encuesta = $datos['encuesta'] ?? $hogar->encuesta;
+        // $hogar->encuesta = $encuesta;
         // $hogar->encuesta = (object) $encuesta;
         if (!empty($hogar))
         {
@@ -71,7 +72,7 @@ class Hogar extends Model
                 'direccion' => $datos['direccion'] ?? $hogar->direccion,
                 'geolocalizacion' => $datos['geolocalizacion'] ?? $hogar->geolocalizacion,
                 'encuesta' => $datos['encuesta'] ?? $hogar->encuesta,
-                'estado_registro',
+                'estado_registro' => $datos['estado_registro'] ?? $hogar->estado_registro,
             ]);
 
             return $hogar;
