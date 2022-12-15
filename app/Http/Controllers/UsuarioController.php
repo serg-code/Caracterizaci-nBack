@@ -61,6 +61,9 @@ class UsuarioController extends Controller
                 'name' => 'required',
                 'email' => 'required|email|unique:users,email',
                 'password' => 'required',
+                'tipo_identificacion' => 'required|exists:tipo_identificacion,id',
+                'identificacion' => 'required|unique:users,identificacion',
+                'telefono' => 'required',
             ],
             [
                 'name.required' => 'La contraseña es necesaria',
@@ -68,6 +71,11 @@ class UsuarioController extends Controller
                 'email.email' => 'El correo ingresado debe se un correo valido',
                 'email.unique' => 'El correo no es valido',
                 'password' => 'La contraseña es requerida',
+                'tipo_identificacion.required' => 'El tipo de identificacion es necesario',
+                'tipo_identificacion.exist' => 'El tipo de identificacion no es valido',
+                'identificacion.required' => 'La identificacion es necesaria',
+                'identificacion.unique' => 'Esta identifiacion ya fue registrado',
+                'telefono.required' => 'El telefono es necesario',
             ]
         );
 

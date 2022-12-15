@@ -15,7 +15,14 @@ class UsuariosSeeder extends Seeder
      */
     public function run()
     {
-        $usuario = new User(['name' => 'Super Administrador', 'email' => 'mail@mail.com', 'password' => '123asd']);
+        $usuario = new User([
+            'name' => 'Super Administrador',
+            'email' => 'mail@mail.com',
+            'password' => '123asd',
+            'tipo_identificacion' => 'CC',
+            'identificacion' => '1234567890',
+            'telefono' => '3216549870',
+        ]);
         $usuario->save();
         $usuario->assignRole('Super Administrador');
     }
