@@ -29,7 +29,7 @@ class SeccionesIntegrante
 
             if (empty($seccion['ref_seccion']) && empty($seccion['respuestas']))
             {
-                return null;
+                continue;
             }
 
             $seccion['respuestas']['id_integrante'] = $this->integrante->id;
@@ -65,47 +65,60 @@ class SeccionesIntegrante
         ];
     }
 
-    public static function obtenerListado(): array
+    public static function getPreguntasSeccion(string $seccion): ?array
+    {
+        return match ($seccion)
+        {
+            'accidentes' => SeccionesIntegrante::preguntasAccidentes(),
+
+            'cuidados_domiciliario' => SeccionesIntegrante::preguntasCuidadosDomiciliarios(),
+
+            'cuidado_enfermedades' => SeccionesIntegrante::preguntasCuidadoEnfermedades(),
+
+            default => [],
+        };
+    }
+
+    public static function preguntasAccidentes(): array
     {
         return [
+            'accidentes_laborales' => null,
+            'accidentes_transito' => new PreguntaEncuesta('tipo_lesion', 69),
+            'tipo_lesion' => null,
+        ];
+    }
 
-            //* accidentes
-            new PreguntaEncuesta('accidentes', 'accidentes_laborales'),
-            new PreguntaEncuesta('accidentes', 'accidentes_transito', [
-                'respuesta' => 69,
-                'ref_campo' => 'tipo_lesion'
-            ]),
-            new PreguntaEncuesta('accidentes', 'tipo_lesion'),
+    public static function preguntasCuidadosDomiciliarios()
+    {
+        return [
+            'cuidados_domiciliarios' => null,
+            'diagnostico_principal' => null,
+            'causa' => null,
+            'fecha_inicio_domiciliario' => null,
+            'oxigeno_domiciliario' => new PreguntaEncuesta('plan_aprobado', 85),
+            'plan_aprobado' => null,
+        ];
+    }
 
-            //* cuidados domiciliarios
-            new PreguntaEncuesta('cuidados_domiciliario', 'causa'),
-            new PreguntaEncuesta('cuidados_domiciliario', 'cuidados_domiciliarios'),
-            new PreguntaEncuesta('cuidados_domiciliario', 'diagnostico_principal'),
-            new PreguntaEncuesta('cuidados_domiciliario', 'fecha_inicio_domiciliario'),
-            new PreguntaEncuesta('cuidados_domiciliario', 'oxigeno_domiciliario', [
-                'respuesta' => 85,
-                'ref_campo' => 'plan_aprobado'
-            ]),
-            new PreguntaEncuesta('cuidados_domiciliario', 'plan_aprobado'),
-
-            //* cuidado enfermedades
-            new PreguntaEncuesta('cuidado_enfermedades', 'actividad_fisica'),
-            new PreguntaEncuesta('cuidado_enfermedades', 'artritis_remautidea'),
-            new PreguntaEncuesta('cuidado_enfermedades', 'cancer'),
-            new PreguntaEncuesta('cuidado_enfermedades', 'diabetes'),
-            new PreguntaEncuesta('cuidado_enfermedades', 'diabetes_trimestral'),
-            new PreguntaEncuesta('cuidado_enfermedades', 'enfermedades_costosas'),
-            new PreguntaEncuesta('cuidado_enfermedades', 'enfermedades_cronicas'),
-            new PreguntaEncuesta('cuidado_enfermedades', 'fuma'),
-            new PreguntaEncuesta('cuidado_enfermedades', 'hemofilia'),
-            new PreguntaEncuesta('cuidado_enfermedades', 'hemoglobina_glococilada'),
-            new PreguntaEncuesta('cuidado_enfermedades', 'hipertencion_trimestral'),
-            new PreguntaEncuesta('cuidado_enfermedades', 'insuficiencia_renal'),
-            new PreguntaEncuesta('cuidado_enfermedades', 'tension_diastolica'),
-            new PreguntaEncuesta('cuidado_enfermedades', 'tension_sistolica'),
-            new PreguntaEncuesta('cuidado_enfermedades', 'vacuna_fiebre_amarilla'),
-            new PreguntaEncuesta('cuidado_enfermedades', 'vih_sida'),
-
+    public static function preguntasCuidadoEnfermedades()
+    {
+        return [
+            'actividad_fisica' => null,
+            'artritis_remautidea' => null,
+            'cancer' => null,
+            'diabetes' => null,
+            'diabetes_trimestral' => null,
+            'enfermedades_costosas' => null,
+            'enfermedades_cronicas' => null,
+            'fuma' => null,
+            'hemofilia' => null,
+            'hemoglobina_glococilada' => null,
+            'hipertencion_trimestral' => null,
+            'insuficiencia_renal' => null,
+            'tension_diastolica' => null,
+            'tension_sistolica' => null,
+            'vacuna_fiebre_amarilla' => null,
+            'vih_sida' => null,
         ];
     }
 }

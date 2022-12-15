@@ -36,13 +36,18 @@ class Puntaje
             $pregunta = Pregunta::ObtenerPregunta($refCampo);
             if (empty($pregunta))
             {
-                $this->errores[$refCampo] = ["$refCampo no es una pregunta valida"];
-                return null;
+                // $this->errores[$refCampo] = ["$refCampo no es una pregunta valida"];
+                continue;
             }
 
             $resultado = OpcionPregunta::buscarRespuestaOpcion($pregunta, $respuesta);
             if ($resultado->estado === 'error')
             {
+                if (empty($respuesta))
+                {
+                    continue;
+                }
+
                 $this->errores[$refCampo] = ["$respuesta no es una respuesta valida para $refCampo"];
             }
 

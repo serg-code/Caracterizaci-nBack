@@ -158,6 +158,7 @@ class ControlIntegrante
         foreach ($respuestas as $refCampo => $respuestaFormulario)
         {
             $pregunta = Pregunta::where('ref_campo', '=', $refCampo)->first();
+
             $respuesta = new RespuestaIntegrante([
                 'id_integrante' => $this->integrante->id,
                 'ref_campo' => $refCampo,

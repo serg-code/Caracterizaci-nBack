@@ -21,7 +21,6 @@ class OpcionPregunta
 
         foreach ($opcionesPregunta as $opcion)
         {
-            // dd($opcionesPregunta);
             if ($opcion->id == $respuesta)
             {
                 return new Notificacion(

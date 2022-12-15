@@ -6,12 +6,23 @@ use App\Dev\ControlIntegrante;
 use App\Dev\Encuesta\SeccionesIntegrante;
 use App\Dev\RespuestaHttp;
 use App\Http\Controllers\Controller;
+use App\Models\Integrantes;
+use App\Models\Pregunta;
 use App\Models\respuestas\RespuestaIntegrante;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class IntegranteFinalizadoController extends Controller
 {
+    protected Integrantes $integrante;
+    protected array $errores;
+    protected array $secciones;
+
+    public function __construct()
+    {
+        $this->errores = [];
+    }
+
     public function finalizarIntegrante(Request $request)
     {
         $validacion = Validator::make(
@@ -36,55 +47,57 @@ class IntegranteFinalizadoController extends Controller
             );
         }
 
-        $integrante = $request->input('integrante');
+        $integrantePeticion = $request->input('integrante');
         $encuesta = $request->input('encuesta');
 
-        $controlIntegrante = new ControlIntegrante($integrante, $encuesta);
-        $controlIntegrante->actualizarIntegrante(false);
-        $errores = $controlIntegrante->getErrores();
+        $errorValidacion = $this->validacion($integrantePeticion, $encuesta);
 
-        if (!empty($errores))
+        if (!empty($errorValidacion))
         {
-            return RespuestaHttp::respuesta(
-                400,
-                'bad request',
-                'Encontramos algunos errores en la informacion',
-                [
-                    $errores,
-
-                ]
-            );
+            return RespuestaHttp::respuestaObjeto($errorValidacion);
         }
 
-        //* guardado final
-        $secciones = $integrante['secciones'];
 
-        $errorSecciones = $this->validarSecciones($secciones);
+        $respuestasIintegrante = new RespuestaIntegrante(['id_integrante' => $this->integrante->id]);
+        $respuestasIintegrante->eliminarRespuestas();
+        $this->secciones = $integrantePeticion['secciones'];
 
-        $errores = array_merge($errorSecciones);
+        $seccionAccidentes = $this->secciones['accidentes'];
+        $this->recorrerRespuestas(
+            $seccionAccidentes['respuestas'],
+            $seccionAccidentes['ref_seccion']
+        );
 
-        if (!empty($errores))
+        $seccionCuidadosDomiciliario = $this->secciones['cuidados_domiciliario'];
+        $this->recorrerRespuestas(
+            $seccionCuidadosDomiciliario['respuestas'],
+            $seccionCuidadosDomiciliario['ref_seccion']
+        );
+
+        $seccionCuidadoEnfermedades = $this->secciones['cuidado_enfermedades'];
+        $this->recorrerRespuestas(
+            $seccionCuidadoEnfermedades['respuestas'],
+            $seccionCuidadoEnfermedades['ref_seccion']
+        );
+
+        if (!empty($this->errores))
         {
             return RespuestaHttp::respuesta(
                 400,
                 'Bad request',
-                'Encontramos unos errores en la validacion',
-                $errores
+                'Encontrmos errores al validar la encuesta',
+                $this->errores
             );
         }
 
-        $integrante = $controlIntegrante->getIntegrante();
-        $respuestasIintegrante = new RespuestaIntegrante(['id_integrante' => $integrante->id]);
-        $respuestasIintegrante->eliminarRespuestas();
-
-        foreach ($secciones as $seccion)
+        foreach ($this->secciones as $seccion)
         {
             $respuestas = $seccion['respuestas'];
-            $controlIntegrante->guardadoFinal($respuestas);
+            $this->guardadoFinal($respuestas);
         }
 
-        $integrante = $integrante->actualizarIntegrante([
-            'id' => $integrante->id,
+        $this->integrante->actualizarIntegrante([
+            'id' => $this->integrante->id,
             'estado_registro' => 'FINALIZADO'
         ]);
 
@@ -93,7 +106,7 @@ class IntegranteFinalizadoController extends Controller
             'succes',
             'Encuesta validada y guardada exitosamente',
             [
-                'integrante' => $integrante,
+                'integrante' => $this->integrante,
             ]
         );
     }
@@ -128,5 +141,87 @@ class IntegranteFinalizadoController extends Controller
         }
 
         return false;
+    }
+
+    protected function validacion(array $integrante, array $encuesta): ?RespuestaHttp
+    {
+
+        $controlIntegrante = new ControlIntegrante($integrante, $encuesta);
+        $controlIntegrante->actualizarIntegrante(false);
+        $errores = $controlIntegrante->getErrores();
+
+        if (!empty($errores))
+        {
+            return new RespuestaHttp(
+                400,
+                'bad request',
+                'Encontramos algunos errores en la informacion',
+                [
+                    $errores,
+
+                ]
+            );
+        }
+
+        $secciones = $integrante['secciones'];
+        $errorSecciones = $this->validarSecciones($secciones);
+        $errores = array_merge($errorSecciones);
+
+        if (!empty($errores))
+        {
+            return new RespuestaHttp(
+                400,
+                'Bad request',
+                'Encontramos unos errores en la validacion',
+                $errores
+            );
+        }
+
+        $this->integrante = $controlIntegrante->getIntegrante();
+        return null;
+    }
+
+    protected function guardadoFinal(array $respuestas)
+    {
+        foreach ($respuestas as $refCampo => $respuestaFormulario)
+        {
+            $pregunta = Pregunta::where('ref_campo', '=', $refCampo)->first();
+            $respuesta = new RespuestaIntegrante([
+                'id_integrante' => $this->integrante->id,
+                'ref_campo' => $refCampo,
+                'pregunta' => $pregunta->descripcion,
+                'respuesta' => $respuestaFormulario,
+                // 'puntaje' => ?,
+            ]);
+            $respuesta->save();
+        }
+    }
+
+    protected function recorrerRespuestas(array $respuestas, string $refSeccion)
+    {
+        $listadoPreguntas = SeccionesIntegrante::getPreguntasSeccion($refSeccion);
+
+        foreach ($listadoPreguntas as $ref_campo => $validaciones)
+        {
+            if (empty($respuestas[$ref_campo]))
+            {
+                $this->errores[$ref_campo] = ["No encontramos la pregunta $ref_campo"];
+                continue;
+            }
+
+            if (empty($validaciones))
+            {
+                continue;
+            }
+
+            if ($respuestas[$ref_campo] != $validaciones->respuestaHabilita)
+            {
+                // dd('eliminar');
+                unset($listadoPreguntas[$validaciones->refCampoHabilita]);
+                unset($this->secciones[$refSeccion]['respuestas'][$validaciones->refCampoHabilita]);
+            }
+        }
+
+        return $listadoPreguntas;
     }
 }
