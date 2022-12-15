@@ -148,14 +148,7 @@ class ControlIntegrante
         //* validar edad y tipo de documento
         $fechaNacimiento = $datosIntegrante['fecha_nacimiento'];
         $documento = $datosIntegrante['tipo_identificacion'];
-        $edad = Carbon::createFromFormat('Y-m-d', $fechaNacimiento)->age;
-
-        if ($edad < 18 && $documento === 'CC')
-        {
-            $errores['edad'] = [
-                'La persona no cuenta con la edad suficiente para contar con cedula de ciudadania',
-            ];
-        }
+        $errores += $this->validarEdadDocumento($fechaNacimiento, $documento);
 
         return $errores;
     }
@@ -185,5 +178,27 @@ class ControlIntegrante
     public function getIntegrante(): Integrantes
     {
         return $this->integrante;
+    }
+
+    protected function validarEdadDocumento(string $fechaNacimiento, string $tipoDocumento): array
+    {
+        $erroes = [];
+        $edad = Carbon::createFromFormat('Y-m-d', $fechaNacimiento)->age;
+
+        if ($edad < 18 && $tipoDocumento === 'CC')
+        {
+            $errores['edad'] = [
+                'La persona no cuenta con la edad suficiente para contar con cedula de ciudadania',
+            ];
+        }
+
+        if ($edad >= 18 && $tipoDocumento === 'TI')
+        {
+            $erroes['tipo_documento'] = [
+                "La persona cuenta con $edad años de edad, no es valido que utilice Targeta de identidad como tipo de documento"
+            ];
+        }
+
+        return $erroes;
     }
 }
