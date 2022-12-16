@@ -18,6 +18,7 @@ class SaludMentalSeeder extends Seeder
         Pregunta::create(["ref_campo" => "depresion", "ref_seccion" => "salud_mental ", "descripcion" => "Intento de suicidio", "tipo" => "selección"]);
         Pregunta::create(["ref_campo" => "intento_suicidio", "ref_seccion" => "salud_mental ", "descripcion" => "Intento de suicidio", "tipo" => "selección"]);
         Pregunta::create(["ref_campo" => "trastorno_afectivo", "ref_seccion" => "salud_mental ", "descripcion" => "Trastorno afectivo", "tipo" => "selección"]);
+        Pregunta::create(["ref_campo" => "esquizofrenia", "ref_seccion" => "salud_mental ", "descripcion" => "Esquizofrenia", "tipo" => "selección"]);
         Pregunta::create(["ref_campo" => "bulimia", "ref_seccion" => "salud_mental ", "descripcion" => "Bulímia", "tipo" => "selección"]);
         Pregunta::create(["ref_campo" => "anorexia", "ref_seccion" => "salud_mental ", "descripcion" => "Anorexía", "tipo" => "selección"]);
         Pregunta::create(["ref_campo" => "tratamiento", "ref_seccion" => "salud_mental ", "descripcion" => "¿Esta en tratamiento?", "tipo" => "selección"]);
