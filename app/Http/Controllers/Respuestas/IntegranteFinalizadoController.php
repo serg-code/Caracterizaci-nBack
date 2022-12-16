@@ -201,9 +201,15 @@ class IntegranteFinalizadoController extends Controller
     protected function recorrerRespuestas(array $respuestas, string $refSeccion)
     {
         $listadoPreguntas = SeccionesIntegrante::getPreguntasSeccion($refSeccion);
-        // dd($respuestas);
+        $listaExcepciones = [];
+
         foreach ($listadoPreguntas as $ref_campo => $validaciones)
         {
+
+            if (!empty($listaExcepciones[$ref_campo]))
+            {
+                continue;
+            }
 
             if (empty($respuestas[$ref_campo]))
             {
@@ -213,18 +219,15 @@ class IntegranteFinalizadoController extends Controller
 
             $error = $this->validarRespuesta($ref_campo, $respuestas[$ref_campo]);
 
-            if (!empty($validaciones) && $respuestas[$ref_campo] != $validaciones->respuestaHabilita)
+            if (empty($error) && !empty($validaciones) && $respuestas[$ref_campo] != $validaciones->respuestaHabilita)
             {
-                //eliminar de las respuestas
-                unset($listadoPreguntas[$validaciones->refCampoHabilita]);
+                $listaExcepciones[$validaciones->refCampoHabilita] = true;
                 unset($this->secciones[$refSeccion]['respuestas'][$validaciones->refCampoHabilita]);
                 continue;
-                dd("respuesta: " . $respuestas[$ref_campo] . " ref_campo: $ref_campo");
             }
 
-            if (!empty($error))
+            if (!empty($error) && !empty($respuestas[$ref_campo]))
             {
-                dd('mal: ' . $ref_campo);
                 $this->secciones[$refSeccion];
                 $this->errores[$ref_campo] = [$error];
             }
