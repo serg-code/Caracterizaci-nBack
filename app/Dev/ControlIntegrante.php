@@ -120,6 +120,7 @@ class ControlIntegrante
                 'rh' => 'required',
                 'estado_civil' => 'required',
                 'fecha_nacimiento' => 'required|date',
+                'telefono' => 'max:10',
                 // 'correo' => 'email'
             ],
             [
@@ -135,6 +136,7 @@ class ControlIntegrante
                 'correo.required' => 'El correo es obligatoria',
                 'fecha_nacimiento.required' => 'La fecha de nacimiento es necesaria',
                 'fecha_nacimiento.date' => 'La fecha de nacimiento no cumple con el formato necesario',
+                'telefono.max' => ' Este número de teléfono es muy largo, por favor revíselo',
             ]
         );
 

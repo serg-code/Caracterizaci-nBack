@@ -36,6 +36,7 @@ class BarrioVeredaController extends Controller
         //filtro de usuarios
         $hogares = QueryBuilder::for(BarrioVereda::class)
             ->allowedFilters([
+                AllowedFilter::exact('id'),
                 AllowedFilter::exact('id_municipio'),
                 AllowedFilter::exact('tipo'),
                 AllowedFilter::scope('search'),

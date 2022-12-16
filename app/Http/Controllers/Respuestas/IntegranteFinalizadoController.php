@@ -211,32 +211,45 @@ class IntegranteFinalizadoController extends Controller
                 continue;
             }
 
+            $error = $this->validarRespuesta($ref_campo, $respuestas[$ref_campo]);
+
             if (!empty($validaciones) && $respuestas[$ref_campo] != $validaciones->respuestaHabilita)
             {
                 //eliminar de las respuestas
                 unset($listadoPreguntas[$validaciones->refCampoHabilita]);
                 unset($this->secciones[$refSeccion]['respuestas'][$validaciones->refCampoHabilita]);
+                continue;
+                dd("respuesta: " . $respuestas[$ref_campo] . " ref_campo: $ref_campo");
             }
 
-            $this->validarRespuesta($ref_campo, $respuestas[$ref_campo]);
+            if (!empty($error))
+            {
+                dd('mal: ' . $ref_campo);
+                $this->secciones[$refSeccion];
+                $this->errores[$ref_campo] = [$error];
+            }
         }
     }
 
-    protected function validarRespuesta(string $ref_campo, $respuesta)
+    protected function validarRespuesta(string $ref_campo, $respuesta): ?string
     {
         $pregunta = Pregunta::ObtenerPregunta($ref_campo);
         if (empty($pregunta))
         {
-            $this->errores[$ref_campo] = ["$ref_campo no es una pregunta valida"];
-            return null;
+            // $this->errores[$ref_campo] = ["$ref_campo no es una pregunta valida"];
+            // return null;
+            return "$ref_campo no es una pregunta valida";
         }
 
         $resultado = OpcionPregunta::buscarRespuestaOpcion($pregunta, $respuesta);
         if ($resultado->estado === 'error')
         {
-            $this->errores[$ref_campo] = [
-                "$respuesta no es una respuesta valida para $ref_campo",
-            ];
+            // $this->errores[$ref_campo] = [
+            //     "$respuesta no es una respuesta valida para $ref_campo",
+            // ];
+            return "$respuesta no es una respuesta valida para $ref_campo";
         }
+
+        return null;
     }
 }
