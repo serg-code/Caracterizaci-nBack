@@ -58,4 +58,41 @@ class SeccionesHogar
     {
         return $this->errores;
     }
+
+    public static function getPreguntasSeccion(string $seccion): array
+    {
+        return match ($seccion)
+        {
+            'factores_protectores' => SeccionesHogar::preguntasFactoresProtectores(),
+            'habitos_consumo' => SeccionesHogar::preguntasHabitosConsumo(),
+            default => [],
+        };
+    }
+
+    public static function preguntasFactoresProtectores(): array
+    {
+        return [
+            'tipo_familia' => null,
+            'duermen_ninos_ninas_adultos' => null,
+            'problemas_alcohol' => null,
+            'consume_tranquilizantes' => null,
+            'relaciones_cordiales_respetuosas' => null,
+            'lavar_manos_antes_comer' => null,
+            'lavar_manos_antes_preparar_alimentos' => null,
+            'fumigar_vivienda' => null,
+            'secretaria_fumigado' => null,
+            'acido_borico_cucarachas' => null,
+        ];
+    }
+
+    public static function preguntasHabitosConsumo(): array
+    {
+        return [
+            'consumo_huevos_crudos' => null,
+            'alimentos_perecederos' => null,
+            'hierve_leche' => null,
+            'lavar_frutas_verduras' => null,
+            'alimentos_crudos_separados_cocidos' => null,
+        ];
+    }
 }

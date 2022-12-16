@@ -7,6 +7,9 @@ use App\Models\Secciones\Hogar\HabitosConsumo;
 use App\Models\Secciones\Integrantes\Accidente;
 use App\Models\Secciones\Integrantes\CuidadoDomiciliario;
 use App\Models\Secciones\Integrantes\CuidadoEnfermedad;
+use App\Models\Secciones\Integrantes\EnfermedadesSaludPublica;
+use App\Models\Secciones\Integrantes\Morbilidad;
+use App\Models\Secciones\Integrantes\SaludMental;
 
 class Secciones
 {
@@ -23,6 +26,9 @@ class Secciones
             'accidentes' => new Accidente($datosGuardar),
             'cuidado_enfermedades' => new CuidadoEnfermedad($datosGuardar),
             'cuidados_domiciliario' => new CuidadoDomiciliario($datosGuardar),
+            'enfermedades_salud_publica' => new EnfermedadesSaludPublica($datosGuardar),
+            'morbilidad' => new Morbilidad($datosGuardar),
+            'salud_mental' => new SaludMental($datosGuardar),
 
             default => null,
         };

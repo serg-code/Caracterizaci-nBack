@@ -70,10 +70,9 @@ class SeccionesIntegrante
         return match ($seccion)
         {
             'accidentes' => SeccionesIntegrante::preguntasAccidentes(),
-
             'cuidados_domiciliario' => SeccionesIntegrante::preguntasCuidadosDomiciliarios(),
-
             'cuidado_enfermedades' => SeccionesIntegrante::preguntasCuidadoEnfermedades(),
+            'salud_mental' => SeccionesIntegrante::preguntasSaludMental(),
 
             default => [],
         };
@@ -88,7 +87,7 @@ class SeccionesIntegrante
         ];
     }
 
-    public static function preguntasCuidadosDomiciliarios()
+    public static function preguntasCuidadosDomiciliarios(): array
     {
         return [
             'cuidados_domiciliarios' => null,
@@ -100,7 +99,7 @@ class SeccionesIntegrante
         ];
     }
 
-    public static function preguntasCuidadoEnfermedades()
+    public static function preguntasCuidadoEnfermedades(): array
     {
         return [
             'actividad_fisica' => null,
@@ -119,6 +118,25 @@ class SeccionesIntegrante
             'tension_sistolica' => null,
             'vacuna_fiebre_amarilla' => null,
             'vih_sida' => null,
+        ];
+    }
+
+    public static function preguntasSaludMental(): array
+    {
+        return [
+            'depresion' => null,
+            'intento_suicidio' => null,
+            'trastorno_afectivo' => null,
+            'bulimia' => null,
+            'anorexia' => null,
+            'tratamiento' => null,
+            'diagnostico' => null,
+            'violencia_fisica' => null,
+            'violencia_psicologica' => null,
+            'violencia_sexual' => null,
+            'violencia_institucional' => null,
+            'violencia_social' => null,
+            'violencia_gestacion' => null,
         ];
     }
 }
