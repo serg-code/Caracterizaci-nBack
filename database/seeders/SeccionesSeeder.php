@@ -25,5 +25,7 @@ class SeccionesSeeder extends Seeder
         Seccion::create(['ref_seccion' => 'cuidados_domiciliario']);
         Seccion::create(['ref_seccion' => 'cuidado_enfermedades']);
         Seccion::create(['ref_seccion' => 'salud_mental']);
+        Seccion::create(['ref_seccion' => 'enfermedades_salud_publica']);
+        Seccion::create(['ref_seccion' => 'morbilidad']);
     }
 }
