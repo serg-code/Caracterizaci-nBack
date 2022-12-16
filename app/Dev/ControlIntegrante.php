@@ -177,7 +177,7 @@ class ControlIntegrante
         return $this->errores;
     }
 
-    public function getIntegrante(): Integrantes
+    public function getIntegrante(): ?Integrantes
     {
         return $this->integrante;
     }

@@ -144,10 +144,22 @@ class IntegranteFinalizadoController extends Controller
         return false;
     }
 
-    protected function validacion(array $integrante, array $encuesta): ?RespuestaHttp
+    protected function validacion(array $integranteDatos, array $encuesta): ?RespuestaHttp
     {
+        $controlIntegrante = new ControlIntegrante($integranteDatos, $encuesta);
+        $integrante = Integrantes::find($integranteDatos['id']);
 
-        $controlIntegrante = new ControlIntegrante($integrante, $encuesta);
+        if (empty($integrante))
+        {
+            $errores = $controlIntegrante->validarCrearIntegrante($integranteDatos);
+            if (empty($errores))
+            {
+                $integrante = new Integrantes($integranteDatos);
+                $integrante->save();
+            }
+        }
+
+
         $controlIntegrante->actualizarIntegrante(false);
         $errores = $controlIntegrante->getErrores();
 
@@ -164,7 +176,7 @@ class IntegranteFinalizadoController extends Controller
             );
         }
 
-        $secciones = $integrante['secciones'];
+        $secciones = $integranteDatos['secciones'];
         $errorSecciones = $this->validarSecciones($secciones);
         $errores = array_merge($errorSecciones);
 
