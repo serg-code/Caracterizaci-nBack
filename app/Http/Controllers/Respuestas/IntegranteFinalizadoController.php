@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Respuestas;
 
 use App\Dev\ControlIntegrante;
+use App\Dev\Encuesta\OpcionPregunta;
 use App\Dev\Encuesta\SeccionesIntegrante;
 use App\Dev\RespuestaHttp;
 use App\Http\Controllers\Controller;
@@ -200,28 +201,42 @@ class IntegranteFinalizadoController extends Controller
     protected function recorrerRespuestas(array $respuestas, string $refSeccion)
     {
         $listadoPreguntas = SeccionesIntegrante::getPreguntasSeccion($refSeccion);
-
+        // dd($respuestas);
         foreach ($listadoPreguntas as $ref_campo => $validaciones)
         {
+
             if (empty($respuestas[$ref_campo]))
             {
                 $this->errores[$ref_campo] = ["No encontramos la pregunta $ref_campo"];
                 continue;
             }
 
-            if (empty($validaciones))
+            if (!empty($validaciones) && $respuestas[$ref_campo] != $validaciones->respuestaHabilita)
             {
-                continue;
-            }
-
-            if ($respuestas[$ref_campo] != $validaciones->respuestaHabilita)
-            {
-                // dd('eliminar');
+                //eliminar de las respuestas
                 unset($listadoPreguntas[$validaciones->refCampoHabilita]);
                 unset($this->secciones[$refSeccion]['respuestas'][$validaciones->refCampoHabilita]);
             }
+
+            $this->validarRespuesta($ref_campo, $respuestas[$ref_campo]);
+        }
+    }
+
+    protected function validarRespuesta(string $ref_campo, $respuesta)
+    {
+        $pregunta = Pregunta::ObtenerPregunta($ref_campo);
+        if (empty($pregunta))
+        {
+            $this->errores[$ref_campo] = ["$ref_campo no es una pregunta valida"];
+            return null;
         }
 
-        return $listadoPreguntas;
+        $resultado = OpcionPregunta::buscarRespuestaOpcion($pregunta, $respuesta);
+        if ($resultado->estado === 'error')
+        {
+            $this->errores[$ref_campo] = [
+                "$respuesta no es una respuesta valida para $ref_campo",
+            ];
+        }
     }
 }
