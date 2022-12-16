@@ -23,8 +23,8 @@ class salud_mentalSeeder extends Seeder
         Opcion::create(["id" => "92", "ref_campo" =>  "depresión", "pregunta_opcion" => "SI", "valor" => "3"]);
         Opcion::create(["id" => "93", "ref_campo" =>  "intento_suicidio", "pregunta_opcion" => "NO", "valor" => "1"]);
         Opcion::create(["id" => "94", "ref_campo" =>  "intento_suicidio", "pregunta_opcion" => "SI", "valor" => "3"]);
-        // Opcion::create(["id" => "95", "ref_campo" =>  "esquizofrenia", "pregunta_opcion" => "NO", "valor" => "1"]);
-        // Opcion::create(["id" => "96", "ref_campo" =>  "esquizofrenia", "pregunta_opcion" => "SI", "valor" => "3"]);
+        Opcion::create(["id" => "95", "ref_campo" =>  "esquizofrenia", "pregunta_opcion" => "NO", "valor" => "1"]);
+        Opcion::create(["id" => "96", "ref_campo" =>  "esquizofrenia", "pregunta_opcion" => "SI", "valor" => "3"]);
         Opcion::create(["id" => "97", "ref_campo" =>  "trastorno_afectivo", "pregunta_opcion" => "NO", "valor" => "1"]);
         Opcion::create(["id" => "98", "ref_campo" =>  "trastorno_afectivo", "pregunta_opcion" => "SI", "valor" => "3"]);
         Opcion::create(["id" => "99", "ref_campo" =>  "bulimia", "pregunta_opcion" => "NO", "valor" => "1"]);
