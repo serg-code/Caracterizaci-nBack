@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('morbilidad', function (Blueprint $table) {
             $table->uuid('id_integrante')->unique();
             $table->string('enfermedad_cronica')->nullable();
-            $table->string('enfermedad_cronica')->nullable();
+            $table->string('enfermedad_cronica_cual')->nullable();
             $table->string('controlada')->nullable();
             $table->string('propiedades_respiratorio')->nullable();
             $table->string('propiedades_piel')->nullable();
