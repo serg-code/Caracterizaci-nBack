@@ -5,9 +5,11 @@ namespace Database\Seeders;
 use Database\Seeders\Opciones\accidenteseeder;
 use Database\Seeders\Opciones\cuidado_enfermedadesSeeder;
 use Database\Seeders\Opciones\cuidados_domiciliariosSeeder;
+use Database\Seeders\Opciones\salud_mentalSeeder;
 use Database\Seeders\Preguntas\AccidentesSeeder;
 use Database\Seeders\Preguntas\CuidadoDomiciliarioSeeder;
 use Database\Seeders\Preguntas\CuidadoEnfermedadesSeeder;
+use Database\Seeders\Preguntas\SaludMentalSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -35,12 +37,14 @@ class DatabaseSeeder extends Seeder
             new AccidentesSeeder(),
             new CuidadoDomiciliarioSeeder(),
             new CuidadoEnfermedadesSeeder(),
+            new SaludMentalSeeder(),
 
             //opciones
             new OpcionesSeeder(),
             new accidenteseeder(),
             new cuidados_domiciliariosSeeder(),
             new cuidado_enfermedadesSeeder(),
+            new salud_mentalSeeder(),
 
             //departamentos y municipios
             new DepartamentosSeeder(),

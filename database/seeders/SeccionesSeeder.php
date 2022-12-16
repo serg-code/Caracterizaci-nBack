@@ -14,6 +14,8 @@ class SeccionesSeeder extends Seeder
      */
     public function run()
     {
+        // Seccion::create(['ref_seccion' => '']);
+
         //* Secciones del hogar
         Seccion::create(['ref_seccion' => 'factores_protectores']);
         Seccion::create(['ref_seccion' => 'habitos_consumo']);
@@ -22,5 +24,6 @@ class SeccionesSeeder extends Seeder
         Seccion::create(['ref_seccion' => 'accidentes']);
         Seccion::create(['ref_seccion' => 'cuidados_domiciliario']);
         Seccion::create(['ref_seccion' => 'cuidado_enfermedades']);
+        Seccion::create(['ref_seccion' => 'salud_mental']);
     }
 }
