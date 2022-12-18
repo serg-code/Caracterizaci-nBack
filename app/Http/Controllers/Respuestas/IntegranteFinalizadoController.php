@@ -18,10 +18,12 @@ class IntegranteFinalizadoController extends Controller
     protected Integrantes $integrante;
     protected array $errores;
     protected array $secciones;
+    protected int $puntuacion;
 
     public function __construct()
     {
         $this->errores = [];
+        $this->puntuacion = 0;
     }
 
     public function finalizarIntegrante(Request $request)
@@ -99,7 +101,8 @@ class IntegranteFinalizadoController extends Controller
 
         $this->integrante->actualizarIntegrante([
             'id' => $this->integrante->id,
-            'estado_registro' => 'FINALIZADO'
+            'estado_registro' => 'FINALIZADO',
+            'puntaje_obtenido' => $this->puntuacion,
         ]);
 
         return RespuestaHttp::respuesta(
@@ -251,20 +254,20 @@ class IntegranteFinalizadoController extends Controller
         $pregunta = Pregunta::ObtenerPregunta($ref_campo);
         if (empty($pregunta))
         {
-            // $this->errores[$ref_campo] = ["$ref_campo no es una pregunta valida"];
-            // return null;
             return "$ref_campo no es una pregunta valida";
         }
 
         $resultado = OpcionPregunta::buscarRespuestaOpcion($pregunta, $respuesta);
         if ($resultado->estado === 'error')
         {
-            // $this->errores[$ref_campo] = [
-            //     "$respuesta no es una respuesta valida para $ref_campo",
-            // ];
             return "$respuesta no es una respuesta valida para $ref_campo";
         }
 
+        if (!empty($resultado->datos['puntaje']))
+        {
+
+            $this->puntuacion += $resultado->datos['puntaje'];
+        }
         return null;
     }
 }
