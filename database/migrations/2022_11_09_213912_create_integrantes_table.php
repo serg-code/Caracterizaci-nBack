@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('primer_apellido');
             $table->string('segundo_apellido')->nullable();
             $table->string('fecha_nacimiento');
+            $table->enum('sexo', ['F', 'M']);
             $table->enum('rh', ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']);
             $table->enum('estado_civil', [
                 'soltero',
