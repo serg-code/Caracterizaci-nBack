@@ -19,7 +19,7 @@ class salud_mentalSeeder extends Seeder
      */
     public function run()
     {
-        Opcion::create(["id" => "91", "ref_campo" =>  "depresion", "pregunta_opcion" => "SI", "valor" => "1"]);
+        Opcion::create(["id" => "91", "ref_campo" =>  "depresion", "pregunta_opcion" => "NO", "valor" => "1"]);
         Opcion::create(["id" => "92", "ref_campo" =>  "depresion", "pregunta_opcion" => "SI", "valor" => "3"]);
         Opcion::create(["id" => "93", "ref_campo" =>  "intento_suicidio", "pregunta_opcion" => "NO", "valor" => "1"]);
         Opcion::create(["id" => "94", "ref_campo" =>  "intento_suicidio", "pregunta_opcion" => "SI", "valor" => "3"]);
