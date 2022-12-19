@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Secciones\Integrantes\IdentificaionCiudadana;
 use Database\Seeders\Opciones\accidenteseeder;
 use Database\Seeders\Opciones\cuidado_enfermedadesSeeder;
 use Database\Seeders\Opciones\cuidados_domiciliariosSeeder;
@@ -14,6 +13,7 @@ use Database\Seeders\Preguntas\AccidentesSeeder;
 use Database\Seeders\Preguntas\CuidadoDomiciliarioSeeder;
 use Database\Seeders\Preguntas\CuidadoEnfermedadesSeeder;
 use Database\Seeders\Preguntas\MorbilidadSeeder;
+use Database\Seeders\Preguntas\PreguntasIdentificacionCiudadanaSeeder;
 use Database\Seeders\Preguntas\SaludMentalSeeder;
 use Database\Seeders\Preguntas\SaludPublicaSeeder;
 use Illuminate\Database\Seeder;
@@ -46,7 +46,7 @@ class DatabaseSeeder extends Seeder
             new SaludMentalSeeder(),
             new SaludPublicaSeeder(),
             new MorbilidadSeeder(),
-            new IdentificaionCiudadana(),
+            new PreguntasIdentificacionCiudadanaSeeder(),
 
             //opciones
             new OpcionesSeeder(),
