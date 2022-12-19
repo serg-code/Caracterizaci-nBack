@@ -36,8 +36,8 @@ class salud_publicaSeeder extends Seeder
         Opcion::create(["id"=> "135", "ref_campo" => "sika_chicungunya", "pregunta_opcion" => "SI", "valor" => "3"]);
         Opcion::create(["id"=> "136", "ref_campo" => "varicela", "pregunta_opcion" => "NO", "valor" => "1"]);
         Opcion::create(["id"=> "137", "ref_campo" => "varicela", "pregunta_opcion" => "SI", "valor" => "3"]);
-        Opcion::create(["id"=> "138", "ref_campo" => "intoxicación", "pregunta_opcion" => "NO", "valor" => "1"]);
-        Opcion::create(["id"=> "139", "ref_campo" => "intoxicación", "pregunta_opcion" => "SI", "valor" => "3"]);
+        Opcion::create(["id"=> "138", "ref_campo" => "intoxicacion", "pregunta_opcion" => "NO", "valor" => "1"]);
+        Opcion::create(["id"=> "139", "ref_campo" => "intoxicacion", "pregunta_opcion" => "SI", "valor" => "3"]);
        
     }
 }
