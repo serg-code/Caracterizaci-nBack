@@ -6,15 +6,15 @@ namespace Database\Seeders;
 use Database\Seeders\Opciones\accidenteseeder;
 use Database\Seeders\Opciones\cuidado_enfermedadesSeeder;
 use Database\Seeders\Opciones\cuidados_domiciliariosSeeder;
-use Database\Seeders\Opciones\morbilidadSeeder;
+use Database\Seeders\Opciones\morbilidadOpcionesSeeder;
 use Database\Seeders\Opciones\salud_mentalSeeder;
 use Database\Seeders\Opciones\salud_publicaSeeder;
 use Database\Seeders\Preguntas\AccidentesSeeder;
 use Database\Seeders\Preguntas\CuidadoDomiciliarioSeeder;
 use Database\Seeders\Preguntas\CuidadoEnfermedadesSeeder;
+use Database\Seeders\Preguntas\MorbilidadSeeder;
 use Database\Seeders\Preguntas\SaludMentalSeeder;
 use Database\Seeders\Preguntas\SaludPublicaSeeder;
-use App\Models\Secciones\Integrantes\Morbilidad;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -53,7 +53,7 @@ class DatabaseSeeder extends Seeder
             new cuidado_enfermedadesSeeder(),
             new salud_mentalSeeder(),
             new salud_publicaSeeder(),
-            new morbilidadSeeder(),
+            new morbilidadOpcionesSeeder(),
 
             //departamentos y municipios
             new DepartamentosSeeder(),

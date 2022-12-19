@@ -15,13 +15,10 @@ class MorbilidadSeeder extends Seeder
      */
     public function run()
     {
-Pregunta::create(["ref_campo"=> "enfermedad_cronica", "ref_seccion" => "morbilidad", "descripcion" => "Enfermedad crónica", "tipo" => "selección"]);
-Pregunta::create(["ref_campo"=> "enfermedad_cronica", "ref_seccion" => "morbilidad", "descripcion" => "Enfermedad crónica", "tipo" => "selección"]);
-Pregunta::create(["ref_campo"=> "controlada", "ref_seccion" => "morbilidad", "descripcion" => "¿Controlada?", "tipo" => "selección"]);
-Pregunta::create(["ref_campo"=> "propiedades_respiratorio", "ref_seccion" => "morbilidad", "descripcion" => "Propiedades sintomaticos respiratorio", "tipo" => "selección"]);
-Pregunta::create(["ref_campo"=> "propiedades_piel", "ref_seccion" => "morbilidad", "descripcion" => "Propiedades sintomaticos de la piel", "tipo" => "selección"]);
-Pregunta::create(["ref_campo"=> "enfermedades_congenitas", "ref_seccion" => "morbilidad", "descripcion" => "Enfermedades congenitas", "tipo" => "selección"]);
-
-
+        Pregunta::create(["ref_campo" => "enfermedad_cronica", "ref_seccion" => "morbilidad", "descripcion" => "Enfermedad crónica", "tipo" => "selección"]);
+        Pregunta::create(["ref_campo" => "controlada", "ref_seccion" => "morbilidad", "descripcion" => "¿Controlada?", "tipo" => "selección"]);
+        Pregunta::create(["ref_campo" => "propiedades_respiratorio", "ref_seccion" => "morbilidad", "descripcion" => "Propiedades sintomaticos respiratorio", "tipo" => "selección"]);
+        Pregunta::create(["ref_campo" => "propiedades_piel", "ref_seccion" => "morbilidad", "descripcion" => "Propiedades sintomaticos de la piel", "tipo" => "selección"]);
+        Pregunta::create(["ref_campo" => "enfermedades_congenitas", "ref_seccion" => "morbilidad", "descripcion" => "Enfermedades congenitas", "tipo" => "selección"]);
     }
 }
