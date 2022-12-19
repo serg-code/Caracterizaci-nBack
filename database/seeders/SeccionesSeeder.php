@@ -22,7 +22,7 @@ class SeccionesSeeder extends Seeder
 
         //* secciones del integrante
         Seccion::create(['ref_seccion' => 'accidentes']);
-        Seccion::create(['ref_seccion' => 'cuidados_domiciliario']);
+        Seccion::create(['ref_seccion' => 'cuidados_domiciliarios']);
         Seccion::create(['ref_seccion' => 'cuidado_enfermedades']);
         Seccion::create(['ref_seccion' => 'salud_mental']);
         Seccion::create(['ref_seccion' => 'enfermedades_salud_publica']);

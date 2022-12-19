@@ -71,7 +71,7 @@ class IntegranteFinalizadoController extends Controller
             $seccionAccidentes['ref_seccion']
         );
 
-        $seccionCuidadosDomiciliario = $this->secciones['cuidados_domiciliario'];
+        $seccionCuidadosDomiciliario = $this->secciones['cuidados_domiciliarios'];
         $this->recorrerRespuestas(
             $seccionCuidadosDomiciliario['respuestas'],
             $seccionCuidadosDomiciliario['ref_seccion']

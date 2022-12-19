@@ -25,7 +25,7 @@ class Secciones
             //secciones de integrantes
             'accidentes' => new Accidente($datosGuardar),
             'cuidado_enfermedades' => new CuidadoEnfermedad($datosGuardar),
-            'cuidados_domiciliario' => new CuidadoDomiciliario($datosGuardar),
+            'cuidados_domiciliarios' => new CuidadoDomiciliario($datosGuardar),
             'enfermedades_salud_publica' => new EnfermedadesSaludPublica($datosGuardar),
             'morbilidad' => new Morbilidad($datosGuardar),
             'salud_mental' => new SaludMental($datosGuardar),

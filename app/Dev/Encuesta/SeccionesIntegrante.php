@@ -70,7 +70,7 @@ class SeccionesIntegrante
         return match ($seccion)
         {
             'accidentes' => SeccionesIntegrante::preguntasAccidentes(),
-            'cuidados_domiciliario' => SeccionesIntegrante::preguntasCuidadosDomiciliarios(),
+            'cuidados_domiciliarios' => SeccionesIntegrante::preguntasCuidadosDomiciliarios(),
             'cuidado_enfermedades' => SeccionesIntegrante::preguntasCuidadoEnfermedades(),
             'salud_mental' => SeccionesIntegrante::preguntasSaludMental(),
 
