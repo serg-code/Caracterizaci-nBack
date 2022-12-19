@@ -8,6 +8,7 @@ use App\Dev\Encuesta\SeccionesIntegrante;
 use App\Dev\RespuestaHttp;
 use App\Http\Controllers\Controller;
 use App\Models\Integrantes;
+use App\Models\Opcion;
 use App\Models\Pregunta;
 use App\Models\respuestas\RespuestaIntegrante;
 use Illuminate\Http\Request;
@@ -202,12 +203,19 @@ class IntegranteFinalizadoController extends Controller
         foreach ($respuestas as $refCampo => $respuestaFormulario)
         {
             $pregunta = Pregunta::where('ref_campo', '=', $refCampo)->first();
+            $opcion = new Opcion();
+
+            if (!empty($pregunta->tipo) && $pregunta->tipo != 'texto' || $pregunta->tipo !== 'texto_largo')
+            {
+                $opcion = Opcion::find($respuestaFormulario);
+            }
+
             $respuesta = new RespuestaIntegrante([
                 'id_integrante' => $this->integrante->id,
                 'ref_campo' => $refCampo,
                 'pregunta' => $pregunta->descripcion,
                 'respuesta' => $respuestaFormulario,
-                // 'puntaje' => ?,
+                'puntaje' => $opcion->valor ?? 0,
             ]);
             $respuesta->save();
         }
@@ -220,7 +228,6 @@ class IntegranteFinalizadoController extends Controller
 
         foreach ($listadoPreguntas as $ref_campo => $validaciones)
         {
-
             if (!empty($listaExcepciones[$ref_campo]))
             {
                 continue;
@@ -228,6 +235,7 @@ class IntegranteFinalizadoController extends Controller
 
             if (empty($respuestas[$ref_campo]))
             {
+                echo "No encontramos la pregunta $ref_campo" . "</br>";
                 $this->errores[$ref_campo] = ["No encontramos la pregunta $ref_campo"];
                 continue;
             }
@@ -263,9 +271,10 @@ class IntegranteFinalizadoController extends Controller
             return "$respuesta no es una respuesta valida para $ref_campo";
         }
 
-        if (!empty($resultado->datos['puntaje']))
+        if ($resultado->estado !== 'error')
         {
-
+            // echo $resultado->datos['puntaje'] . ' - ' . $resultado->datos['pregunta'] . "</br>";
+            // echo $resultado->datos['puntaje'] . " </br>";
             $this->puntuacion += $resultado->datos['puntaje'];
         }
         return null;

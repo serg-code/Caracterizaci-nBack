@@ -9,6 +9,11 @@ class Opcion extends Model
 {
     use HasFactory;
 
+    public function __construct()
+    {
+        $this->valor = 0;
+    }
+
     protected $table = 'opciones';
 
     protected $fillable = [

@@ -23,9 +23,9 @@ class SeccionesIntegrante
     {
         foreach ($this->secciones as $seccion)
         {
-            $puntajeControl = new Puntaje($seccion['respuestas']);
-            $this->puntaje += $puntajeControl->getPuntaje();
-            $this->errores = array_merge($this->errores, $puntajeControl->getErrores());
+            // $puntajeControl = new Puntaje($seccion['respuestas']);
+            // $this->puntaje += $puntajeControl->getPuntaje();
+            // $this->errores = array_merge($this->errores, $puntajeControl->getErrores());
 
             if (empty($seccion['ref_seccion']) && empty($seccion['respuestas']))
             {
@@ -60,7 +60,7 @@ class SeccionesIntegrante
     {
         return [
             'accidentes',
-            'cuidados_domiciliario',
+            'cuidados_domiciliarios',
             'cuidado_enfermedades',
         ];
     }

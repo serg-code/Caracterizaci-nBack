@@ -11,28 +11,14 @@ class OpcionPregunta
 
     public static function buscarRespuestaOpcion(Pregunta $pregunta, $respuesta): Notificacion
     {
-        $estado = new Notificacion();
-        $opcionesPregunta = Opcion::where('ref_campo', '=', $pregunta->ref_campo)->get();
-
-        if (sizeof($opcionesPregunta) === 0)
-        {
-            return new Notificacion('encontrado', ['respuesta' => $opcionesPregunta]);
-        }
-
-        foreach ($opcionesPregunta as $opcion)
-        {
-            if ($opcion->id == $respuesta)
-            {
-                return new Notificacion(
-                    'encontrado',
-                    [
-                        'puntaje' => $opcion->valor,
-                        'respuesta' => $opcion->pregunta_opcion
-                    ]
-                );
-            }
-        }
-
-        return $estado;
+        $opcion = Opcion::find($respuesta);
+        return new Notificacion(
+            'encontrado',
+            [
+                'pregunta' => $opcion->ref_campo ?? 'nada',
+                'puntaje' => $opcion->valor ?? 0,
+                'respuesta' => $opcion->pregunta_opcion ?? $respuesta,
+            ]
+        );
     }
 }
