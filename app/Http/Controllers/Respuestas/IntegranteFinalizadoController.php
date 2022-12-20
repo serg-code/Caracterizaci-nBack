@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Respuestas;
 
+use App\Dev\ControlInduccion;
 use App\Dev\ControlIntegrante;
 use App\Dev\Encuesta\OpcionPregunta;
 use App\Dev\Encuesta\SeccionesIntegrante;
@@ -106,12 +107,16 @@ class IntegranteFinalizadoController extends Controller
             'puntaje_obtenido' => $this->puntuacion,
         ]);
 
+        $inducciones = new ControlInduccion($this->integrante, $this->secciones);
+        $listaInducciones = $inducciones->getInducciones();
+
         return RespuestaHttp::respuesta(
             201,
             'succes',
             'Encuesta validada y guardada exitosamente',
             [
                 'integrante' => $this->integrante,
+                'inducciones' => $listaInducciones,
             ]
         );
     }
@@ -273,8 +278,6 @@ class IntegranteFinalizadoController extends Controller
 
         if ($resultado->estado !== 'error')
         {
-            // echo $resultado->datos['puntaje'] . ' - ' . $resultado->datos['pregunta'] . "</br>";
-            // echo $resultado->datos['puntaje'] . " </br>";
             $this->puntuacion += $resultado->datos['puntaje'];
         }
         return null;

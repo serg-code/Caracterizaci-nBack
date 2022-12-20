@@ -16,9 +16,12 @@ return new class extends Migration
         Schema::create('inducciones', function (Blueprint $table)
         {
             $table->id();
-            $table->bigInteger('id_tipo_induccion');
             $table->uuid('id_integrante');
+            $table->bigInteger('id_tipo_induccion');
             $table->timestamps();
+
+            $table->foreign('id_integrante')->references('id')->on('integrantes');
+            // $table->foreign('id_tipo_induccion')->references('id')->on('tipos_induccion');
         });
     }
 
