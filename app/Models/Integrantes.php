@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class Integrantes extends Model
 {
@@ -85,10 +86,23 @@ class Integrantes extends Model
                 'puntaje_max' => $datos['puntaje_max'] ?? $integrante->puntaje_max,
                 'encuesta' => $datos['encuesta'] ?? $integrante->encuesta,
                 'estado_registro' => $datos['estado_registro'] ?? $integrante->estado_registro,
+                'fecha_nacimiento' => $datos['fecha_nacimiento'] ?? $integrante->fecha_nacimiento,
             ]);
             return $integrante;
         }
 
         return null;
+    }
+
+    public function obtenerEdad(): int
+    {
+        return Carbon::createFromFormat('Y-m-d', $this->fecha_nacimiento)->age;
+    }
+
+    public function obtenerMesesEdad(): int
+    {
+        $fechaActual = now();
+        $edad = $fechaActual->diff($this->fecha_nacimiento);
+        return $edad->m + ($edad->y * 12);
     }
 }

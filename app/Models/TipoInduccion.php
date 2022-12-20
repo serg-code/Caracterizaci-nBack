@@ -32,4 +32,9 @@ class TipoInduccion extends Model
         $parentesco = new inducciones($datos);
         $parentesco->save();
     }
+
+    public function inducciones()
+    {
+        return $this->hasMany(Inducciones::class, 'id_tipo_induccion');
+    }
 }

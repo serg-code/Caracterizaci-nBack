@@ -240,7 +240,6 @@ class IntegranteFinalizadoController extends Controller
 
             if (empty($respuestas[$ref_campo]))
             {
-                echo "No encontramos la pregunta $ref_campo" . "</br>";
                 $this->errores[$ref_campo] = ["No encontramos la pregunta $ref_campo"];
                 continue;
             }
