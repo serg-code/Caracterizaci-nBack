@@ -95,4 +95,12 @@ class SeccionesHogar
             'alimentos_crudos_separados_cocidos' => null,
         ];
     }
+
+    public static function obtenerSecciones(): array
+    {
+        return [
+            'factores_protectores',
+            'habitos_consumo',
+        ];
+    }
 }

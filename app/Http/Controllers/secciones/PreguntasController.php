@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\secciones;
 
+use App\Dev\Encuesta\SeccionesHogar;
+use App\Dev\Encuesta\SeccionesIntegrante;
 use App\Dev\RespuestaHttp;
 use App\Http\Controllers\Controller;
 use App\Models\Pregunta;
@@ -17,20 +19,10 @@ class PreguntasController extends Controller
     public function index()
     {
         //secciones hogar
-        $seccionesHogar = Pregunta::where('ref_seccion', '=', 'factores_protectores')
-            ->orWhere('ref_seccion', '=', 'habitos_consumo')
-            ->get();
+        $seccionesHogar = Pregunta::whereIn('ref_seccion', SeccionesHogar::obtenerSecciones())->get();
 
         //secciones integrantes
-        $seccionesIntegrante = Pregunta::where('ref_seccion', '=', 'accidentes')
-            ->orWhere('ref_seccion', '=', 'accidentes')
-            ->orWhere('ref_seccion', '=', 'cuidados_domiciliarios')
-            ->orWhere('ref_seccion', '=', 'cuidado_enfermedades')
-            ->orWhere('ref_seccion', '=', 'salud_mental')
-            ->orWhere('ref_seccion', '=', 'enfermedades_salud_publica')
-            ->orWhere('ref_seccion', '=', 'morbilidad')
-            ->orWhere('ref_seccion', '=', 'identificacion_ciudadana')
-            ->get();
+        $seccionesIntegrante = Pregunta::whereIn('ref_seccion', SeccionesIntegrante::obtenerSecciones())->get();
 
 
         $respuesta = new RespuestaHttp();
