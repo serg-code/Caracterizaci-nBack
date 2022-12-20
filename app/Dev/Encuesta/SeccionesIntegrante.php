@@ -4,6 +4,7 @@ namespace App\Dev\Encuesta;
 
 use App\Dev\Puntaje;
 use App\Models\Integrantes;
+use App\Models\Pregunta;
 
 class SeccionesIntegrante
 {
@@ -60,8 +61,11 @@ class SeccionesIntegrante
     {
         return [
             'accidentes',
-            'cuidados_domiciliarios',
             'cuidado_enfermedades',
+            'cuidados_domiciliarios',
+            'enfermedades_salud_publica',
+            'morbilidad',
+            'salud_mental',
         ];
     }
 
@@ -70,8 +74,10 @@ class SeccionesIntegrante
         return match ($seccion)
         {
             'accidentes' => SeccionesIntegrante::preguntasAccidentes(),
-            'cuidados_domiciliarios' => SeccionesIntegrante::preguntasCuidadosDomiciliarios(),
             'cuidado_enfermedades' => SeccionesIntegrante::preguntasCuidadoEnfermedades(),
+            'cuidados_domiciliarios' => SeccionesIntegrante::preguntasCuidadosDomiciliarios(),
+            'enfermedades_salud_publica' => SeccionesIntegrante::preguntasEnfermedadesSaludPublica(),
+            'morbilidad' => SeccionesIntegrante::preguntasMorvilidad(),
             'salud_mental' => SeccionesIntegrante::preguntasSaludMental(),
 
             default => [],
@@ -137,6 +143,34 @@ class SeccionesIntegrante
             'violencia_institucional' => null,
             'violencia_social' => null,
             'violencia_gestacion' => null,
+        ];
+    }
+
+    public static function preguntasEnfermedadesSaludPublica(): array
+    {
+        return [
+            'intoxicacion' => null,
+            'malaria' => null,
+            'brucelosis' => null,
+            'sika_chicungunya' => null,
+            'sifilis' => null,
+            'leishmaniasis' => null,
+            'lepra' => null,
+            'chagas' => null,
+            'tuberculosis' => null,
+            'dengue' => null,
+            'varicela' => null,
+        ];
+    }
+
+    public static function preguntasMorvilidad(): array
+    {
+        return [
+            'propiedades_piel' => null,
+            'propiedades_respiratorio' => null,
+            'enfermedades_congenitas' => null,
+            'enfermedad_cronica' => null,
+            'controlada' => null,
         ];
     }
 }
