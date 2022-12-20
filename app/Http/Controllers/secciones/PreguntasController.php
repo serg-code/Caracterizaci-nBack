@@ -23,8 +23,13 @@ class PreguntasController extends Controller
 
         //secciones integrantes
         $seccionesIntegrante = Pregunta::where('ref_seccion', '=', 'accidentes')
+            ->orWhere('ref_seccion', '=', 'accidentes')
+            ->orWhere('ref_seccion', '=', 'cuidados_domiciliarios')
             ->orWhere('ref_seccion', '=', 'cuidado_enfermedades')
-            ->orWhere('ref_seccion', '=', 'cuidados_domiciliario')
+            ->orWhere('ref_seccion', '=', 'salud_mental')
+            ->orWhere('ref_seccion', '=', 'enfermedades_salud_publica')
+            ->orWhere('ref_seccion', '=', 'morbilidad')
+            ->orWhere('ref_seccion', '=', 'identificacion_ciudadana')
             ->get();
 
 
