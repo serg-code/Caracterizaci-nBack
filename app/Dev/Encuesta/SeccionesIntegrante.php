@@ -172,5 +172,20 @@ class SeccionesIntegrante
             'controlada' => null,
         ];
     }
-    //plan_aprobado
+
+    protected function preguntasIdentificacionCiudadane(): array
+    {
+        return [
+            'ayudas_tenicas',
+            'cual_programa',
+            'discapacidad',
+            'esta_estudiando',
+            'grupo_atencion_especial',
+            'grupo_etnia',
+            'ocupacion_ingreso',
+            'por_que',
+            'programas',
+            'seguridad_social',
+        ];
+    }
 }
