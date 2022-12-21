@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('animales', function (Blueprint $table) {
-            $table->uuid('id_integrante')->unique();
+            $table->uuid('hogar_id')->unique();
             $table->string('gatos')->nullable();
             $table->string('gatos_cuantos')->nullable();
             $table->string('gatos_vacunados')->nullable();

@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('vivienda', function (Blueprint $table) {
-                $table->uuid('id_integrante')->unique();
+                $table->uuid('hogar_id')->unique();
                 $table->string('encuesta_sisben')->nullable();
                 $table->string('ficha_sisben')->nullable();
                 $table->string('puntaje_sisben')->nullable();
