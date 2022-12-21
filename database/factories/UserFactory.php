@@ -23,6 +23,9 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             // 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'password' => 'password',
+            'tipo_identificacion' => 'CC',
+            'identificacion' => fake()->numberBetween(1000000000),
+            'telefono' => fake()->numberBetween(3000000000, 3999999999),
             'remember_token' => Str::random(10),
         ];
     }
