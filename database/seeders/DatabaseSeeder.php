@@ -70,6 +70,8 @@ class DatabaseSeeder extends Seeder
             new UsuariosSeeder(),
 
             new cie10Seeder(),
+
+            new CiuuSeeder(),
         ];
 
         $this->correrSeeders($listadoSeeders);
