@@ -31,11 +31,13 @@ Route::group(['middleware' => ['auth:sanctum']], function ()
     Route::apiResource('usuarios', \App\Http\Controllers\UsuarioController::class)
         ->except(['store']);
 
-    Route::get('/roles', [\App\Http\Controllers\RolesController::class, 'listarRoles']);
+    Route::apiResource('roles', \App\Http\Controllers\RolesController::class);
+    Route::apiResource('permisos', \App\Http\Controllers\PermisosController::class)->except(['destroy']);
+    Route::post('permisos/otorgar', [\App\Http\Controllers\PermisosController::class, 'otorgarPermisos']);
+    // Route::get('/roles', [\App\Http\Controllers\RolesController::class, 'listarRoles']);
 
-    Route::put('permisos/{idUsuario}', [\App\Http\Controllers\PermisosController::class, 'otorgarPermisos']);
-    Route::put('roles/{idUsuario}', [\App\Http\Controllers\RolesController::class, 'otorgarRol']);
-    Route::delete('roles/{idUsuario}', [\App\Http\Controllers\RolesController::class, 'revocarRol']);
+    // Route::put('roles/{idUsuario}', [\App\Http\Controllers\RolesController::class, 'otorgarRol']);
+    // Route::delete('roles/{idUsuario}', [\App\Http\Controllers\RolesController::class, 'revocarRol']);
 
     Route::apiResource('preguntas', \App\Http\Controllers\secciones\PreguntasController::class)
         ->only(['index', 'show']);
