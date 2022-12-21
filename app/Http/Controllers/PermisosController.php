@@ -159,13 +159,13 @@ class PermisosController extends Controller
             $datosValidar,
             [
                 'id_usuario' => 'required|exists:users,id',
-                'id_permiso' => 'required|exists:permissions,id'
+                'permisos' => 'required|array'
             ],
             [
                 'id_usuario.required' => 'El id del usuario es necesario',
                 'id_usuario.exists' => 'El usuario buscado no existe',
-                'id_permiso.required' => 'El id del permiso es necesario',
-                'id_permiso.exists' => 'El permiso no existe',
+                'permisos' => 'El listado de permisos es necesario',
+                'permisos.array' => 'Los permisos no son un arreglo',
             ]
         );
 
@@ -179,14 +179,13 @@ class PermisosController extends Controller
             );
         }
 
+        $listadoPermisos = $this->obtenerNombrePermisos($datosValidar['permisos']);
         $idUsuario = $datosValidar['id_usuario'];
-        $idPermiso = $datosValidar['id_permiso'];
         $usuario = User::find($idUsuario);
-        $permiso = Permission::find($idPermiso);
 
         if ($revocar)
         {
-            $usuario->revokePermissionTo($permiso->name);
+            $usuario->revokePermissionTo($listadoPermisos);
             return new RespuestaHttp(
                 200,
                 'succes',
@@ -197,7 +196,7 @@ class PermisosController extends Controller
             );
         }
 
-        $usuario->givePermissionTo($permiso->name);
+        $usuario->givePermissionTo($listadoPermisos);
         return new RespuestaHttp(
             200,
             'succes',
@@ -206,5 +205,15 @@ class PermisosController extends Controller
                 'usuario' => $usuario,
             ]
         );
+    }
+
+    protected function obtenerNombrePermisos(array $listadoIds): array
+    {
+        return array_map(function ($idPermiso)
+        {
+            $permiso = Permission::find($idPermiso);
+
+            return $permiso->name ?? null;
+        }, $listadoIds);
     }
 }
