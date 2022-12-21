@@ -32,7 +32,7 @@ return new class extends Migration
             $table->string('animales_si_rabia')->nullable();
             $table->timestamps();
 
-            $table->foreign('id_integrante')->references('id')->on('integrantes');
+            $table->foreign('hogar_id')->references('id')->on('hogar');
         });
     }
 
