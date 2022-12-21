@@ -65,6 +65,7 @@ class SeccionesHogar
         {
             'factores_protectores' => SeccionesHogar::preguntasFactoresProtectores(),
             'habitos_consumo' => SeccionesHogar::preguntasHabitosConsumo(),
+            'vivienda' => SeccionesHogar::preguntasVivienda(),
             default => [],
         };
     }
@@ -96,11 +97,45 @@ class SeccionesHogar
         ];
     }
 
+    public static function preguntasVivienda(): array
+    {
+        return [
+            'encuesta_sisben'=> null,
+            'ficha_sisben'=> null,
+            'puntaje_sisben'=> null,
+            'nivel_sisben'=> null,
+            'tipos_vivienda'=> null,
+            'tipos_tenecia'=> null,
+            'servicios_sanitarios'=> null,
+            'tipos_alumbrado'=> null,
+            'dormitorios'=> null,
+            'humo_vivienda'=> null,
+            'fuentes_agua'=> null,
+            'tratamiento_agua'=> null,
+            'tipos_tratamiento_agua'=> null,
+            'tipos_disposicion_basura'=> null,
+            'reciclan'=> null,
+            'iluminacion_adecuada'=> null,
+            'ventilacion_adecuada'=> null,
+            'roedores'=> null,
+            'reservorios_agua'=> null,
+            'anjenos'=> null,
+            'tipos_insectos_vectores'=> null,
+            'conservacion_alimentos'=> null,
+            'actividad_productiva'=> null,
+            'tipos_material_piso'=> null,
+            'tipos_material_techo'=> null,
+            'tipos_material_paredes'=> null,
+            
+        ];
+    }
+
     public static function obtenerSecciones(): array
     {
         return [
             'factores_protectores',
             'habitos_consumo',
+            'vivienda',
         ];
     }
 }

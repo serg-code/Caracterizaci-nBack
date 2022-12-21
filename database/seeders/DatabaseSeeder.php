@@ -9,6 +9,7 @@ use Database\Seeders\Opciones\identificacion_ciudadanaSeeder;
 use Database\Seeders\Opciones\morbilidadOpcionesSeeder;
 use Database\Seeders\Opciones\salud_mentalSeeder;
 use Database\Seeders\Opciones\salud_publicaSeeder;
+use Database\Seeders\Opciones\viviendaSeeder as OpcionesViviendaSeeder;
 use Database\Seeders\Preguntas\AccidentesSeeder;
 use Database\Seeders\Preguntas\CuidadoDomiciliarioSeeder;
 use Database\Seeders\Preguntas\CuidadoEnfermedadesSeeder;
@@ -16,6 +17,7 @@ use Database\Seeders\Preguntas\MorbilidadSeeder;
 use Database\Seeders\Preguntas\PreguntasIdentificacionCiudadanaSeeder;
 use Database\Seeders\Preguntas\SaludMentalSeeder;
 use Database\Seeders\Preguntas\SaludPublicaSeeder;
+use Database\Seeders\Preguntas\ViviendaSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -47,6 +49,7 @@ class DatabaseSeeder extends Seeder
             new SaludPublicaSeeder(),
             new MorbilidadSeeder(),
             new PreguntasIdentificacionCiudadanaSeeder(),
+            new ViviendaSeeder(),
 
             //opciones
             new OpcionesSeeder(),
@@ -57,6 +60,7 @@ class DatabaseSeeder extends Seeder
             new salud_publicaSeeder(),
             new morbilidadOpcionesSeeder(),
             new identificacion_ciudadanaSeeder(),
+            new OpcionesViviendaSeeder(),
 
             //departamentos y municipios
             new DepartamentosSeeder(),
