@@ -191,14 +191,14 @@ class RolesController extends Controller
         $validacion = Validator::make(
             $datosValidar,
             [
-                'id_rol' => 'required|exists:roles,id',
                 'id_usuario' => 'required|exists:users,id',
+                'roles' => 'required|array',
             ],
             [
-                'id_rol.required' => 'El id del rol es necesario',
-                'id_rol.exists' => 'El rol no es valido',
                 'id_usuario.required' => 'El id del usuario es necesario',
                 'id_usuario.exists' => 'El id del usurio no es valido',
+                'roles.required' => 'El listado de roles es necesario',
+                'roles.array' => 'Se esperaba un listado de roles'
             ]
         );
 
@@ -212,12 +212,16 @@ class RolesController extends Controller
             );
         }
 
-        $rol = Role::find($datosValidar['id_rol']);
+        $listadoRoles = $this->obtenerNombreRoles($datosValidar['roles']);
         $usuario = User::find($datosValidar['id_usuario']);
 
         if ($revocar)
         {
-            $usuario->removeRole($rol->name);
+            foreach ($listadoRoles as $nombreRol)
+            {
+                $usuario->removeRole($nombreRol);
+            }
+
             return new RespuestaHttp(
                 200,
                 'succes',
@@ -228,7 +232,7 @@ class RolesController extends Controller
             );
         }
 
-        $usuario->assignRole($rol->name);
+        $usuario->assignRole($listadoRoles);
         return new RespuestaHttp(
             200,
             'Succes',
@@ -237,5 +241,14 @@ class RolesController extends Controller
                 'usuario' => $usuario,
             ]
         );
+    }
+
+    protected function obtenerNombreRoles(array $listadoRoles): array
+    {
+        return array_map(function ($idRol)
+        {
+            $rol = Role::find($idRol);
+            return $rol->name ?? null;
+        }, $listadoRoles);
     }
 }
