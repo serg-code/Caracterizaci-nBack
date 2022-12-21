@@ -8,6 +8,7 @@ use App\Dev\Encuesta\OpcionPregunta;
 use App\Dev\Encuesta\SeccionesIntegrante;
 use App\Dev\RespuestaHttp;
 use App\Http\Controllers\Controller;
+use App\Models\Inducciones;
 use App\Models\Integrantes;
 use App\Models\Opcion;
 use App\Models\Pregunta;
@@ -67,23 +68,10 @@ class IntegranteFinalizadoController extends Controller
         $respuestasIintegrante->eliminarRespuestas();
         $this->secciones = $integrantePeticion['secciones'];
 
-        $seccionAccidentes = $this->secciones['accidentes'];
-        $this->recorrerRespuestas(
-            $seccionAccidentes['respuestas'],
-            $seccionAccidentes['ref_seccion']
-        );
-
-        $seccionCuidadosDomiciliario = $this->secciones['cuidados_domiciliarios'];
-        $this->recorrerRespuestas(
-            $seccionCuidadosDomiciliario['respuestas'],
-            $seccionCuidadosDomiciliario['ref_seccion']
-        );
-
-        $seccionCuidadoEnfermedades = $this->secciones['cuidado_enfermedades'];
-        $this->recorrerRespuestas(
-            $seccionCuidadoEnfermedades['respuestas'],
-            $seccionCuidadoEnfermedades['ref_seccion']
-        );
+        foreach ($this->secciones as $seccion)
+        {
+            $this->recorrerRespuestas($seccion['respuestas'], $seccion['ref_seccion']);
+        }
 
         if (!empty($this->errores))
         {
@@ -128,8 +116,7 @@ class IntegranteFinalizadoController extends Controller
 
         foreach ($listado as $seccion)
         {
-            $seccionEncontrada = $this->buscarSeccion($seccion, $secciones);
-            if ($seccionEncontrada === false)
+            if (empty($secciones[$seccion]))
             {
                 $errores[$seccion] = [
                     "No encontramos la seccion $seccion"
@@ -138,19 +125,6 @@ class IntegranteFinalizadoController extends Controller
         }
 
         return $errores;
-    }
-
-    protected function buscarSeccion(string $refSeccion, array $secciones): bool
-    {
-        foreach ($secciones as $seccion)
-        {
-            if ($seccion['ref_seccion'] === $refSeccion)
-            {
-                return true;
-            }
-        }
-
-        return false;
     }
 
     protected function validacion(array $integranteDatos, array $encuesta): ?RespuestaHttp
@@ -200,6 +174,7 @@ class IntegranteFinalizadoController extends Controller
         }
 
         $this->integrante = $controlIntegrante->getIntegrante();
+        Inducciones::where('id_integrante', '=', $this->integrante->id)->delete();
         return null;
     }
 
@@ -245,9 +220,9 @@ class IntegranteFinalizadoController extends Controller
             }
 
             $error = $this->validarRespuesta($ref_campo, $respuestas[$ref_campo]);
-
             if (empty($error) && !empty($validaciones) && $respuestas[$ref_campo] != $validaciones->respuestaHabilita)
             {
+
                 $listaExcepciones[$validaciones->refCampoHabilita] = true;
                 unset($this->secciones[$refSeccion]['respuestas'][$validaciones->refCampoHabilita]);
                 continue;

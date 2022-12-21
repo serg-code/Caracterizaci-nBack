@@ -63,9 +63,9 @@ class SeccionesIntegrante
             'accidentes',
             'cuidado_enfermedades',
             'cuidados_domiciliarios',
-            'enfermedades_salud_publica',
-            'morbilidad',
-            'salud_mental',
+            // 'enfermedades_salud_publica',
+            // 'morbilidad',
+            // 'salud_mental',
         ];
     }
 
@@ -173,4 +173,5 @@ class SeccionesIntegrante
             'controlada' => null,
         ];
     }
+    //plan_aprobado
 }
