@@ -66,6 +66,8 @@ class SeccionesHogar
             'factores_protectores' => SeccionesHogar::preguntasFactoresProtectores(),
             'habitos_consumo' => SeccionesHogar::preguntasHabitosConsumo(),
             'vivienda' => SeccionesHogar::preguntasVivienda(),
+            'animales' => SeccionesHogar::preguntasAnimales(),
+            'mortalidad' => SeccionesHogar::preguntasMortalidad(),
             default => [],
         };
     }
@@ -127,6 +129,38 @@ class SeccionesHogar
             'tipos_material_techo'=> null,
             'tipos_material_paredes'=> null,
             
+        ];
+    }
+
+    public static function preguntasAnimales(): array
+    {
+        return [
+        'gatos'=> null,
+        'gatos'=> null,
+        'gatos'=> null,
+        'perros'=> null,
+        'perros'=> null,
+        'perros'=> null,
+        'equinos'=> null,
+        'equinos'=> null,
+        'equinos'=> null,
+        'aves'=> null,
+        'porcinos'=> null,
+        'porcinos'=> null,
+        'porcinos'=> null,
+        'animales_no_rabia'=> null,
+        'animales_si_rabia'=> null,
+        ];
+    }
+
+    public static function preguntasMortalidad(): array
+    {
+        return [
+            'fallecido_familiar' => null,
+            'sexo_fallecido' => null,
+            'edad_fallecido' => null,
+            'causa_muerte' => null,
+            'fecha_muerte' => null,
         ];
     }
 
