@@ -13,7 +13,7 @@ class Inducciones extends Model
 
     protected $fillable = [
         'id',
-        'id_tipo_induccion',
+        'idtipo_induccion',
         'id_integrante',
     ];
 
