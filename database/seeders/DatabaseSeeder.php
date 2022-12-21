@@ -54,7 +54,7 @@ class DatabaseSeeder extends Seeder
             new MorbilidadSeeder(),
             new PreguntasIdentificacionCiudadanaSeeder(),
             new ViviendaSeeder(),
-            new AnimalesSeeder(),
+            // new AnimalesSeeder(),
             new MortalidadSeeder(),
 
             //opciones
@@ -67,7 +67,7 @@ class DatabaseSeeder extends Seeder
             new morbilidadOpcionesSeeder(),
             new identificacion_ciudadanaSeeder(),
             new OpcionesViviendaSeeder(),
-            new OpcionesAnimalesSeeder(),
+            // new OpcionesAnimalesSeeder(),
             new OpcionesMortalidadSeeder(),
 
             //departamentos y municipios
