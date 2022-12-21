@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Dev\RespuestaHttp;
-use App\Dev\Usuario\Usuario;
-use App\Dev\Validacion\PermisoValidacion;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;

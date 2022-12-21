@@ -8,6 +8,8 @@ use App\Dev\Validacion\RolValidacion;
 use App\Models\Permisos\Roles;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Spatie\Permission\Models\Role;
 
 class RolesController extends Controller
 {
@@ -47,7 +49,40 @@ class RolesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validacion = Validator::make(
+            $request->all(),
+            [
+                'rol' => 'required',
+            ],
+            [
+                'rol.required' => 'El rol es necesario'
+            ]
+        );
+
+        if ($validacion->fails())
+        {
+            return RespuestaHttp::respuesta(
+                400,
+                'Bad request',
+                'Error en la informacion',
+                $validacion->getMessageBag()
+            );
+        }
+
+        $rol = new Role([
+            'name' => $request->input('rol'),
+            'guard_name' => 'web',
+        ]);
+        $rol->save();
+
+        return RespuestaHttp::respuesta(
+            201,
+            'Created',
+            'Rol creado exitosamente',
+            [
+                'rol' => $rol,
+            ]
+        );
     }
 
     /**
@@ -58,7 +93,27 @@ class RolesController extends Controller
      */
     public function show($id)
     {
-        //
+        $rol = Role::find($id);
+        if (empty($rol))
+        {
+            return RespuestaHttp::respuesta(
+                404,
+                'Not Found',
+                'Rol no encontrado',
+                [
+                    'rol' => ["No encontramos el rol buscado"]
+                ]
+            );
+        }
+
+        return RespuestaHttp::respuesta(
+            200,
+            'succes',
+            'Rol enocontrado',
+            [
+                'rol' => $rol,
+            ]
+        );
     }
 
     /**
@@ -70,7 +125,42 @@ class RolesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $validacion = Validator::make(
+            $request->all(),
+            [
+                'rol_id' => 'required|exists:roles,id',
+                'nombre_rol' => 'required',
+            ],
+            [
+                'rol_id.required' => 'El rol es necesario',
+                'rol_id.exists' => 'No encontramos el rol',
+                'nombre_rol' => 'El nombre del rol es necesario'
+            ]
+        );
+
+        if ($validacion->fails())
+        {
+            return RespuestaHttp::respuesta(
+                400,
+                'Bad request',
+                'Errores en la informacion',
+                $validacion->getMessageBag(),
+            );
+        }
+
+        $rol = Role::findById($request->input('rol_id'));
+        $rol->name = $request->input('nombre_rol');
+        $rol->save();
+
+        return RespuestaHttp::respuesta(
+            200,
+            'succes',
+            'Rol actualizado exitosamente',
+            [
+                'rol' => $rol,
+            ]
+        );
     }
 
     /**

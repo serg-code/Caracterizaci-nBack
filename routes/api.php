@@ -31,7 +31,9 @@ Route::group(['middleware' => ['auth:sanctum']], function ()
     Route::apiResource('usuarios', \App\Http\Controllers\UsuarioController::class)
         ->except(['store']);
 
-    Route::apiResource('roles', \App\Http\Controllers\RolesController::class);
+    Route::apiResource('roles', \App\Http\Controllers\RolesController::class)->except(['destroy']);
+    Ro
+
     Route::apiResource('permisos', \App\Http\Controllers\PermisosController::class)->except(['destroy']);
     Route::post('permisos/otorgar', [\App\Http\Controllers\PermisosController::class, 'otorgarPermisos']);
     Route::delete('permisos/revocar', [\App\Http\Controllers\PermisosController::class, 'revocarPermisos']);
