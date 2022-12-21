@@ -26,7 +26,7 @@ Pregunta::create(["ref_campo"=> "tipos_alumbrado", "ref_seccion" => "vivienda", 
 Pregunta::create(["ref_campo"=> "dormitorios", "ref_seccion" => "vivienda", "descripcion" => "¿ En alguno de los dormitorios de la vivienda duerme tres o más personas?", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "humo_vivienda", "ref_seccion" => "vivienda", "descripcion" => "¿Hay humo dentro de la vivienda?", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "fuentes_agua", "ref_seccion" => "vivienda", "descripcion" => "¿De dónde se toma el agua para consumo humano?", "tipo" => "seleccion"]);
-Pregunta::create(["ref_campo"=> "tipos_tratamiento_agua", "ref_seccion" => "vivienda", "descripcion" => "Tipo de tratamiento casero al agua", "tipo" => "seleccion"]);
+Pregunta::create(["ref_campo"=> "tipo_tratamiento_agua", "ref_seccion" => "vivienda", "descripcion" => "Tipo de tratamiento casero al agua", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "tratamiento_agua", "ref_seccion" => "vivienda", "descripcion" => "Tratamiento del agua en la fuente", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "tipos_disposicion_basura", "ref_seccion" => "vivienda", "descripcion" => "La basura es", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "reciclan", "ref_seccion" => "vivienda", "descripcion" => "¿Se reciclan (reclasifican) las basuras?", "tipo" => "seleccion"]);
@@ -41,7 +41,6 @@ Pregunta::create(["ref_campo"=> "actividad_productiva", "ref_seccion" => "vivien
 Pregunta::create(["ref_campo"=> "tipos_material_piso", "ref_seccion" => "vivienda", "descripcion" => "El material predominante en el piso es", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "tipos_material_techo", "ref_seccion" => "vivienda", "descripcion" => "El material predominante en el techo es", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "tipos_material_paredes", "ref_seccion" => "vivienda", "descripcion" => "El material predominante en las paredes es", "tipo" => "texto"]);
-Pregunta::create(["ref_campo"=> "gatos", "ref_seccion" => "ANIMALES ", "descripcion" => "Gatos", "tipo" => "seleccion"]);
 
     }
 }
