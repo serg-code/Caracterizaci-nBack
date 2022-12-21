@@ -2,9 +2,7 @@
 
 namespace App\Dev\Encuesta;
 
-use App\Dev\Puntaje;
 use App\Models\Integrantes;
-use App\Models\Pregunta;
 
 class SeccionesIntegrante
 {

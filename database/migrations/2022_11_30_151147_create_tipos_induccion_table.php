@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('tipos_induccion', function (Blueprint $table)
         {
-            $table->id();
+            $table->integer('id')->autoIncrement();
             $table->enum('curso_vida', [
                 'primera infancia',
                 'infancia',

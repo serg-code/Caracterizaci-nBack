@@ -17,11 +17,13 @@ return new class extends Migration
         {
             $table->id();
             $table->uuid('id_integrante');
-            $table->bigInteger('id_tipo_induccion');
+            $table->integer('tipo_id');
+            // $table->bigInteger('tipo');
             $table->timestamps();
 
             $table->foreign('id_integrante')->references('id')->on('integrantes');
-            // $table->foreign('id_tipo_induccion')->references('id')->on('tipos_induccion');
+            $table->foreign('tipo_id')->references('id')->on('tipos_induccion');
+            // $table->foreign('tipo')->references('id')->on('tipos_induccion');
         });
     }
 
