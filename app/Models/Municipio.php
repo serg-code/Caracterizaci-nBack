@@ -40,4 +40,9 @@ class Municipio extends Model
     {
         return $this->hasMany(Hogar::class, 'cod_mun');
     }
+
+    public function BarrioVereda()
+    {
+        return $this->hasMany(BarrioVereda::class . 'id_municipio');
+    }
 }

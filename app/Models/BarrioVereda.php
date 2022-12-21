@@ -28,7 +28,7 @@ class BarrioVereda extends Model
 
     public function municipio()
     {
-        return $this->hasMany(Municipio::class, 'id_municipio');
+        return $this->belongsTo(Municipio::class, 'id_municipio');
     }
 
     public function actualizar(array $datosActualizar)
