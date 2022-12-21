@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Database\Seeders\Opciones\accidenteseeder;
+use Database\Seeders\Opciones\animalesSeeder as OpcionesAnimalesSeeder;
 use Database\Seeders\Opciones\cuidado_enfermedadesSeeder;
 use Database\Seeders\Opciones\cuidados_domiciliariosSeeder;
 use Database\Seeders\Opciones\identificacion_ciudadanaSeeder;
@@ -11,6 +12,7 @@ use Database\Seeders\Opciones\salud_mentalSeeder;
 use Database\Seeders\Opciones\salud_publicaSeeder;
 use Database\Seeders\Opciones\viviendaSeeder as OpcionesViviendaSeeder;
 use Database\Seeders\Preguntas\AccidentesSeeder;
+use Database\Seeders\Preguntas\AnimalesSeeder;
 use Database\Seeders\Preguntas\CuidadoDomiciliarioSeeder;
 use Database\Seeders\Preguntas\CuidadoEnfermedadesSeeder;
 use Database\Seeders\Preguntas\MorbilidadSeeder;
@@ -50,6 +52,7 @@ class DatabaseSeeder extends Seeder
             new MorbilidadSeeder(),
             new PreguntasIdentificacionCiudadanaSeeder(),
             new ViviendaSeeder(),
+            new AnimalesSeeder(),
 
             //opciones
             new OpcionesSeeder(),
@@ -61,6 +64,7 @@ class DatabaseSeeder extends Seeder
             new morbilidadOpcionesSeeder(),
             new identificacion_ciudadanaSeeder(),
             new OpcionesViviendaSeeder(),
+            new OpcionesAnimalesSeeder(),
 
             //departamentos y municipios
             new DepartamentosSeeder(),
@@ -73,6 +77,8 @@ class DatabaseSeeder extends Seeder
             new cie10Seeder(),
 
             new CiuuSeeder(),
+
+            new BarrioVeredaSeeder(),
         ];
 
         $this->correrSeeders($listadoSeeders);
