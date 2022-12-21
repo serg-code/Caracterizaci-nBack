@@ -32,16 +32,13 @@ Route::group(['middleware' => ['auth:sanctum']], function ()
         ->except(['store']);
 
     Route::apiResource('roles', \App\Http\Controllers\RolesController::class)->except(['destroy']);
-    Ro
+    Route::post('roles/otorgar', [\App\Http\Controllers\RolesController::class, 'otorgarRol']);
+    Route::delete('roles/revocar', [\App\Http\Controllers\RolesController::class, 'revocarRol']);
+
 
     Route::apiResource('permisos', \App\Http\Controllers\PermisosController::class)->except(['destroy']);
     Route::post('permisos/otorgar', [\App\Http\Controllers\PermisosController::class, 'otorgarPermisos']);
     Route::delete('permisos/revocar', [\App\Http\Controllers\PermisosController::class, 'revocarPermisos']);
-
-    // Route::get('/roles', [\App\Http\Controllers\RolesController::class, 'listarRoles']);
-
-    // Route::put('roles/{idUsuario}', [\App\Http\Controllers\RolesController::class, 'otorgarRol']);
-    // Route::delete('roles/{idUsuario}', [\App\Http\Controllers\RolesController::class, 'revocarRol']);
 
     Route::apiResource('preguntas', \App\Http\Controllers\secciones\PreguntasController::class)
         ->only(['index', 'show']);

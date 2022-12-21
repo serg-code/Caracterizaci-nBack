@@ -129,12 +129,12 @@ class RolesController extends Controller
         $validacion = Validator::make(
             $request->all(),
             [
-                'rol_id' => 'required|exists:roles,id',
+                'id_rol' => 'required|exists:roles,id',
                 'nombre_rol' => 'required',
             ],
             [
-                'rol_id.required' => 'El rol es necesario',
-                'rol_id.exists' => 'No encontramos el rol',
+                'id_rol.required' => 'El rol es necesario',
+                'id_rol.exists' => 'No encontramos el rol',
                 'nombre_rol' => 'El nombre del rol es necesario'
             ]
         );
@@ -149,7 +149,7 @@ class RolesController extends Controller
             );
         }
 
-        $rol = Role::findById($request->input('rol_id'));
+        $rol = Role::findById($request->input('id_rol'));
         $rol->name = $request->input('nombre_rol');
         $rol->save();
 
@@ -174,55 +174,65 @@ class RolesController extends Controller
         //
     }
 
-    public function otorgarRol(Request $request, $idUsuario)
+    public function otorgarRol(Request $request)
     {
-        $usuario = User::find($idUsuario);
-        $controlUsuario = new Usuario($usuario, $request);
-        $errores = RolValidacion::validar($request);
-
-        if (!empty($errores) || !$controlUsuario->permitir())
-        {
-            return RespuestaHttp::respuesta(
-                400,
-                'Bad request',
-                'No puede realizar esta accion',
-                $errores
-            );
-        }
-
-        $controlUsuario->otorgarRol($request->input('rol'));
-        return RespuestaHttp::respuesta(
-            201,
-            'created',
-            'rol otorgado con exito',
-            [
-                "usuario" => $usuario,
-            ]
-        );
+        $respuesta = $this->controlRol($request->all());
+        return RespuestaHttp::respuestaObjeto($respuesta);
     }
 
-    public function revocarRol(Request $request, $idUsuario)
+    public function revocarRol(Request $request)
     {
-        $usuario = User::find($idUsuario);
-        $controlUsuario = new Usuario($usuario, $request);
-        $errores = RolValidacion::validar($request);
+        $respuesta = $this->controlRol($request->all(), true);
+        return RespuestaHttp::respuestaObjeto($respuesta);
+    }
 
-        if (!empty($errores) || !$controlUsuario->permitir())
+    protected function controlRol(array $datosValidar, bool $revocar = false): RespuestaHttp
+    {
+        $validacion = Validator::make(
+            $datosValidar,
+            [
+                'id_rol' => 'required|exists:roles,id',
+                'id_usuario' => 'required|exists:users,id',
+            ],
+            [
+                'id_rol.required' => 'El id del rol es necesario',
+                'id_rol.exists' => 'El rol no es valido',
+                'id_usuario.required' => 'El id del usuario es necesario',
+                'id_usuario.exists' => 'El id del usurio no es valido',
+            ]
+        );
+
+        if ($validacion->fails())
         {
-
-            return RespuestaHttp::respuesta(
+            return new RespuestaHttp(
                 400,
                 'Bad request',
-                'No puede realizar esta accion',
-                $errores
+                'Erorres al validar la informacion',
+                $validacion->getMessageBag()
             );
         }
 
-        $controlUsuario->revocarRol($request->input('rol'));
-        return RespuestaHttp::respuesta(
+        $rol = Role::find($datosValidar['id_rol']);
+        $usuario = User::find($datosValidar['id_usuario']);
+
+        if ($revocar)
+        {
+            $usuario->removeRole($rol->name);
+            return new RespuestaHttp(
+                200,
+                'succes',
+                'Rol revocado del usuario exitosamente',
+                [
+                    'usuario' => $usuario,
+                ]
+            );
+        }
+
+        $usuario->assignRole($rol->name);
+        return new RespuestaHttp(
             200,
-            'succes',
-            'rol removido exitosamente',
+            'Succes',
+            'Rol otorgado al usuario',
             [
                 'usuario' => $usuario,
             ]
