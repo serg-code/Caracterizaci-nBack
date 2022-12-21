@@ -65,6 +65,7 @@ class DatabaseSeeder extends Seeder
             //departamentos y municipios
             new DepartamentosSeeder(),
             new MunicipiosSeeder(),
+            new BarrioVeredaSeeder(),
 
             //usuarios
             new UsuariosSeeder(),
