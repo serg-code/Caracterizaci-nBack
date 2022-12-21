@@ -176,16 +176,16 @@ class SeccionesIntegrante
     protected function preguntasIdentificacionCiudadane(): array
     {
         return [
-            'ayudas_tenicas',
-            'cual_programa',
-            'discapacidad',
-            'esta_estudiando',
-            'grupo_atencion_especial',
-            'grupo_etnia',
-            'ocupacion_ingreso',
-            'por_que',
-            'programas',
-            'seguridad_social',
+            'ayudas_tenicas' => null,
+            'cual_programa' => null,
+            'discapacidad' => null,
+            'esta_estudiando' => null,
+            'grupo_atencion_especial' => null,
+            'grupo_etnia' => null,
+            'ocupacion_ingreso' => null,
+            'por_que' => null,
+            'programas' => null,
+            'seguridad_social' => null,
         ];
     }
 }
