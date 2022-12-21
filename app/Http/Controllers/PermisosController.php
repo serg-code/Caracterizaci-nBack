@@ -145,9 +145,20 @@ class PermisosController extends Controller
 
     public function otorgarPermisos(Request $request)
     {
+        $respuesta = $this->controlPermisos($request->all());
+        return RespuestaHttp::respuestaObjeto($respuesta);
+    }
 
+    public function revocarPermisos(Request $request)
+    {
+        $respuesta = $this->controlPermisos($request->all(), true);
+        return RespuestaHttp::respuestaObjeto($respuesta);
+    }
+
+    protected function controlPermisos(array $datosValidar, bool $revocar = false): RespuestaHttp
+    {
         $validacion = Validator::make(
-            $request->all(),
+            $datosValidar,
             [
                 'id_usuario' => 'required|exists:users,id',
                 'id_permiso' => 'required|exists:permissions,id'
@@ -162,7 +173,7 @@ class PermisosController extends Controller
 
         if ($validacion->fails())
         {
-            return RespuestaHttp::respuesta(
+            return new RespuestaHttp(
                 400,
                 'Bad request',
                 'Errores en la informacion',
@@ -170,13 +181,26 @@ class PermisosController extends Controller
             );
         }
 
-        $idUsuario = $request->input('id_usuario');
-        $idPermiso = $request->input('id_permiso');
+        $idUsuario = $datosValidar['id_usuario'];
+        $idPermiso = $datosValidar['id_permiso'];
         $usuario = User::find($idUsuario);
         $permiso = Permission::find($idPermiso);
-        $usuario->hasPermissionTo($permiso->name);
 
-        return RespuestaHttp::respuesta(
+        if ($revocar)
+        {
+            $usuario->revokePermissionTo($permiso->name);
+            return new RespuestaHttp(
+                200,
+                'succes',
+                'Permiso revocado',
+                [
+                    'usuario' => $usuario,
+                ]
+            );
+        }
+
+        $usuario->givePermissionTo($permiso->name);
+        return new RespuestaHttp(
             200,
             'succes',
             'Permiso otorgado',
