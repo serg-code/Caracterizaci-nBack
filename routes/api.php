@@ -42,6 +42,7 @@ Route::group(['middleware' => ['auth:sanctum']], function ()
 
     Route::apiResource('preguntas', \App\Http\Controllers\secciones\PreguntasController::class)
         ->only(['index', 'show']);
+    Route::get('ciuu', [\App\Http\Controllers\CiuuController::class, 'listar']);
 
     Route::apiResource('hogar', \App\Http\Controllers\HogarController::class)
         ->only(['index', 'store', 'show']);
