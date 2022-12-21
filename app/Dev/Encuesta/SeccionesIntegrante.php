@@ -61,9 +61,10 @@ class SeccionesIntegrante
             'accidentes',
             'cuidado_enfermedades',
             'cuidados_domiciliarios',
-            // 'enfermedades_salud_publica',
-            // 'morbilidad',
-            // 'salud_mental',
+            'enfermedades_salud_publica',
+            'morbilidad',
+            'salud_mental',
+            'identificacion_ciudadana',
         ];
     }
 
