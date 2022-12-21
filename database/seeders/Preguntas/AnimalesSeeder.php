@@ -16,18 +16,18 @@ class AnimalesSeeder extends Seeder
     public function run()
     {
         Pregunta::create(["ref_campo"=> "gatos", "ref_seccion" => "animales", "descripcion" => "Gatos", "tipo" => "seleccion"]);
-Pregunta::create(["ref_campo"=> "gatos", "ref_seccion" => "animales", "descripcion" => "Gatos", "tipo" => "numero"]);
-Pregunta::create(["ref_campo"=> "gatos", "ref_seccion" => "animales", "descripcion" => "Gatos", "tipo" => "numero"]);
+Pregunta::create(["ref_campo"=> "gatos_cuanto", "ref_seccion" => "animales", "descripcion" => "Gatos", "tipo" => "numero"]);
+Pregunta::create(["ref_campo"=> "gatos_vacunados", "ref_seccion" => "animales", "descripcion" => "Gatos", "tipo" => "numero"]);
 Pregunta::create(["ref_campo"=> "perros", "ref_seccion" => "animales", "descripcion" => "Perros", "tipo" => "seleccion"]);
-Pregunta::create(["ref_campo"=> "perros", "ref_seccion" => "animales", "descripcion" => "Perros", "tipo" => "numero"]);
-Pregunta::create(["ref_campo"=> "perros", "ref_seccion" => "animales", "descripcion" => "Perros", "tipo" => "numero"]);
+Pregunta::create(["ref_campo"=> "perros_cuantos", "ref_seccion" => "animales", "descripcion" => "Perros", "tipo" => "numero"]);
+Pregunta::create(["ref_campo"=> "perros_vacunados", "ref_seccion" => "animales", "descripcion" => "Perros", "tipo" => "numero"]);
 Pregunta::create(["ref_campo"=> "equinos", "ref_seccion" => "animales", "descripcion" => "Equinos", "tipo" => "seleccion"]);
-Pregunta::create(["ref_campo"=> "equinos", "ref_seccion" => "animales", "descripcion" => "Equinos", "tipo" => "numero"]);
-Pregunta::create(["ref_campo"=> "equinos", "ref_seccion" => "animales", "descripcion" => "Equinos", "tipo" => "numero"]);
+Pregunta::create(["ref_campo"=> "equinos_cuantos", "ref_seccion" => "animales", "descripcion" => "Equinos", "tipo" => "numero"]);
+Pregunta::create(["ref_campo"=> "equinos_vacunados", "ref_seccion" => "animales", "descripcion" => "Equinos", "tipo" => "numero"]);
 Pregunta::create(["ref_campo"=> "aves", "ref_seccion" => "animales", "descripcion" => "Aves", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "porcinos", "ref_seccion" => "animales", "descripcion" => "Porcinos", "tipo" => "seleccion"]);
-Pregunta::create(["ref_campo"=> "porcinos", "ref_seccion" => "animales", "descripcion" => "Porcinos", "tipo" => "numero"]);
-Pregunta::create(["ref_campo"=> "porcinos", "ref_seccion" => "animales", "descripcion" => "Porcinos", "tipo" => "numero"]);
+Pregunta::create(["ref_campo"=> "porcinos_cuantos", "ref_seccion" => "animales", "descripcion" => "Porcinos", "tipo" => "numero"]);
+Pregunta::create(["ref_campo"=> "porcinos_vacunados", "ref_seccion" => "animales", "descripcion" => "Porcinos", "tipo" => "numero"]);
 Pregunta::create(["ref_campo"=> "animales_no_rabia", "ref_seccion" => "animales", "descripcion" => "animalessilvestres que no trasmiten rabia", "tipo" => "numero"]);
 Pregunta::create(["ref_campo"=> "animales_si_rabia", "ref_seccion" => "animales", "descripcion" => "Otros animalessilvestres que si trasmiten rabia", "tipo" => "numero"]);
 
