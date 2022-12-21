@@ -68,9 +68,9 @@ class IntegranteFinalizadoController extends Controller
         $respuestasIintegrante->eliminarRespuestas();
         $this->secciones = $integrantePeticion['secciones'];
 
-        foreach ($this->secciones as $seccion)
+        foreach ($this->secciones as $refSeccion => $datos)
         {
-            $this->recorrerRespuestas($seccion['respuestas'], $seccion['ref_seccion']);
+            $this->recorrerRespuestas($datos['respuestas'], $refSeccion);
         }
 
         if (!empty($this->errores))
