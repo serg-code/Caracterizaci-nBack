@@ -5,6 +5,8 @@ namespace App\Dev\Encuesta;
 use App\Models\Secciones\Hogar\Animales;
 use App\Models\Secciones\Hogar\FactoresProtectores;
 use App\Models\Secciones\Hogar\HabitosConsumo;
+use App\Models\Secciones\Hogar\Mortalidad;
+use App\Models\Secciones\Hogar\SeguridadAlimentaria;
 use App\Models\Secciones\Hogar\Vivienda;
 use App\Models\Secciones\Integrantes\Accidente;
 use App\Models\Secciones\Integrantes\CuidadoDomiciliario;
@@ -25,6 +27,8 @@ class Secciones
             'factores_protectores' => new FactoresProtectores($datosGuardar),
             'vivienda' => new Vivienda($datosGuardar),
             'amianles' => new Animales($datosGuardar),
+            'mortalidad' => new Mortalidad($datosGuardar),
+            'mortalidad' => new SeguridadAlimentaria($datosGuardar),
 
             //secciones de integrantes
             'accidentes' => new Accidente($datosGuardar),
