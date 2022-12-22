@@ -15,7 +15,7 @@ class animalesSeeder extends Seeder
      */
     public function run()
     {
-        Opcion::create(["id"=> "345", "ref_campo" => "gatos", "pregunta_opcion" => "NO", "valor" => "3"]);
+        Opcion::create(["id"=> "344", "ref_campo" => "gatos", "pregunta_opcion" => "NO", "valor" => "3"]);
         Opcion::create(["id"=> "345", "ref_campo" => "gatos", "pregunta_opcion" => "SI", "valor" => "3"]);
         Opcion::create(["id"=> "346", "ref_campo" => "gatos_cuantos", "pregunta_opcion" => "numero", "valor" => "0"]);
         Opcion::create(["id"=> "347", "ref_campo" => "gatos_vacunados", "pregunta_opcion" => "numero", "valor" => "0"]);
