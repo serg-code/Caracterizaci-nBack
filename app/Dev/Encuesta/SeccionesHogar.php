@@ -68,6 +68,7 @@ class SeccionesHogar
             'vivienda' => SeccionesHogar::preguntasVivienda(),
             'animales' => SeccionesHogar::preguntasAnimales(),
             'mortalidad' => SeccionesHogar::preguntasMortalidad(),
+            'seguridad_alimentaria' => SeccionesHogar::preguntasSeguridadAlimentaria(),
             default => [],
         };
     }
@@ -164,12 +165,33 @@ class SeccionesHogar
         ];
     }
 
+    public static function preguntasSeguridadAlimentaria(): array
+    {
+        return [
+'animales_silvestres'=> null,
+'consume_cerdo_res_pollo'=> null,
+'consume_huevos'=> null,
+'consume_frijol_lentejas'=> null,
+'consume_lacteos'=> null,
+'consume_harinas'=> null,
+'consume_verduras'=> null,
+'consume_Frutas_frescas'=> null,
+'consume_enlatados'=> null,
+'consume_Platano_yuca'=> null,
+'consume_gaseosas'=> null,
+
+];
+    }
+
     public static function obtenerSecciones(): array
     {
         return [
             'factores_protectores',
             'habitos_consumo',
             'vivienda',
+            'animales',
+            'mortalidad',
+            'seguridad_alimentaria',
         ];
     }
 }
