@@ -30,14 +30,14 @@ class Morbilidad extends Model
         return $this->belongsTo(Pregunta::class, 'ref_campo');
     }
 
-    public static function guardarcuidado_domiciliarios(array $datoscuidado_domiciliarios)
+    public static function guardarmorbilidad(array $datosmorbilidad)
     {
-        $pregunta = new CuidadoDomiciliario($datoscuidado_domiciliarios);
+        $pregunta = new Morbilidad($datosmorbilidad);
         $pregunta->save();
     }
 
     public function eliminar()
     {
-        CuidadoDomiciliario::where('id_integrante', '=', $this->id_integrante)->delete();
+        Morbilidad::where('id_integrante', '=', $this->id_integrante)->delete();
     }
 }

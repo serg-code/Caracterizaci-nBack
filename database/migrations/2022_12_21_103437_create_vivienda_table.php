@@ -34,7 +34,7 @@ return new class extends Migration
                 $table->string('ventilacion_adecuada')->nullable();
                 $table->string('roedores')->nullable();
                 $table->string('reservorios_agua')->nullable();
-                $table->string('anjenos')->nullable();
+                $table->string('anjeos')->nullable();
                 $table->string('tipos_insectos_vectores')->nullable();
                 $table->string('conservacion_alimentos')->nullable();
                 $table->string('actividad_productiva')->nullable();

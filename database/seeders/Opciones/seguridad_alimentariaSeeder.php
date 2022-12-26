@@ -16,8 +16,8 @@ class seguridad_alimentariaSeeder extends Seeder
     public function run()
     {
         
-        Opcion::create(["id"=> "371", "ref_campo" => "dinero_alimentos", "pregunta_opcion" => "NO", "valor" => "1"]);
-        Opcion::create(["id"=> "372", "ref_campo" => "dinero_alimentos", "pregunta_opcion" => "SI", "valor" => "3"]);
+        Opcion::create(["id"=> "371", "ref_campo" => "falto_dinero", "pregunta_opcion" => "NO", "valor" => "1"]);
+        Opcion::create(["id"=> "372", "ref_campo" => "falto_dinero", "pregunta_opcion" => "SI", "valor" => "3"]);
         Opcion::create(["id"=> "373", "ref_campo" => "animales_silvestres", "pregunta_opcion" => "NO", "valor" => "1"]);
         Opcion::create(["id"=> "374", "ref_campo" => "animales_silvestres", "pregunta_opcion" => "SI", "valor" => "3"]);
         Opcion::create(["id"=> "375", "ref_campo" => "consume_cerdo_res_pollo", "pregunta_opcion" => "menor que 3 = 5", "valor" => "0"]);

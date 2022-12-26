@@ -15,7 +15,7 @@ class SeguridadAlimentariaSeeder extends Seeder
      */
     public function run()
     {
-Pregunta::create(["ref_campo"=> "dinero_alimentos", "ref_seccion" => "seguridad_alimentaria", "descripcion" => "¿En el último mes faltó el dinero en el hogar para comprar alimentos?", "tipo" => "seleccion"]);        
+Pregunta::create(["ref_campo"=> "falto_dinero", "ref_seccion" => "seguridad_alimentaria", "descripcion" => "¿En el último mes faltó el dinero en el hogar para comprar alimentos?", "tipo" => "seleccion"]);        
 Pregunta::create(["ref_campo"=> "animales_silvestres", "ref_seccion" => "seguridad_alimentaria", "descripcion" => "¿Consumen animales silvestres?", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "consume_cerdo_res_pollo", "ref_seccion" => "seguridad_alimentaria", "descripcion" => "¿Cuántas veces a la semana consumen carne de cerdo, res, pollo u otra?", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "consume_huevos", "ref_seccion" => "seguridad_alimentaria", "descripcion" => "¿Cuántas veces a la semana consumen huevos", "tipo" => "seleccion"]);

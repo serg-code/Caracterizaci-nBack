@@ -122,7 +122,7 @@ class SeccionesHogar
             'ventilacion_adecuada'=> null,
             'roedores'=> null,
             'reservorios_agua'=> null,
-            'anjenos'=> null,
+            'anjeos'=> null,
             'tipos_insectos_vectores'=> null,
             'conservacion_alimentos'=> null,
             'actividad_productiva'=> null,
@@ -168,6 +168,7 @@ class SeccionesHogar
     public static function preguntasSeguridadAlimentaria(): array
     {
         return [
+            'falto_dinero'=> null,
 'animales_silvestres'=> null,
 'consume_cerdo_res_pollo'=> null,
 'consume_huevos'=> null,
@@ -175,9 +176,9 @@ class SeccionesHogar
 'consume_lacteos'=> null,
 'consume_harinas'=> null,
 'consume_verduras'=> null,
-'consume_Frutas_frescas'=> null,
+'consume_frutas_frescas'=> null,
 'consume_enlatados'=> null,
-'consume_Platano_yuca'=> null,
+'consume_platano_yuca'=> null,
 'consume_gaseosas'=> null,
 
 ];

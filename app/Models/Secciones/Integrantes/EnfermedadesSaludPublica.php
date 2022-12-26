@@ -35,14 +35,14 @@ class EnfermedadesSaludPublica extends Model
         return $this->belongsTo(Pregunta::class, 'ref_campo');
     }
 
-    public static function guardarcuidado_domiciliarios(array $datoscuidado_domiciliarios)
+    public static function guardarsalud_publica(array $datossalud_publica)
     {
-        $pregunta = new CuidadoDomiciliario($datoscuidado_domiciliarios);
+        $pregunta = new EnfermedadesSaludPublica($datossalud_publica);
         $pregunta->save();
     }
 
     public function eliminar()
     {
-        CuidadoDomiciliario::where('id_integrante', '=', $this->id_integrante)->delete();
+        EnfermedadesSaludPublica::where('id_integrante', '=', $this->id_integrante)->delete();
     }
 }

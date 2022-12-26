@@ -73,8 +73,8 @@ class viviendaSeeder extends Seeder
         Opcion::create(["id" => "287", "ref_campo" => "roedores", "pregunta_opcion" => "SI", "valor" => "3"]);
         Opcion::create(["id" => "288", "ref_campo" => "reservorios_agua", "pregunta_opcion" => "NO", "valor" => "1"]);
         Opcion::create(["id" => "289", "ref_campo" => "reservorios_agua", "pregunta_opcion" => "SI", "valor" => "3"]);
-        Opcion::create(["id" => "290", "ref_campo" => "anjenos", "pregunta_opcion" => "NO", "valor" => "1"]);
-        Opcion::create(["id" => "291", "ref_campo" => "anjenos", "pregunta_opcion" => "SI", "valor" => "3"]);
+        Opcion::create(["id" => "290", "ref_campo" => "anjeos", "pregunta_opcion" => "NO", "valor" => "1"]);
+        Opcion::create(["id" => "291", "ref_campo" => "anjeos", "pregunta_opcion" => "SI", "valor" => "3"]);
         Opcion::create(["id" => "292", "ref_campo" => "tipos_insectos_vectores", "pregunta_opcion" => "Ningun", "valor" => "0"]);
         Opcion::create(["id" => "293", "ref_campo" => "tipos_insectos_vectores", "pregunta_opcion" => "Zancudos", "valor" => "5"]);
         Opcion::create(["id" => "294", "ref_campo" => "tipos_insectos_vectores", "pregunta_opcion" => "Pitos", "valor" => "5"]);
@@ -82,7 +82,7 @@ class viviendaSeeder extends Seeder
         Opcion::create(["id" => "296", "ref_campo" => "conservacion_alimentos", "pregunta_opcion" => "SI", "valor" => "3"]);
         Opcion::create(["id" => "297", "ref_campo" => "actividad_productiva", "pregunta_opcion" => "NO", "valor" => "1"]);
         Opcion::create(["id" => "298", "ref_campo" => "actividad_productiva", "pregunta_opcion" => "SI", "valor" => "3"]);
-        Opcion::create(["id" => "299", "ref_campo" => "actividad_productiva", "pregunta_opcion" => "texto", "valor" => "0"]);
+        //Opcion::create(["id" => "299", "ref_campo" => "actividad_productiva", "pregunta_opcion" => "texto", "valor" => "0"]);
         Opcion::create(["id" => "300", "ref_campo" => "tipos_material_piso", "pregunta_opcion" => "Tierra", "valor" => "5"]);
         Opcion::create(["id" => "301", "ref_campo" => "tipos_material_piso", "pregunta_opcion" => "Madera burda", "valor" => "5"]);
         Opcion::create(["id" => "302", "ref_campo" => "tipos_material_piso", "pregunta_opcion" => "Tabla", "valor" => "5"]);

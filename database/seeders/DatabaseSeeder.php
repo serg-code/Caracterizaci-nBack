@@ -10,6 +10,7 @@ use Database\Seeders\Opciones\cuidados_domiciliariosSeeder;
 use Database\Seeders\Opciones\identificacion_ciudadanaSeeder;
 use Database\Seeders\Opciones\morbilidadOpcionesSeeder;
 use Database\Seeders\Opciones\mortalidadSeeder as OpcionesMortalidadSeeder;
+use Database\Seeders\Opciones\primera_infanciaSeeder;
 use Database\Seeders\Opciones\salud_mentalSeeder;
 use Database\Seeders\Opciones\salud_publicaSeeder;
 use Database\Seeders\Opciones\seguridad_alimentariaSeeder;
@@ -21,6 +22,7 @@ use Database\Seeders\Preguntas\CuidadoEnfermedadesSeeder;
 use Database\Seeders\Preguntas\MorbilidadSeeder;
 use Database\Seeders\Preguntas\MortalidadSeeder;
 use Database\Seeders\Preguntas\PreguntasIdentificacionCiudadanaSeeder;
+use Database\Seeders\Preguntas\PrimeraInfanciaSeeder;
 use Database\Seeders\Preguntas\SaludMentalSeeder;
 use Database\Seeders\Preguntas\SaludPublicaSeeder;
 use Database\Seeders\Preguntas\SeguridadAlimentariaSeeder;
@@ -60,6 +62,7 @@ class DatabaseSeeder extends Seeder
             new AnimalesSeeder(),
             new MortalidadSeeder(),
             new SeguridadAlimentariaSeeder(),
+            new PrimeraInfanciaSeeder(),
 
             //opciones
             new OpcionesSeeder(),
@@ -74,6 +77,7 @@ class DatabaseSeeder extends Seeder
             new OpcionesAnimalesSeeder(),
             new OpcionesMortalidadSeeder(),
             new seguridad_alimentariaSeeder(),
+            new primera_infanciaSeeder(),
 
             //departamentos y municipios
             new DepartamentosSeeder(),

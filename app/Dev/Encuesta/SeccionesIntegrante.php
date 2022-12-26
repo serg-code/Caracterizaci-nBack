@@ -65,6 +65,7 @@ class SeccionesIntegrante
             'morbilidad',
             'salud_mental',
             'identificacion_ciudadana',
+            'primera_infancia',
         ];
     }
 
@@ -78,6 +79,9 @@ class SeccionesIntegrante
             'enfermedades_salud_publica' => SeccionesIntegrante::preguntasEnfermedadesSaludPublica(),
             'morbilidad' => SeccionesIntegrante::preguntasMorvilidad(),
             'salud_mental' => SeccionesIntegrante::preguntasSaludMental(),
+            'identificacion_ciudadana', => SeccionesIntegrante::preguntasIdentificacionCiudadana(),
+            'primera_infancia', => SeccionesIntegrante::preguntasPrimeraInfancia(),
+            'infancia', => SeccionesIntegrante::preguntasInfancia(),
 
             default => [],
         };
@@ -173,7 +177,7 @@ class SeccionesIntegrante
         ];
     }
 
-    protected function preguntasIdentificacionCiudadane(): array
+    protected function preguntasIdentificacionCiudadana(): array
     {
         return [
             'ayudas_tenicas' => null,
@@ -186,6 +190,100 @@ class SeccionesIntegrante
             'por_que' => null,
             'programas' => null,
             'seguridad_social' => null,
+        ];
+    }
+
+    public static function preguntasPrimeraInfancia(): array
+    {
+        return [
+'pi_peso_al_nacer'=> null,
+'pi_peso_actual'=> null,
+'pi_talla_al_nacer',
+'pi_talla_actual'=> null,
+'pi_valoracion_nutricional_verde'=> null,
+'pi_valoracion_nutricional_amarillo'=> null,
+'pi_valoracion_nutricional_rojo'=> null,
+'pi_desarrollo_lenguaje'=> null,
+'pi_desarrollo_motora'=> null,
+'pi_desarrollo_conducta'=> null,
+'pi_desarrollo_probelmas_visuales'=> null,
+'pi_desarrollo_problemas_auditivos'=> null,
+'pi_desparasitado'=> null,
+'pi_hospitalizacion_nacer'=> null,
+'pi_carnet_vacunacion'=> null,
+'pi_vacuna_bcg_rn'=> null,
+'pi_vacuna_polio_d1_2_a_3_mes'=> null,
+'pi_vacuna_polio_d2_4_a_5_mes'=> null,
+'pi_vacuna_polio_d3_6_a_17_mes'=> null,
+'pi_vacuna_polio_r1_18_mes'=> null,
+'pi_vacuna_polio_r2_5_anios'=> null,
+'pi_vacuna_hepatitis_a_12_mes'=> null,
+'pi_vacuna_hepatitis_b_rn'=> null,
+'pi_vacuna_influenza_estacional_6_mes'=> null,
+'pi_vacuna_neumococo_d1_2_mes'=> null,
+'pi_vacuna_neumococo_d2_4_mes'=> null,
+'pi_vacuna_neumococo_d3_12_mes'=> null,
+'pi_vacuna_rotavirus_d1_2_mes'=> null,
+'pi_vacuna_rotavirus_d2_4_mes'=> null,
+'pi_vacuna_fiebre_amarilla_18_mes'=> null,
+'pi_vacuna_dpt_d1_18_mes'=> null,
+'pi_vacuna_dpt_d2_5_anios'=> null,
+'pi_vacuna_pentavalente_d1_2_mes'=> null,
+'pi_vacuna_pentavalente_d2_4_mes'=> null,
+'pi_vacuna_pentavalente_d3_6_mes'=> null,
+'pi_vacuna_srp_d1_12_mes'=> null,
+'pi_vacuna_srp_d2_5_anios'=> null,
+'pi__vacuna_varicela_12_mes'=> null,
+'pi_atencion_medica_1_mes'=> null,
+'pi_atencion_medica_4_a_5_mes'=> null,
+'pi_atencion_medica_12_a_18_mes'=> null,
+'pi_atencion_medica_24_a_29_mes'=> null,
+'pi_atencion_medica_3_anios'=> null,
+'pi_atencion_medica_4_anios'=> null,
+'pi_atencion_enfermeria_2_a_3_mes'=> null,
+'pi_atencion_enfermeria_6_a_8_mes'=> null,
+'pi_atencion_enfermeria_9_a_11_mes'=> null,
+'pi_atencion_enfermeria_19_a_23_mes'=> null,
+'pi_atencion_enfermeria_30_a_35_mes'=> null,
+'pi_atencion_enfermeria_4_anios'=> null,
+'pi_atencion_lactancia_1_a_6_mes'=> null,
+'pi_tsh'=> null,
+'pi_fluor_1_a_5_anios'=> null,
+'pi_profilaxis_1_a_5_anios'=> null,
+'pi_sellantes_3_anios'=> null,
+'pi_higiene_bucal'=> null,
+'pi_caries'=> null,
+'pi_consulta_odontologica_6_mes_a_5_anios'=> null,
+        ];
+    }
+
+    public static function preguntasInfancia(): array
+    {
+        return [
+            'in_peso'=> null,
+            'in_talla'=> null,
+            'in_desarrollo_lenguaje'=> null,
+            'in_desarrollo_motora'=> null,
+            'in_desarrollo_conducta'=> null,
+            'in_desarrollo_probelmas_visuales'=> null,
+            'in_desarrollo_problemas_auditivos'=> null,
+            'in_desparasitado'=> null,
+            'in_carnet_vacunacion'=> null,
+            'in_vacuna_dpt_r2'=> null,
+            'in_vacuna_polio_r2'=> null,
+            'in_vacuna_srp_r1'=> null,
+            'in_vacuna_fiebre_amarilla_9_a_11_anios'=> null,
+            'in_vacuna_vph_d1_9_a_11_anios'=> null,
+            'in_vacuna_vph_d2_9_a_11_anios'=> null,
+            'in_vacuna_vph_d3_9_a_11_anios'=> null,
+            'in_caries'=> null,
+            'in_consulta_odontologica_6_a_11_anios'=> null,
+            'in_uso_seda_dental'=> null,
+            'in_fluor_6_a_11_anios'=> null,
+            'in_profilaxis_6_a_11_anios'=> null,
+            'in_sellantes_6_a_11_anios'=> null,
+            'in_atencion_medica_6_10_anios'=> null,
+            'in_atencion_enfermeria_7_11_anios'=> null,
         ];
     }
 }

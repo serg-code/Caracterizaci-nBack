@@ -33,14 +33,14 @@ class IdentificaionCiudadana extends Model
         return $this->belongsTo(Pregunta::class, 'ref_campo');
     }
 
-    public static function guardarcuidado_domiciliarios(array $datoscuidado_domiciliarios)
+    public static function guardaridentificacion_ciudadana(array $datosidentificacion_ciudadana)
     {
-        $pregunta = new CuidadoDomiciliario($datoscuidado_domiciliarios);
+        $pregunta = new IdentificaionCiudadana($datosidentificacion_ciudadana);
         $pregunta->save();
     }
 
     public function eliminar()
     {
-        CuidadoDomiciliario::where('id_integrante', '=', $this->id_integrante)->delete();
+        IdentificaionCiudadana::where('id_integrante', '=', $this->id_integrante)->delete();
     }
 }

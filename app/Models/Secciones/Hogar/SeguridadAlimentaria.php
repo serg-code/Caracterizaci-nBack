@@ -11,6 +11,7 @@ class SeguridadAlimentaria extends Model
     protected $table = 'vivienda';
 
     protected $fillable = [
+'falto_dinero',
 'animales_silvestres',
 'consume_cerdo_res_pollo',
 'consume_huevos',
@@ -18,9 +19,9 @@ class SeguridadAlimentaria extends Model
 'consume_lacteos',
 'consume_harinas',
 'consume_verduras',
-'consume_Frutas_frescas',
+'consume_frutas_frescas',
 'consume_enlatados',
-'consume_Platano_yuca',
+'consume_platano_yuca',
 'consume_gaseosas',
      ];
 
