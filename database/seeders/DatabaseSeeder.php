@@ -3,11 +3,13 @@
 namespace Database\Seeders;
 
 use App\Models\Secciones\Hogar\SeguridadAlimentaria;
+use App\Models\Secciones\Integrantes\Infancia;
 use Database\Seeders\Opciones\accidenteseeder;
 use Database\Seeders\Opciones\animalesSeeder as OpcionesAnimalesSeeder;
 use Database\Seeders\Opciones\cuidado_enfermedadesSeeder;
 use Database\Seeders\Opciones\cuidados_domiciliariosSeeder;
 use Database\Seeders\Opciones\identificacion_ciudadanaSeeder;
+use Database\Seeders\Opciones\infanciaSeeder as OpcionesInfanciaSeeder;
 use Database\Seeders\Opciones\morbilidadOpcionesSeeder;
 use Database\Seeders\Opciones\mortalidadSeeder as OpcionesMortalidadSeeder;
 use Database\Seeders\Opciones\primera_infanciaSeeder;
@@ -19,6 +21,7 @@ use Database\Seeders\Preguntas\AccidentesSeeder;
 use Database\Seeders\Preguntas\AnimalesSeeder;
 use Database\Seeders\Preguntas\CuidadoDomiciliarioSeeder;
 use Database\Seeders\Preguntas\CuidadoEnfermedadesSeeder;
+use Database\Seeders\Preguntas\InfanciaSeeder;
 use Database\Seeders\Preguntas\MorbilidadSeeder;
 use Database\Seeders\Preguntas\MortalidadSeeder;
 use Database\Seeders\Preguntas\PreguntasIdentificacionCiudadanaSeeder;
@@ -63,6 +66,7 @@ class DatabaseSeeder extends Seeder
             new MortalidadSeeder(),
             new SeguridadAlimentariaSeeder(),
             new PrimeraInfanciaSeeder(),
+            new InfanciaSeeder(),
 
             //opciones
             new OpcionesSeeder(),
@@ -78,6 +82,7 @@ class DatabaseSeeder extends Seeder
             new OpcionesMortalidadSeeder(),
             new seguridad_alimentariaSeeder(),
             new primera_infanciaSeeder(),
+            new OpcionesInfanciaSeeder(),
 
             //departamentos y municipios
             new DepartamentosSeeder(),

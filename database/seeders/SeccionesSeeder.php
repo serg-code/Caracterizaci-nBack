@@ -32,6 +32,7 @@ class SeccionesSeeder extends Seeder
         Seccion::create(['ref_seccion' => 'enfermedades_salud_publica']);
         Seccion::create(['ref_seccion' => 'morbilidad']);
         Seccion::create(['ref_seccion' => 'identificacion_ciudadana']);
-        Seccion::create(['ref_seccion' => 'primera_imfancia']);        
+        Seccion::create(['ref_seccion' => 'primera_infancia']);
+        Seccion::create(['ref_seccion' => 'infancia']);        
     }
 }
