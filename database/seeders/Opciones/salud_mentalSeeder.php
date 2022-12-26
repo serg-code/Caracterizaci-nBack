@@ -33,7 +33,7 @@ class salud_mentalSeeder extends Seeder
         Opcion::create(["id" => "102", "ref_campo" =>  "anorexia", "pregunta_opcion" => "SI", "valor" => "3"]);
         Opcion::create(["id" => "103", "ref_campo" =>  "tratamiento", "pregunta_opcion" => "NO", "valor" => "1"]);
         Opcion::create(["id" => "104", "ref_campo" =>  "tratamiento", "pregunta_opcion" => "SI", "valor" => "3"]);
-        Opcion::create(["id" => "105", "ref_campo" =>  "diagnóstico", "pregunta_opcion" => "diagnostico", "valor" => "0"]);
+        //Opcion::create(["id" => "105", "ref_campo" =>  "diagnóstico", "pregunta_opcion" => "diagnostico", "valor" => "0"]);
         Opcion::create(["id" => "106", "ref_campo" =>  "violencia_fisica", "pregunta_opcion" => "NO", "valor" => "1"]);
         Opcion::create(["id" => "107", "ref_campo" =>  "violencia_fisica", "pregunta_opcion" => "SI", "valor" => "3"]);
         Opcion::create(["id" => "108", "ref_campo" =>  "violencia_psicologíca", "pregunta_opcion" => "NO", "valor" => "1"]);

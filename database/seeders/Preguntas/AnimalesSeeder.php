@@ -15,7 +15,7 @@ class AnimalesSeeder extends Seeder
      */
     public function run()
     {
-        Pregunta::create(["ref_campo"=> "gatos", "ref_seccion" => "animales", "descripcion" => "Gatos", "tipo" => "seleccion"]);
+Pregunta::create(["ref_campo"=> "gatos", "ref_seccion" => "animales", "descripcion" => "Gatos", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "gatos_cuanto", "ref_seccion" => "animales", "descripcion" => "Gatos", "tipo" => "numero"]);
 Pregunta::create(["ref_campo"=> "gatos_vacunados", "ref_seccion" => "animales", "descripcion" => "Gatos", "tipo" => "numero"]);
 Pregunta::create(["ref_campo"=> "perros", "ref_seccion" => "animales", "descripcion" => "Perros", "tipo" => "seleccion"]);
