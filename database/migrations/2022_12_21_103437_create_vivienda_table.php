@@ -38,6 +38,7 @@ return new class extends Migration
                 $table->string('tipos_insectos_vectores')->nullable();
                 $table->string('conservacion_alimentos')->nullable();
                 $table->string('actividad_productiva')->nullable();
+                $table->string('ciuu')->nullable();
                 $table->string('tipos_material_piso')->nullable();
                 $table->string('tipos_material_techo')->nullable();
                 $table->string('tipos_material_paredes')->nullable();

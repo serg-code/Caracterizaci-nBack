@@ -34,6 +34,7 @@ class Vivienda extends Model
 'tipos_insectos_vectores',
 'conservacion_alimentos',
 'actividad_productiva',
+'ciuu',
 'tipos_material_piso',
 'tipos_material_techo',
 'tipos_material_paredes',

@@ -126,6 +126,7 @@ class SeccionesHogar
             'tipos_insectos_vectores'=> null,
             'conservacion_alimentos'=> null,
             'actividad_productiva'=> null,
+            'ciuu'=> null,
             'tipos_material_piso'=> null,
             'tipos_material_techo'=> null,
             'tipos_material_paredes'=> null,
