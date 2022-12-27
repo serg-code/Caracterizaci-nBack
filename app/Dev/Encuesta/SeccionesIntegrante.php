@@ -82,6 +82,7 @@ class SeccionesIntegrante
             'identificacion_ciudadana', => SeccionesIntegrante::preguntasIdentificacionCiudadana(),
             'primera_infancia', => SeccionesIntegrante::preguntasPrimeraInfancia(),
             'infancia', => SeccionesIntegrante::preguntasInfancia(),
+            'adolescencia' => SeccionesIntegrante::preguntasAdolescencia(),
 
             default => [],
         };
@@ -284,6 +285,31 @@ class SeccionesIntegrante
             'in_sellantes_6_a_11_anios' => null,
             'in_atencion_medica_6_10_anios' => null,
             'in_atencion_enfermeria_7_11_anios' => null,
+        ];
+    }
+
+    public static function preguntasAdolescencia(): array
+    {
+        return [
+            'adol_peso'=> null,
+            'adol_talla'=> null,
+            'adol_imc'=> null,
+            'adol_asesoria_anticonceptiva_12_a_17_anios'=> null,
+            'adol_planifica'=> null,
+            'adol_metodo_planficica'=> null,
+            'adol_desde_cuando_planifica'=> null,
+            'adol_razon_no_planifica'=> null,
+            'adol_atencion_medica_12_16_anios'=> null,
+            'adol_atencion_enfermeria_13_17_anios'=> null,
+            'adol_salud_bucal_12_a_17_anios'=> null,
+            'adol_fluor_12_a_17_anios'=> null,
+            'adol_profilaxis_12_a_17_anios'=> null,
+            'adol_sellantes_12_a_17_anios'=> null,
+            'adol_supragingival_12_a_17_anios'=> null,
+            'adol_vacunacion_12_a_17_anios'=> null,
+            'adol_vacuna_fiebre_amarilla'=> null,
+            'adol_vacuna_vph'=> null,
+            'adol_vacuna_toxoide_tetanico'=> null,
         ];
     }
 }

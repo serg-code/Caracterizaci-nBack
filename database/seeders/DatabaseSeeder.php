@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Secciones\Hogar\SeguridadAlimentaria;
 use App\Models\Secciones\Integrantes\Infancia;
 use Database\Seeders\Opciones\accidenteseeder;
+use Database\Seeders\Opciones\adolescenciaSeeder;
 use Database\Seeders\Opciones\animalesSeeder as OpcionesAnimalesSeeder;
 use Database\Seeders\Opciones\cuidado_enfermedadesSeeder;
 use Database\Seeders\Opciones\cuidados_domiciliariosSeeder;
@@ -18,6 +19,7 @@ use Database\Seeders\Opciones\salud_publicaSeeder;
 use Database\Seeders\Opciones\seguridad_alimentariaSeeder;
 use Database\Seeders\Opciones\viviendaSeeder as OpcionesViviendaSeeder;
 use Database\Seeders\Preguntas\AccidentesSeeder;
+use Database\Seeders\Preguntas\AdolescenciaSeeder as PreguntasAdolescenciaSeeder;
 use Database\Seeders\Preguntas\AnimalesSeeder;
 use Database\Seeders\Preguntas\CuidadoDomiciliarioSeeder;
 use Database\Seeders\Preguntas\CuidadoEnfermedadesSeeder;
@@ -67,6 +69,7 @@ class DatabaseSeeder extends Seeder
             new SeguridadAlimentariaSeeder(),
             new PrimeraInfanciaSeeder(),
             new InfanciaSeeder(),
+            new PreguntasAdolescenciaSeeder(),
 
             //opciones
             new OpcionesSeeder(),
@@ -83,6 +86,7 @@ class DatabaseSeeder extends Seeder
             new seguridad_alimentariaSeeder(),
             new primera_infanciaSeeder(),
             new OpcionesInfanciaSeeder(),
+            new adolescenciaSeeder(),
 
             //departamentos y municipios
             new DepartamentosSeeder(),
