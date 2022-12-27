@@ -312,4 +312,5 @@ class SeccionesIntegrante
             'adol_vacuna_toxoide_tetanico'=> null,
         ];
     }
+
 }

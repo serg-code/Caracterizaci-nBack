@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('adeolescencia', function (Blueprint $table) {
+        Schema::create('adolescencia', function (Blueprint $table) {
             $table->uuid('id_integrante')->unique();
             $table->string('adol_peso')->nullable();
             $table->string('adol_talla')->nullable();

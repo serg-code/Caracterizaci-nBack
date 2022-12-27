@@ -15,7 +15,7 @@ class adolescenciaSeeder extends Seeder
      */
     public function run()
     {
-        //Opcion::create(["id"=> "542", "ref_campo" => "adol_peso", "opcion_pregunta" => "NO", "valor" => "1"]);
+//Opcion::create(["id"=> "542", "ref_campo" => "adol_peso", "opcion_pregunta" => "NO", "valor" => "1"]);
 //Opcion::create(["id"=> "543", "ref_campo" => "adol_talla", "opcion_pregunta" => "SI", "valor" => "3"]);
 //Opcion::create(["id"=> "544", "ref_campo" => "adol_imc", "opcion_pregunta" => "", "valor" => ""]);
 Opcion::create(["id"=> "545", "ref_campo" => "adol_asesoria_anticonceptiva_12_a_17_anios", "opcion_pregunta" => "NO", "valor" => "1"]);
