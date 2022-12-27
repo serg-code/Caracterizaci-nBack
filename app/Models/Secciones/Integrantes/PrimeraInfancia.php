@@ -12,6 +12,7 @@ class PrimeraInfancia extends Model
 protected $table = 'primera_infancia';
 
     protected $fillable = [
+        'id_integrante',
 'pi_peso_al_nacer',
 'pi_peso_actual',
 'pi_talla_al_nacer',

@@ -11,6 +11,7 @@ class Vivienda extends Model
     protected $table = 'vivienda';
 
     protected $fillable = [
+        'hogar_id',
 'encuesta_sisben',
 'ficha_sisben',
 'puntaje_sisben',
@@ -53,6 +54,6 @@ class Vivienda extends Model
 
     public function eliminar()
     {
-        HabitosConsumo::where('hogar_id', '=', $this->hogar_id)->delete();
+        Vivienda::where('hogar_id', '=', $this->hogar_id)->delete();
     }
 }

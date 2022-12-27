@@ -11,6 +11,7 @@ class Animales extends Model
     protected $table = 'animales';
 
     protected $fillable = [
+        'hogar_id',
         'gatos',
         'gatos_cuantos',
         'gatos_vacunados',
@@ -42,7 +43,7 @@ class Animales extends Model
 
     public function eliminar()
     {
-        HabitosConsumo::where('hogar_id', '=', $this->hogar_id)->delete();
+        Animales::where('hogar_id', '=', $this->hogar_id)->delete();
     }
 }
 

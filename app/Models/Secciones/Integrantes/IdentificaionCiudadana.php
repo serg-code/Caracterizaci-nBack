@@ -11,6 +11,7 @@ class IdentificaionCiudadana extends Model
     protected $table = 'identificacion_ciudadana';
 
     protected $fillable = [
+        'id_integrante',
         'grupo_etnia',
 'grupo_atencion_especial',
 'programas',

@@ -11,6 +11,7 @@ class SeguridadAlimentaria extends Model
     protected $table = 'vivienda';
 
     protected $fillable = [
+        'hogar_id',
 'falto_dinero',
 'animales_silvestres',
 'consume_cerdo_res_pollo',
@@ -37,6 +38,6 @@ class SeguridadAlimentaria extends Model
 
     public function eliminar()
     {
-        HabitosConsumo::where('hogar_id', '=', $this->hogar_id)->delete();
+        SeguridadAlimentaria::where('hogar_id', '=', $this->hogar_id)->delete();
     }
 }

@@ -12,6 +12,7 @@ class Infancia extends Model
     protected $table = 'infancia';
 
     protected $fillable = [
+        'id_integrante',
     'in_peso',
         'in_talla',
         'in_desarrollo_lenguaje',

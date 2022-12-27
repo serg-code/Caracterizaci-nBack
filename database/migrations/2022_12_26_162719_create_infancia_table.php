@@ -14,7 +14,6 @@ return new class extends Migration
     public function up()
     {
         Schema::create('infancia', function (Blueprint $table) {
-            $table->id();
             $table->uuid('id_integrante')->unique();
             $table->string('in_peso')->nullable();
         $table->string('in_talla')->nullable();

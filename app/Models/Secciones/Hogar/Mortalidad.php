@@ -11,6 +11,7 @@ class Mortalidad extends Model
     protected $table = 'vivienda';
 
     protected $fillable = [
+        'hogar_id',
         'fallecido_familiar',
         'sexo_fallecido',
         'edad_fallecido',
@@ -30,6 +31,6 @@ class Mortalidad extends Model
 
     public function eliminar()
     {
-        HabitosConsumo::where('hogar_id', '=', $this->hogar_id)->delete();
+        Mortalidad::where('hogar_id', '=', $this->hogar_id)->delete();
     }
 }
