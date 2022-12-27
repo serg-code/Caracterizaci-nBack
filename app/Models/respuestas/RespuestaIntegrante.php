@@ -40,4 +40,10 @@ class RespuestaIntegrante extends Model
     {
         RespuestaIntegrante::where('id_integrante', '=', $this->id_integrante)->delete();
     }
+
+    function actualizarRespuesta(array $datos)
+    {
+        $this->ref_campo = $datos['ref_campo'] ?? $this->ref_campo;
+        $this->save();
+    }
 }
