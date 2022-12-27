@@ -16,7 +16,7 @@ class AdolescenciaSeeder extends Seeder
     public function run()
     {
         Pregunta::create(["ref_campo"=> "adol_peso", "ref_seccion" => "adolescencia", "descripcion" => "Valoración nutricional: Peso (kgs)", "tipo" => "numero"]);
-Pregunta::creates(["ref_campo"=> "adol_talla", "ref_seccion" => "adolescencia", "descripcion" => "Valoración nutricional:  Talla (cm)", "tipo" => "numero"]);
+Pregunta::create(["ref_campo"=> "adol_talla", "ref_seccion" => "adolescencia", "descripcion" => "Valoración nutricional:  Talla (cm)", "tipo" => "numero"]);
 Pregunta::create(["ref_campo"=> "adol_imc", "ref_seccion" => "adolescencia", "descripcion" => "Indice de Masa Corporal", "tipo" => "numero"]);
 Pregunta::create(["ref_campo"=> "adol_asesoria_anticonceptiva_12_a_17_anios", "ref_seccion" => "adolescencia", "descripcion" => "Atención en salud para la asesoria en anticoncepción", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "adol_planifica", "ref_seccion" => "adolescencia", "descripcion" => "Planifica: Método", "tipo" => "seleccion"]);
