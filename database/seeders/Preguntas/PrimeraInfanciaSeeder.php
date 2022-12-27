@@ -33,7 +33,7 @@ Pregunta::create(["ref_campo"=> "pi_vacuna_polio_d1_2_a_3_mes", "ref_seccion" =>
 Pregunta::create(["ref_campo"=> "pi_vacuna_polio_d2_4_a_5_mes", "ref_seccion" => "primera_infancia", "descripcion" => "Polio", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "pi_vacuna_polio_d3_6_a_17_mes", "ref_seccion" => "primera_infancia", "descripcion" => "Polio", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "pi_vacuna_polio_r1_18_mes", "ref_seccion" => "primera_infancia", "descripcion" => "Polio", "tipo" => "seleccion"]);
-Pregunta::create(["ref_campo"=> "pi_vacuna_polio_r2_5_años", "ref_seccion" => "primera_infancia", "descripcion" => "Polio", "tipo" => "seleccion"]);
+Pregunta::create(["ref_campo"=> "pi_vacuna_polio_r2_5_anios", "ref_seccion" => "primera_infancia", "descripcion" => "Polio", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "pi_vacuna_hepatitis_a_12_mes", "ref_seccion" => "primera_infancia", "descripcion" => "Hepatitis A", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "pi_vacuna_hepatitis_b_rn", "ref_seccion" => "primera_infancia", "descripcion" => "Hepatitis B", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "pi_vacuna_influenza_estacional_6_mes", "ref_seccion" => "primera_infancia", "descripcion" => "Influenza estacional", "tipo" => "seleccion"]);
@@ -55,7 +55,7 @@ Pregunta::create(["ref_campo"=> "pi_atencion_medica_1_mes", "ref_seccion" => "pr
 Pregunta::create(["ref_campo"=> "pi_atencion_medica_4_a_5_mes", "ref_seccion" => "primera_infancia", "descripcion" => "Atención en salud médica", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "pi_atencion_medica_12_a_18_mes", "ref_seccion" => "primera_infancia", "descripcion" => "Atención en salud médica", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "pi_atencion_medica_24_a_29_mes", "ref_seccion" => "primera_infancia", "descripcion" => "Atención en salud médica", "tipo" => "seleccion"]);
-Pregunta::create(["ref_campo"=> "pi_atencion_medica_3_años", "ref_seccion" => "primera_infancia", "descripcion" => "Atención en salud médica", "tipo" => "seleccion"]);
+Pregunta::create(["ref_campo"=> "pi_atencion_medica_3_anios", "ref_seccion" => "primera_infancia", "descripcion" => "Atención en salud médica", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "pi_atencion_medica_4_anios", "ref_seccion" => "primera_infancia", "descripcion" => "Atención en salud médica", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "pi_atencion_enfermeria_2_a_3_mes", "ref_seccion" => "primera_infancia", "descripcion" => "Atención en salud en enfermería", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "pi_atencion_enfermeria_6_a_8_mes", "ref_seccion" => "primera_infancia", "descripcion" => "Atención en salud en enfermería", "tipo" => "seleccion"]);

@@ -34,9 +34,9 @@ class infanciaSeeder extends Seeder
         Opcion::create(["id" => "512", "ref_campo" => "in_vacuna_dpt_r2", "pregunta_opcion" => "NO", "valor" => "1"]);
         Opcion::create(["id" => "513", "ref_campo" => "in_vacuna_dpt_r2", "pregunta_opcion" => "SI", "valor" => "3"]);
         Opcion::create(["id" => "514", "ref_campo" => "in_vacuna_polio_r2", "pregunta_opcion" => "NO", "valor" => "1"]);
-        // !Opcion::create(["id"=> "515", "ref_campo" => "in_vacuna_polio_r3", "pregunta_opcion" => "SI", "valor" => "3"]);
+        Opcion::create(["id" => "515", "ref_campo" => "in_vacuna_polio_r2", "pregunta_opcion" => "SI", "valor" => "3"]);
         Opcion::create(["id" => "516", "ref_campo" => "in_vacuna_srp_r1", "pregunta_opcion" => "NO", "valor" => "1"]);
-        // !Opcion::create(["id" => "517", "ref_campo" => "in_vacuna_srp_r2", "pregunta_opcion" => "SI", "valor" => "3"]);
+        Opcion::create(["id" => "517", "ref_campo" => "in_vacuna_srp_r1", "pregunta_opcion" => "SI", "valor" => "3"]);
         Opcion::create(["id" => "518", "ref_campo" => "in_vacuna_fiebre_amarilla_9_a_11_anios", "pregunta_opcion" => "NO", "valor" => "1"]);
         Opcion::create(["id" => "519", "ref_campo" => "in_vacuna_fiebre_amarilla_9_a_11_anios", "pregunta_opcion" => "SI", "valor" => "3"]);
         Opcion::create(["id" => "520", "ref_campo" => "in_vacuna_vph_d1_9_a_11_anios", "pregunta_opcion" => "NO", "valor" => "1"]);

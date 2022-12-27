@@ -49,8 +49,8 @@ class primera_infanciaSeeder extends Seeder
         Opcion::create(["id" => "415", "ref_campo" => "pi_vacuna_polio_d3_6_a_17_mes", "pregunta_opcion" => "SI", "valor" => "3"]);
         Opcion::create(["id" => "416", "ref_campo" => "pi_vacuna_polio_r1_18_mes", "pregunta_opcion" => "NO", "valor" => "1"]);
         Opcion::create(["id" => "417", "ref_campo" => "pi_vacuna_polio_r1_18_mes", "pregunta_opcion" => "SI", "valor" => "3"]);
-        // Opcion::create(["id" => "418", "ref_campo" => "pi_vacuna_polio_r2_5_anios", "pregunta_opcion" => "NO", "valor" => "1"]);
-        // Opcion::create(["id" => "419", "ref_campo" => "pi_vacuna_polio_r2_5_anios", "pregunta_opcion" => "SI", "valor" => "3"]);
+        Opcion::create(["id" => "418", "ref_campo" => "pi_vacuna_polio_r2_5_anios", "pregunta_opcion" => "NO", "valor" => "1"]);
+        Opcion::create(["id" => "419", "ref_campo" => "pi_vacuna_polio_r2_5_anios", "pregunta_opcion" => "SI", "valor" => "3"]);
         Opcion::create(["id" => "420", "ref_campo" => "pi_vacuna_hepatitis_a_12_mes", "pregunta_opcion" => "NO", "valor" => "1"]);
         Opcion::create(["id" => "421", "ref_campo" => "pi_vacuna_hepatitis_a_12_mes", "pregunta_opcion" => "SI", "valor" => "3"]);
         Opcion::create(["id" => "422", "ref_campo" => "pi_vacuna_hepatitis_b_rn", "pregunta_opcion" => "NO", "valor" => "1"]);
@@ -93,8 +93,8 @@ class primera_infanciaSeeder extends Seeder
         Opcion::create(["id" => "459", "ref_campo" => "pi_atencion_medica_12_a_18_mes", "pregunta_opcion" => "SI", "valor" => "3"]);
         Opcion::create(["id" => "460", "ref_campo" => "pi_atencion_medica_24_a_29_mes", "pregunta_opcion" => "NO", "valor" => "1"]);
         Opcion::create(["id" => "461", "ref_campo" => "pi_atencion_medica_24_a_29_mes", "pregunta_opcion" => "SI", "valor" => "3"]);
-        // Opcion::create(["id" => "462", "ref_campo" => "pi_atencion_medica_3_anios", "pregunta_opcion" => "NO", "valor" => "1"]);
-        // Opcion::create(["id" => "463", "ref_campo" => "pi_atencion_medica_3_anios", "pregunta_opcion" => "SI", "valor" => "3"]);
+        Opcion::create(["id" => "462", "ref_campo" => "pi_atencion_medica_3_anios", "pregunta_opcion" => "NO", "valor" => "1"]);
+        Opcion::create(["id" => "463", "ref_campo" => "pi_atencion_medica_3_anios", "pregunta_opcion" => "SI", "valor" => "3"]);
         Opcion::create(["id" => "464", "ref_campo" => "pi_atencion_medica_4_anios", "pregunta_opcion" => "NO", "valor" => "1"]);
         Opcion::create(["id" => "465", "ref_campo" => "pi_atencion_medica_4_anios", "pregunta_opcion" => "SI", "valor" => "3"]);
         Opcion::create(["id" => "466", "ref_campo" => "pi_atencion_enfermeria_2_a_3_mes", "pregunta_opcion" => "NO", "valor" => "1"]);
