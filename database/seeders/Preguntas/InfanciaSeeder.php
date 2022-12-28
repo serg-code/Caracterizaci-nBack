@@ -27,18 +27,18 @@ Pregunta::create(["ref_campo"=> "in_carnet_vacunacion", "ref_seccion" => "infanc
 Pregunta::create(["ref_campo"=> "in_vacuna_dpt_r2", "ref_seccion" => "infancia ", "descripcion" => "DPT", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "in_vacuna_polio_r2", "ref_seccion" => "infancia ", "descripcion" => "Polio", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "in_vacuna_srp_r1", "ref_seccion" => "infancia ", "descripcion" => "SRP", "tipo" => "seleccion"]);
-Pregunta::create(["ref_campo"=> "in_vacuna_fiebre_amarilla_9_a_11_anios", "ref_seccion" => "infancia ", "descripcion" => "Fiebre amarilla", "tipo" => "seleccion"]);
-Pregunta::create(["ref_campo"=> "in_vacuna_vph_d1_9_a_11_anios", "ref_seccion" => "infancia ", "descripcion" => "VPH ", "tipo" => "seleccion"]);
-Pregunta::create(["ref_campo"=> "in_vacuna_vph_d2_9_a_11_anios", "ref_seccion" => "infancia ", "descripcion" => "VPH ", "tipo" => "seleccion"]);
-Pregunta::create(["ref_campo"=> "in_vacuna_vph_d3_9_a_11_anios", "ref_seccion" => "infancia ", "descripcion" => "VPH ", "tipo" => "seleccion"]);
+Pregunta::create(["ref_campo"=> "in_vacuna_fiebre_amarilla", "ref_seccion" => "infancia ", "descripcion" => "Fiebre amarilla", "tipo" => "seleccion"]);
+Pregunta::create(["ref_campo"=> "in_vacuna_vph_d1", "ref_seccion" => "infancia ", "descripcion" => "VPH ", "tipo" => "seleccion"]);
+Pregunta::create(["ref_campo"=> "in_vacuna_vph_d2", "ref_seccion" => "infancia ", "descripcion" => "VPH ", "tipo" => "seleccion"]);
+Pregunta::create(["ref_campo"=> "in_vacuna_vph_d3", "ref_seccion" => "infancia ", "descripcion" => "VPH ", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "in_caries", "ref_seccion" => "infancia ", "descripcion" => "Caries", "tipo" => "seleccion"]);
-Pregunta::create(["ref_campo"=> "in_consulta_odontologica_6_a_11_anios", "ref_seccion" => "infancia ", "descripcion" => "Consulta odontologia (ultimos 6 meses)", "tipo" => "seleccion"]);
+Pregunta::create(["ref_campo"=> "in_consulta_odontologica", "ref_seccion" => "infancia ", "descripcion" => "Consulta odontologia (ultimos 6 meses)", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "in_uso_seda_dental", "ref_seccion" => "infancia ", "descripcion" => "Uso de seda dental", "tipo" => "seleccion"]);
-Pregunta::create(["ref_campo"=> "in_fluor_6_a_11_anios", "ref_seccion" => "infancia ", "descripcion" => "Aplicación de fluor", "tipo" => "seleccion"]);
-Pregunta::create(["ref_campo"=> "in_profilaxis_6_a_11_anios", "ref_seccion" => "infancia ", "descripcion" => "Profilaxis y remoción de placa bacteriana", "tipo" => "seleccion"]);
-Pregunta::create(["ref_campo"=> "in_sellantes_6_a_11_anios", "ref_seccion" => "infancia ", "descripcion" => "Aplicación de sellantes", "tipo" => "seleccion"]);
-Pregunta::create(["ref_campo"=> "in_atencion_medica_6_10_anios", "ref_seccion" => "infancia ", "descripcion" => "Atención en salud médica", "tipo" => "seleccion"]);
-Pregunta::create(["ref_campo"=> "in_atencion_enfermeria_7_11_anios", "ref_seccion" => "infancia ", "descripcion" => "Atención en salud en enfermería", "tipo" => "seleccion"]);
+Pregunta::create(["ref_campo"=> "in_fluor", "ref_seccion" => "infancia ", "descripcion" => "Aplicación de fluor", "tipo" => "seleccion"]);
+Pregunta::create(["ref_campo"=> "in_profilaxis", "ref_seccion" => "infancia ", "descripcion" => "Profilaxis y remoción de placa bacteriana", "tipo" => "seleccion"]);
+Pregunta::create(["ref_campo"=> "in_sellantes", "ref_seccion" => "infancia ", "descripcion" => "Aplicación de sellantes", "tipo" => "seleccion"]);
+Pregunta::create(["ref_campo"=> "in_atencion_medica", "ref_seccion" => "infancia ", "descripcion" => "Atención en salud médica", "tipo" => "seleccion"]);
+Pregunta::create(["ref_campo"=> "in_atencion_enfermeria", "ref_seccion" => "infancia ", "descripcion" => "Atención en salud en enfermería", "tipo" => "seleccion"]);
 
     }
 }
