@@ -49,5 +49,6 @@ class cuidado_enfermedadesSeeder extends Seeder
         Opcion::create(["id" => "65", "ref_campo" => "enfermedades_costosas", "pregunta_opcion" => "Reemplazos articulares ([rodilla, hombro, cadera)", "valor" => "20"]);
         Opcion::create(["id" => "66", "ref_campo" => "enfermedades_costosas", "pregunta_opcion" => "Enfermedad cardiovascular", "valor" => "20"]);
         Opcion::create(["id" => "67", "ref_campo" => "enfermedades_costosas", "pregunta_opcion" => "Patologia congenitas", "valor" => "20"]);
+        Opcion::create(["id" => "67", "ref_campo" => "enfermedades_costosas", "pregunta_opcion" => "Ninguna", "valor" => "0"]);
     }
 }

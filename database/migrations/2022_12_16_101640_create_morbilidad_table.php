@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('propiedades_respiratorio')->nullable();
             $table->string('propiedades_piel')->nullable();
             $table->string('enfermedades_congenitas')->nullable();
+            $table->string('enfermedades_congenitas_cual')->nullable();
             $table->timestamps();
 
             $table->foreign('id_integrante')->references('id')->on('integrantes');
