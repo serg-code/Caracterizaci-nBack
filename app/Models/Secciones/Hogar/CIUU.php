@@ -2,7 +2,7 @@
 
 namespace App\Models\Secciones\Hogar;
 
-use Illuminate\Contracts\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -24,4 +24,9 @@ class CIUU extends Model
         'updated_at',
     ];
 
+    public function scopeSearch(Builder $query, $dato): Builder
+    {
+        return $query->where('codigo', 'like', "%$dato%")
+            ->orWhere('descrip', 'like', "%$dato%");
+    }
 }
