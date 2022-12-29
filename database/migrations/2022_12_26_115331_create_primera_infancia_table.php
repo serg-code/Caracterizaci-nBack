@@ -56,7 +56,7 @@ $table->string('pi_vacuna_pentavalente_d2')->nullable();
 $table->string('pi_vacuna_pentavalente_d3')->nullable();
 $table->string('pi_vacuna_srp_d1')->nullable();
 $table->string('pi_vacuna_srp_d2')->nullable();
-$table->string('pi__vacuna_varicela')->nullable();
+$table->string('pi_vacuna_varicela')->nullable();
 $table->string('pi_atencion_medica')->nullable();
 $table->string('pi_atencion_enfermeria')->nullable();
 $table->string('pi_atencion_lactancia')->nullable();

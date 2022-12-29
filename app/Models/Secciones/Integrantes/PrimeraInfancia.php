@@ -50,7 +50,7 @@ protected $table = 'primera_infancia';
 'pi_vacuna_pentavalente_d3_6_mes',
 'pi_vacuna_srp_d1_12_mes',
 'pi_vacuna_srp_d2_5_anios',
-'pi__vacuna_varicela_12_mes',
+'pi_vacuna_varicela_12_mes',
 'pi_atencion_medica_1_mes',
 'pi_atencion_medica_4_a_5_mes',
 'pi_atencion_medica_12_a_18_mes',

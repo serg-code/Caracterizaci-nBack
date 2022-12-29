@@ -239,7 +239,7 @@ class SeccionesIntegrante
             'pi_vacuna_pentavalente_d3' => null,
             'pi_vacuna_srp_d1' => null,
             'pi_vacuna_srp_d2' => null,
-            'pi__vacuna_varicela' => null,
+            'pi_vacuna_varicela' => null,
             'pi_atencion_medica' => null,
             'pi_atencion_enfermeria' => null,
             'pi_atencion_lactancia' => null,
