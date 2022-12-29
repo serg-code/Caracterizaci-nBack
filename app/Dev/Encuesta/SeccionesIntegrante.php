@@ -242,7 +242,6 @@ class SeccionesIntegrante
             'pi__vacuna_varicela' => null,
             'pi_atencion_medica' => null,
             'pi_atencion_enfermeria' => null,
-            'pi_atencion_enfermeria' => null,
             'pi_atencion_lactancia' => null,
             'pi_tsh' => null,
             'pi_fluor' => null,
