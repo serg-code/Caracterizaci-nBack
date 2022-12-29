@@ -66,6 +66,8 @@ class SeccionesIntegrante
             'salud_mental',
             'identificacion_ciudadana',
             'primera_infancia',
+            'infancia',
+            'adolescencia',
         ];
     }
 
