@@ -9,10 +9,13 @@ use App\Models\Secciones\Hogar\Mortalidad;
 use App\Models\Secciones\Hogar\SeguridadAlimentaria;
 use App\Models\Secciones\Hogar\Vivienda;
 use App\Models\Secciones\Integrantes\Accidente;
+use App\Models\Secciones\Integrantes\Adolescencia;
 use App\Models\Secciones\Integrantes\CuidadoDomiciliario;
 use App\Models\Secciones\Integrantes\CuidadoEnfermedad;
 use App\Models\Secciones\Integrantes\EnfermedadesSaludPublica;
+use App\Models\Secciones\Integrantes\Infancia;
 use App\Models\Secciones\Integrantes\Morbilidad;
+use App\Models\Secciones\Integrantes\PrimeraInfancia;
 use App\Models\Secciones\Integrantes\SaludMental;
 
 class Secciones
@@ -37,6 +40,9 @@ class Secciones
             'enfermedades_salud_publica' => new EnfermedadesSaludPublica($datosGuardar),
             'morbilidad' => new Morbilidad($datosGuardar),
             'salud_mental' => new SaludMental($datosGuardar),
+            'primera_infancia' => new PrimeraInfancia($datosGuardar),
+            'infancia' => new Infancia($datosGuardar),
+            'adolescencia' => new Adolescencia($datosGuardar),
 
             default => null,
         };
