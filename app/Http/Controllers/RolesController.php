@@ -9,6 +9,7 @@ use App\Models\Permisos\Roles;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class RolesController extends Controller
@@ -136,13 +137,16 @@ class RolesController extends Controller
         $validacion = Validator::make(
             $request->all(),
             [
-                'id' => 'required|exists:roles,id',
-                'name' => 'required',
+                // 'id' => 'required|exists:roles,id',
+                // 'name' => 'required',
+                'permisos' => 'required|array'
             ],
             [
                 'id.required' => 'El rol es necesario',
                 'id.exists' => 'No encontramos el rol',
-                'name' => 'El nombre del rol es necesario'
+                'name' => 'El nombre del rol es necesario',
+                'permisos.required' => 'El listado de permisos es necesarios',
+                'permisos.array' => 'Los permisos no son del tipo valido',
             ]
         );
 
@@ -156,9 +160,13 @@ class RolesController extends Controller
             );
         }
 
-        $rol = Role::findById($request->input('id'));
-        $rol->name = $request->input('name');
+        $rol = Role::find($id);
+        $nombreNuevo = $request->input('name');
+        $rol->name = $nombreNuevo !== $rol->name ? $nombreNuevo : $rol->name;
         $rol->save();
+
+        $listadoPermisos = $this->obtenerNombrePermisos($request->input('permisos'));
+        $rol->syncPermissions($listadoPermisos);
 
         return RespuestaHttp::respuesta(
             200,
@@ -265,5 +273,15 @@ class RolesController extends Controller
         {
             $rol->givePermissionTo($permiso);
         }
+    }
+
+    protected function obtenerNombrePermisos(array $listadoIds): array
+    {
+        return array_map(function ($idPermiso)
+        {
+            $permiso = Permission::find($idPermiso);
+
+            return $permiso->name ?? null;
+        }, $listadoIds);
     }
 }
