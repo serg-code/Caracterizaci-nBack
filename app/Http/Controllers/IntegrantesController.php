@@ -3,11 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Dev\ControlIntegrante;
+use App\Dev\Encuesta\Secciones;
 use App\Dev\Encuesta\SeccionesIntegrante;
 use App\Dev\RespuestaHttp;
 use App\Models\Hogar\Hogar;
 use App\Models\Integrantes;
+use App\Models\Secciones\Integrantes\Accidente;
+use App\Models\Secciones\Integrantes\CuidadoDomiciliario;
+use App\Models\Secciones\Integrantes\CuidadoEnfermedad;
+use App\Models\Secciones\Integrantes\EnfermedadesSaludPublica;
+use App\Models\Secciones\Integrantes\Morbilidad;
+use App\Models\Secciones\Integrantes\SaludMental;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class IntegrantesController extends Controller
@@ -107,7 +115,14 @@ class IntegrantesController extends Controller
             return $this->noEncontrado();
         }
 
+        $seccionesIntegrantes = SeccionesIntegrante::obtenerSecciones();
+        foreach ($seccionesIntegrantes as $seccion)
+        {
+            $this->seleccionarSeccion($seccion, $id);
+        }
+
         $integrante->delete();
+
         $respuesta = new RespuestaHttp(
             200,
             'succes',
@@ -135,5 +150,21 @@ class IntegrantesController extends Controller
     {
         $controlIntegrante = new ControlIntegrante($datosActualizar, $encuesta);
         return $controlIntegrante->actualizarIntegrante();
+    }
+
+    protected static function seleccionarSeccion(string $seccion, string $id)
+    {
+        return match ($seccion)
+        {
+            //secciones de integrantes
+            'accidentes' => Accidente::where('id_integrante', '=', $id)->delete(),
+            'cuidado_enfermedades' => CuidadoEnfermedad::where('id_integrante', '=', $id)->delete(),
+            'cuidados_domiciliarios' => CuidadoDomiciliario::where('id_integrante', '=', $id)->delete(),
+            'enfermedades_salud_publica' => EnfermedadesSaludPublica::where('id_integrante', '=', $id)->delete(),
+            'morbilidad' => Morbilidad::where('id_integrante', '=', $id)->delete(),
+            'salud_mental' => SaludMental::where('id_integrante', '=', $id)->delete(),
+
+            default => null,
+        };
     }
 }

@@ -10,6 +10,7 @@ use App\Models\Hogar\Hogar;
 use App\Models\Secciones\Hogar\FactoresProtectores;
 use App\Models\Secciones\Hogar\HabitosConsumo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
@@ -65,6 +66,20 @@ class HogarController extends Controller
      */
     public function store(Request $request)
     {
+        $validacion = Validator::make(
+            $request->all(),
+            [
+                'hogar' => 'required'
+            ],
+            [
+                'hogar.required' => 'Se necesitan los datos del Hogar'
+            ]
+        );
+
+        if ($validacion->fails())
+        {
+            return RespuestaHttp::respuesta(400, 'Bad request', 'No encontramos informacion', $validacion->getMessageBag());
+        }
         $hogarPeticion = $request->input('hogar');
         $id = $hogarPeticion['id'];
         $hogar = Hogar::find($id);

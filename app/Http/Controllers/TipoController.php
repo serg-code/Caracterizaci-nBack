@@ -19,6 +19,20 @@ class TipoController extends Controller
             'tipo_induccion' => TipoInduccion::all(),
             'tipo_hogar' => TipoHogar::all(),
             'tipo_identificacion' => TipoIdentifacion::all(),
+            'tipo_barrio_vereda' => [
+                [
+                    'descripcion' => 'Barrio'
+                ],
+                [
+                    'descripcion' => 'Vereda'
+                ],
+                [
+                    'descripcion' => 'Corregimiento'
+                ],
+                [
+                    'descripcion' => 'Rural disperso'
+                ],
+            ],
         ];
 
         return response()->json($respuesta, $respuesta->codigoHttp);

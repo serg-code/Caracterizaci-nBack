@@ -18,7 +18,7 @@ use App\Models\Secciones\Integrantes\SaludMental;
 class Secciones
 {
 
-    public static function seleccionarSeccion(string $refSeccion, $datosGuardar)
+    public static function seleccionarSeccion(string $refSeccion, $datosGuardar = [])
     {
         return match ($refSeccion)
         {
