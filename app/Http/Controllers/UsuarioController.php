@@ -7,6 +7,7 @@ use App\Dev\Usuario\Usuario;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Spatie\Permission\Models\Role;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
@@ -91,7 +92,17 @@ class UsuarioController extends Controller
 
         $usuario = new User($request->all());
         $usuario->save();
-        $usuario->assignRole('Usuario');
+        $roles = $request->input('roles');
+        if (empty($roles))
+        {
+            $usuario->assignRole('Usuario');
+        }
+
+        if (!empty($roles))
+        {
+            $estadoRoles = $this->controlRol($request->all(), $usuario->id);
+            return RespuestaHttp::respuestaObjeto($estadoRoles);
+        }
 
         return RespuestaHttp::respuesta(
             200,
@@ -139,6 +150,19 @@ class UsuarioController extends Controller
         }
 
         $respuesta = $actualizarUsuario->modificarUsuario();
+
+        $roles = $request->input('roles');
+        if (empty($roles))
+        {
+            $usuario->assignRole('Usuario');
+        }
+
+        if (!empty($roles))
+        {
+            $estadoRoles = $this->controlRol($request->all(), $id);
+            return RespuestaHttp::respuestaObjeto($estadoRoles);
+        }
+
         return response()->json($respuesta, $respuesta->codigoHttp);
     }
 
@@ -184,14 +208,69 @@ class UsuarioController extends Controller
 
         return response()->json($respuesta, $respuesta->codigoHttp);
     }
-
-    protected function calcularInicioPaginacion(int $pagina, int $cantidadMostar): int
+    protected function controlRol(array $datosValidar, int $id, bool $revocar = false): RespuestaHttp
     {
-        if ($pagina === 1 || $pagina <= 0)
+        $validacion = Validator::make(
+            $datosValidar,
+            [
+                // 'id_usuario' => 'required|exists:users,id',
+                'roles' => 'required|array',
+            ],
+            [
+                'id_usuario.required' => 'El id del usuario es necesario',
+                'id_usuario.exists' => 'El id del usurio no es valido',
+                'roles.required' => 'El listado de roles es necesario',
+                'roles.array' => 'Se esperaba un listado de roles'
+            ]
+        );
+
+        if ($validacion->fails())
         {
-            return 0;
+            return new RespuestaHttp(
+                400,
+                'Bad request',
+                'Erorres al validar la informacion',
+                $validacion->getMessageBag()
+            );
         }
 
-        return ($cantidadMostar * ($pagina - 1));
+        $listadoRoles = $this->obtenerNombreRoles($datosValidar['roles']);
+        $usuario = User::find($id);
+
+        if ($revocar)
+        {
+            foreach ($listadoRoles as $nombreRol)
+            {
+                $usuario->removeRole($nombreRol);
+            }
+
+            return new RespuestaHttp(
+                200,
+                'succes',
+                'Rol revocado del usuario exitosamente',
+                [
+                    'usuario' => $usuario,
+                ]
+            );
+        }
+
+        $usuario->syncRoles($listadoRoles);
+        return new RespuestaHttp(
+            200,
+            'Succes',
+            'Rol otorgado al usuario',
+            [
+                'usuario' => $usuario,
+            ]
+        );
+    }
+
+    protected function obtenerNombreRoles(array $listadoRoles): array
+    {
+        return array_map(function ($idRol)
+        {
+            $rol = Role::find($idRol);
+            return $rol->name ?? null;
+        }, $listadoRoles);
     }
 }
