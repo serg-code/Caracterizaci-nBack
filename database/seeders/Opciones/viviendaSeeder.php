@@ -82,7 +82,7 @@ class viviendaSeeder extends Seeder
         Opcion::create(["ref_campo" => "conservacion_alimentos", "pregunta_opcion" => "SI", "valor" => "3"]);
         Opcion::create(["ref_campo" => "actividad_productiva", "pregunta_opcion" => "NO", "valor" => "1"]);
         Opcion::create(["ref_campo" => "actividad_productiva", "pregunta_opcion" => "SI", "valor" => "3"]);
-        //Opcion::create(["ref_campo" => "actividad_productiva", "pregunta_opcion" => "texto", "valor" => "0"]);
+        //Opcion::create(["ref_campo" => "ciuu", "pregunta_opcion" => "texto", "valor" => "0"]);
         Opcion::create(["ref_campo" => "tipos_material_piso", "pregunta_opcion" => "Tierra", "valor" => "5"]);
         Opcion::create(["ref_campo" => "tipos_material_piso", "pregunta_opcion" => "Madera burda", "valor" => "5"]);
         Opcion::create(["ref_campo" => "tipos_material_piso", "pregunta_opcion" => "Tabla", "valor" => "5"]);

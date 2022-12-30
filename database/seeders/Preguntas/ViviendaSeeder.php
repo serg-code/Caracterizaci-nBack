@@ -38,7 +38,7 @@ Pregunta::create(["ref_campo"=> "anjeos", "ref_seccion" => "vivienda", "descripc
 Pregunta::create(["ref_campo"=> "tipos_insectos_vectores", "ref_seccion" => "vivienda", "descripcion" => "Observe si hay: Presencia de insectos vectores", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "conservacion_alimentos", "ref_seccion" => "vivienda", "descripcion" => "Observe si hay: Manejo de conservación adecuada de alimentos", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "actividad_productiva", "ref_seccion" => "vivienda", "descripcion" => "¿Hay actividad productiva en la vivienda?", "tipo" => "seleccion"]);
-Pregunta::create(["ref_campo"=> "ciuu", "ref_seccion" => "vivienda", "descripcion" => "CIUU", "tipo" => "seleccion"]);
+Pregunta::create(["ref_campo"=> "ciuu", "ref_seccion" => "vivienda", "descripcion" => "CIUU", "tipo" => "texto"]);
 Pregunta::create(["ref_campo"=> "tipos_material_piso", "ref_seccion" => "vivienda", "descripcion" => "El material predominante en el piso es", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "tipos_material_techo", "ref_seccion" => "vivienda", "descripcion" => "El material predominante en el techo es", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "tipos_material_paredes", "ref_seccion" => "vivienda", "descripcion" => "El material predominante en las paredes es", "tipo" => "seleccion"]);
