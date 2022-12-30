@@ -52,10 +52,10 @@ class RolesController extends Controller
         $validacion = Validator::make(
             $request->all(),
             [
-                'rol' => 'required',
+                'name' => 'required',
             ],
             [
-                'rol.required' => 'El rol es necesario'
+                'name.required' => 'El nombre del rol es necesario'
             ]
         );
 
@@ -70,10 +70,17 @@ class RolesController extends Controller
         }
 
         $rol = new Role([
-            'name' => $request->input('rol'),
+            'name' => $request->input('name'),
             'guard_name' => 'web',
         ]);
         $rol->save();
+
+        $permisos = $request->input('permisos');
+        if (!empty($permisos))
+        {
+            //agregar permisos al rol
+            $this->agregarPermisos($rol, $permisos);
+        }
 
         return RespuestaHttp::respuesta(
             201,
@@ -129,13 +136,13 @@ class RolesController extends Controller
         $validacion = Validator::make(
             $request->all(),
             [
-                'id_rol' => 'required|exists:roles,id',
-                'nombre_rol' => 'required',
+                'id' => 'required|exists:roles,id',
+                'name' => 'required',
             ],
             [
-                'id_rol.required' => 'El rol es necesario',
-                'id_rol.exists' => 'No encontramos el rol',
-                'nombre_rol' => 'El nombre del rol es necesario'
+                'id.required' => 'El rol es necesario',
+                'id.exists' => 'No encontramos el rol',
+                'name' => 'El nombre del rol es necesario'
             ]
         );
 
@@ -149,8 +156,8 @@ class RolesController extends Controller
             );
         }
 
-        $rol = Role::findById($request->input('id_rol'));
-        $rol->name = $request->input('nombre_rol');
+        $rol = Role::findById($request->input('id'));
+        $rol->name = $request->input('name');
         $rol->save();
 
         return RespuestaHttp::respuesta(
@@ -250,5 +257,13 @@ class RolesController extends Controller
             $rol = Role::find($idRol);
             return $rol->name ?? null;
         }, $listadoRoles);
+    }
+
+    protected function agregarPermisos($rol, array $listaPermisos): void
+    {
+        foreach ($listaPermisos as $permiso)
+        {
+            $rol->givePermissionTo($permiso);
+        }
     }
 }
