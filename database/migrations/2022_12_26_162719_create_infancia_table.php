@@ -27,18 +27,18 @@ return new class extends Migration
         $table->string('in_vacuna_dpt_r2')->nullable();
         $table->string('in_vacuna_polio_r2')->nullable();
         $table->string('in_vacuna_srp_r1')->nullable();
-        $table->string('in_vacuna_fiebre_amarilla_9_a_11_anios')->nullable();
-        $table->string('in_vacuna_vph_d1_9_a_11_anios')->nullable();
-        $table->string('in_vacuna_vph_d2_9_a_11_anios')->nullable();
-        $table->string('in_vacuna_vph_d3_9_a_11_anios')->nullable();
+        $table->string('in_vacuna_fiebre_amarilla')->nullable();
+        $table->string('in_vacuna_vph_d1')->nullable();
+        $table->string('in_vacuna_vph_d2')->nullable();
+        $table->string('in_vacuna_vph_d3')->nullable();
         $table->string('in_caries')->nullable();
-        $table->string('in_consulta_odontologica_6_a_11_anios')->nullable();
+        $table->string('in_consulta_odontologica')->nullable();
         $table->string('in_uso_seda_dental')->nullable();
-        $table->string('in_fluor_6_a_11_anios')->nullable();
-        $table->string('in_profilaxis_6_a_11_anios')->nullable();
-        $table->string('in_sellantes_6_a_11_anios')->nullable();
-        $table->string('in_atencion_medica_6_10_anios')->nullable();
-        $table->string('in_atencion_enfermeria_7_11_anios')->nullable();
+        $table->string('in_fluor')->nullable();
+        $table->string('in_profilaxis')->nullable();
+        $table->string('in_sellantes')->nullable();
+        $table->string('in_atencion_medica')->nullable();
+        $table->string('in_atencion_enfermeria')->nullable();
             $table->timestamps();
 
             $table->foreign('id_integrante')->references('id')->on('integrantes');

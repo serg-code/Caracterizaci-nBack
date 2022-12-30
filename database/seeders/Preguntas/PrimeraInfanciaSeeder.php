@@ -50,7 +50,7 @@ Pregunta::create(["ref_campo"=> "pi_vacuna_pentavalente_d2", "ref_seccion" => "p
 Pregunta::create(["ref_campo"=> "pi_vacuna_pentavalente_d3", "ref_seccion" => "primera_infancia", "descripcion" => "Pentavalente", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "pi_vacuna_srp_d1", "ref_seccion" => "primera_infancia", "descripcion" => "SRP ", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "pi_vacuna_srp_d2", "ref_seccion" => "primera_infancia", "descripcion" => "SRP", "tipo" => "seleccion"]);
-Pregunta::create(["ref_campo"=> "pi__vacuna_varicela", "ref_seccion" => "primera_infancia", "descripcion" => "Varicela", "tipo" => "seleccion"]);
+Pregunta::create(["ref_campo"=> "pi_vacuna_varicela", "ref_seccion" => "primera_infancia", "descripcion" => "Varicela", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "pi_atencion_medica", "ref_seccion" => "primera_infancia", "descripcion" => "Atención en salud médica", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "pi_atencion_enfermeria", "ref_seccion" => "primera_infancia", "descripcion" => "Atención en salud en enfermería", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "pi_atencion_lactancia", "ref_seccion" => "primera_infancia", "descripcion" => "Atención para la prevención y apoyo de la lactancia materna", "tipo" => "seleccion"]);

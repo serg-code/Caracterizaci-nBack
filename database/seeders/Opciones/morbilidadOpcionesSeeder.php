@@ -17,7 +17,7 @@ class morbilidadOpcionesSeeder extends Seeder
     {
         Opcion::create(["ref_campo" => "enfermedad_cronica", "pregunta_opcion" => "NO", "valor" => "1"]);
         Opcion::create(["ref_campo" => "enfermedad_cronica", "pregunta_opcion" => "SI", "valor" => "3"]);
-        Opcion::create(["ref_campo" => "enfermedad_cronica", "pregunta_opcion" => "texto", "valor" => "0"]);
+        //Opcion::create(["ref_campo" => "enfermedad_cronica", "pregunta_opcion" => "texto", "valor" => "0"]);
         Opcion::create(["ref_campo" => "controlada", "pregunta_opcion" => "No controlada", "valor" => "5"]);
         Opcion::create(["ref_campo" => "controlada", "pregunta_opcion" => "Médico", "valor" => "0"]);
         Opcion::create(["ref_campo" => "controlada", "pregunta_opcion" => "Programa", "valor" => "0"]);

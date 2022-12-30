@@ -51,10 +51,10 @@ class viviendaSeeder extends Seeder
         Opcion::create(["ref_campo" => "fuentes_agua", "pregunta_opcion" => "Manantial", "valor" => "5"]);
         Opcion::create(["ref_campo" => "fuentes_agua", "pregunta_opcion" => "Tanques", "valor" => "5"]);
         Opcion::create(["ref_campo" => "fuentes_agua", "pregunta_opcion" => "Otra", "valor" => "5"]);
-        Opcion::create(["id" => "268", "ref_campo" => "tipos_tratamiento_agua", "pregunta_opcion" => "Sin tratamiento", "valor" => "5"]);
-        Opcion::create(["id" => "269", "ref_campo" => "tipos_tratamiento_agua", "pregunta_opcion" => "Clorada", "valor" => "2"]);
-        Opcion::create(["id" => "270", "ref_campo" => "tipos_tratamiento_agua", "pregunta_opcion" => "Filtrada", "valor" => "2"]);
-        Opcion::create(["id" => "271", "ref_campo" => "tipos_tratamiento_agua", "pregunta_opcion" => "Hervida", "valor" => "2"]);
+        Opcion::create(["ref_campo" => "tipos_tratamiento_agua", "pregunta_opcion" => "Sin tratamiento", "valor" => "5"]);
+        Opcion::create(["ref_campo" => "tipos_tratamiento_agua", "pregunta_opcion" => "Clorada", "valor" => "2"]);
+        Opcion::create(["ref_campo" => "tipos_tratamiento_agua", "pregunta_opcion" => "Filtrada", "valor" => "2"]);
+        Opcion::create(["ref_campo" => "tipos_tratamiento_agua", "pregunta_opcion" => "Hervida", "valor" => "2"]);
         Opcion::create(["ref_campo" => "tratamiento_agua", "pregunta_opcion" => "NO", "valor" => "1"]);
         Opcion::create(["ref_campo" => "tratamiento_agua", "pregunta_opcion" => "SI", "valor" => "3"]);
         Opcion::create(["ref_campo" => "tipos_disposicion_basura", "pregunta_opcion" => "Recogida", "valor" => "1"]);
