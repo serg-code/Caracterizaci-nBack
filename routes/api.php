@@ -52,7 +52,7 @@ Route::group(['middleware' => ['auth:sanctum']], function ()
     );
 
     Route::apiResource('integrante', \App\Http\Controllers\IntegrantesController::class)
-        ->only(['store', 'show', 'destroy']);
+        ->only(['store', 'show', 'destroy', 'index']);
     Route::post(
         'integrante/completo',
         [\App\Http\Controllers\Respuestas\IntegranteFinalizadoController::class, 'finalizarIntegrante']

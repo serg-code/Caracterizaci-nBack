@@ -17,6 +17,8 @@ use App\Models\Secciones\Integrantes\SaludMental;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class IntegrantesController extends Controller
 {
@@ -27,9 +29,30 @@ class IntegrantesController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $datosUrl = $_GET;
+        $cantidadPaginar = $datosUrl['per_page'] ?? 10;
+        $respuesta = new RespuestaHttp();
 
+        if (empty($datosUrl))
+        {
+            $usuarios = Integrantes::all();
+            $respuesta->data = $usuarios;
+        }
+
+        $usuarios = QueryBuilder::for(Integrantes::class)
+            ->allowedFilters([
+                AllowedFilter::exact('id'),
+                'name',
+                AllowedFilter::exact('email'),
+                'activo',
+                AllowedFilter::scope('search'),
+            ])
+            ->paginate($cantidadPaginar);
+
+        $respuesta->data = $usuarios;
+
+        return response()->json($respuesta, $respuesta->codigoHttp);
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -64,7 +87,7 @@ class IntegrantesController extends Controller
         $integrantePeticion = $request->input('integrante');
         $encuesta = $request->input('encuesta');
 
-        $id = $integrantePeticion['id'];
+        $id = $integrantePeticion['id'] ?? 'a';
         $integrante = Integrantes::find($id);
 
         if (empty($integrante))

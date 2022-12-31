@@ -40,6 +40,7 @@ class ControlIntegrante
 
         $integrante = Integrantes::guardarIntegrante($this->datosIntegrante);
         $secciones = $this->datosIntegrante['secciones'];
+        $this->integrante = $integrante;
         if (!empty($secciones))
         {
             $integrante = $this->recorrecSecciones($secciones);

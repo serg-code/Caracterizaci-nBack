@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -104,5 +105,13 @@ class Integrantes extends Model
         $fechaActual = now();
         $edad = $fechaActual->diff($this->fecha_nacimiento);
         return $edad->m + ($edad->y * 12);
+    }
+
+    public function scopeSearch(Builder $query, $busqueda): Builder
+    {
+        return $query->where('primer_nombre', '=', $busqueda)
+            ->orWhere('segundo_nombre', '=', $busqueda)
+            ->orWhere('primer_apellido', '=', $busqueda)
+            ->orWhere('segundo_apellido', '=', $busqueda);
     }
 }
