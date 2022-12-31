@@ -200,6 +200,7 @@ class UsuarioController extends Controller
         $usuario = $request->user();
         $respuesta = new RespuestaHttp();
         $usuario = User::find($usuario->id);
+        $usuario->getRoleNames();
 
         $respuesta->data = [
             // 'usuario' => User::find($usuario->id),

@@ -112,6 +112,7 @@ class Integrantes extends Model
         return $query->where('primer_nombre', '=', $busqueda)
             ->orWhere('segundo_nombre', '=', $busqueda)
             ->orWhere('primer_apellido', '=', $busqueda)
-            ->orWhere('segundo_apellido', '=', $busqueda);
+            ->orWhere('segundo_apellido', '=', $busqueda)
+            ->orWhere('correo', '=', $busqueda);
     }
 }

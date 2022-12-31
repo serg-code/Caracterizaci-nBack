@@ -42,9 +42,8 @@ class IntegrantesController extends Controller
         $usuarios = QueryBuilder::for(Integrantes::class)
             ->allowedFilters([
                 AllowedFilter::exact('id'),
-                'name',
-                AllowedFilter::exact('email'),
-                'activo',
+                'identificacion',
+                AllowedFilter::exact('correo'),
                 AllowedFilter::scope('search'),
             ])
             ->paginate($cantidadPaginar);
