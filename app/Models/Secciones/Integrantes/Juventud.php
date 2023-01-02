@@ -11,6 +11,7 @@ class Juventud extends Model
     protected $table = 'juventud';
 
     protected $fillable = [
+        'id_integrante',
         'juv_cancer_cuello_uterino',
 'juv_colposcopia',
 'juv_bioscopia_cervico',
@@ -53,12 +54,12 @@ class Juventud extends Model
         
             public static function guardarjuventud(array $datosjuventud)
             {
-                $pregunta = new Infancia($datosjuventud);
+                $pregunta = new Juventud($datosjuventud);
                 $pregunta->save();
             }
         
             public function eliminar()
             {
-                Infancia::where('id_integrante', '=', $this->id_integrante)->delete();
+                Juventud::where('id_integrante', '=', $this->id_integrante)->delete();
             }
         }

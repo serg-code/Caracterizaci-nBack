@@ -19,6 +19,7 @@ use App\Models\Secciones\Integrantes\Juventud;
 use App\Models\Secciones\Integrantes\Morbilidad;
 use App\Models\Secciones\Integrantes\PrimeraInfancia;
 use App\Models\Secciones\Integrantes\SaludMental;
+use App\Models\Secciones\Integrantes\Vejez;
 
 class Secciones
 {
@@ -47,6 +48,7 @@ class Secciones
             'adolescencia' => new Adolescencia($datosGuardar),
             'juventud' => new Juventud($datosGuardar),
             'adultez' => new Adultez($datosGuardar),
+            'vejez' => new Vejez($datosGuardar),
 
             default => null,
         };

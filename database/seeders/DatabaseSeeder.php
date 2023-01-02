@@ -20,6 +20,7 @@ use Database\Seeders\Opciones\primera_infanciaSeeder;
 use Database\Seeders\Opciones\salud_mentalSeeder;
 use Database\Seeders\Opciones\salud_publicaSeeder;
 use Database\Seeders\Opciones\seguridad_alimentariaSeeder;
+use Database\Seeders\Opciones\vejezSeeder as OpcionesVejezSeeder;
 use Database\Seeders\Opciones\viviendaSeeder as OpcionesViviendaSeeder;
 use Database\Seeders\Preguntas\AccidentesSeeder;
 use Database\Seeders\Preguntas\AdolescenciaSeeder as PreguntasAdolescenciaSeeder;
@@ -35,6 +36,7 @@ use Database\Seeders\Preguntas\PrimeraInfanciaSeeder;
 use Database\Seeders\Preguntas\SaludMentalSeeder;
 use Database\Seeders\Preguntas\SaludPublicaSeeder;
 use Database\Seeders\Preguntas\SeguridadAlimentariaSeeder;
+use Database\Seeders\Preguntas\VejezSeeder;
 use Database\Seeders\Preguntas\ViviendaSeeder;
 use Illuminate\Database\Seeder;
 
@@ -76,6 +78,7 @@ class DatabaseSeeder extends Seeder
             new PreguntasAdolescenciaSeeder(),
             new PreguntasJuventudSeeder(),
             new PreguntasAdultezSeeder(),
+            new VejezSeeder(),
 
             //opciones
             new OpcionesSeeder(),
@@ -95,6 +98,7 @@ class DatabaseSeeder extends Seeder
             new adolescenciaSeeder(),
             new juventudSeeder(),
             new adultezSeeder(),
+            new OpcionesVejezSeeder(),
 
             //departamentos y municipios
             new DepartamentosSeeder(),

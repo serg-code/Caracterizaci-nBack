@@ -70,6 +70,7 @@ class SeccionesIntegrante
             'adolescencia',
             'juventud',
             'adultez',
+            'vejez',
         ];
     }
 
@@ -89,6 +90,7 @@ class SeccionesIntegrante
             'adolescencia' => SeccionesIntegrante::preguntasAdolescencia(),
             'juventud' => SeccionesIntegrante::preguntasJuventud(),
             'adultez' => SeccionesIntegrante::preguntasAdultez(),
+            'vejez' => SeccionesIntegrante::preguntasVejez(),
 
             default => [],
         };
@@ -382,6 +384,49 @@ class SeccionesIntegrante
             'adul_detartraje_supragingival'=> null,
             'adul_fiebre_amarilla'=> null,
             'adul_prueba_vih'=> null,
+        ];
+    }
+
+    public static function preguntasVejez(): array
+    {
+        return [
+            'id_integrante'=> null,
+        've_valoracion_peso'=> null,
+        've_valoracion_talla'=> null,
+        've_imc'=> null,
+        've_asesoria_anticoncepcion'=> null,
+        've_planifica'=> null,
+        've_metodo_planifica'=> null,
+        've_desde_cuando_planifica'=> null,
+        've_razones_no_planifica'=> null,
+        've_parejas_sexuales_al_año'=> null,
+        've_enfermedad_cronica'=> null,
+        've_cual_enfermedad_cronica'=> null,
+        've_seguimiento_enfermedad_cronica'=> null,
+        've_control_adultos'=> null,
+        've_antecedentes_diabetes'=> null,
+        've_antecedentes_hipertension'=> null,
+        've_alteracion_colesterol'=> null,
+        've_perimetro_abdominal'=> null,
+        've_salud_medica'=> null,
+        've_salud_bucal'=> null,
+        've_cancer_cuello_uterino_adn_vph'=> null,
+        've_cancer_cuello_uterino_adn_vph_positivo'=> null,
+        've_colposcopia_uterina'=> null,
+        've_bioscopia_uterina'=> null,
+        've_cancer_mama_mamografia'=> null,
+        've_cancer_mama_valoracion_clinica'=> null,
+        've_cancer_prostata_psa'=> null,
+        've_cancer_prostata_rectal'=> null,
+        've_aserori_anticoncepcion'=> null,
+        've_vasectomia'=> null,
+        've_esterilizacion_femenina'=> null,
+        've_vias_esterilizacion'=> null,
+        've_profilaxis'=> null,
+        've_detartraje_supragingival'=> null,
+        've_vacuna_fiebre_amarilla'=> null,
+        've_vacuna_influenza'=> null,
+        've_prueba_vih'=> null,
         ];
     }
 }

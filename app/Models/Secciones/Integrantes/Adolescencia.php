@@ -11,6 +11,7 @@ class Adolescencia extends Model
     protected $table = 'adolescencia';
 
     protected $fillable = [
+        'id_integrante',
         'adol_peso',
 'adol_talla',
 'adol_imc',
