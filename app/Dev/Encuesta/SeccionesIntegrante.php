@@ -68,6 +68,8 @@ class SeccionesIntegrante
             'primera_infancia',
             'infancia',
             'adolescencia',
+            'juventud',
+            'adultez',
         ];
     }
 
@@ -85,6 +87,8 @@ class SeccionesIntegrante
             'primera_infancia', => SeccionesIntegrante::preguntasPrimeraInfancia(),
             'infancia', => SeccionesIntegrante::preguntasInfancia(),
             'adolescencia' => SeccionesIntegrante::preguntasAdolescencia(),
+            'juventud' => SeccionesIntegrante::preguntasJuventud(),
+            'adultez' => SeccionesIntegrante::preguntasAdultez(),
 
             default => [],
         };
@@ -208,9 +212,7 @@ class SeccionesIntegrante
             'pi_peso_actual' => null,
             'pi_talla_al_nacer',
             'pi_talla_actual' => null,
-            'pi_valoracion_nutricional_verde' => null,
-            'pi_valoracion_nutricional_amarillo' => null,
-            'pi_valoracion_nutricional_rojo' => null,
+            'pi_valoracion_nutricional' => null,
             'pi_desarrollo_lenguaje' => null,
             'pi_desarrollo_motora' => null,
             'pi_desarrollo_conducta' => null,
@@ -310,4 +312,76 @@ class SeccionesIntegrante
         ];
     }
 
+    public static function preguntasJuventud(): array
+    {
+        return [
+            'juv_cancer_cuello_uterino'=> null,
+            'juv_colposcopia'=> null,
+            'juv_bioscopia_cervico'=> null,
+            'juv_examen_seno'=> null,
+            'juv_planific'=> null,
+            'juv_metodo_planifica'=> null,
+            'juv_tiempo_metodo'=> null,
+            'juv_asesoria_anticoncepcion'=> null,
+            'juv_razones_no_planifica'=> null,
+            'juv_parejas_sexuales_al_año'=> null,
+            'juv_atencion_medica'=> null,
+            'juv_atencion_enfermeria'=> null,
+            'juv_salud_vocal'=> null,
+            'juv_vasectomia'=> null,
+            'juv_esterilizacion_femenina'=> null,
+            'juv_vias_esterilizacion'=> null,
+            'juv_profilaxis'=> null,
+            'juv_detartraje_supragingival'=> null,
+            'juv_prueba_vih'=> null,
+            'juv_antecedentes_diabetes'=> null,
+            'juv_antecedentes_hipertension'=> null,
+            'juv_alteracion_colesterol'=> null,
+            'juv_presion_sistolica'=> null,
+            'juv_presion_diastolica'=> null,
+            'juv_perimetro_abdominal'=> null,
+            'juv_enfermedad_cronica'=> null,
+            'juv_cual_enfermedad_cronica'=> null,
+            'juv_seguimiento_enfermedad_cronica'=> null,
+        ];
+    }
+
+    public static function preguntasAdultez(): array
+    {
+        return [
+            'adul_valoracion_nutricional'=> null,
+            'adul_imc'=> null,
+            'adul_asesoria_anticoncepcion'=> null,
+            'adul_planifica'=> null,
+            'adul_metodo_planifica'=> null,
+            'adul_desde_cuando_planifica'=> null,
+            'adul_razones_no_planifica'=> null,
+            'adul_parejas_sexuales_al_año'=> null,
+            'adul_enfermedad_cronica'=> null,
+            'adul_cual_enfermedad_cronica'=> null,
+            'adul_seguimiento_enfermedad_cronica'=> null,
+            'adul_control_adultos'=> null,
+            'adul_antecedentes_diabetes'=> null,
+            'adul_antecedentes_hipertension'=> null,
+            'adul_antecedentes_colesterol'=> null,
+            'adul_perimetro_abdominal'=> null,
+            'adul_atencion_medica'=> null,
+            'adul_salud_bucal'=> null,
+            'adul_cancer_cuello_uterino_adn_vph'=> null,
+            'adul_cancer_cuello_uterino_adn_vph_positivo'=> null,
+            'adul_colposcopia_cervico_uterina'=> null,
+            'adul_biopsia_cervico_uterina'=> null,
+            'adul_cancer_mama_mamografia'=> null,
+            'adul_cancer_mama_valoracion_clinica'=> null,
+            'adul_cancer_prostata'=> null,
+            'adul_asesoria_anticoncepcion'=> null,
+            'adul_vasectomia'=> null,
+            'adul_esterilizacion_femenina'=> null,
+            'adul_vias_esterilizacion'=> null,
+            'adul_profilaxis'=> null,
+            'adul_detartraje_supragingival'=> null,
+            'adul_fiebre_amarilla'=> null,
+            'adul_prueba_vih'=> null,
+        ];
+    }
 }

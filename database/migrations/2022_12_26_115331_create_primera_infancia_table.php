@@ -24,8 +24,6 @@ $table->enum('pi_valoracion_nutricional', [
     'Amarillo',
     'Rojo',
 ]);
-$table->string('pi_valoracion_nutricional_amarillo')->nullable();
-$table->string('pi_valoracion_nutricional_rojo')->nullable();
 $table->string('pi_desarrollo_lenguaje')->nullable();
 $table->string('pi_desarrollo_motora')->nullable();
 $table->string('pi_desarrollo_conducta')->nullable();

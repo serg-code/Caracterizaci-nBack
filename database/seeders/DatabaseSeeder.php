@@ -2,15 +2,18 @@
 
 namespace Database\Seeders;
 
+use App\Models\Preguntas\JuventudSeeder as PreguntasJuventudSeeder;
 use App\Models\Secciones\Hogar\SeguridadAlimentaria;
 use App\Models\Secciones\Integrantes\Infancia;
 use Database\Seeders\Opciones\accidenteseeder;
 use Database\Seeders\Opciones\adolescenciaSeeder;
+use Database\Seeders\Opciones\adultezSeeder;
 use Database\Seeders\Opciones\animalesSeeder as OpcionesAnimalesSeeder;
 use Database\Seeders\Opciones\cuidado_enfermedadesSeeder;
 use Database\Seeders\Opciones\cuidados_domiciliariosSeeder;
 use Database\Seeders\Opciones\identificacion_ciudadanaSeeder;
 use Database\Seeders\Opciones\infanciaSeeder as OpcionesInfanciaSeeder;
+use Database\Seeders\Opciones\juventudSeeder;
 use Database\Seeders\Opciones\morbilidadOpcionesSeeder;
 use Database\Seeders\Opciones\mortalidadSeeder as OpcionesMortalidadSeeder;
 use Database\Seeders\Opciones\primera_infanciaSeeder;
@@ -20,6 +23,7 @@ use Database\Seeders\Opciones\seguridad_alimentariaSeeder;
 use Database\Seeders\Opciones\viviendaSeeder as OpcionesViviendaSeeder;
 use Database\Seeders\Preguntas\AccidentesSeeder;
 use Database\Seeders\Preguntas\AdolescenciaSeeder as PreguntasAdolescenciaSeeder;
+use Database\Seeders\Preguntas\AdultezSeeder as PreguntasAdultezSeeder;
 use Database\Seeders\Preguntas\AnimalesSeeder;
 use Database\Seeders\Preguntas\CuidadoDomiciliarioSeeder;
 use Database\Seeders\Preguntas\CuidadoEnfermedadesSeeder;
@@ -70,6 +74,8 @@ class DatabaseSeeder extends Seeder
             new PrimeraInfanciaSeeder(),
             new InfanciaSeeder(),
             new PreguntasAdolescenciaSeeder(),
+            new PreguntasJuventudSeeder(),
+            new PreguntasAdultezSeeder(),
 
             //opciones
             new OpcionesSeeder(),
@@ -87,6 +93,8 @@ class DatabaseSeeder extends Seeder
             new primera_infanciaSeeder(),
             new OpcionesInfanciaSeeder(),
             new adolescenciaSeeder(),
+            new juventudSeeder(),
+            new adultezSeeder(),
 
             //departamentos y municipios
             new DepartamentosSeeder(),
