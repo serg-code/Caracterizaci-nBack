@@ -91,8 +91,6 @@ Opcion::create(["ref_campo" => "ve_cancer_prostata_psa", "pregunta_opcion" => "P
 Opcion::create(["ref_campo" => "ve_cancer_prostata_psa", "pregunta_opcion" => "Negativo", "valor" => "1"]);
 Opcion::create(["ref_campo" => "ve_cancer_prostata_rectal", "pregunta_opcion" => "NO", "valor" => "1"]);
 Opcion::create(["ref_campo" => "ve_cancer_prostata_rectal", "pregunta_opcion" => "SI", "valor" => "3"]);
-Opcion::create(["ref_campo" => "ve_aseroria_anticoncepcion", "pregunta_opcion" => "NO", "valor" => "1"]);
-Opcion::create(["ref_campo" => "ve_aseroria_anticoncepcion", "pregunta_opcion" => "SI", "valor" => "3"]);
 Opcion::create(["ref_campo" => "ve_vasectomia", "pregunta_opcion" => "NO", "valor" => "1"]);
 Opcion::create(["ref_campo" => "ve_vasectomia", "pregunta_opcion" => "SI", "valor" => "3"]);
 Opcion::create(["ref_campo" => "ve_esterilizacion_femenina", "pregunta_opcion" => "NO", "valor" => "1"]);

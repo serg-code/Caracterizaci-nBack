@@ -418,7 +418,6 @@ class SeccionesIntegrante
         've_cancer_mama_valoracion_clinica'=> null,
         've_cancer_prostata_psa'=> null,
         've_cancer_prostata_rectal'=> null,
-        've_aserori_anticoncepcion'=> null,
         've_vasectomia'=> null,
         've_esterilizacion_femenina'=> null,
         've_vias_esterilizacion'=> null,

@@ -39,7 +39,6 @@ class Vejez extends Model
         've_cancer_mama_valoracion_clinica',
         've_cancer_prostata_psa',
         've_cancer_prostata_rectal',
-        've_aserori_anticoncepcion',
         've_vasectomia',
         've_esterilizacion_femenina',
         've_vias_esterilizacion',

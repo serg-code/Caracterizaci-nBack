@@ -42,7 +42,6 @@ return new class extends Migration
         $table->string('ve_cancer_mama_valoracion_clinica')->nullable();
         $table->string('ve_cancer_prostata_psa')->nullable();
         $table->string('ve_cancer_prostata_rectal')->nullable();
-        $table->string('ve_aserori_anticoncepcion')->nullable();
         $table->string('ve_vasectomia')->nullable();
         $table->string('ve_esterilizacion_femenina')->nullable();
         $table->string('ve_vias_esterilizacion')->nullable();
