@@ -6,7 +6,7 @@ use App\Models\Pregunta;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class JuventudSeeder extends Seeder
+class PreguntasJuventudSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -43,6 +43,6 @@ class JuventudSeeder extends Seeder
         Pregunta::create(["ref_campo"=> "juv_enfermedad_cronica", "ref_seccion" => "juventud", "descripcion" => "Enfermedad crónica", "tipo" => "seleccion"]);
         Pregunta::create(["ref_campo"=> "juv_cual_enfermedad_cronica", "ref_seccion" => "juventud", "descripcion" => "¿Cuál enfermedad crónica?", "tipo" => "texto"]);
         Pregunta::create(["ref_campo"=> "juv_seguimiento_enfermedad_cronica", "ref_seccion" => "juventud", "descripcion" => "Seguimiento de la enfermedad crónica", "tipo" => "seleccion"]);
-                
+
     }
 }

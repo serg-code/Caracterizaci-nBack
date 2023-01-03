@@ -33,6 +33,7 @@ use Database\Seeders\Preguntas\JuventudSeeder as SeedersPreguntasJuventudSeeder;
 use Database\Seeders\Preguntas\MorbilidadSeeder;
 use Database\Seeders\Preguntas\MortalidadSeeder;
 use Database\Seeders\Preguntas\PreguntasIdentificacionCiudadanaSeeder;
+use Database\Seeders\Preguntas\PreguntasJuventudSeeder as PreguntasPreguntasJuventudSeeder;
 use Database\Seeders\Preguntas\PrimeraInfanciaSeeder;
 use Database\Seeders\Preguntas\SaludMentalSeeder;
 use Database\Seeders\Preguntas\SaludPublicaSeeder;
@@ -77,7 +78,7 @@ class DatabaseSeeder extends Seeder
             new PrimeraInfanciaSeeder(),
             new InfanciaSeeder(),
             new PreguntasAdolescenciaSeeder(),
-            new PreguntasJuventudSeeder(),
+            new PreguntasPreguntasJuventudSeeder(),
             new PreguntasAdultezSeeder(),
             new VejezSeeder(),
 
