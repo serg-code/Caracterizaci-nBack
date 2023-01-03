@@ -29,6 +29,7 @@ use Database\Seeders\Preguntas\AnimalesSeeder;
 use Database\Seeders\Preguntas\CuidadoDomiciliarioSeeder;
 use Database\Seeders\Preguntas\CuidadoEnfermedadesSeeder;
 use Database\Seeders\Preguntas\InfanciaSeeder;
+use Database\Seeders\Preguntas\JuventudSeeder as SeedersPreguntasJuventudSeeder;
 use Database\Seeders\Preguntas\MorbilidadSeeder;
 use Database\Seeders\Preguntas\MortalidadSeeder;
 use Database\Seeders\Preguntas\PreguntasIdentificacionCiudadanaSeeder;
