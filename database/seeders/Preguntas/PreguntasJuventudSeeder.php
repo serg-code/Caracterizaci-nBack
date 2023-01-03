@@ -19,7 +19,7 @@ class PreguntasJuventudSeeder extends Seeder
         Pregunta::create(["ref_campo"=> "juv_colposcopia", "ref_seccion" => "juventud", "descripcion" => "Colposcopia (30 dias desde la citología)", "tipo" => "seleccion"]);
         Pregunta::create(["ref_campo"=> "juv_bioscopia_cervico", "ref_seccion" => "juventud", "descripcion" => "Bioscopia cervico uterina", "tipo" => "seleccion"]);
         Pregunta::create(["ref_campo"=> "juv_examen_seno", "ref_seccion" => "juventud", "descripcion" => "Examen físico de seno (último año)", "tipo" => "seleccion"]);
-        Pregunta::create(["ref_campo"=> "juv_planific", "ref_seccion" => "juventud", "descripcion" => "Planifica: Método", "tipo" => "seleccion"]);
+        Pregunta::create(["ref_campo"=> "juv_planifica", "ref_seccion" => "juventud", "descripcion" => "Planifica: Método", "tipo" => "seleccion"]);
         Pregunta::create(["ref_campo"=> "juv_metodo_planifica", "ref_seccion" => "juventud", "descripcion" => "Metodo", "tipo" => "seleccion"]);
         Pregunta::create(["ref_campo"=> "juv_tiempo_metodo", "ref_seccion" => "juventud", "descripcion" => "Tiempo con el método (meses)", "tipo" => "numero"]);
         Pregunta::create(["ref_campo"=> "juv_asesoria_anticoncepcion", "ref_seccion" => "juventud", "descripcion" => "Atención en salud para la asesoria en anticoncepción", "tipo" => "seleccion"]);
