@@ -43,7 +43,6 @@ Pregunta::create(["ref_campo"=> "ve_cancer_mama_mamografia", "ref_seccion" => "v
 Pregunta::create(["ref_campo"=> "ve_cancer_mama_valoracion_clinica", "ref_seccion" => "vejez", "descripcion" => "Tamizaje para cancer de mama (valoración clínica de la mama)", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "ve_cancer_prostata_psa", "ref_seccion" => "vejez", "descripcion" => "Tamizaje para cancer de prostata (PSA)", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "ve_cancer_prostata_rectal", "ref_seccion" => "vejez", "descripcion" => "Tamizaje para cancer de prostata (Tacto rectal)", "tipo" => "seleccion"]);
-Pregunta::create(["ref_campo"=> "ve_aserori_anticoncepcion", "ref_seccion" => "vejez", "descripcion" => "Atención en salud para la asesoria en anticoncepción", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "ve_vasectomia", "ref_seccion" => "vejez", "descripcion" => "Vasectomía SOD", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "ve_esterilizacion_femenina", "ref_seccion" => "vejez", "descripcion" => "esterilizacion femenina", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "ve_vias_esterilizacion", "ref_seccion" => "vejez", "descripcion" => "Vía de esterilización", "tipo" => "seleccion"]);
