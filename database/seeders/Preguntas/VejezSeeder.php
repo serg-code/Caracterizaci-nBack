@@ -19,7 +19,6 @@ class VejezSeeder extends Seeder
 Pregunta::create(["ref_campo"=> "ve_valoracion_talla", "ref_seccion" => "vejez", "descripcion" => "Valoración nutricional:  Talla (cm)", "tipo" => "numero"]);
 Pregunta::create(["ref_campo"=> "ve_imc", "ref_seccion" => "vejez", "descripcion" => "Indice de Masa Corporal", "tipo" => "numero"]);
 Pregunta::create(["ref_campo"=> "ve_asesoria_anticoncepcion", "ref_seccion" => "vejez", "descripcion" => "Atención en salud para la asesoria en anticoncepción", "tipo" => "seleccion"]);
-Pregunta::create(["ref_campo"=> "ve_asesoria_anticoncepcion", "ref_seccion" => "vejez", "descripcion" => "Atención en salud para la asesoria en anticoncepción", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "ve_planifica", "ref_seccion" => "vejez", "descripcion" => "Planifica: Método", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "ve_metodo_planifica", "ref_seccion" => "vejez", "descripcion" => "Método", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "ve_desde_cuando_planifica", "ref_seccion" => "vejez", "descripcion" => "¿Desde cuando planifica?", "tipo" => "texto"]);
