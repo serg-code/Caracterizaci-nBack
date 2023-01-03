@@ -376,7 +376,6 @@ class SeccionesIntegrante
             'adul_cancer_mama_mamografia'=> null,
             'adul_cancer_mama_valoracion_clinica'=> null,
             'adul_cancer_prostata'=> null,
-            'adul_asesoria_anticoncepcion'=> null,
             'adul_vasectomia'=> null,
             'adul_esterilizacion_femenina'=> null,
             'adul_vias_esterilizacion'=> null,

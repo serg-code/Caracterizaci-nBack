@@ -40,7 +40,6 @@ return new class extends Migration
                 $table->string('adul_cancer_mama_mamografia')->nullable();
                 $table->string('adul_cancer_mama_valoracion_clinica')->nullable();
                 $table->string('adul_cancer_prostata')->nullable();
-                $table->string('adul_asesoria_anticoncepcion')->nullable();
                 $table->string('adul_vasectomia')->nullable();
                 $table->string('adul_esterilizacion_femenina')->nullable();
                 $table->string('adul_vias_esterilizacion')->nullable();

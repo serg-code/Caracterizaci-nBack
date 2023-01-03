@@ -40,7 +40,6 @@ Pregunta::create(["ref_campo"=> "adul_biopsia_cervico_uterina", "ref_seccion" =>
 Pregunta::create(["ref_campo"=> "adul_cancer_mama_mamografia", "ref_seccion" => "adultez", "descripcion" => "Tamizaje para cancer de mama (mamografía)", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "adul_cancer_mama_valoracion_clinica", "ref_seccion" => "adultez", "descripcion" => "Tamizaje para cancer de mama (valoración clínica de la mama)", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "adul_cancer_prostata", "ref_seccion" => "adultez", "descripcion" => "Tamizaje para cancer de prostata (PSA)", "tipo" => "seleccion"]);
-Pregunta::create(["ref_campo"=> "adul_asesoria_anticoncepcion", "ref_seccion" => "adultez", "descripcion" => "Atención en salud para la asesoria en anticoncepción", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "adul_vasectomia", "ref_seccion" => "adultez", "descripcion" => "Vasectomía SOD", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "adul_esterilizacion_femenina", "ref_seccion" => "adultez", "descripcion" => "esterilizacion femenina", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "adul_vias_esterilizacion", "ref_seccion" => "adultez", "descripcion" => "Vía de esterilización", "tipo" => "seleccion"]);

@@ -36,7 +36,6 @@ class Adultez extends Model
 'adul_cancer_mama_mamografia',
 'adul_cancer_mama_valoracion_clinica',
 'adul_cancer_prostata',
-'adul_asesoria_anticoncepcion',
 'adul_vasectomia',
 'adul_esterilizacion_femenina',
 'adul_vias_esterilizacion',
