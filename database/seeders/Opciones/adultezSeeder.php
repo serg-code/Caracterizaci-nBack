@@ -15,8 +15,8 @@ class adultezSeeder extends Seeder
      */
     public function run()
     {
-        //Opcion::create(["ref_campo" => "adul_valoracion_nutricional", "pregunta_opcion" => "Ingresar dato", "valor" => "0"]);
-//Opcion::create(["ref_campo" => "adul_valoracion_nutricional", "pregunta_opcion" => "Ingresar dato", "valor" => "0"]);
+        //Opcion::create(["ref_campo" => "adul_valoracion_nutricional_peso", "pregunta_opcion" => "Ingresar dato", "valor" => "0"]);
+//Opcion::create(["ref_campo" => "adul_valoracion_nutricional_talla", "pregunta_opcion" => "Ingresar dato", "valor" => "0"]);
 //Opcion::create(["ref_campo" => "adul_imc", "pregunta_opcion" => "calcular con los datos de peso y talla", "valor" => "0"]);
 Opcion::create(["ref_campo" => "adul_asesoria_anticoncepcion", "pregunta_opcion" => "NO", "valor" => "1"]);
 Opcion::create(["ref_campo" => "adul_asesoria_anticoncepcion", "pregunta_opcion" => "SI", "valor" => "3"]);

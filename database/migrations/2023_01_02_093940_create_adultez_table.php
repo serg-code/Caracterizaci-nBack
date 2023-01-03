@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('adultez', function (Blueprint $table) {
                 $table->uuid('id_integrante')->unique();
-                $table->string('adul_valoracion_nutricional')->nullable();
+                $table->string('adul_valoracion_peso')->nullable();
+                $table->string('adul_valoracion_talla')->nullable();
                 $table->string('adul_imc')->nullable();
                 $table->string('adul_asesoria_anticoncepcion')->nullable();
                 $table->string('adul_planifica')->nullable();

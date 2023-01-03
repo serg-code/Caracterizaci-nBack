@@ -11,7 +11,8 @@ class Adultez extends Model
     protected $table = 'adultez';
 
     protected $fillable = [
-        'adul_valoracion_nutricional',
+        'adul_valoracion_peso',
+        'adul_valoracion_talla',
 'adul_imc',
 'adul_asesoria_anticoncepcion',
 'adul_planifica',

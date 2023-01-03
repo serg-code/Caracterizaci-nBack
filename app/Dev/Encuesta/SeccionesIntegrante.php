@@ -351,7 +351,8 @@ class SeccionesIntegrante
     public static function preguntasAdultez(): array
     {
         return [
-            'adul_valoracion_nutricional'=> null,
+            'adul_valoracion_peso'=> null,
+            'adul_valoracion_talla'=> null,
             'adul_imc'=> null,
             'adul_asesoria_anticoncepcion'=> null,
             'adul_planifica'=> null,
