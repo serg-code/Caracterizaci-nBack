@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::table('hogar', function (Blueprint $table)
         {
-            $table->text('encuesta')->nullable()->after('geolocalizacion')->comment('json de la encuesta');
+            $table->longText('encuesta')->nullable()->after('geolocalizacion')->comment('json de la encuesta');
         });
     }
 
