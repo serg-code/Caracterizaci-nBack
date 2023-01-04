@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('cual_programa')->nullable();
             $table->string('seguridad_social')->nullable();
             $table->string('esta_estudiando')->nullable();
-            $table->string('tipo_educacion', [
+            $table->enum('tipo_educacion', [
                 'Pre escolar',
                 'Primaria',
                 'Secundaria',
