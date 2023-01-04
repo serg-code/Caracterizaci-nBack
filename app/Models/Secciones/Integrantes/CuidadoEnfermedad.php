@@ -21,7 +21,6 @@ class CuidadoEnfermedad extends Model
         'fuma',
         'actividad_fisica',
         'vacuna_fiebre_amarilla',
-        'enfermedades_cronicas',
         'diabetes',
         'hipertencion_trimestral',
         'diabetes_trimestral',

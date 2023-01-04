@@ -23,10 +23,7 @@ return new class extends Migration
                 $table->string('adul_metodo_planifica')->nullable();
                 $table->string('adul_desde_cuando_planifica')->nullable();
                 $table->string('adul_razones_no_planifica')->nullable();
-                $table->string('adul_parejas_sexuales_al_año')->nullable();
-                $table->string('adul_enfermedad_cronica')->nullable();
-                $table->string('adul_cual_enfermedad_cronica')->nullable();
-                $table->string('adul_seguimiento_enfermedad_cronica')->nullable();
+                $table->string('adul_parejas_sexuales_al_anio')->nullable();
                 $table->string('adul_control_adultos')->nullable();
                 $table->string('adul_antecedentes_diabetes')->nullable();
                 $table->string('adul_antecedentes_hipertension')->nullable();

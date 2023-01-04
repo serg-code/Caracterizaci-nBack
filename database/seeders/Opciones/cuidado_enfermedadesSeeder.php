@@ -32,8 +32,6 @@ class cuidado_enfermedadesSeeder extends Seeder
         Opcion::create(["ref_campo" => "actividad_fisica", "pregunta_opcion" => "SI", "valor" => "3"]);
         Opcion::create(["ref_campo" => "vacuna_fiebre_amarilla", "pregunta_opcion" => "NO", "valor" => "1"]);
         Opcion::create(["ref_campo" => "vacuna_fiebre_amarilla", "pregunta_opcion" => "SI", "valor" => "3"]);
-        Opcion::create(["ref_campo" => "enfermedades_cronicas", "pregunta_opcion" => "NO", "valor" => "1"]);
-        Opcion::create(["ref_campo" => "enfermedades_cronicas", "pregunta_opcion" => "SI", "valor" => "3"]);
         Opcion::create(["ref_campo" => "diabetes", "pregunta_opcion" => "NO", "valor" => "1"]);
         Opcion::create(["ref_campo" => "diabetes", "pregunta_opcion" => "SI", "valor" => "3"]);
         Opcion::create(["ref_campo" => "hipertencion_trimestral", "pregunta_opcion" => "NO", "valor" => "1"]);

@@ -18,6 +18,7 @@ class IdentificaionCiudadana extends Model
 'cual_programa',
 'seguridad_social',
 'esta_estudiando',
+'tipo_educacion',
 'por_que',
 'ocupacion_ingreso',
 'discapacidad',

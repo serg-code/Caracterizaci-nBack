@@ -125,8 +125,6 @@ class SeccionesIntegrante
             'cancer' => null,
             'diabetes' => null,
             'diabetes_trimestral' => null,
-            'enfermedades_costosas' => null,
-            'enfermedades_cronicas' => null,
             'fuma' => null,
             'hemofilia' => null,
             'hemoglobina_glococilada' => null,
@@ -194,16 +192,18 @@ class SeccionesIntegrante
     protected function preguntasIdentificacionCiudadana(): array
     {
         return [
-            'ayudas_tenicas' => null,
-            'cual_programa' => null,
-            'discapacidad' => null,
-            'esta_estudiando' => null,
-            'grupo_atencion_especial' => null,
             'grupo_etnia' => null,
-            'ocupacion_ingreso' => null,
-            'por_que' => null,
+            'grupo_atencion_especial' => null,
             'programas' => null,
+            'cual_programa' => null,
             'seguridad_social' => null,
+            'esta_estudiando' => null,
+            'tipo_educacion' => null,
+            'por_que' => null,
+            'ocupacion_ingreso' => null,
+            'discapacidad' => null,
+            'ayudas_tenicas' => null,
+                      
         ];
     }
 
@@ -326,7 +326,7 @@ class SeccionesIntegrante
             'juv_tiempo_metodo'=> null,
             'juv_asesoria_anticoncepcion'=> null,
             'juv_razones_no_planifica'=> null,
-            'juv_parejas_sexuales_al_año'=> null,
+            'juv_parejas_sexuales_al_anio'=> null,
             'juv_atencion_medica'=> null,
             'juv_atencion_enfermeria'=> null,
             'juv_salud_vocal'=> null,
@@ -339,12 +339,8 @@ class SeccionesIntegrante
             'juv_antecedentes_diabetes'=> null,
             'juv_antecedentes_hipertension'=> null,
             'juv_alteracion_colesterol'=> null,
-            'juv_presion_sistolica'=> null,
-            'juv_presion_diastolica'=> null,
             'juv_perimetro_abdominal'=> null,
             'juv_enfermedad_cronica'=> null,
-            'juv_cual_enfermedad_cronica'=> null,
-            'juv_seguimiento_enfermedad_cronica'=> null,
         ];
     }
 
@@ -359,10 +355,7 @@ class SeccionesIntegrante
             'adul_metodo_planifica'=> null,
             'adul_desde_cuando_planifica'=> null,
             'adul_razones_no_planifica'=> null,
-            'adul_parejas_sexuales_al_año'=> null,
-            'adul_enfermedad_cronica'=> null,
-            'adul_cual_enfermedad_cronica'=> null,
-            'adul_seguimiento_enfermedad_cronica'=> null,
+            'adul_parejas_sexuales_al_anio'=> null,
             'adul_control_adultos'=> null,
             'adul_antecedentes_diabetes'=> null,
             'adul_antecedentes_hipertension'=> null,
@@ -399,7 +392,7 @@ class SeccionesIntegrante
         've_metodo_planifica'=> null,
         've_desde_cuando_planifica'=> null,
         've_razones_no_planifica'=> null,
-        've_parejas_sexuales_al_año'=> null,
+        've_parejas_sexuales_al_anio'=> null,
         've_enfermedad_cronica'=> null,
         've_cual_enfermedad_cronica'=> null,
         've_seguimiento_enfermedad_cronica'=> null,

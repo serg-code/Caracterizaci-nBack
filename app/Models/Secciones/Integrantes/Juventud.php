@@ -21,7 +21,7 @@ class Juventud extends Model
 'juv_tiempo_metodo',
 'juv_asesoria_anticoncepcion',
 'juv_razones_no_planifica',
-'juv_parejas_sexuales_al_año',
+'juv_parejas_sexuales_al_anio',
 'juv_atencion_medica',
 'juv_atencion_enfermeria',
 'juv_salud_vocal',
@@ -34,13 +34,8 @@ class Juventud extends Model
 'juv_antecedentes_diabetes',
 'juv_antecedentes_hipertension',
 'juv_alteracion_colesterol',
-'juv_presion_sistolica',
-'juv_presion_diastolica',
 'juv_perimetro_abdominal',
-'juv_enfermedad_cronica',
-'juv_cual_enfermedad_cronica',
-'juv_seguimiento_enfermedad_cronica',
-         
+        
             ];
         
             protected $hidden = [

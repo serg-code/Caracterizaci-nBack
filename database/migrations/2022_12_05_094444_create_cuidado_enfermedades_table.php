@@ -23,7 +23,6 @@ return new class extends Migration
             $table->string('fuma')->nullable();
             $table->string('actividad_fisica')->nullable();
             $table->string('vacuna_fiebre_amarilla')->nullable();
-            $table->string('enfermedades_cronicas')->nullable();
             $table->string('diabetes')->nullable();
             $table->string('hipertencion_trimestral')->nullable();
             $table->string('diabetes_trimestral')->nullable();

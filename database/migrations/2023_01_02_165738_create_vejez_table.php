@@ -23,10 +23,7 @@ return new class extends Migration
         $table->string('ve_metodo_planifica')->nullable();
         $table->string('ve_desde_cuando_planifica')->nullable();
         $table->string('ve_razones_no_planifica')->nullable();
-        $table->string('ve_parejas_sexuales_al_año')->nullable();
-        $table->string('ve_enfermedad_cronica')->nullable();
-        $table->string('ve_cual_enfermedad_cronica')->nullable();
-        $table->string('ve_seguimiento_enfermedad_cronica')->nullable();
+        $table->string('ve_parejas_sexuales_al_anio')->nullable();
         $table->string('ve_control_adultos')->nullable();
         $table->string('ve_antecedentes_diabetes')->nullable();
         $table->string('ve_antecedentes_hipertension')->nullable();

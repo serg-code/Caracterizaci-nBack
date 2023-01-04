@@ -23,7 +23,6 @@ class CuidadoEnfermedadesSeeder extends Seeder
         Pregunta::create(["ref_campo" => "fuma", "ref_seccion" => "cuidado_enfermedades", "descripcion" => "Fuma", "tipo" => "seleccion"]);
         Pregunta::create(["ref_campo" => "actividad_fisica", "ref_seccion" => "cuidado_enfermedades", "descripcion" => "Actividad física periodica", "tipo" => "seleccion"]);
         Pregunta::create(["ref_campo" => "vacuna_fiebre_amarilla", "ref_seccion" => "cuidado_enfermedades", "descripcion" => "Vacuna de fiebre amarilla", "tipo" => "seleccion"]);
-        Pregunta::create(["ref_campo" => "enfermedades_cronicas", "ref_seccion" => "cuidado_enfermedades", "descripcion" => "Enfermedades crónicas", "tipo" => "seleccion"]);
         Pregunta::create(["ref_campo" => "diabetes", "ref_seccion" => "cuidado_enfermedades", "descripcion" => "Diabetes", "tipo" => "seleccion"]);
         Pregunta::create(["ref_campo" => "hipertencion_trimestral", "ref_seccion" => "cuidado_enfermedades", "descripcion" => "Control de hipertención trimestral", "tipo" => "seleccion"]);
         Pregunta::create(["ref_campo" => "diabetes_trimestral", "ref_seccion" => "cuidado_enfermedades", "descripcion" => "Control de diabetes trimestral", "tipo" => "seleccion"]);

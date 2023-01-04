@@ -24,7 +24,7 @@ class PreguntasJuventudSeeder extends Seeder
         Pregunta::create(["ref_campo"=> "juv_tiempo_metodo", "ref_seccion" => "juventud", "descripcion" => "Tiempo con el método (meses)", "tipo" => "numero"]);
         Pregunta::create(["ref_campo"=> "juv_asesoria_anticoncepcion", "ref_seccion" => "juventud", "descripcion" => "Atención en salud para la asesoria en anticoncepción", "tipo" => "seleccion"]);
         Pregunta::create(["ref_campo"=> "juv_razones_no_planifica", "ref_seccion" => "juventud", "descripcion" => "No planifica", "tipo" => "seleccion"]);
-        Pregunta::create(["ref_campo"=> "juv_parejas_sexuales_al_año", "ref_seccion" => "juventud", "descripcion" => "Número de parejas sexuales en el último año", "tipo" => "numero"]);
+        Pregunta::create(["ref_campo"=> "juv_parejas_sexuales_al_anio", "ref_seccion" => "juventud", "descripcion" => "Número de parejas sexuales en el último año", "tipo" => "numero"]);
         Pregunta::create(["ref_campo"=> "juv_atencion_medica", "ref_seccion" => "juventud", "descripcion" => "Atención en salud médica", "tipo" => "seleccion"]);
         Pregunta::create(["ref_campo"=> "juv_atencion_enfermeria", "ref_seccion" => "juventud", "descripcion" => "Atención en salud en enfermería", "tipo" => "seleccion"]);
         Pregunta::create(["ref_campo"=> "juv_salud_vocal", "ref_seccion" => "juventud", "descripcion" => "Atención salud bucal", "tipo" => "seleccion"]);
@@ -37,8 +37,6 @@ class PreguntasJuventudSeeder extends Seeder
         Pregunta::create(["ref_campo"=> "juv_antecedentes_diabetes", "ref_seccion" => "juventud", "descripcion" => "Antecedentes de diabetes", "tipo" => "seleccion"]);
         Pregunta::create(["ref_campo"=> "juv_antecedentes_hipertension", "ref_seccion" => "juventud", "descripcion" => "Antecedentes de hipertensión", "tipo" => "seleccion"]);
         Pregunta::create(["ref_campo"=> "juv_alteracion_colesterol", "ref_seccion" => "juventud", "descripcion" => "Alteración del colesterol", "tipo" => "seleccion"]);
-        Pregunta::create(["ref_campo"=> "juv_presion_sistolica", "ref_seccion" => "juventud", "descripcion" => "Presión alterial sistolica", "tipo" => "seleccion"]);
-        Pregunta::create(["ref_campo"=> "juv_presion_diastolica", "ref_seccion" => "juventud", "descripcion" => "Presión alterial diastolica", "tipo" => "seleccion"]);
         Pregunta::create(["ref_campo"=> "juv_perimetro_abdominal", "ref_seccion" => "juventud", "descripcion" => "Perímetro abdominal", "tipo" => "seleccion"]);
         Pregunta::create(["ref_campo"=> "juv_enfermedad_cronica", "ref_seccion" => "juventud", "descripcion" => "Enfermedad crónica", "tipo" => "seleccion"]);
         Pregunta::create(["ref_campo"=> "juv_cual_enfermedad_cronica", "ref_seccion" => "juventud", "descripcion" => "¿Cuál enfermedad crónica?", "tipo" => "texto"]);
