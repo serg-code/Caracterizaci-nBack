@@ -23,7 +23,7 @@ Pregunta::create(["ref_campo"=> "adul_planifica", "ref_seccion" => "adultez", "d
 Pregunta::create(["ref_campo"=> "adul_metodo_planifica", "ref_seccion" => "adultez", "descripcion" => "Método", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "adul_desde_cuando_planifica", "ref_seccion" => "adultez", "descripcion" => "¿Desde cuando planifica?", "tipo" => "numero"]);
 Pregunta::create(["ref_campo"=> "adul_razones_no_planifica", "ref_seccion" => "adultez", "descripcion" => "No planifica", "tipo" => "seleccion"]);
-Pregunta::create(["ref_campo"=> "adul_parejas_sexuales_al_año", "ref_seccion" => "adultez", "descripcion" => "Número de parejas sexuales en el ultimo año", "tipo" => "numero"]);
+Pregunta::create(["ref_campo"=> "adul_parejas_sexuales_al_anio", "ref_seccion" => "adultez", "descripcion" => "Número de parejas sexuales en el ultimo año", "tipo" => "numero"]);
 Pregunta::create(["ref_campo"=> "adul_enfermedad_cronica", "ref_seccion" => "adultez", "descripcion" => "Enfermedad crónica", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "adul_cual_enfermedad_cronica", "ref_seccion" => "adultez", "descripcion" => "Enfermedad crónica", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "adul_seguimiento_enfermedad_cronica", "ref_seccion" => "adultez", "descripcion" => "Seguimiento de la enfermedad crónica", "tipo" => "seleccion"]);

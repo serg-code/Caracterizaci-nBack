@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('cuidados_domiciliarios', function (Blueprint $table) {
-            $table->uuid('id_integrante');
+            $table->uuid('id_integrante')->unique();
             $table->string('cuidados_domiciliarios')->nullable();
             $table->string('diagnostico_principal')->nullable();
             $table->string('causa')->nullable();
