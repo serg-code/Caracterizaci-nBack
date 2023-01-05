@@ -31,7 +31,7 @@ Pregunta::create(["ref_campo"=> "adul_control_adultos", "ref_seccion" => "adulte
 Pregunta::create(["ref_campo"=> "adul_antecedentes_diabetes", "ref_seccion" => "adultez", "descripcion" => "Antecedentes de diabetes", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "adul_antecedentes_hipertension", "ref_seccion" => "adultez", "descripcion" => "Antecedentes de hipertensión", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "adul_antecedentes_colesterol", "ref_seccion" => "adultez", "descripcion" => "Alteración del colesterol", "tipo" => "seleccion"]);
-Pregunta::create(["ref_campo"=> "adul_perimetro_abdominal", "ref_seccion" => "adultez", "descripcion" => "Perímetro abdominal", "tipo" => "seleccion"]);
+Pregunta::create(["ref_campo"=> "adul_perimetro_abdominal", "ref_seccion" => "adultez", "descripcion" => "Perímetro abdominal", "tipo" => "numero"]);
 Pregunta::create(["ref_campo"=> "adul_atencion_medica", "ref_seccion" => "adultez", "descripcion" => "Atención en salud médica", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "adul_salud_bucal", "ref_seccion" => "adultez", "descripcion" => "Atención salud bucal", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "adul_cancer_cuello_uterino_adn_vph", "ref_seccion" => "adultez", "descripcion" => "Tamizaje de cancer de cuello uterino (ADN VPH)", "tipo" => "seleccion"]);
