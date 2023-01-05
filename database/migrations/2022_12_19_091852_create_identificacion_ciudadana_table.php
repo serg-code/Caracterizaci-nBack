@@ -28,7 +28,7 @@ return new class extends Migration
                 'Tecnico',
                 'Tegnologo',
                 'Universitario',
-            ]);
+            ])->nullable();
             $table->string('por_que')->nullable();
             $table->string('ocupacion_ingreso')->nullable();
             $table->string('discapacidad')->nullable();
