@@ -44,12 +44,12 @@ class identificacion_ciudadanaSeeder extends Seeder
         Opcion::create(["ref_campo" => "seguridad_social", "pregunta_opcion" => "Otro (Régimen especial)", "valor" => "0"]);
         Opcion::create(["ref_campo" => "esta_estudiando", "pregunta_opcion" => "NO", "valor" => "1"]);
         Opcion::create(["ref_campo" => "esta_estudiando", "pregunta_opcion" => "SI", "valor" => "3"]);
-        Opcion::create(["ref_campo" => "tipo_educacion", "pregunta_opcion" => "Pre escolar", "valor" => "5"]);
-        Opcion::create(["ref_campo" => "tipo_educacion", "pregunta_opcion" => "Primaria", "valor" => "5"]);
-        Opcion::create(["ref_campo" => "tipo_educacion", "pregunta_opcion" => "Secundaria", "valor" => "5"]);
-        Opcion::create(["ref_campo" => "tipo_educacion", "pregunta_opcion" => "Técnico", "valor" => "5"]);
-        Opcion::create(["ref_campo" => "tipo_educacion", "pregunta_opcion" => "Tegnólogo", "valor" => "5"]);
-        Opcion::create(["ref_campo" => "tipo_educacion", "pregunta_opcion" => "Universitario", "valor" => "5"]);
+        Opcion::create(["ref_campo" => "tipo_educacion", "pregunta_opcion" => "Pre escolar", "valor" => "0"]);
+        Opcion::create(["ref_campo" => "tipo_educacion", "pregunta_opcion" => "Primaria", "valor" => "0"]);
+        Opcion::create(["ref_campo" => "tipo_educacion", "pregunta_opcion" => "Secundaria", "valor" => "0"]);
+        Opcion::create(["ref_campo" => "tipo_educacion", "pregunta_opcion" => "Técnico", "valor" => "0"]);
+        Opcion::create(["ref_campo" => "tipo_educacion", "pregunta_opcion" => "Tegnólogo", "valor" => "0"]);
+        Opcion::create(["ref_campo" => "tipo_educacion", "pregunta_opcion" => "Universitario", "valor" => "0"]);
         Opcion::create(["ref_campo" => "por_que", "pregunta_opcion" => "Discapacidad", "valor" => "5"]);
         Opcion::create(["ref_campo" => "por_que", "pregunta_opcion" => "No recuerda el grado", "valor" => "5"]);
         Opcion::create(["ref_campo" => "por_que", "pregunta_opcion" => "No aplica por edad", "valor" => "5"]);
