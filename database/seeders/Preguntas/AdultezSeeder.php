@@ -15,9 +15,9 @@ class AdultezSeeder extends Seeder
      */
     public function run()
     {
-        Pregunta::create(["ref_campo"=> "adul_valoracion_peso", "ref_seccion" => "adultez", "descripcion" => "Valoración nutricional: Peso (kgs)", "tipo" => "seleccion"]);
-        Pregunta::create(["ref_campo"=> "adul_valoracion_talla", "ref_seccion" => "adultez", "descripcion" => "Valoración nutricional: Talla (cm)", "tipo" => "seleccion"]);
-Pregunta::create(["ref_campo"=> "adul_imc", "ref_seccion" => "adultez", "descripcion" => "Indice de Masa Corporal", "tipo" => "seleccion"]);
+        Pregunta::create(["ref_campo"=> "adul_valoracion_peso", "ref_seccion" => "adultez", "descripcion" => "Valoración nutricional: Peso (kgs)", "tipo" => "numero"]);
+        Pregunta::create(["ref_campo"=> "adul_valoracion_talla", "ref_seccion" => "adultez", "descripcion" => "Valoración nutricional: Talla (cm)", "tipo" => "numero"]);
+Pregunta::create(["ref_campo"=> "adul_imc", "ref_seccion" => "adultez", "descripcion" => "Indice de Masa Corporal", "tipo" => "numero"]);
 Pregunta::create(["ref_campo"=> "adul_asesoria_anticoncepcion", "ref_seccion" => "adultez", "descripcion" => "Atención en salud para la asesoria en anticoncepción", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "adul_planifica", "ref_seccion" => "adultez", "descripcion" => "Planifica: Método", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "adul_metodo_planifica", "ref_seccion" => "adultez", "descripcion" => "Método", "tipo" => "seleccion"]);
