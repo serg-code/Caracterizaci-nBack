@@ -16,6 +16,7 @@ class Juventud extends Model
 'juv_colposcopia',
 'juv_bioscopia_cervico',
 'juv_examen_seno',
+'juv_control_medico',
 'juv_planifica',
 'juv_metodo_planifica',
 'juv_tiempo_metodo',

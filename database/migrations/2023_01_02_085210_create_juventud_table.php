@@ -19,6 +19,7 @@ return new class extends Migration
 $table->string('juv_colposcopia')->nullable();
 $table->string('juv_bioscopia_cervico')->nullable();
 $table->string('juv_examen_seno')->nullable();
+$table->string('juv_control_medico')->nullable();
 $table->string('juv_planifica')->nullable();
 $table->string('juv_metodo_planifica')->nullable();
 $table->string('juv_tiempo_metodo')->nullable();

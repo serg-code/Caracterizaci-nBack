@@ -321,6 +321,7 @@ class SeccionesIntegrante
             'juv_colposcopia'=> null,
             'juv_bioscopia_cervico'=> null,
             'juv_examen_seno'=> null,
+            'juv_control_medico'=> null,
             'juv_planifica'=> null,
             'juv_metodo_planifica'=> null,
             'juv_tiempo_metodo'=> null,
