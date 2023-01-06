@@ -21,7 +21,7 @@ Pregunta::create(["ref_campo"=> "adul_imc", "ref_seccion" => "adultez", "descrip
 Pregunta::create(["ref_campo"=> "adul_asesoria_anticoncepcion", "ref_seccion" => "adultez", "descripcion" => "Atención en salud para la asesoria en anticoncepción", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "adul_planifica", "ref_seccion" => "adultez", "descripcion" => "Planifica: Método", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "adul_metodo_planifica", "ref_seccion" => "adultez", "descripcion" => "Método", "tipo" => "seleccion"]);
-Pregunta::create(["ref_campo"=> "adul_desde_cuando_planifica", "ref_seccion" => "adultez", "descripcion" => "¿Desde cuando planifica?", "tipo" => "numero"]);
+Pregunta::create(["ref_campo"=> "adul_desde_cuando_planifica", "ref_seccion" => "adultez", "descripcion" => "¿Desde cuando planifica?", "tipo" => "fecha"]);
 Pregunta::create(["ref_campo"=> "adul_razones_no_planifica", "ref_seccion" => "adultez", "descripcion" => "No planifica", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "adul_parejas_sexuales_al_anio", "ref_seccion" => "adultez", "descripcion" => "Número de parejas sexuales en el ultimo año", "tipo" => "numero"]);
 Pregunta::create(["ref_campo"=> "adul_enfermedad_cronica", "ref_seccion" => "adultez", "descripcion" => "Enfermedad crónica", "tipo" => "seleccion"]);
