@@ -9,11 +9,17 @@ use App\Dev\RespuestaHttp;
 use App\Models\Hogar\Hogar;
 use App\Models\Integrantes;
 use App\Models\Secciones\Integrantes\Accidente;
+use App\Models\Secciones\Integrantes\Adolescencia;
+use App\Models\Secciones\Integrantes\Adultez;
 use App\Models\Secciones\Integrantes\CuidadoDomiciliario;
 use App\Models\Secciones\Integrantes\CuidadoEnfermedad;
 use App\Models\Secciones\Integrantes\EnfermedadesSaludPublica;
+use App\Models\Secciones\Integrantes\Infancia;
+use App\Models\Secciones\Integrantes\Juventud;
 use App\Models\Secciones\Integrantes\Morbilidad;
+use App\Models\Secciones\Integrantes\PrimeraInfancia;
 use App\Models\Secciones\Integrantes\SaludMental;
+use App\Models\Secciones\Integrantes\Vejez;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -185,6 +191,12 @@ class IntegrantesController extends Controller
             'enfermedades_salud_publica' => EnfermedadesSaludPublica::where('id_integrante', '=', $id)->delete(),
             'morbilidad' => Morbilidad::where('id_integrante', '=', $id)->delete(),
             'salud_mental' => SaludMental::where('id_integrante', '=', $id)->delete(),
+            'primera_infancia' => PrimeraInfancia::where('id_integrante', '=', $id)->delete(),
+            'infancia' => Infancia::where('id_integrante', '=', $id)->delete(),
+            'adolescencia' => Adolescencia::where('id_integrante', '=', $id)->delete(),
+            'juventud' => Juventud::where('id_integrante', '=', $id)->delete(),
+            'adultez' => Adultez::where('id_integrante', '=', $id)->delete(),
+            'vejez' => Vejez::where('id_integrante', '=', $id)->delete(),
 
             default => null,
         };
