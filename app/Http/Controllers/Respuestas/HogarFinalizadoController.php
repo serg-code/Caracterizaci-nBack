@@ -10,13 +10,33 @@ use App\Models\Hogar\Hogar;
 use App\Models\Pregunta;
 use App\Models\respuestas\RespuestaHogar;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class HogarFinalizadoController extends Controller
 {
     public function finalizarHogar(Request $request)
     {
-        $hogarPeticion = $request->input('hogar');
+        $validacion = Validator::make(
+            $request->all(),
+            [
+                'hogar' => 'required',
+            ],
+            [
+                'hogar.required' => 'El hogar es necesario',
+            ]
+        );
 
+        if ($validacion->fails())
+        {
+            return RespuestaHttp::respuesta(
+                400,
+                'Bad Request',
+                'Algo ha salido mal',
+                $validacion->getMessageBag()
+            );
+        }
+
+        $hogarPeticion = $request->input('hogar');
         $hogar = Hogar::find($hogarPeticion['id']);
 
         if (empty($hogar))

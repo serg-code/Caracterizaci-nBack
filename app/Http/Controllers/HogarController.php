@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Dev\Encuesta\SeccionesHogar;
 use App\Dev\Hogar\ActualizarHogar;
 use App\Dev\Hogar\crearHogar;
 use App\Dev\RespuestaHttp;
@@ -80,14 +79,14 @@ class HogarController extends Controller
         {
             return RespuestaHttp::respuesta(400, 'Bad request', 'No encontramos informacion', $validacion->getMessageBag());
         }
+
         $hogarPeticion = $request->input('hogar');
         $id = $hogarPeticion['id'];
         $hogar = Hogar::find($id);
 
         if (empty($hogar))
         {
-            $datosHogar = $request->input('hogar');
-            $crearHogar = new crearHogar($datosHogar);
+            $crearHogar = new crearHogar($hogarPeticion);
             $respuestaCrearHogar = $crearHogar->getRespuesta();
             return RespuestaHttp::respuestaObjeto($respuestaCrearHogar);
         }
