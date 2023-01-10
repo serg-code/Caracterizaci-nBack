@@ -42,7 +42,7 @@ class MaternoPerinatal extends Model
         'ma_diabetes_mellitus',
         'ma_hallazgo_anormal',
         'ma_parto_unico',
-        'ma_parto-complicado',
+        'ma_parto_complicado',
         'ma_hemorragia_postparto',
         'ma_parto_cesarea',
         'ma_otras_complicaciones_parto',
