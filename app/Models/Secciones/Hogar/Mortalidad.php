@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Mortalidad extends Model
 {
     use HasFactory;
-    protected $table = 'vivienda';
+    protected $table = 'mortalidad';
 
     protected $fillable = [
         'hogar_id',
@@ -17,7 +17,7 @@ class Mortalidad extends Model
         'edad_fallecido',
         'causa_muerte',
         'fecha_muerte',
-     ];
+    ];
 
     protected $hidden = [
         'created_at',

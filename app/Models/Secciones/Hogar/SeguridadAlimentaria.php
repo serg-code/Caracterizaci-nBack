@@ -8,23 +8,23 @@ use Illuminate\Database\Eloquent\Model;
 class SeguridadAlimentaria extends Model
 {
     use HasFactory;
-    protected $table = 'vivienda';
+    protected $table = 'seguridad_alimentaria';
 
     protected $fillable = [
         'hogar_id',
-'falto_dinero',
-'animales_silvestres',
-'consume_cerdo_res_pollo',
-'consume_huevos',
-'consume_frijol_lentejas',
-'consume_lacteos',
-'consume_harinas',
-'consume_verduras',
-'consume_frutas_frescas',
-'consume_enlatados',
-'consume_platano_yuca',
-'consume_gaseosas',
-     ];
+        'falto_dinero',
+        'animales_silvestres',
+        'consume_cerdo_res_pollo',
+        'consume_huevos',
+        'consume_frijol_lentejas',
+        'consume_lacteos',
+        'consume_harinas',
+        'consume_verduras',
+        'consume_frutas_frescas',
+        'consume_enlatados',
+        'consume_platano_yuca',
+        'consume_gaseosas',
+    ];
 
     protected $hidden = [
         'created_at',

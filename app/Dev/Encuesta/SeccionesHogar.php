@@ -42,12 +42,13 @@ class SeccionesHogar
             try
             {
 
-                $respuesta->eliminar();
-                $respuesta->save();
+                if (!empty($respuesta))
+                {
+                    $this->guardarRespuesta($respuesta);
+                }
             }
             catch (\Throwable $th)
             {
-                dd($respuesta);
                 dd($th);
             }
         }
