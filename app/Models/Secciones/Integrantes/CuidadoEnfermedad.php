@@ -28,7 +28,7 @@ class CuidadoEnfermedad extends Model
         'tension_diastolica',
         'hemoglobina_glococilada',
         'enfermedades_costosas',
-        'parejas_sexuales_año',
+        'parejas_sexuales_anio',
         'ha_estado_embarazada',
         'cuantos_embarazos_ha_tenido',
         'hijos_muertos_parto_natural',

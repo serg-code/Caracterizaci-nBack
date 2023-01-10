@@ -136,7 +136,7 @@ class SeccionesIntegrante
             'tension_sistolica' => null,
             'vacuna_fiebre_amarilla' => null,
             'vih_sida' => null,
-            'parejas_sexuales_año' => null,
+            'parejas_sexuales_anio' => null,
             'ha_estado_embarazada' => null,
             'cuantos_embarazos_ha_tenido' => null,
             'hijos_muertos_parto_natural' => null,
