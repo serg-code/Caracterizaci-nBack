@@ -48,7 +48,6 @@ class cuidado_enfermedadesSeeder extends Seeder
         Opcion::create(["ref_campo" => "enfermedades_costosas", "pregunta_opcion" => "Enfermedad cardiovascular", "valor" => "20"]);
         Opcion::create(["ref_campo" => "enfermedades_costosas", "pregunta_opcion" => "Patologia congenitas", "valor" => "20"]);
         Opcion::create(["ref_campo" => "enfermedades_costosas", "pregunta_opcion" => "Ninguna", "valor" => "0"]);
-        //Opcion::create(["ref_campo" => "parejas_sexuales_anio", "pregunta_opcion" => "Ingresar datos", "valor" => "0"]);
         //Opcion::create(["ref_campo" => "ha_estado_embarazada", "pregunta_opcion" => "Ingresar datos", "valor" => "0"]);
         //Opcion::create(["ref_campo" => "cuantos_embarazos_ha_tenido", "pregunta_opcion" => "Ingresar datos", "valor" => "0"]);
         //Opcion::create(["ref_campo" => "hijos_muertos_parto_natural", "pregunta_opcion" => "Ingresar datos", "valor" => "0"]);
