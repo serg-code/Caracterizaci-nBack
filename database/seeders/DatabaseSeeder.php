@@ -14,6 +14,7 @@ use Database\Seeders\Opciones\cuidados_domiciliariosSeeder;
 use Database\Seeders\Opciones\identificacion_ciudadanaSeeder;
 use Database\Seeders\Opciones\infanciaSeeder as OpcionesInfanciaSeeder;
 use Database\Seeders\Opciones\juventudSeeder;
+use Database\Seeders\Opciones\materno_perinatal;
 use Database\Seeders\Opciones\morbilidadOpcionesSeeder;
 use Database\Seeders\Opciones\mortalidadSeeder as OpcionesMortalidadSeeder;
 use Database\Seeders\Opciones\primera_infanciaSeeder;
@@ -30,6 +31,7 @@ use Database\Seeders\Preguntas\CuidadoDomiciliarioSeeder;
 use Database\Seeders\Preguntas\CuidadoEnfermedadesSeeder;
 use Database\Seeders\Preguntas\InfanciaSeeder;
 use Database\Seeders\Preguntas\JuventudSeeder as SeedersPreguntasJuventudSeeder;
+use Database\Seeders\Preguntas\MaternoPerinatal;
 use Database\Seeders\Preguntas\MorbilidadSeeder;
 use Database\Seeders\Preguntas\MortalidadSeeder;
 use Database\Seeders\Preguntas\PreguntasIdentificacionCiudadanaSeeder;
@@ -81,6 +83,7 @@ class DatabaseSeeder extends Seeder
             new PreguntasPreguntasJuventudSeeder(),
             new PreguntasAdultezSeeder(),
             new VejezSeeder(),
+            new MaternoPerinatal(),
 
             //opciones
             new OpcionesSeeder(),
@@ -101,6 +104,7 @@ class DatabaseSeeder extends Seeder
             new juventudSeeder(),
             new adultezSeeder(),
             new OpcionesVejezSeeder(),
+            new materno_perinatal(),
 
             //departamentos y municipios
             new DepartamentosSeeder(),

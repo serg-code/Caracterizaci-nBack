@@ -16,6 +16,7 @@ use App\Models\Secciones\Integrantes\CuidadoEnfermedad;
 use App\Models\Secciones\Integrantes\EnfermedadesSaludPublica;
 use App\Models\Secciones\Integrantes\Infancia;
 use App\Models\Secciones\Integrantes\Juventud;
+use App\Models\Secciones\Integrantes\MaternoPerinatal;
 use App\Models\Secciones\Integrantes\Morbilidad;
 use App\Models\Secciones\Integrantes\PrimeraInfancia;
 use App\Models\Secciones\Integrantes\SaludMental;
@@ -197,6 +198,7 @@ class IntegrantesController extends Controller
             'juventud' => Juventud::where('id_integrante', '=', $id)->delete(),
             'adultez' => Adultez::where('id_integrante', '=', $id)->delete(),
             'vejez' => Vejez::where('id_integrante', '=', $id)->delete(),
+            'materno_perinatal' => MaternoPerinatal::where('id_integrante', '=', $id)->delete(),
 
             default => null,
         };

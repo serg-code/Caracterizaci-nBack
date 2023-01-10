@@ -48,6 +48,7 @@ return new class extends Migration
         $table->string('ve_vacuna_influenza')->nullable();
         $table->string('ve_prueba_vih')->nullable();
             $table->timestamps();
+            $table->foreign('id_integrante')->references('id')->on('integrantes');
         });
     }
 

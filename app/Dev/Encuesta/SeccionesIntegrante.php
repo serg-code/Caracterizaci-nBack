@@ -71,6 +71,7 @@ class SeccionesIntegrante
             'juventud',
             'adultez',
             'vejez',
+            'materno_perinatal',
         ];
     }
 
@@ -91,6 +92,7 @@ class SeccionesIntegrante
             'juventud' => SeccionesIntegrante::preguntasJuventud(),
             'adultez' => SeccionesIntegrante::preguntasAdultez(),
             'vejez' => SeccionesIntegrante::preguntasVejez(),
+            'materno_perinatal' => SeccionesIntegrante::preguntasMaternoPerinatal(),
 
             default => [],
         };
@@ -134,6 +136,16 @@ class SeccionesIntegrante
             'tension_sistolica' => null,
             'vacuna_fiebre_amarilla' => null,
             'vih_sida' => null,
+            'parejas_sexuales_año' => null,
+            'ha_estado_embarazada' => null,
+            'cuantos_embarazos_ha_tenido' => null,
+            'hijos_muertos_parto_natural' => null,
+            'hijos_vivos_parto_natural' => null,
+            'hijos_muertos_por_cesarea' => null,
+            'hijos_vivos_por_cesarea' => null,
+            'cuantos_abortos' => null,
+            'cuantos_gemelos_multiples' => null,
+            
         ];
     }
 
@@ -384,7 +396,6 @@ class SeccionesIntegrante
     public static function preguntasVejez(): array
     {
         return [
-            'id_integrante'=> null,
         've_valoracion_peso'=> null,
         've_valoracion_talla'=> null,
         've_imc'=> null,
@@ -422,4 +433,91 @@ class SeccionesIntegrante
         've_prueba_vih'=> null,
         ];
     }
+
+    public static function preguntasMaternoPerinatal(): array
+    {
+        return [
+            'ma_aceptacion_embarazo'=> null,
+            'ma_fecha_control_prenatal'=> null,
+            'ma_fecha_ultima_regla'=> null,
+            'ma_fecha_parto'=> null,
+            'ma_ganancia_peso'=> null,
+            'ma_gestacion'=> null,
+            'ma_carnet'=> null,
+            'ma_prenatal_mensual'=> null,
+            'ma_examen_serologia_1_trimestre'=> null,
+            'ma_examen_serologia_2_trimestre'=> null,
+            'ma_examen_serologia_3_trimestre'=> null,
+            'ma_examen_vih_1_trimestre'=> null,
+            'ma_examen_vih_2_trimestre'=> null,
+            'ma_examen_vih_3_trimestre'=> null,
+            'ma_odontologico'=> null,
+            'ma_suplementacion'=> null,
+            'ma_sedentarismo'=> null,
+            'ma_bebidas_alcoholicas'=> null,
+            'ma_fecha_ultimo_parto'=> null,
+            'ma_depresion_postparto'=> null,
+            'ma_atencion_institucional'=> null,
+            'ma_aborto_no_especificado'=> null,
+            'ma_hemorragia_precoz'=> null,
+            'ma_hemorragia_anteparto'=> null,
+            'ma_hipertension'=> null,
+            'ma_vomitos'=> null,
+            'ma_atencion_madre'=> null,
+            'ma_diabetes_mellitus'=> null,
+            'ma_hallazgo_anormal'=> null,
+            'ma_parto_unico'=> null,
+            'ma_parto-complicado'=> null,
+            'ma_hemorragia_postparto'=> null,
+            'ma_parto_cesarea'=> null,
+            'ma_otras_complicaciones_parto'=> null,
+            'ma_otras_complicaciones_purperio'=> null,
+            'ma_hospitalizacion_sifilis'=> null,
+            'ma_edad_gestacional'=> null,
+            'ma_plan_canguro'=> null,
+            'ma_curso_maternidad_paternidad'=> null,
+            'ma_atencion_medica'=> null,
+            'ma_atencion_enfermeria'=> null,
+            'ma_atencion_odontologica'=> null,
+            'ma_antigeno_hepatitis_b'=> null,
+            'ma_cancer_cuello_uterino'=> null,
+            'ma_glicemia_ayuna'=> null,
+            'ma_hemoclasificacion'=> null,
+            'ma_hemograma'=> null,
+            'ma_hemoparasitos_chagas'=> null,
+            'ma_toxoplasma'=> null,
+            'ma_rubeola'=> null,
+            'ma_varicela'=> null,
+            'ma_prueba_treponemica_sifilis'=> null,
+            'ma_urocultivo'=> null,
+            'ma_prueba_vih'=> null,
+            'ma_espermograma'=> null,
+            'ma_citologia'=> null,
+            'ma_elisa'=> null,
+            'ma_micronutrientes'=> null,
+            'ma_atencion_prenatal_medica_general'=> null,
+            'ma_atencion_prenatal_enfermeria'=> null,
+            'ma_atencion_prenatal_medica_obstetra'=> null,
+            'ma_atencion_prenatal_consulta_nutricion'=> null,
+            'ma_vacunacion_toxoide'=> null,
+            'ma_vacunacion_difteria'=> null,
+            'ma_vacunacion_tosferina'=> null,
+            'ma_vacunacion_influenza'=> null,
+            'ma_ecografia_obstetrica'=> null,
+            'ma_ecografia_anatomico'=> null,
+            'ma_interrupcion_voluntaria_embarazo'=> null,
+            'ma_asesoria_anticonceptiva_ive'=> null,
+            'ma_atencion_purperio'=> null,
+            'ma_atencion_pediatria'=> null,
+            'ma_atencion_recien_nacido'=> null,
+            'ma_hemograma_recien_nacido'=> null,
+            'ma_hemoclasificacion_recien_nacido'=> null,
+            'ma_sifilis_recien_nacido'=> null,
+            'ma_vih_recien_nacido'=> null,
+            'ma_chagas_recien_nacido'=> null,
+            'ma_tsh_recien_nacido'=> null,
+            'ma_tamizaje_genetico_recien_nacido'=> null,
+        ];
+    }
 }
+

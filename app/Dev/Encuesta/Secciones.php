@@ -16,6 +16,7 @@ use App\Models\Secciones\Integrantes\CuidadoEnfermedad;
 use App\Models\Secciones\Integrantes\EnfermedadesSaludPublica;
 use App\Models\Secciones\Integrantes\Infancia;
 use App\Models\Secciones\Integrantes\Juventud;
+use App\Models\Secciones\Integrantes\MaternoPerinatal;
 use App\Models\Secciones\Integrantes\Morbilidad;
 use App\Models\Secciones\Integrantes\PrimeraInfancia;
 use App\Models\Secciones\Integrantes\SaludMental;
@@ -49,6 +50,7 @@ class Secciones
             'juventud' => new Juventud($datosGuardar),
             'adultez' => new Adultez($datosGuardar),
             'vejez' => new Vejez($datosGuardar),
+            'materno_perinatal' => new MaternoPerinatal($datosGuardar),
 
             default => null,
         };
