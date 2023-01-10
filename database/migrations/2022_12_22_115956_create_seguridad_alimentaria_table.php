@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('seguridad_alimentaria', function (Blueprint $table) {
 $table->uuid('hogar_id')->unique();
-$table->string('falta_dinero')->nullable();
+$table->string('falto_dinero')->nullable();
 $table->string('animales_silvestres')->nullable();
 $table->string('consume_cerdo_res_pollo')->nullable();
 $table->string('consume_huevos')->nullable();
