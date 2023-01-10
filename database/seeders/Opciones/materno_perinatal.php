@@ -15,6 +15,7 @@ class materno_perinatal extends Seeder
      */
     public function run()
     {
+        Opcion::create(["ref_campo" => "ma_aceptacion_embarazo", "pregunta_opcion" => "NO", "valor" => "1"]);
         Opcion::create(["ref_campo" => "ma_aceptacion_embarazo", "pregunta_opcion" => "SI", "valor" => "3"]);
 //Opcion::create(["ref_campo" => "ma_fecha_control_prenatal", "pregunta_opcion" => "Control prenatal (ingresar dato)", "valor" => "0"]);
 //Opcion::create(["ref_campo" => "ma_fecha_ultima_regla", "pregunta_opcion" => "Fecha de la ultima regla", "valor" => "0"]);
