@@ -120,6 +120,7 @@ class UsuarioController extends Controller
     public function show($id)
     {
         $usuario = User::find($id);
+        $usuario->getRoleNames();
         $respuesta = new RespuestaHttp();
         $respuesta->data = [
             'usuario' => $usuario

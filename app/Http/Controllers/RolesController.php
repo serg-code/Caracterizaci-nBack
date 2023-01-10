@@ -114,6 +114,8 @@ class RolesController extends Controller
             );
         }
 
+        $permisos = $rol->permissions;
+        $rol['permisos'] = $permisos;
         return RespuestaHttp::respuesta(
             200,
             'succes',
