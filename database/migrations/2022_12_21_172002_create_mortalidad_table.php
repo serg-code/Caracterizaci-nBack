@@ -13,16 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('mortalidad', function (Blueprint $table) {
+        Schema::create('mortalidad', function (Blueprint $table)
+        {
             $table->uuid('hogar_id')->unique();
             $table->string('fallecido_familiar')->nullable();
             $table->enum('sexo_fallecido', [
                 'Femenino',
                 'Masculino',
-            ]);
+            ])->nullable();
             $table->string('edad_fallecido')->nullable();
             $table->string('causa_muerte')->nullable();
-            $table->string('fecha_muerte')->nullable();       
+            $table->string('fecha_muerte')->nullable();
             $table->timestamps();
 
             $table->foreign('hogar_id')->references('id')->on('hogar');
