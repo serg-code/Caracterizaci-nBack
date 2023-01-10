@@ -31,6 +31,11 @@ class BarrioVereda extends Model
         return $this->belongsTo(Municipio::class, 'id_municipio');
     }
 
+    public function departamento()
+    {
+        // return 
+    }
+
     public function actualizar(array $datosActualizar)
     {
         $this->update($datosActualizar);

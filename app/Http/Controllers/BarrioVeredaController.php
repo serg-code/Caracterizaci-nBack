@@ -176,6 +176,22 @@ class BarrioVeredaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try
+        {
+            BarrioVereda::where('id', '=', $id)->delete();
+            return RespuestaHttp::respuesta(
+                200,
+                'succes',
+                'Barrio/Vereda eliminado con exito'
+            );
+        }
+        catch (\Throwable $th)
+        {
+            return RespuestaHttp::respuesta(
+                400,
+                'bad request',
+                'No se puede eliminar este Barrio/Vereda'
+            );
+        }
     }
 }
