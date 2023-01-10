@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class MaternoPerinatal extends Model
 {
     use HasFactory;
-    protected $table = 'primera_infancia';
+    protected $table = 'materno_perinatal';
 
     protected $fillable = [
         'ma_integrante',
