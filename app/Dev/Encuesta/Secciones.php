@@ -30,27 +30,27 @@ class Secciones
         return match ($refSeccion)
         {
             //secciones del Hogar
-            'habitos_consumo' => new HabitosConsumo($datosGuardar),
+            'animales' => new Animales($datosGuardar),
             'factores_protectores' => new FactoresProtectores($datosGuardar),
-            'vivienda' => new Vivienda($datosGuardar),
-            'amianles' => new Animales($datosGuardar),
+            'habitos_consumo' => new HabitosConsumo($datosGuardar),
             'mortalidad' => new Mortalidad($datosGuardar),
-            'mortalidad' => new SeguridadAlimentaria($datosGuardar),
+            'seguridad_alimentaria' => new SeguridadAlimentaria($datosGuardar),
+            'vivienda' => new Vivienda($datosGuardar),
 
             //secciones de integrantes
             'accidentes' => new Accidente($datosGuardar),
-            'cuidado_enfermedades' => new CuidadoEnfermedad($datosGuardar),
-            'cuidados_domiciliarios' => new CuidadoDomiciliario($datosGuardar),
-            'enfermedades_salud_publica' => new EnfermedadesSaludPublica($datosGuardar),
-            'morbilidad' => new Morbilidad($datosGuardar),
-            'salud_mental' => new SaludMental($datosGuardar),
-            'primera_infancia' => new PrimeraInfancia($datosGuardar),
-            'infancia' => new Infancia($datosGuardar),
             'adolescencia' => new Adolescencia($datosGuardar),
-            'juventud' => new Juventud($datosGuardar),
             'adultez' => new Adultez($datosGuardar),
-            'vejez' => new Vejez($datosGuardar),
+            'cuidados_domiciliarios' => new CuidadoDomiciliario($datosGuardar),
+            'cuidado_enfermedades' => new CuidadoEnfermedad($datosGuardar),
+            'enfermedades_salud_publica' => new EnfermedadesSaludPublica($datosGuardar),
+            'infancia' => new Infancia($datosGuardar),
+            'juventud' => new Juventud($datosGuardar),
             'materno_perinatal' => new MaternoPerinatal($datosGuardar),
+            'morbilidad' => new Morbilidad($datosGuardar),
+            'primera_infancia' => new PrimeraInfancia($datosGuardar),
+            'salud_mental' => new SaludMental($datosGuardar),
+            'vejez' => new Vejez($datosGuardar),
 
             default => null,
         };

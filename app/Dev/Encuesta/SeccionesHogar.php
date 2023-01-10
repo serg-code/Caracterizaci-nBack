@@ -39,7 +39,17 @@ class SeccionesHogar
                 $seccion['respuestas']
             );
 
-            $this->guardarRespuesta($respuesta);
+            try
+            {
+
+                $respuesta->eliminar();
+                $respuesta->save();
+            }
+            catch (\Throwable $th)
+            {
+                dd($respuesta);
+                dd($th);
+            }
         }
     }
 
@@ -103,55 +113,55 @@ class SeccionesHogar
     public static function preguntasVivienda(): array
     {
         return [
-            'encuesta_sisben'=> null,
-            'ficha_sisben'=> null,
-            'puntaje_sisben'=> null,
-            'nivel_sisben'=> null,
-            'tipos_vivienda'=> null,
-            'tipos_tenecia'=> null,
-            'servicios_sanitarios'=> null,
-            'tipos_alumbrado'=> null,
-            'dormitorios'=> null,
-            'humo_vivienda'=> null,
-            'fuentes_agua'=> null,
-            'tratamiento_agua'=> null,
-            'tipos_tratamiento_agua'=> null,
-            'tipos_disposicion_basura'=> null,
-            'reciclan'=> null,
-            'iluminacion_adecuada'=> null,
-            'ventilacion_adecuada'=> null,
-            'roedores'=> null,
-            'reservorios_agua'=> null,
-            'anjeos'=> null,
-            'tipos_insectos_vectores'=> null,
-            'conservacion_alimentos'=> null,
-            'actividad_productiva'=> null,
-            'ciuu'=> null,
-            'tipos_material_piso'=> null,
-            'tipos_material_techo'=> null,
-            'tipos_material_paredes'=> null,
-            
+            'encuesta_sisben' => null,
+            'ficha_sisben' => null,
+            'puntaje_sisben' => null,
+            'nivel_sisben' => null,
+            'tipos_vivienda' => null,
+            'tipos_tenecia' => null,
+            'servicios_sanitarios' => null,
+            'tipos_alumbrado' => null,
+            'dormitorios' => null,
+            'humo_vivienda' => null,
+            'fuentes_agua' => null,
+            'tratamiento_agua' => null,
+            'tipos_tratamiento_agua' => null,
+            'tipos_disposicion_basura' => null,
+            'reciclan' => null,
+            'iluminacion_adecuada' => null,
+            'ventilacion_adecuada' => null,
+            'roedores' => null,
+            'reservorios_agua' => null,
+            'anjeos' => null,
+            'tipos_insectos_vectores' => null,
+            'conservacion_alimentos' => null,
+            'actividad_productiva' => null,
+            'ciuu' => null,
+            'tipos_material_piso' => null,
+            'tipos_material_techo' => null,
+            'tipos_material_paredes' => null,
+
         ];
     }
 
     public static function preguntasAnimales(): array
     {
         return [
-        'gatos'=> null,
-        'gatos_cuantos'=> null,
-        'gatos_vacunados'=> null,
-        'perros'=> null,
-        'perros_cuantos'=> null,
-        'perros_vacunados'=> null,
-        'equinos'=> null,
-        'equinos_cuantos'=> null,
-        'equinos_vacunados'=> null,
-        'aves'=> null,
-        'porcinos'=> null,
-        'porcinos_cuantos'=> null,
-        'porcinos_vacunados'=> null,
-        'animales_no_rabia'=> null,
-        'animales_si_rabia'=> null,
+            'gatos' => null,
+            'gatos_cuantos' => null,
+            'gatos_vacunados' => null,
+            'perros' => null,
+            'perros_cuantos' => null,
+            'perros_vacunados' => null,
+            'equinos' => null,
+            'equinos_cuantos' => null,
+            'equinos_vacunados' => null,
+            'aves' => null,
+            'porcinos' => null,
+            'porcinos_cuantos' => null,
+            'porcinos_vacunados' => null,
+            'animales_no_rabia' => null,
+            'animales_si_rabia' => null,
         ];
     }
 
@@ -169,20 +179,20 @@ class SeccionesHogar
     public static function preguntasSeguridadAlimentaria(): array
     {
         return [
-            'falto_dinero'=> null,
-'animales_silvestres'=> null,
-'consume_cerdo_res_pollo'=> null,
-'consume_huevos'=> null,
-'consume_frijol_lentejas'=> null,
-'consume_lacteos'=> null,
-'consume_harinas'=> null,
-'consume_verduras'=> null,
-'consume_frutas_frescas'=> null,
-'consume_enlatados'=> null,
-'consume_platano_yuca'=> null,
-'consume_gaseosas'=> null,
+            'falto_dinero' => null,
+            'animales_silvestres' => null,
+            'consume_cerdo_res_pollo' => null,
+            'consume_huevos' => null,
+            'consume_frijol_lentejas' => null,
+            'consume_lacteos' => null,
+            'consume_harinas' => null,
+            'consume_verduras' => null,
+            'consume_frutas_frescas' => null,
+            'consume_enlatados' => null,
+            'consume_platano_yuca' => null,
+            'consume_gaseosas' => null,
 
-];
+        ];
     }
 
     public static function obtenerSecciones(): array
