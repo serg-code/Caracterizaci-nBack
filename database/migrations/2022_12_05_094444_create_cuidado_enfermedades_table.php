@@ -30,7 +30,6 @@ return new class extends Migration
             $table->string('tension_diastolica')->nullable();
             $table->string('hemoglobina_glococilada')->nullable();
             $table->string('enfermedades_costosas')->nullable();
-            $table->string('parejas_sexuales_anio')->nullable();
             $table->string('ha_estado_embarazada')->nullable();
             $table->string('cuantos_embarazos_ha_tenido')->nullable();
             $table->string('hijos_muertos_parto_natural')->nullable();

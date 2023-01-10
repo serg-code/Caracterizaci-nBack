@@ -30,7 +30,6 @@ class CuidadoEnfermedadesSeeder extends Seeder
         Pregunta::create(["ref_campo" => "tension_diastolica", "ref_seccion" => "cuidado_enfermedades", "descripcion" => "Tensión arterial diastolica", "tipo" => "numero"]);
         Pregunta::create(["ref_campo" => "hemoglobina_glococilada", "ref_seccion" => "cuidado_enfermedades", "descripcion" => "Valor de la hemoglobina glococilada", "tipo" => "numero"]);
         Pregunta::create(["ref_campo" => "enfermedades_costosas", "ref_seccion" => "cuidado_enfermedades", "descripcion" => "Enfermedades costosas", "tipo" => "seleccion"]);
-        Pregunta::create(["ref_campo" => "parejas_sexuales_anio", "ref_seccion" => "cuidado_enfermedades", "descripcion" => "¿Ha tenido mas de una pareja sexual el ultimo año?", "tipo" => "numero"]);
         Pregunta::create(["ref_campo" => "ha_estado_embarazada", "ref_seccion" => "cuidado_enfermedades", "descripcion" => "¿Ha estado embarazada?", "tipo" => "numero"]);
         Pregunta::create(["ref_campo" => "cuantos_embarazos_ha_tenido", "ref_seccion" => "cuidado_enfermedades", "descripcion" => "¿Cuantos embarazos ha tenido?", "tipo" => "numero"]);
         Pregunta::create(["ref_campo" => "hijos_muertos_parto_natural", "ref_seccion" => "cuidado_enfermedades", "descripcion" => "¿Cuántos hijo nacidos muertos por parto natural?", "tipo" => "numero"]);
