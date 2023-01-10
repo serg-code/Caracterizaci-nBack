@@ -21,7 +21,7 @@ Pregunta::create(["ref_campo"=> "ve_imc", "ref_seccion" => "vejez", "descripcion
 Pregunta::create(["ref_campo"=> "ve_asesoria_anticoncepcion", "ref_seccion" => "vejez", "descripcion" => "Atención en salud para la asesoria en anticoncepción", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "ve_planifica", "ref_seccion" => "vejez", "descripcion" => "Planifica: Método", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "ve_metodo_planifica", "ref_seccion" => "vejez", "descripcion" => "Método", "tipo" => "seleccion"]);
-Pregunta::create(["ref_campo"=> "ve_desde_cuando_planifica", "ref_seccion" => "vejez", "descripcion" => "¿Desde cuando planifica?", "tipo" => "texto"]);
+Pregunta::create(["ref_campo"=> "ve_desde_cuando_planifica", "ref_seccion" => "vejez", "descripcion" => "¿Desde cuando planifica?", "tipo" => "fecha"]);
 Pregunta::create(["ref_campo"=> "ve_razones_no_planifica", "ref_seccion" => "vejez", "descripcion" => "No planifica", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "ve_parejas_sexuales_al_año", "ref_seccion" => "vejez", "descripcion" => "Número de parejas sexuales en el ultimo año", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "ve_enfermedad_cronica", "ref_seccion" => "vejez", "descripcion" => "Enfermedad crónica", "tipo" => "seleccion"]);
@@ -31,7 +31,7 @@ Pregunta::create(["ref_campo"=> "ve_control_adultos", "ref_seccion" => "vejez", 
 Pregunta::create(["ref_campo"=> "ve_antecedentes_diabetes", "ref_seccion" => "vejez", "descripcion" => "Antecedentes de diabetes", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "ve_antecedentes_hipertension", "ref_seccion" => "vejez", "descripcion" => "Antecedentes de hipertensión", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "ve_alteracion_colesterol", "ref_seccion" => "vejez", "descripcion" => "Alteración del colesterol", "tipo" => "seleccion"]);
-Pregunta::create(["ref_campo"=> "ve_perimetro_abdominal", "ref_seccion" => "vejez", "descripcion" => "Perímetro abdominal", "tipo" => "seleccion"]);
+Pregunta::create(["ref_campo"=> "ve_perimetro_abdominal", "ref_seccion" => "vejez", "descripcion" => "Perímetro abdominal", "tipo" => "numero"]);
 Pregunta::create(["ref_campo"=> "ve_salud_medica", "ref_seccion" => "vejez", "descripcion" => "Atención en salud médica", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "ve_salud_bucal", "ref_seccion" => "vejez", "descripcion" => "Atención salud bucal", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "ve_cancer_cuello_uterino_adn_vph", "ref_seccion" => "vejez", "descripcion" => "Tamizaje de cancer de cuello uterino (ADN VPH)", "tipo" => "seleccion"]);

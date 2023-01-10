@@ -27,6 +27,8 @@ Opcion::create(["ref_campo" => "juv_bioscopia_cervico", "pregunta_opcion" => "Ne
 Opcion::create(["ref_campo" => "juv_examen_seno", "pregunta_opcion" => "NO", "valor" => "30"]);
 Opcion::create(["ref_campo" => "juv_examen_seno", "pregunta_opcion" => "Normal", "valor" => "1"]);
 Opcion::create(["ref_campo" => "juv_examen_seno", "pregunta_opcion" => "Anormal", "valor" => "50"]);
+Opcion::create(["ref_campo" => "juv_control_medico", "pregunta_opcion" => "NO", "valor" => "1"]);
+Opcion::create(["ref_campo" => "juv_control_medico", "pregunta_opcion" => "SI", "valor" => "3"]);
 Opcion::create(["ref_campo" => "juv_planifica", "pregunta_opcion" => "NO", "valor" => "1"]);
 Opcion::create(["ref_campo" => "juv_planifica", "pregunta_opcion" => "SI", "valor" => "3"]);
 Opcion::create(["ref_campo" => "juv_metodo_planifica", "pregunta_opcion" => "Hormonales", "valor" => "2"]);

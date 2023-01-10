@@ -37,6 +37,7 @@ class SeccionesSeeder extends Seeder
         Seccion::create(['ref_seccion' => 'adolescencia']);
         Seccion::create(['ref_seccion' => 'juventud']);
         Seccion::create(['ref_seccion' => 'adultez']);  
-        Seccion::create(['ref_seccion' => 'vejez']);        
+        Seccion::create(['ref_seccion' => 'vejez']);
+        Seccion::create(['ref_seccion' => 'materno_perinatal']);        
     }
 }

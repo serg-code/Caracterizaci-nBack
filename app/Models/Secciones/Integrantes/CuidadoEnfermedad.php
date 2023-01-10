@@ -21,7 +21,6 @@ class CuidadoEnfermedad extends Model
         'fuma',
         'actividad_fisica',
         'vacuna_fiebre_amarilla',
-        'enfermedades_cronicas',
         'diabetes',
         'hipertencion_trimestral',
         'diabetes_trimestral',
@@ -29,6 +28,15 @@ class CuidadoEnfermedad extends Model
         'tension_diastolica',
         'hemoglobina_glococilada',
         'enfermedades_costosas',
+        'parejas_sexuales_anio',
+        'ha_estado_embarazada',
+        'cuantos_embarazos_ha_tenido',
+        'hijos_muertos_parto_natural',
+        'hijos_vivos_parto_natural',
+        'hijos_muertos_por_cesarea',
+        'hijos_vivos_por_cesarea',
+        'cuantos_abortos',
+        'cuantos_gemelos_multiples',
     ];
 
     protected $hidden = [

@@ -23,7 +23,6 @@ return new class extends Migration
             $table->string('fuma')->nullable();
             $table->string('actividad_fisica')->nullable();
             $table->string('vacuna_fiebre_amarilla')->nullable();
-            $table->string('enfermedades_cronicas')->nullable();
             $table->string('diabetes')->nullable();
             $table->string('hipertencion_trimestral')->nullable();
             $table->string('diabetes_trimestral')->nullable();
@@ -31,6 +30,15 @@ return new class extends Migration
             $table->string('tension_diastolica')->nullable();
             $table->string('hemoglobina_glococilada')->nullable();
             $table->string('enfermedades_costosas')->nullable();
+            $table->string('parejas_sexuales_anio')->nullable();
+            $table->string('ha_estado_embarazada')->nullable();
+            $table->string('cuantos_embarazos_ha_tenido')->nullable();
+            $table->string('hijos_muertos_parto_natural')->nullable();
+            $table->string('hijos_vivos_parto_natural')->nullable();
+            $table->string('hijos_muertos_por_cesarea')->nullable();
+            $table->string('hijos_vivos_por_cesarea')->nullable();
+            $table->string('cuantos_abortos')->nullable();
+            $table->string('cuantos_gemelos_multiples')->nullable();
             $table->timestamps();
             
             $table->foreign('id_integrante')->references('id')->on('integrantes');            

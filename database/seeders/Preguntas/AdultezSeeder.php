@@ -15,15 +15,15 @@ class AdultezSeeder extends Seeder
      */
     public function run()
     {
-        Pregunta::create(["ref_campo"=> "adul_valoracion_peso", "ref_seccion" => "adultez", "descripcion" => "Valoración nutricional: Peso (kgs)", "tipo" => "seleccion"]);
-        Pregunta::create(["ref_campo"=> "adul_valoracion_talla", "ref_seccion" => "adultez", "descripcion" => "Valoración nutricional: Talla (cm)", "tipo" => "seleccion"]);
-Pregunta::create(["ref_campo"=> "adul_imc", "ref_seccion" => "adultez", "descripcion" => "Indice de Masa Corporal", "tipo" => "seleccion"]);
+        Pregunta::create(["ref_campo"=> "adul_valoracion_peso", "ref_seccion" => "adultez", "descripcion" => "Valoración nutricional: Peso (kgs)", "tipo" => "numero"]);
+        Pregunta::create(["ref_campo"=> "adul_valoracion_talla", "ref_seccion" => "adultez", "descripcion" => "Valoración nutricional: Talla (cm)", "tipo" => "numero"]);
+Pregunta::create(["ref_campo"=> "adul_imc", "ref_seccion" => "adultez", "descripcion" => "Indice de Masa Corporal", "tipo" => "numero"]);
 Pregunta::create(["ref_campo"=> "adul_asesoria_anticoncepcion", "ref_seccion" => "adultez", "descripcion" => "Atención en salud para la asesoria en anticoncepción", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "adul_planifica", "ref_seccion" => "adultez", "descripcion" => "Planifica: Método", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "adul_metodo_planifica", "ref_seccion" => "adultez", "descripcion" => "Método", "tipo" => "seleccion"]);
-Pregunta::create(["ref_campo"=> "adul_desde_cuando_planifica", "ref_seccion" => "adultez", "descripcion" => "¿Desde cuando planifica?", "tipo" => "numero"]);
+Pregunta::create(["ref_campo"=> "adul_desde_cuando_planifica", "ref_seccion" => "adultez", "descripcion" => "¿Desde cuando planifica?", "tipo" => "fecha"]);
 Pregunta::create(["ref_campo"=> "adul_razones_no_planifica", "ref_seccion" => "adultez", "descripcion" => "No planifica", "tipo" => "seleccion"]);
-Pregunta::create(["ref_campo"=> "adul_parejas_sexuales_al_año", "ref_seccion" => "adultez", "descripcion" => "Número de parejas sexuales en el ultimo año", "tipo" => "numero"]);
+Pregunta::create(["ref_campo"=> "adul_parejas_sexuales_al_anio", "ref_seccion" => "adultez", "descripcion" => "Número de parejas sexuales en el ultimo año", "tipo" => "numero"]);
 Pregunta::create(["ref_campo"=> "adul_enfermedad_cronica", "ref_seccion" => "adultez", "descripcion" => "Enfermedad crónica", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "adul_cual_enfermedad_cronica", "ref_seccion" => "adultez", "descripcion" => "Enfermedad crónica", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "adul_seguimiento_enfermedad_cronica", "ref_seccion" => "adultez", "descripcion" => "Seguimiento de la enfermedad crónica", "tipo" => "seleccion"]);
@@ -31,7 +31,7 @@ Pregunta::create(["ref_campo"=> "adul_control_adultos", "ref_seccion" => "adulte
 Pregunta::create(["ref_campo"=> "adul_antecedentes_diabetes", "ref_seccion" => "adultez", "descripcion" => "Antecedentes de diabetes", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "adul_antecedentes_hipertension", "ref_seccion" => "adultez", "descripcion" => "Antecedentes de hipertensión", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "adul_antecedentes_colesterol", "ref_seccion" => "adultez", "descripcion" => "Alteración del colesterol", "tipo" => "seleccion"]);
-Pregunta::create(["ref_campo"=> "adul_perimetro_abdominal", "ref_seccion" => "adultez", "descripcion" => "Perímetro abdominal", "tipo" => "seleccion"]);
+Pregunta::create(["ref_campo"=> "adul_perimetro_abdominal", "ref_seccion" => "adultez", "descripcion" => "Perímetro abdominal", "tipo" => "numero"]);
 Pregunta::create(["ref_campo"=> "adul_atencion_medica", "ref_seccion" => "adultez", "descripcion" => "Atención en salud médica", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "adul_salud_bucal", "ref_seccion" => "adultez", "descripcion" => "Atención salud bucal", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "adul_cancer_cuello_uterino_adn_vph", "ref_seccion" => "adultez", "descripcion" => "Tamizaje de cancer de cuello uterino (ADN VPH)", "tipo" => "seleccion"]);
