@@ -74,8 +74,8 @@ Opcion::create(["ref_campo" => "ma_hallazgo_anormal", "pregunta_opcion" => "NO",
 Opcion::create(["ref_campo" => "ma_hallazgo_anormal", "pregunta_opcion" => "SI", "valor" => "3"]);
 Opcion::create(["ref_campo" => "ma_parto_unico", "pregunta_opcion" => "NO", "valor" => "1"]);
 Opcion::create(["ref_campo" => "ma_parto_unico", "pregunta_opcion" => "SI", "valor" => "3"]);
-Opcion::create(["ref_campo" => "ma_parto-complicado", "pregunta_opcion" => "NO", "valor" => "1"]);
-Opcion::create(["ref_campo" => "ma_parto-complicado", "pregunta_opcion" => "SI", "valor" => "3"]);
+Opcion::create(["ref_campo" => "ma_parto_complicado", "pregunta_opcion" => "NO", "valor" => "1"]);
+Opcion::create(["ref_campo" => "ma_parto_complicado", "pregunta_opcion" => "SI", "valor" => "3"]);
 Opcion::create(["ref_campo" => "ma_hemorragia_postparto", "pregunta_opcion" => "NO", "valor" => "1"]);
 Opcion::create(["ref_campo" => "ma_hemorragia_postparto", "pregunta_opcion" => "SI", "valor" => "3"]);
 Opcion::create(["ref_campo" => "ma_parto_cesarea", "pregunta_opcion" => "NO", "valor" => "1"]);

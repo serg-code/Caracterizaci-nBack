@@ -45,7 +45,7 @@ return new class extends Migration
         $table->text('ma_diabetes_mellitus')->nullable();
         $table->text('ma_hallazgo_anormal')->nullable();
         $table->text('ma_parto_unico')->nullable();
-        $table->text('ma_parto-complicado')->nullable();
+        $table->text('ma_parto_complicado')->nullable();
         $table->text('ma_hemorragia_postparto')->nullable();
         $table->text('ma_parto_cesarea')->nullable();
         $table->text('ma_otras_complicaciones_parto')->nullable();

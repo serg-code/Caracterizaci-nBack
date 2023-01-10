@@ -467,7 +467,7 @@ class SeccionesIntegrante
             'ma_diabetes_mellitus'=> null,
             'ma_hallazgo_anormal'=> null,
             'ma_parto_unico'=> null,
-            'ma_parto-complicado'=> null,
+            'ma_parto_complicado'=> null,
             'ma_hemorragia_postparto'=> null,
             'ma_parto_cesarea'=> null,
             'ma_otras_complicaciones_parto'=> null,

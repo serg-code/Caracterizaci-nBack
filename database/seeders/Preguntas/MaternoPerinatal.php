@@ -15,7 +15,7 @@ class MaternoPerinatal extends Seeder
      */
     public function run()
     {
-        Pregunta::create(["ref_campo"=> "ma_aceptacion_embarazo", "ref_seccion" => "materno_perinatal ", "descripcion" => "Aceptacion del embarazo", "tipo" => "seleccion"]);
+Pregunta::create(["ref_campo"=> "ma_aceptacion_embarazo", "ref_seccion" => "materno_perinatal ", "descripcion" => "Aceptacion del embarazo", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "ma_fecha_control_prenatal", "ref_seccion" => "materno_perinatal ", "descripcion" => "fecha de control prenatal", "tipo" => "fecha"]);
 Pregunta::create(["ref_campo"=> "ma_fecha_ultima_regla", "ref_seccion" => "materno_perinatal ", "descripcion" => "Fecha de la ultima regla", "tipo" => "fecha"]);
 Pregunta::create(["ref_campo"=> "ma_fecha_parto", "ref_seccion" => "materno_perinatal ", "descripcion" => "Fecha probable del parto", "tipo" => "fecha"]);
@@ -45,7 +45,7 @@ Pregunta::create(["ref_campo"=> "ma_atencion_madre", "ref_seccion" => "materno_p
 Pregunta::create(["ref_campo"=> "ma_diabetes_mellitus", "ref_seccion" => "materno_perinatal ", "descripcion" => "Díabetes mellítus en el embarazo", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "ma_hallazgo_anormal", "ref_seccion" => "materno_perinatal ", "descripcion" => "Hallazgo anormal en el examen prenatal de la madre", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "ma_parto_unico", "ref_seccion" => "materno_perinatal ", "descripcion" => "Parto único espontáneo", "tipo" => "seleccion"]);
-Pregunta::create(["ref_campo"=> "ma_parto-complicado", "ref_seccion" => "materno_perinatal ", "descripcion" => "Trabajo de parto y parto complicados por hemorragía intraparto, no clasificada en otra parte", "tipo" => "seleccion"]);
+Pregunta::create(["ref_campo"=> "ma_parto_complicado", "ref_seccion" => "materno_perinatal ", "descripcion" => "Trabajo de parto y parto complicados por hemorragía intraparto, no clasificada en otra parte", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "ma_hemorragia_postparto", "ref_seccion" => "materno_perinatal ", "descripcion" => "Hemorragía postparto", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "ma_parto_cesarea", "ref_seccion" => "materno_perinatal ", "descripcion" => "Parto único por cesárea", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "ma_otras_complicaciones_parto", "ref_seccion" => "materno_perinatal ", "descripcion" => "Otras complicaciones del trabajo del parto y partos no clasificadas en otra parte", "tipo" => "seleccion"]);
