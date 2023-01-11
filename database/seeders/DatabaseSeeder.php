@@ -66,25 +66,7 @@ class DatabaseSeeder extends Seeder
 
             //preguntas
             new PreguntaSeeder(),
-            new AccidentesSeeder(),
-            new CuidadoDomiciliarioSeeder(),
-            new CuidadoEnfermedadesSeeder(),
-            new SaludMentalSeeder(),
-            new SaludPublicaSeeder(),
-            new MorbilidadSeeder(),
-            new PreguntasIdentificacionCiudadanaSeeder(),
-            new ViviendaSeeder(),
-            new AnimalesSeeder(),
-            new MortalidadSeeder(),
-            new SeguridadAlimentariaSeeder(),
-            new PrimeraInfanciaSeeder(),
-            new InfanciaSeeder(),
-            new PreguntasAdolescenciaSeeder(),
-            new PreguntasPreguntasJuventudSeeder(),
-            new PreguntasAdultezSeeder(),
-            new VejezSeeder(),
-            new MaternoPerinatal(),
-
+            
             //opciones
             new OpcionesSeeder(),
             new accidenteseeder(),
