@@ -69,25 +69,7 @@ class DatabaseSeeder extends Seeder
             
             //opciones
             new OpcionesSeeder(),
-            new accidenteseeder(),
-            new cuidados_domiciliariosSeeder(),
-            new cuidado_enfermedadesSeeder(),
-            new salud_mentalSeeder(),
-            new salud_publicaSeeder(),
-            new morbilidadOpcionesSeeder(),
-            new identificacion_ciudadanaSeeder(),
-            new OpcionesViviendaSeeder(),
-            new OpcionesAnimalesSeeder(),
-            new OpcionesMortalidadSeeder(),
-            new seguridad_alimentariaSeeder(),
-            new primera_infanciaSeeder(),
-            new OpcionesInfanciaSeeder(),
-            new adolescenciaSeeder(),
-            new juventudSeeder(),
-            new adultezSeeder(),
-            new OpcionesVejezSeeder(),
-            new materno_perinatal(),
-
+            
             //departamentos y municipios
             new DepartamentosSeeder(),
             new MunicipiosSeeder(),
