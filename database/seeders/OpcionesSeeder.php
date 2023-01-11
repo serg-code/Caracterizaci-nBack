@@ -115,8 +115,8 @@ class OpcionesSeeder extends Seeder
         Opcion::create(["id" => "88", "ref_campo" => "enfermedades_costosas", "pregunta_opcion" => "Reemplazos articulares (rodilla, hombro, cadera)", "valor" => "20"]);
         Opcion::create(["id" => "89", "ref_campo" => "enfermedades_costosas", "pregunta_opcion" => "Enfermedad cardiovascular", "valor" => "20"]);
         Opcion::create(["id" => "90", "ref_campo" => "enfermedades_costosas", "pregunta_opcion" => "Patologia congenitas", "valor" => "20"]);
-        Opcion::create(["id" => "91", "ref_campo" => "ha_estado_embarazada", "pregunta_opcion" => "NO", "valor" => "", "valor" => 1]);
-        Opcion::create(["id" => "92", "ref_campo" => "ha_estado_embarazada", "pregunta_opcion" => "SI", "valor" => "", "valor" => 3]);
+        Opcion::create(["id" => "91", "ref_campo" => "ha_estado_embarazada", "pregunta_opcion" => "NO", "valor" => "0"]);
+        Opcion::create(["id" => "92", "ref_campo" => "ha_estado_embarazada", "pregunta_opcion" => "SI", "valor" => "0"]);
         //Opcion::create(["id"=> "93", "ref_campo" => "cuantos_embarazos_ha_tenido", "pregunta_opcion" => "numero", "valor" => "0"]);
         //Opcion::create(["id"=> "94", "ref_campo" => "hijos_muertos_parto_natural", "pregunta_opcion" => "numero", "valor" => "0"]);
         //Opcion::create(["id"=> "95", "ref_campo" => "hijos_vivos_parto_natural", "pregunta_opcion" => "numero", "valor" => "0"]);
