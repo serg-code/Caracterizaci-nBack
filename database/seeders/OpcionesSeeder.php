@@ -518,8 +518,8 @@ class OpcionesSeeder extends Seeder
         Opcion::create(["id" => "465", "ref_campo" => "pi_vacuna_srp_d1", "pregunta_opcion" => "SI", "valor" => "3"]);
         Opcion::create(["id" => "466", "ref_campo" => "pi_vacuna_srp_d2", "pregunta_opcion" => "NO", "valor" => "1"]);
         Opcion::create(["id" => "467", "ref_campo" => "pi_vacuna_srp_d2", "pregunta_opcion" => "SI", "valor" => "3"]);
-        Opcion::create(["id" => "468", "ref_campo" => "pi__vacuna_varicela", "pregunta_opcion" => "NO", "valor" => "1"]);
-        Opcion::create(["id" => "469", "ref_campo" => "pi__vacuna_varicela", "pregunta_opcion" => "SI", "valor" => "3"]);
+        Opcion::create(["id" => "468", "ref_campo" => "pi_vacuna_varicela", "pregunta_opcion" => "NO", "valor" => "1"]);
+        Opcion::create(["id" => "469", "ref_campo" => "pi_vacuna_varicela", "pregunta_opcion" => "SI", "valor" => "3"]);
         Opcion::create(["id" => "470", "ref_campo" => "pi_atencion_medica", "pregunta_opcion" => "NO", "valor" => "1"]);
         Opcion::create(["id" => "471", "ref_campo" => "pi_atencion_medica", "pregunta_opcion" => "SI", "valor" => "3"]);
         Opcion::create(["id" => "472", "ref_campo" => "pi_atencion_enfermeria", "pregunta_opcion" => "NO", "valor" => "1"]);
