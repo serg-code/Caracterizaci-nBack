@@ -39,6 +39,7 @@ return new class extends Migration
             $table->string('juv_antecedentes_diabetes')->nullable();
             $table->string('juv_antecedentes_hipertension')->nullable();
             $table->string('juv_alteracion_colesterol')->nullable();
+            $table->string('juv_perimetro_abdominal')->nullable();
             $table->timestamps();
 
             $table->foreign('id_integrante')->references('id')->on('integrantes');
