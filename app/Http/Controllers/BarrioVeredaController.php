@@ -23,7 +23,7 @@ class BarrioVeredaController extends Controller
 
         if (empty($datosUrl))
         {
-            $listadoHogares = BarrioVereda::paginate($cantidadPaginar);
+            $listadoHogares = BarrioVereda::with(['municipio.departamento'])->paginate($cantidadPaginar);
 
             return RespuestaHttp::respuesta(
                 200,
@@ -41,6 +41,8 @@ class BarrioVeredaController extends Controller
                 AllowedFilter::exact('tipo'),
                 AllowedFilter::scope('search'),
             ])
+            ->allowedIncludes(['municipio'])
+            ->with(['municipio.departamento'])
             ->paginate($cantidadPaginar);
 
         return RespuestaHttp::respuesta(
