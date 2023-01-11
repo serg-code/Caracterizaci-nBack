@@ -24,9 +24,6 @@ Pregunta::create(["ref_campo"=> "ve_metodo_planifica", "ref_seccion" => "vejez",
 Pregunta::create(["ref_campo"=> "ve_desde_cuando_planifica", "ref_seccion" => "vejez", "descripcion" => "¿Desde cuando planifica?", "tipo" => "fecha"]);
 Pregunta::create(["ref_campo"=> "ve_razones_no_planifica", "ref_seccion" => "vejez", "descripcion" => "No planifica", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "ve_parejas_sexuales_al_año", "ref_seccion" => "vejez", "descripcion" => "Número de parejas sexuales en el ultimo año", "tipo" => "seleccion"]);
-Pregunta::create(["ref_campo"=> "ve_enfermedad_cronica", "ref_seccion" => "vejez", "descripcion" => "Enfermedad crónica", "tipo" => "seleccion"]);
-Pregunta::create(["ref_campo"=> "ve_cual_enfermedad_cronica", "ref_seccion" => "vejez", "descripcion" => "¿Cuál enfermedad crónica?", "tipo" => "seleccion"]);
-Pregunta::create(["ref_campo"=> "ve_seguimiento_enfermedad_cronica", "ref_seccion" => "vejez", "descripcion" => "Seguimiento de la enfermedad crónica", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "ve_control_adultos", "ref_seccion" => "vejez", "descripcion" => "Asiste al programa de control de adultos", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "ve_antecedentes_diabetes", "ref_seccion" => "vejez", "descripcion" => "Antecedentes de diabetes", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "ve_antecedentes_hipertension", "ref_seccion" => "vejez", "descripcion" => "Antecedentes de hipertensión", "tipo" => "seleccion"]);

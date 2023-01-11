@@ -352,7 +352,7 @@ class SeccionesIntegrante
             'juv_antecedentes_hipertension'=> null,
             'juv_alteracion_colesterol'=> null,
             'juv_perimetro_abdominal'=> null,
-            'juv_enfermedad_cronica'=> null,
+           
         ];
     }
 
@@ -404,9 +404,6 @@ class SeccionesIntegrante
         've_desde_cuando_planifica'=> null,
         've_razones_no_planifica'=> null,
         've_parejas_sexuales_al_anio'=> null,
-        've_enfermedad_cronica'=> null,
-        've_cual_enfermedad_cronica'=> null,
-        've_seguimiento_enfermedad_cronica'=> null,
         've_control_adultos'=> null,
         've_antecedentes_diabetes'=> null,
         've_antecedentes_hipertension'=> null,
