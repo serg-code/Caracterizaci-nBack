@@ -23,7 +23,7 @@ class BarrioVeredaController extends Controller
 
         if (empty($datosUrl))
         {
-            $listadoHogares = BarrioVereda::paginate($cantidadPaginar);
+            $listadoHogares = BarrioVereda::with(['municipio.departamento'])->paginate($cantidadPaginar);
 
             return RespuestaHttp::respuesta(
                 200,
@@ -41,6 +41,8 @@ class BarrioVeredaController extends Controller
                 AllowedFilter::exact('tipo'),
                 AllowedFilter::scope('search'),
             ])
+            ->allowedIncludes(['municipio'])
+            ->with(['municipio.departamento'])
             ->paginate($cantidadPaginar);
 
         return RespuestaHttp::respuesta(
@@ -176,6 +178,22 @@ class BarrioVeredaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try
+        {
+            BarrioVereda::where('id', '=', $id)->delete();
+            return RespuestaHttp::respuesta(
+                200,
+                'succes',
+                'Barrio/Vereda eliminado con exito'
+            );
+        }
+        catch (\Throwable $th)
+        {
+            return RespuestaHttp::respuesta(
+                400,
+                'bad request',
+                'No se puede eliminar este Barrio/Vereda'
+            );
+        }
     }
 }
