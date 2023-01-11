@@ -56,32 +56,32 @@ class IntegranteFinalizadoController extends Controller
         $integrantePeticion = $request->input('integrante');
         $encuesta = $request->input('encuesta');
 
-        $errorValidacion = $this->validacion($integrantePeticion, $encuesta);
+        // $errorValidacion = $this->validacion($integrantePeticion, $encuesta);
 
-        if (!empty($errorValidacion))
-        {
-            return RespuestaHttp::respuestaObjeto($errorValidacion);
-        }
+        // if (!empty($errorValidacion))
+        // {
+        //     return RespuestaHttp::respuestaObjeto($errorValidacion);
+        // }
 
 
         $respuestasIintegrante = new RespuestaIntegrante(['id_integrante' => $this->integrante->id]);
         $respuestasIintegrante->eliminarRespuestas();
         $this->secciones = $integrantePeticion['secciones'];
 
-        foreach ($this->secciones as $refSeccion => $datos)
-        {
-            $this->recorrerRespuestas($datos['respuestas'], $refSeccion);
-        }
+        // foreach ($this->secciones as $refSeccion => $datos)
+        // {
+        //     $this->recorrerRespuestas($datos['respuestas'], $refSeccion);
+        // }
 
-        if (!empty($this->errores))
-        {
-            return RespuestaHttp::respuesta(
-                400,
-                'Bad request',
-                'Encontrmos errores al validar la encuesta',
-                $this->errores
-            );
-        }
+        // if (!empty($this->errores))
+        // {
+        //     return RespuestaHttp::respuesta(
+        //         400,
+        //         'Bad request',
+        //         'Encontrmos errores al validar la encuesta',
+        //         $this->errores
+        //     );
+        // }
 
         foreach ($this->secciones as $seccion)
         {
@@ -89,11 +89,11 @@ class IntegranteFinalizadoController extends Controller
             $this->guardadoFinal($respuestas);
         }
 
-        $this->integrante->actualizarIntegrante([
-            'id' => $this->integrante->id,
-            'estado_registro' => 'FINALIZADO',
-            'puntaje_obtenido' => $this->puntuacion,
-        ]);
+        // $this->integrante->actualizarIntegrante([
+        //     'id' => $this->integrante->id,
+        //     'estado_registro' => 'FINALIZADO',
+        //     'puntaje_obtenido' => $this->puntuacion,
+        // ]);
 
         $inducciones = new ControlInduccion($this->integrante, $this->secciones);
         $listaInducciones = $inducciones->getInducciones();
