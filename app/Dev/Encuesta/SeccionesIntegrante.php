@@ -36,7 +36,6 @@ class SeccionesIntegrante
                 $seccion['ref_seccion'],
                 $seccion['respuestas']
             );
-
             $this->guardarRespuesta($respuesta);
         }
     }

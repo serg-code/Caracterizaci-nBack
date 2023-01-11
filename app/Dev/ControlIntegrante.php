@@ -60,8 +60,7 @@ class ControlIntegrante
 
     public function actualizarIntegrante(bool $retorno = true)
     {
-        $integrante = Integrantes::actualizarIntegrante($this->datosIntegrante);
-        $this->integrante = $integrante;
+        $this->integrante = Integrantes::actualizarIntegrante($this->datosIntegrante);
 
         $secciones = $this->datosIntegrante['secciones'];
         $integrante = $this->recorrecSecciones($secciones);
@@ -92,6 +91,7 @@ class ControlIntegrante
             $integrante->puntaje_obtenido = $seccionesIntegrante->puntaje;
             $this->errores = $seccionesIntegrante->getErrores();
             $integrante->update($integrante->attributesToArray());
+
             return $integrante;
         }
 
