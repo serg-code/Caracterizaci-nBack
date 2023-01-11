@@ -84,15 +84,7 @@ Opcion::create(["ref_campo" => "juv_antecedentes_hipertension", "pregunta_opcion
 Opcion::create(["ref_campo" => "juv_antecedentes_hipertension", "pregunta_opcion" => "SI", "valor" => "3"]);
 Opcion::create(["ref_campo" => "juv_alteracion_colesterol", "pregunta_opcion" => "NO", "valor" => "1"]);
 Opcion::create(["ref_campo" => "juv_alteracion_colesterol", "pregunta_opcion" => "SI", "valor" => "3"]);
-//Opcion::create(["ref_campo" => "juv_presion_sistolica", "pregunta_opcion" => "Ingresar dato", "valor" => "0"]);
-//Opcion::create(["ref_campo" => "juv_presion_diastolica", "pregunta_opcion" => "Ingresar dato", "valor" => "0"]);
 //Opcion::create(["ref_campo" => "juv_perimetro_abdominal", "pregunta_opcion" => "Ingresar dato", "valor" => "0"]);
-Opcion::create(["ref_campo" => "juv_enfermedad_cronica", "pregunta_opcion" => "NO", "valor" => "1"]);
-Opcion::create(["ref_campo" => "juv_enfermedad_cronica", "pregunta_opcion" => "SI", "valor" => "3"]);
-Opcion::create(["ref_campo" => "juv_cual_enfermedad_cronica", "pregunta_opcion" => "¿Cuál?", "valor" => "0"]);
-Opcion::create(["ref_campo" => "juv_seguimiento_enfermedad_cronica", "pregunta_opcion" => "Enfermedad crónica tratada", "valor" => "5"]);
-Opcion::create(["ref_campo" => "juv_seguimiento_enfermedad_cronica", "pregunta_opcion" => "Enfermedad crónica sin tratarmiento", "valor" => "5"]);
-Opcion::create(["ref_campo" => "juv_seguimiento_enfermedad_cronica", "pregunta_opcion" => "Enfermedad crónica controlada", "valor" => "5"]);
 
     }
 }

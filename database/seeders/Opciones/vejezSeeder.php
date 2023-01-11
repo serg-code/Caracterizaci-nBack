@@ -48,13 +48,7 @@ Opcion::create(["ref_campo" => "ve_razones_no_planifica", "pregunta_opcion" => "
 Opcion::create(["ref_campo" => "ve_razones_no_planifica", "pregunta_opcion" => "Contraindicaciones", "valor" => "5"]);
 Opcion::create(["ref_campo" => "ve_razones_no_planifica", "pregunta_opcion" => "Otras razones", "valor" => "5"]);
 //Opcion::create(["ref_campo" => "ve_razones_no_planifica", "pregunta_opcion" => "numero", "valor" => "0"]);
-//Opcion::create(["ref_campo" => "ve_parejas_sexuales_al_año", "pregunta_opcion" => "numero", "valor" => "0"]);
-Opcion::create(["ref_campo" => "ve_enfermedad_cronica", "pregunta_opcion" => "NO", "valor" => "1"]);
-Opcion::create(["ref_campo" => "ve_enfermedad_cronica", "pregunta_opcion" => "SI", "valor" => "3"]);
-//Opcion::create(["ref_campo" => "ve_cual_enfermedad_cronica", "pregunta_opcion" => "¿Cuál?", "valor" => "0"]);
-Opcion::create(["ref_campo" => "ve_seguimiento_enfermedad_cronica", "pregunta_opcion" => "Enfermedad crónica tratada", "valor" => "5"]);
-Opcion::create(["ref_campo" => "ve_seguimiento_enfermedad_cronica", "pregunta_opcion" => "Enfermedad crónica sin tratarmiento", "valor" => "5"]);
-Opcion::create(["ref_campo" => "ve_seguimiento_enfermedad_cronica", "pregunta_opcion" => "Enfermedad crónica controlada", "valor" => "5"]);
+//Opcion::create(["ref_campo" => "ve_parejas_sexuales_al_anio", "pregunta_opcion" => "numero", "valor" => "0"]);
 Opcion::create(["ref_campo" => "ve_control_adultos", "pregunta_opcion" => "NO", "valor" => "1"]);
 Opcion::create(["ref_campo" => "ve_control_adultos", "pregunta_opcion" => "SI", "valor" => "3"]);
 Opcion::create(["ref_campo" => "ve_antecedentes_diabetes", "pregunta_opcion" => "NO", "valor" => "1"]);
