@@ -15,6 +15,7 @@ class OpcionesSeeder extends Seeder
      */
     public function run()
     {
+        //* Factores protectores
         Opcion::create(["id" => "1", "ref_campo" => "tipo_familia", "pregunta_opcion" => "Nuclear", "valor" => "1"]);
         Opcion::create(["id" => "2", "ref_campo" => "tipo_familia", "pregunta_opcion" => "Extensa - compuesta", "valor" => "3"]);
         Opcion::create(["id" => "3", "ref_campo" => "tipo_familia", "pregunta_opcion" => "Monoparental", "valor" => "5"]);
@@ -39,7 +40,7 @@ class OpcionesSeeder extends Seeder
         Opcion::create(["id" => "22", "ref_campo" => "secretaria_fumigado", "pregunta_opcion" => "SI", "valor" => "3"]);
         Opcion::create(["id" => "23", "ref_campo" => "acido_borico_cucarachas", "pregunta_opcion" => "NO", "valor" => "1"]);
         
-        
+        //* habitos_consumo
         Opcion::create(["id" => "24", "ref_campo" => "acido_borico_cucarachas", "pregunta_opcion" => "SI", "valor" => "3"]);
         Opcion::create(["id" => "25", "ref_campo" => "consumo_huevos_crudos", "pregunta_opcion" => "NO", "valor" => "1"]);
         Opcion::create(["id" => "26", "ref_campo" => "consumo_huevos_crudos", "pregunta_opcion" => "SI", "valor" => "3"]);
@@ -52,159 +53,164 @@ class OpcionesSeeder extends Seeder
         Opcion::create(["id" => "33", "ref_campo" => "alimentos_crudos_separados_cocidos", "pregunta_opcion" => "NO", "valor" => "1"]);
         Opcion::create(["id" => "34", "ref_campo" => "alimentos_crudos_separados_cocidos", "pregunta_opcion" => "SI", "valor" => "3"]);
 
+        //* accidentes
+        Opcion::create(["id"=> "35", "ref_campo" => "accidentes_transito", "pregunta_opcion" => "NO", "valor" => "1"]);
+        Opcion::create(["id"=> "36", "ref_campo" => "accidentes_transito", "pregunta_opcion" => "SI", "valor" => "3"]);
+        Opcion::create(["id"=> "37", "ref_campo" => "tipo_lesión", "pregunta_opcion" => "Sin lesión", "valor" => "0"]);
+        Opcion::create(["id"=> "38", "ref_campo" => "tipo_lesión", "pregunta_opcion" => "Fractura", "valor" => "3"]);
+        Opcion::create(["id"=> "39", "ref_campo" => "tipo_lesión", "pregunta_opcion" => "Trauma de tejido blando", "valor" => "3"]);
+        Opcion::create(["id"=> "40", "ref_campo" => "tipo_lesión", "pregunta_opcion" => "Daño neurologíco", "valor" => "5"]);
+        Opcion::create(["id"=> "41", "ref_campo" => "tipo_lesión", "pregunta_opcion" => "Discapacidad", "valor" => "10"]);
+        Opcion::create(["id"=> "42", "ref_campo" => "accidentes_laborales", "pregunta_opcion" => "NO", "valor" => "1"]);
+        Opcion::create(["id"=> "43", "ref_campo" => "accidentes_laborales", "pregunta_opcion" => "SI", "valor" => "3"]);
 
-        Opcion::create(["id"=> "35", "ref_campo" => "¿Ha sufrido accidentes de transito?", "pregunta_opcion" => "NO", "valor" => "1"]);
-Opcion::create(["id"=> "36", "ref_campo" => "¿Ha sufrido accidentes de transito?", "pregunta_opcion" => "SI", "valor" => "3"]);
-Opcion::create(["id"=> "37", "ref_campo" => "Tipo de lesión", "pregunta_opcion" => "Sin lesión", "valor" => "0"]);
-Opcion::create(["id"=> "38", "ref_campo" => "Tipo de lesión", "pregunta_opcion" => "Fractura", "valor" => "3"]);
-Opcion::create(["id"=> "39", "ref_campo" => "Tipo de lesión", "pregunta_opcion" => "Trauma de tejido blando", "valor" => "3"]);
-Opcion::create(["id"=> "40", "ref_campo" => "Tipo de lesión", "pregunta_opcion" => "Daño neurologíco", "valor" => "5"]);
-Opcion::create(["id"=> "41", "ref_campo" => "Tipo de lesión", "pregunta_opcion" => "Discapacidad", "valor" => "10"]);
-Opcion::create(["id"=> "42", "ref_campo" => "¿Ha sufrido accidentes laborales?", "pregunta_opcion" => "NO", "valor" => "1"]);
-Opcion::create(["id"=> "43", "ref_campo" => "¿Ha sufrido accidentes laborales?", "pregunta_opcion" => "SI", "valor" => "3"]);
-
-
-Opcion::create(["id"=> "44", "ref_campo" => "¿Recibe cuidados domiciliarios?", "pregunta_opcion" => "NO", "valor" => "1"]);
-Opcion::create(["id"=> "45", "ref_campo" => "¿Recibe cuidados domiciliarios?", "pregunta_opcion" => "SI", "valor" => "3"]);
-Opcion::create(["id"=> "46", "ref_campo" => "Diagnostico principal ", "pregunta_opcion" => "texto", "valor" => "0"]);
-Opcion::create(["id"=> "47", "ref_campo" => "Causa", "pregunta_opcion" => "Domiciliarío cronico", "valor" => "0"]);
-Opcion::create(["id"=> "48", "ref_campo" => "Causa", "pregunta_opcion" => "Domiciliarío agudo", "valor" => "0"]);
-Opcion::create(["id"=> "49", "ref_campo" => "Causa", "pregunta_opcion" => "Domiciliarío ventilado", "valor" => "0"]);
-//Opcion::create(["id"=> "50", "ref_campo" => "Fecha de inicio del cuidado domiciliario", "pregunta_opcion" => "fecha", "valor" => "0"]);
-Opcion::create(["id"=> "51", "ref_campo" => "¿Recibe oxigeno domiciliario?", "pregunta_opcion" => "NO", "valor" => "1"]);
-Opcion::create(["id"=> "52", "ref_campo" => "¿Recibe oxigeno domiciliario?", "pregunta_opcion" => "SI", "valor" => "3"]);
-Opcion::create(["id"=> "53", "ref_campo" => "Plan aprobado", "pregunta_opcion" => "Estándar", "valor" => "0"]);
-Opcion::create(["id"=> "54", "ref_campo" => "Plan aprobado", "pregunta_opcion" => "Alto flujo", "valor" => "0"]);
-Opcion::create(["id"=> "55", "ref_campo" => "Plan aprobado", "pregunta_opcion" => "Bajo flujo", "valor" => "0"]);
-Opcion::create(["id"=> "56", "ref_campo" => "Plan aprobado", "pregunta_opcion" => "Concentrador", "valor" => "0"]);
-Opcion::create(["id"=> "57", "ref_campo" => "Plan aprobado", "pregunta_opcion" => "Mixto", "valor" => "0"]);
-
-
-Opcion::create(["id"=> "58", "ref_campo" => "Cancer", "pregunta_opcion" => "NO", "valor" => "1"]);
-Opcion::create(["id"=> "59", "ref_campo" => "Cancer", "pregunta_opcion" => "SI", "valor" => "3"]);
-Opcion::create(["id"=> "60", "ref_campo" => "Artritis remautidea", "pregunta_opcion" => "NO", "valor" => "1"]);
-Opcion::create(["id"=> "61", "ref_campo" => "Artritis remautidea", "pregunta_opcion" => "SI", "valor" => "3"]);
-Opcion::create(["id"=> "62", "ref_campo" => "VIH- Sida", "pregunta_opcion" => "NO", "valor" => "1"]);
-Opcion::create(["id"=> "63", "ref_campo" => "VIH- Sida", "pregunta_opcion" => "SI", "valor" => "3"]);
-Opcion::create(["id"=> "64", "ref_campo" => "Hemofilia", "pregunta_opcion" => "NO", "valor" => "1"]);
-Opcion::create(["id"=> "65", "ref_campo" => "Hemofilia", "pregunta_opcion" => "SI", "valor" => "3"]);
-Opcion::create(["id"=> "66", "ref_campo" => "Insuficiencia renal", "pregunta_opcion" => "NO", "valor" => "1"]);
-Opcion::create(["id"=> "67", "ref_campo" => "Insuficiencia renal", "pregunta_opcion" => "SI", "valor" => "3"]);
-Opcion::create(["id"=> "68", "ref_campo" => "Fuma", "pregunta_opcion" => "NO", "valor" => "1"]);
-Opcion::create(["id"=> "69", "ref_campo" => "Fuma", "pregunta_opcion" => "SI", "valor" => "3"]);
-Opcion::create(["id"=> "70", "ref_campo" => "Actividad física periodica", "pregunta_opcion" => "NO", "valor" => "1"]);
-Opcion::create(["id"=> "71", "ref_campo" => "Actividad física periodica", "pregunta_opcion" => "SI", "valor" => "3"]);
-Opcion::create(["id"=> "72", "ref_campo" => "Vacuna de fiebre amarilla", "pregunta_opcion" => "NO", "valor" => "1"]);
-Opcion::create(["id"=> "73", "ref_campo" => "Vacuna de fiebre amarilla", "pregunta_opcion" => "SI", "valor" => "3"]);
-Opcion::create(["id"=> "74", "ref_campo" => "Enfermedades crónicas", "pregunta_opcion" => "NO", "valor" => "1"]);
-Opcion::create(["id"=> "75", "ref_campo" => "Enfermedades crónicas", "pregunta_opcion" => "SI", "valor" => "3"]);
-Opcion::create(["id"=> "76", "ref_campo" => "Diabetes", "pregunta_opcion" => "NO", "valor" => "1"]);
-Opcion::create(["id"=> "77", "ref_campo" => "Diabetes", "pregunta_opcion" => "SI", "valor" => "3"]);
-Opcion::create(["id"=> "78", "ref_campo" => "Control de hipertención trimestral", "pregunta_opcion" => "NO", "valor" => "1"]);
-Opcion::create(["id"=> "79", "ref_campo" => "Control de hipertención trimestral", "pregunta_opcion" => "SI", "valor" => "3"]);
-Opcion::create(["id"=> "80", "ref_campo" => "Control de diabetes trimestral", "pregunta_opcion" => "NO", "valor" => "1"]);
-Opcion::create(["id"=> "81", "ref_campo" => "Control de diabetes trimestral", "pregunta_opcion" => "SI", "valor" => "3"]);
-Opcion::create(["id"=> "82", "ref_campo" => "Tensión arterial sistolica", "pregunta_opcion" => "numero", "valor" => "0"]);
-Opcion::create(["id"=> "83", "ref_campo" => "Tensión arterial diastolica", "pregunta_opcion" => "numero", "valor" => "0"]);
-Opcion::create(["id"=> "84", "ref_campo" => "Valor de la hemoglobina glococilada", "pregunta_opcion" => "numero", "valor" => "0"]);
-Opcion::create(["id"=> "85", "ref_campo" => "Enfermedades costosas", "pregunta_opcion" => "Trauma mayor", "valor" => "20"]);
-Opcion::create(["id"=> "86", "ref_campo" => "Enfermedades costosas", "pregunta_opcion" => "Enfermedad neurologica", "valor" => "20"]);
-Opcion::create(["id"=> "87", "ref_campo" => "Enfermedades costosas", "pregunta_opcion" => "Transplantes (riñon, corazón, médula, hígado)", "valor" => "20"]);
-Opcion::create(["id"=> "88", "ref_campo" => "Enfermedades costosas", "pregunta_opcion" => "Reemplazos articulares (rodilla, hombro, cadera)", "valor" => "20"]);
-Opcion::create(["id"=> "89", "ref_campo" => "Enfermedades costosas", "pregunta_opcion" => "Enfermedad cardiovascular", "valor" => "20"]);
-Opcion::create(["id"=> "90", "ref_campo" => "Enfermedades costosas", "pregunta_opcion" => "Patologia congenitas", "valor" => "20"]);
-Opcion::create(["id"=> "91", "ref_campo" => "¿Ha estado embarazada?", "pregunta_opcion" => "NO", "valor" => ""]);
-Opcion::create(["id"=> "92", "ref_campo" => "¿Ha estado embarazada?", "pregunta_opcion" => "SI", "valor" => ""]);
-//Opcion::create(["id"=> "93", "ref_campo" => "¿Cuantos embarazos ha tenido?", "pregunta_opcion" => "número", "valor" => "0"]);
-//Opcion::create(["id"=> "94", "ref_campo" => "¿Cuántos hijo nacidos muertos por parto natural?", "pregunta_opcion" => "número", "valor" => "0"]);
-//Opcion::create(["id"=> "95", "ref_campo" => "¿Cuántos hijos nacidos vivos por parto natural?", "pregunta_opcion" => "número", "valor" => "0"]);
-//Opcion::create(["id"=> "96", "ref_campo" => "¿Cuántos hijos nacidos muertos por cesarea?", "pregunta_opcion" => "número", "valor" => "0"]);
-//Opcion::create(["id"=> "97", "ref_campo" => "¿Cuántos hijos nacidos vivos por cesarea?", "pregunta_opcion" => "número", "valor" => "0"]);
-//Opcion::create(["id"=> "98", "ref_campo" => "¿Cuántos abortos ha tenido?", "pregunta_opcion" => "número", "valor" => "0"]);
-//Opcion::create(["id"=> "99", "ref_campo" => "¿Cuantos gemelos/multiples ha tenido?", "pregunta_opcion" => "número", "valor" => "0"]);
+        //* cuidados_domiciliarios
+Opcion::create(["id"=> "44", "ref_campo" => "cuidados_domiciliarios", "pregunta_opcion" => "NO", "valor" => "1"]);
+Opcion::create(["id"=> "45", "ref_campo" => "cuidados_domiciliarios", "pregunta_opcion" => "SI", "valor" => "3"]);
+Opcion::create(["id"=> "46", "ref_campo" => "diagnostico_principal", "pregunta_opcion" => "texto", "valor" => "0"]);
+Opcion::create(["id"=> "47", "ref_campo" => "causa", "pregunta_opcion" => "Domiciliarío cronico", "valor" => "0"]);
+Opcion::create(["id"=> "48", "ref_campo" => "causa", "pregunta_opcion" => "Domiciliarío agudo", "valor" => "0"]);
+Opcion::create(["id"=> "49", "ref_campo" => "causa", "pregunta_opcion" => "Domiciliarío ventilado", "valor" => "0"]);
+Opcion::create(["id"=> "50", "ref_campo" => "fecha_inicio_domiciliario", "pregunta_opcion" => "", "valor" => "0"]);
+Opcion::create(["id"=> "51", "ref_campo" => "oxigeno_domiciliario", "pregunta_opcion" => "NO", "valor" => "1"]);
+Opcion::create(["id"=> "52", "ref_campo" => "oxigeno_domiciliario", "pregunta_opcion" => "SI", "valor" => "3"]);
+Opcion::create(["id"=> "53", "ref_campo" => "plan_aprobado", "pregunta_opcion" => "Estándar", "valor" => "0"]);
+Opcion::create(["id"=> "54", "ref_campo" => "plan_aprobado", "pregunta_opcion" => "Alto flujo", "valor" => "0"]);
+Opcion::create(["id"=> "55", "ref_campo" => "plan_aprobado", "pregunta_opcion" => "Bajo flujo", "valor" => "0"]);
+Opcion::create(["id"=> "56", "ref_campo" => "plan_aprobado", "pregunta_opcion" => "Concentrador", "valor" => "0"]);
+Opcion::create(["id"=> "57", "ref_campo" => "plan_aprobado", "pregunta_opcion" => "Mixto", "valor" => "0"]);
 
 
-Opcion::create(["id"=> "100", "ref_campo" => "Depresión", "pregunta_opcion" => "NO", "valor" => "1"]);
-Opcion::create(["id"=> "101", "ref_campo" => "Depresión", "pregunta_opcion" => "SI", "valor" => "3"]);
-Opcion::create(["id"=> "102", "ref_campo" => "Intento de suicidio", "pregunta_opcion" => "NO", "valor" => "1"]);
-Opcion::create(["id"=> "103", "ref_campo" => "Intento de suicidio", "pregunta_opcion" => "SI", "valor" => "3"]);
-Opcion::create(["id"=> "104", "ref_campo" => "Esquizofrenia", "pregunta_opcion" => "NO", "valor" => "1"]);
-Opcion::create(["id"=> "105", "ref_campo" => "Esquizofrenia", "pregunta_opcion" => "SI", "valor" => "3"]);
-Opcion::create(["id"=> "106", "ref_campo" => "Trastorno afectivo", "pregunta_opcion" => "NO", "valor" => "1"]);
-Opcion::create(["id"=> "107", "ref_campo" => "Trastorno afectivo", "pregunta_opcion" => "SI", "valor" => "3"]);
-Opcion::create(["id"=> "108", "ref_campo" => "Bulímia", "pregunta_opcion" => "NO", "valor" => "1"]);
-Opcion::create(["id"=> "109", "ref_campo" => "Bulímia", "pregunta_opcion" => "SI", "valor" => "3"]);
-Opcion::create(["id"=> "110", "ref_campo" => "Anorexía", "pregunta_opcion" => "NO", "valor" => "1"]);
-Opcion::create(["id"=> "111", "ref_campo" => "Anorexía", "pregunta_opcion" => "SI", "valor" => "3"]);
-Opcion::create(["id"=> "112", "ref_campo" => "¿Esta en tratamiento?", "pregunta_opcion" => "NO", "valor" => "1"]);
-Opcion::create(["id"=> "113", "ref_campo" => "¿Esta en tratamiento?", "pregunta_opcion" => "SI", "valor" => "3"]);
-//Opcion::create(["id"=> "114", "ref_campo" => "Diagnóstico de salud mental", "pregunta_opcion" => "diagnostico", "valor" => "0"]);
-Opcion::create(["id"=> "115", "ref_campo" => "Violencia física", "pregunta_opcion" => "NO", "valor" => "1"]);
-Opcion::create(["id"=> "116", "ref_campo" => "Violencia física", "pregunta_opcion" => "SI", "valor" => "3"]);
-Opcion::create(["id"=> "117", "ref_campo" => "Violencia Psicologíca", "pregunta_opcion" => "NO", "valor" => "1"]);
-Opcion::create(["id"=> "118", "ref_campo" => "Violencia Psicologíca", "pregunta_opcion" => "SI", "valor" => "3"]);
-Opcion::create(["id"=> "119", "ref_campo" => "Violencia sexual", "pregunta_opcion" => "NO", "valor" => "1"]);
-Opcion::create(["id"=> "120", "ref_campo" => "Violencia sexual", "pregunta_opcion" => "SI", "valor" => "3"]);
-Opcion::create(["id"=> "121", "ref_campo" => "Violencia institucional", "pregunta_opcion" => "NO", "valor" => "1"]);
-Opcion::create(["id"=> "122", "ref_campo" => "Violencia institucional", "pregunta_opcion" => "SI", "valor" => "3"]);
-Opcion::create(["id"=> "123", "ref_campo" => "Violencia social", "pregunta_opcion" => "NO", "valor" => "1"]);
-Opcion::create(["id"=> "124", "ref_campo" => "Violencia social", "pregunta_opcion" => "SI", "valor" => "3"]);
-Opcion::create(["id"=> "125", "ref_campo" => "Violencia en la gestacion", "pregunta_opcion" => "NO", "valor" => "1"]);
-Opcion::create(["id"=> "126", "ref_campo" => "Violencia en la gestacion", "pregunta_opcion" => "SI", "valor" => "3"]);
+//* cuidados_enfermedades
+Opcion::create(["id"=> "58", "ref_campo" => "cancer", "pregunta_opcion" => "NO", "valor" => "1"]);
+Opcion::create(["id"=> "59", "ref_campo" => "cancer", "pregunta_opcion" => "SI", "valor" => "3"]);
+Opcion::create(["id"=> "60", "ref_campo" => "artritis_remautidea", "pregunta_opcion" => "NO", "valor" => "1"]);
+Opcion::create(["id"=> "61", "ref_campo" => "artritis_remautidea", "pregunta_opcion" => "SI", "valor" => "3"]);
+Opcion::create(["id"=> "62", "ref_campo" => "vih_sida", "pregunta_opcion" => "NO", "valor" => "1"]);
+Opcion::create(["id"=> "63", "ref_campo" => "vih_sida", "pregunta_opcion" => "SI", "valor" => "3"]);
+Opcion::create(["id"=> "64", "ref_campo" => "hemofilia", "pregunta_opcion" => "NO", "valor" => "1"]);
+Opcion::create(["id"=> "65", "ref_campo" => "hemofilia", "pregunta_opcion" => "SI", "valor" => "3"]);
+Opcion::create(["id"=> "66", "ref_campo" => "isuficiencia_renal", "pregunta_opcion" => "NO", "valor" => "1"]);
+Opcion::create(["id"=> "67", "ref_campo" => "isuficiencia_renal", "pregunta_opcion" => "SI", "valor" => "3"]);
+Opcion::create(["id"=> "68", "ref_campo" => "fuma", "pregunta_opcion" => "NO", "valor" => "1"]);
+Opcion::create(["id"=> "69", "ref_campo" => "fuma", "pregunta_opcion" => "SI", "valor" => "3"]);
+Opcion::create(["id"=> "70", "ref_campo" => "actividad_fisica", "pregunta_opcion" => "NO", "valor" => "1"]);
+Opcion::create(["id"=> "71", "ref_campo" => "actividad_fisica", "pregunta_opcion" => "SI", "valor" => "3"]);
+Opcion::create(["id"=> "72", "ref_campo" => "vacuna_fiebre_amarilla", "pregunta_opcion" => "NO", "valor" => "1"]);
+Opcion::create(["id"=> "73", "ref_campo" => "vacuna_fiebre_amarilla", "pregunta_opcion" => "SI", "valor" => "3"]);
+Opcion::create(["id"=> "74", "ref_campo" => "enfermedades_cronicas", "pregunta_opcion" => "NO", "valor" => "1"]);
+Opcion::create(["id"=> "75", "ref_campo" => "enfermedades_cronicas", "pregunta_opcion" => "SI", "valor" => "3"]);
+Opcion::create(["id"=> "76", "ref_campo" => "diabetes", "pregunta_opcion" => "NO", "valor" => "1"]);
+Opcion::create(["id"=> "77", "ref_campo" => "diabetes", "pregunta_opcion" => "SI", "valor" => "3"]);
+Opcion::create(["id"=> "78", "ref_campo" => "hipertencion_trimestral", "pregunta_opcion" => "NO", "valor" => "1"]);
+Opcion::create(["id"=> "79", "ref_campo" => "hipertencion_trimestral", "pregunta_opcion" => "SI", "valor" => "3"]);
+Opcion::create(["id"=> "80", "ref_campo" => "diabetes_trimestral", "pregunta_opcion" => "NO", "valor" => "1"]);
+Opcion::create(["id"=> "81", "ref_campo" => "diabetes_trimestral", "pregunta_opcion" => "SI", "valor" => "3"]);
+//Opcion::create(["id"=> "82", "ref_campo" => "tension_sistolica", "pregunta_opcion" => "numero", "valor" => "0"]);
+//Opcion::create(["id"=> "83", "ref_campo" => "tension_diastolica", "pregunta_opcion" => "numero", "valor" => "0"]);
+//Opcion::create(["id"=> "84", "ref_campo" => "hemoglobina_glococilada", "pregunta_opcion" => "numero", "valor" => "0"]);
+Opcion::create(["id"=> "85", "ref_campo" => "enfermedades_costosas", "pregunta_opcion" => "Trauma mayor", "valor" => "20"]);
+Opcion::create(["id"=> "86", "ref_campo" => "enfermedades_costosas", "pregunta_opcion" => "Enfermedad neurologica", "valor" => "20"]);
+Opcion::create(["id"=> "87", "ref_campo" => "enfermedades_costosas", "pregunta_opcion" => "Transplantes (riñon, corazón, médula, hígado)", "valor" => "20"]);
+Opcion::create(["id"=> "88", "ref_campo" => "enfermedades_costosas", "pregunta_opcion" => "Reemplazos articulares (rodilla, hombro, cadera)", "valor" => "20"]);
+Opcion::create(["id"=> "89", "ref_campo" => "enfermedades_costosas", "pregunta_opcion" => "Enfermedad cardiovascular", "valor" => "20"]);
+Opcion::create(["id"=> "90", "ref_campo" => "enfermedades_costosas", "pregunta_opcion" => "Patologia congenitas", "valor" => "20"]);
+Opcion::create(["id"=> "91", "ref_campo" => "ha_estado_embarazada", "pregunta_opcion" => "NO", "valor" => ""]);
+Opcion::create(["id"=> "92", "ref_campo" => "ha_estado_embarazada", "pregunta_opcion" => "SI", "valor" => ""]);
+//Opcion::create(["id"=> "93", "ref_campo" => "cuantos_embarazos_ha_tenido", "pregunta_opcion" => "numero", "valor" => "0"]);
+//Opcion::create(["id"=> "94", "ref_campo" => "hijos_muertos_parto_natural", "pregunta_opcion" => "numero", "valor" => "0"]);
+//Opcion::create(["id"=> "95", "ref_campo" => "hijos_vivos_parto_natural", "pregunta_opcion" => "numero", "valor" => "0"]);
+//Opcion::create(["id"=> "96", "ref_campo" => "hijos_muertos_por_cesarea", "pregunta_opcion" => "numero", "valor" => "0"]);
+//Opcion::create(["id"=> "97", "ref_campo" => "hijos_vivos_por_cesarea", "pregunta_opcion" => "numero", "valor" => "0"]);
+//Opcion::create(["id"=> "98", "ref_campo" => "cuantos_abortos", "pregunta_opcion" => "numero", "valor" => "0"]);
+//Opcion::create(["id"=> "99", "ref_campo" => "cuantos_gemelos_multiples", "pregunta_opcion" => "numero", "valor" => "0"]);
 
 
-Opcion::create(["id"=> "127", "ref_campo" => "Tuberculósis", "pregunta_opcion" => "NO", "valor" => "1"]);
-Opcion::create(["id"=> "128", "ref_campo" => "Tuberculósis", "pregunta_opcion" => "SI", "valor" => "3"]);
-Opcion::create(["id"=> "129", "ref_campo" => "Lepra", "pregunta_opcion" => "NO", "valor" => "1"]);
-Opcion::create(["id"=> "130", "ref_campo" => "Lepra", "pregunta_opcion" => "SI", "valor" => "3"]);
-Opcion::create(["id"=> "131", "ref_campo" => "Chagas", "pregunta_opcion" => "NO", "valor" => "1"]);
-Opcion::create(["id"=> "132", "ref_campo" => "Chagas", "pregunta_opcion" => "SI", "valor" => "3"]);
-Opcion::create(["id"=> "133", "ref_campo" => "Sifílis", "pregunta_opcion" => "NO", "valor" => "1"]);
-Opcion::create(["id"=> "134", "ref_campo" => "Sifílis", "pregunta_opcion" => "SI", "valor" => "3"]);
-Opcion::create(["id"=> "135", "ref_campo" => "Dengue", "pregunta_opcion" => "NO", "valor" => "1"]);
-Opcion::create(["id"=> "136", "ref_campo" => "Dengue", "pregunta_opcion" => "SI", "valor" => "3"]);
-Opcion::create(["id"=> "137", "ref_campo" => "Malaria", "pregunta_opcion" => "NO", "valor" => "1"]);
-Opcion::create(["id"=> "138", "ref_campo" => "Malaria", "pregunta_opcion" => "SI", "valor" => "3"]);
-Opcion::create(["id"=> "139", "ref_campo" => "Leishmaniasis", "pregunta_opcion" => "NO", "valor" => "1"]);
-Opcion::create(["id"=> "140", "ref_campo" => "Leishmaniasis", "pregunta_opcion" => "SI", "valor" => "3"]);
-Opcion::create(["id"=> "141", "ref_campo" => "Brucelosis", "pregunta_opcion" => "NO", "valor" => "1"]);
-Opcion::create(["id"=> "142", "ref_campo" => "Brucelosis", "pregunta_opcion" => "SI", "valor" => "3"]);
-Opcion::create(["id"=> "143", "ref_campo" => "Sika- chicungunya", "pregunta_opcion" => "NO", "valor" => "1"]);
-Opcion::create(["id"=> "144", "ref_campo" => "Sika- chicungunya", "pregunta_opcion" => "SI", "valor" => "3"]);
-Opcion::create(["id"=> "145", "ref_campo" => "Varicela", "pregunta_opcion" => "NO", "valor" => "1"]);
-Opcion::create(["id"=> "146", "ref_campo" => "Varicela", "pregunta_opcion" => "SI", "valor" => "3"]);
-Opcion::create(["id"=> "147", "ref_campo" => "Intoxicación", "pregunta_opcion" => "NO", "valor" => "1"]);
-Opcion::create(["id"=> "148", "ref_campo" => "Intoxicación", "pregunta_opcion" => "SI", "valor" => "3"]);
+//* salud_mental
+Opcion::create(["id"=> "100", "ref_campo" => "depresion", "pregunta_opcion" => "NO", "valor" => "1"]);
+Opcion::create(["id"=> "101", "ref_campo" => "depresion", "pregunta_opcion" => "SI", "valor" => "3"]);
+Opcion::create(["id"=> "102", "ref_campo" => "intento_suicidio", "pregunta_opcion" => "NO", "valor" => "1"]);
+Opcion::create(["id"=> "103", "ref_campo" => "intento_suicidio", "pregunta_opcion" => "SI", "valor" => "3"]);
+Opcion::create(["id"=> "104", "ref_campo" => "esquizofrenia", "pregunta_opcion" => "NO", "valor" => "1"]);
+Opcion::create(["id"=> "105", "ref_campo" => "esquizofrenia", "pregunta_opcion" => "SI", "valor" => "3"]);
+Opcion::create(["id"=> "106", "ref_campo" => "trastorno_afectivo", "pregunta_opcion" => "NO", "valor" => "1"]);
+Opcion::create(["id"=> "107", "ref_campo" => "trastorno_afectivo", "pregunta_opcion" => "SI", "valor" => "3"]);
+Opcion::create(["id"=> "108", "ref_campo" => "bulimia", "pregunta_opcion" => "NO", "valor" => "1"]);
+Opcion::create(["id"=> "109", "ref_campo" => "bulimia", "pregunta_opcion" => "SI", "valor" => "3"]);
+Opcion::create(["id"=> "110", "ref_campo" => "anorexia", "pregunta_opcion" => "NO", "valor" => "1"]);
+Opcion::create(["id"=> "111", "ref_campo" => "anorexia", "pregunta_opcion" => "SI", "valor" => "3"]);
+Opcion::create(["id"=> "112", "ref_campo" => "tratamiento", "pregunta_opcion" => "NO", "valor" => "1"]);
+Opcion::create(["id"=> "113", "ref_campo" => "tratamiento", "pregunta_opcion" => "SI", "valor" => "3"]);
+//Opcion::create(["id"=> "114", "ref_campo" => "diagnostico", "pregunta_opcion" => "diagnostico", "valor" => "0"]);
+Opcion::create(["id"=> "115", "ref_campo" => "violencia_fisica", "pregunta_opcion" => "NO", "valor" => "1"]);
+Opcion::create(["id"=> "116", "ref_campo" => "violencia_fisica", "pregunta_opcion" => "SI", "valor" => "3"]);
+Opcion::create(["id"=> "117", "ref_campo" => "violencia_psicologica", "pregunta_opcion" => "NO", "valor" => "1"]);
+Opcion::create(["id"=> "118", "ref_campo" => "violencia_psicologica", "pregunta_opcion" => "SI", "valor" => "3"]);
+Opcion::create(["id"=> "119", "ref_campo" => "violencia_sexual", "pregunta_opcion" => "NO", "valor" => "1"]);
+Opcion::create(["id"=> "120", "ref_campo" => "violencia_sexual", "pregunta_opcion" => "SI", "valor" => "3"]);
+Opcion::create(["id"=> "121", "ref_campo" => "violencia_institucional", "pregunta_opcion" => "NO", "valor" => "1"]);
+Opcion::create(["id"=> "122", "ref_campo" => "violencia_institucional", "pregunta_opcion" => "SI", "valor" => "3"]);
+Opcion::create(["id"=> "123", "ref_campo" => "violencia_social", "pregunta_opcion" => "NO", "valor" => "1"]);
+Opcion::create(["id"=> "124", "ref_campo" => "violencia_social", "pregunta_opcion" => "SI", "valor" => "3"]);
+Opcion::create(["id"=> "125", "ref_campo" => "violencia_gestacion", "pregunta_opcion" => "NO", "valor" => "1"]);
+Opcion::create(["id"=> "126", "ref_campo" => "violencia_gestacion", "pregunta_opcion" => "SI", "valor" => "3"]);
 
 
-Opcion::create(["id"=> "149", "ref_campo" => "Enfermedad crónica", "pregunta_opcion" => "NO", "valor" => "1"]);
-Opcion::create(["id"=> "150", "ref_campo" => "Enfermedad crónica", "pregunta_opcion" => "SI", "valor" => "3"]);
+//* salud_publica
+Opcion::create(["id"=> "127", "ref_campo" => "tuberculosis", "pregunta_opcion" => "NO", "valor" => "1"]);
+Opcion::create(["id"=> "128", "ref_campo" => "tuberculosis", "pregunta_opcion" => "SI", "valor" => "3"]);
+Opcion::create(["id"=> "129", "ref_campo" => "lepra", "pregunta_opcion" => "NO", "valor" => "1"]);
+Opcion::create(["id"=> "130", "ref_campo" => "lepra", "pregunta_opcion" => "SI", "valor" => "3"]);
+Opcion::create(["id"=> "131", "ref_campo" => "chagas", "pregunta_opcion" => "NO", "valor" => "1"]);
+Opcion::create(["id"=> "132", "ref_campo" => "chagas", "pregunta_opcion" => "SI", "valor" => "3"]);
+Opcion::create(["id"=> "133", "ref_campo" => "sifilis", "pregunta_opcion" => "NO", "valor" => "1"]);
+Opcion::create(["id"=> "134", "ref_campo" => "sifilis", "pregunta_opcion" => "SI", "valor" => "3"]);
+Opcion::create(["id"=> "135", "ref_campo" => "dengue", "pregunta_opcion" => "NO", "valor" => "1"]);
+Opcion::create(["id"=> "136", "ref_campo" => "dengue", "pregunta_opcion" => "SI", "valor" => "3"]);
+Opcion::create(["id"=> "137", "ref_campo" => "malaria", "pregunta_opcion" => "NO", "valor" => "1"]);
+Opcion::create(["id"=> "138", "ref_campo" => "malaria", "pregunta_opcion" => "SI", "valor" => "3"]);
+Opcion::create(["id"=> "139", "ref_campo" => "leishmaniasis", "pregunta_opcion" => "NO", "valor" => "1"]);
+Opcion::create(["id"=> "140", "ref_campo" => "leishmaniasis", "pregunta_opcion" => "SI", "valor" => "3"]);
+Opcion::create(["id"=> "141", "ref_campo" => "brucelosis", "pregunta_opcion" => "NO", "valor" => "1"]);
+Opcion::create(["id"=> "142", "ref_campo" => "brucelosis", "pregunta_opcion" => "SI", "valor" => "3"]);
+Opcion::create(["id"=> "143", "ref_campo" => "sika_chicungunya", "pregunta_opcion" => "NO", "valor" => "1"]);
+Opcion::create(["id"=> "144", "ref_campo" => "sika_chicungunya", "pregunta_opcion" => "SI", "valor" => "3"]);
+Opcion::create(["id"=> "145", "ref_campo" => "varicela", "pregunta_opcion" => "NO", "valor" => "1"]);
+Opcion::create(["id"=> "146", "ref_campo" => "varicela", "pregunta_opcion" => "SI", "valor" => "3"]);
+Opcion::create(["id"=> "147", "ref_campo" => "intoxicacion", "pregunta_opcion" => "NO", "valor" => "1"]);
+Opcion::create(["id"=> "148", "ref_campo" => "intoxicacion", "pregunta_opcion" => "SI", "valor" => "3"]);
+
+
+//* morbilidad
+Opcion::create(["id"=> "149", "ref_campo" => "enfermedad_cronica", "pregunta_opcion" => "NO", "valor" => "1"]);
+Opcion::create(["id"=> "150", "ref_campo" => "enfermedad_cronica", "pregunta_opcion" => "SI", "valor" => "3"]);
 //Opcion::create(["id"=> "151", "ref_campo" => "¿Cuál enfermedad crónica?", "pregunta_opcion" => "cual", "valor" => "0"]);
-Opcion::create(["id"=> "152", "ref_campo" => "¿Controlada?", "pregunta_opcion" => "No controlada", "valor" => "5"]);
-Opcion::create(["id"=> "153", "ref_campo" => "¿Controlada?", "pregunta_opcion" => "Médico", "valor" => "0"]);
-Opcion::create(["id"=> "154", "ref_campo" => "¿Controlada?", "pregunta_opcion" => "Programa", "valor" => "0"]);
-Opcion::create(["id"=> "155", "ref_campo" => "¿Controlada?", "pregunta_opcion" => "Institución de salud", "valor" => "0"]);
-Opcion::create(["id"=> "156", "ref_campo" => "Propiedades sintomaticos respiratorio", "pregunta_opcion" => "NO", "valor" => "1"]);
-Opcion::create(["id"=> "157", "ref_campo" => "Propiedades sintomaticos respiratorio", "pregunta_opcion" => "SI", "valor" => "3"]);
-Opcion::create(["id"=> "158", "ref_campo" => "Propiedades sintomaticos de la piel", "pregunta_opcion" => "NO", "valor" => "1"]);
-Opcion::create(["id"=> "159", "ref_campo" => "Propiedades sintomaticos de la piel", "pregunta_opcion" => "SI", "valor" => "3"]);
-Opcion::create(["id"=> "160", "ref_campo" => "Enfermedades congenitas", "pregunta_opcion" => "Ninguna", "valor" => "0"]);
-Opcion::create(["id"=> "161", "ref_campo" => "Enfermedades congenitas", "pregunta_opcion" => "Paralisis cerebral", "valor" => "0"]);
-Opcion::create(["id"=> "162", "ref_campo" => "Enfermedades congenitas", "pregunta_opcion" => "Dowm", "valor" => "0"]);
-Opcion::create(["id"=> "163", "ref_campo" => "Enfermedades congenitas", "pregunta_opcion" => "Edwer", "valor" => "0"]);
-Opcion::create(["id"=> "164", "ref_campo" => "Enfermedades congenitas", "pregunta_opcion" => "Patar", "valor" => "0"]);
-Opcion::create(["id"=> "165", "ref_campo" => "Enfermedades congenitas", "pregunta_opcion" => "Defecto cardiaco", "valor" => "0"]);
-Opcion::create(["id"=> "166", "ref_campo" => "Enfermedades congenitas", "pregunta_opcion" => "Mal formaciones físicas motoras", "valor" => "0"]);
-Opcion::create(["id"=> "167", "ref_campo" => "Enfermedades congenitas", "pregunta_opcion" => "Sindrome autista", "valor" => "0"]);
-Opcion::create(["id"=> "168", "ref_campo" => "Enfermedades congenitas", "pregunta_opcion" => "Hidrocefália", "valor" => "0"]);
-Opcion::create(["id"=> "169", "ref_campo" => "Enfermedades congenitas", "pregunta_opcion" => "Acondroplacia - Pseudo acondroplacia (enanismo)", "valor" => "0"]);
-Opcion::create(["id"=> "170", "ref_campo" => "Enfermedades congenitas", "pregunta_opcion" => "Mal formaciones del sistema nervioso", "valor" => "0"]);
-Opcion::create(["id"=> "171", "ref_campo" => "Enfermedades congenitas", "pregunta_opcion" => "Labio leporino - paladar hendido", "valor" => "0"]);
-Opcion::create(["id"=> "172", "ref_campo" => "Enfermedades congenitas", "pregunta_opcion" => "Enfermedades raras y huerfanas", "valor" => "0"]);
-Opcion::create(["id"=> "173", "ref_campo" => "Enfermedades congenitas", "pregunta_opcion" => "¿Cuál?", "valor" => "0"]);
-//Opcion::create(["id"=> "174", "ref_campo" => "¿Cuál enfermedad crónica?", "pregunta_opcion" => "¿Cuál?", "valor" => "0"]);
+Opcion::create(["id"=> "152", "ref_campo" => "controlada", "pregunta_opcion" => "No controlada", "valor" => "5"]);
+Opcion::create(["id"=> "153", "ref_campo" => "controlada", "pregunta_opcion" => "Médico", "valor" => "0"]);
+Opcion::create(["id"=> "154", "ref_campo" => "controlada", "pregunta_opcion" => "Programa", "valor" => "0"]);
+Opcion::create(["id"=> "155", "ref_campo" => "controlada", "pregunta_opcion" => "Institución de salud", "valor" => "0"]);
+Opcion::create(["id"=> "156", "ref_campo" => "propiedades_respiratorio", "pregunta_opcion" => "NO", "valor" => "1"]);
+Opcion::create(["id"=> "157", "ref_campo" => "propiedades_respiratorio", "pregunta_opcion" => "SI", "valor" => "3"]);
+Opcion::create(["id"=> "158", "ref_campo" => "propiedades_piel", "pregunta_opcion" => "NO", "valor" => "1"]);
+Opcion::create(["id"=> "159", "ref_campo" => "propiedades_piel", "pregunta_opcion" => "SI", "valor" => "3"]);
+Opcion::create(["id"=> "160", "ref_campo" => "enfermedades_congenitas", "pregunta_opcion" => "Ninguna", "valor" => "0"]);
+Opcion::create(["id"=> "161", "ref_campo" => "enfermedades_congenitas", "pregunta_opcion" => "Paralisis cerebral", "valor" => "0"]);
+Opcion::create(["id"=> "162", "ref_campo" => "enfermedades_congenitas", "pregunta_opcion" => "Dowm", "valor" => "0"]);
+Opcion::create(["id"=> "163", "ref_campo" => "enfermedades_congenitas", "pregunta_opcion" => "Edwer", "valor" => "0"]);
+Opcion::create(["id"=> "164", "ref_campo" => "enfermedades_congenitas", "pregunta_opcion" => "Patar", "valor" => "0"]);
+Opcion::create(["id"=> "165", "ref_campo" => "enfermedades_congenitas", "pregunta_opcion" => "Defecto cardiaco", "valor" => "0"]);
+Opcion::create(["id"=> "166", "ref_campo" => "enfermedades_congenitas", "pregunta_opcion" => "Mal formaciones físicas motoras", "valor" => "0"]);
+Opcion::create(["id"=> "167", "ref_campo" => "enfermedades_congenitas", "pregunta_opcion" => "Sindrome autista", "valor" => "0"]);
+Opcion::create(["id"=> "168", "ref_campo" => "enfermedades_congenitas", "pregunta_opcion" => "Hidrocefália", "valor" => "0"]);
+Opcion::create(["id"=> "169", "ref_campo" => "enfermedades_congenitas", "pregunta_opcion" => "Acondroplacia - Pseudo acondroplacia (enanismo)", "valor" => "0"]);
+Opcion::create(["id"=> "170", "ref_campo" => "enfermedades_congenitas", "pregunta_opcion" => "Mal formaciones del sistema nervioso", "valor" => "0"]);
+Opcion::create(["id"=> "171", "ref_campo" => "enfermedades_congenitas", "pregunta_opcion" => "Labio leporino - paladar hendido", "valor" => "0"]);
+Opcion::create(["id"=> "172", "ref_campo" => "enfermedades_congenitas", "pregunta_opcion" => "Enfermedades raras y huerfanas", "valor" => "0"]);
+Opcion::create(["id"=> "173", "ref_campo" => "enfermedades_congenitas", "pregunta_opcion" => "¿Cuál?", "valor" => "0"]);
+//Opcion::create(["id"=> "174", "ref_campo" => "enfermedades_congenitas_cual", "pregunta_opcion" => "¿Cuál?", "valor" => "0"]);
 
 
+//* identificacion_ciudadana
 Opcion::create(["id"=> "175", "ref_campo" => "grupo_etnia", "pregunta_opcion" => "Indigena", "valor" => "5"]);
 Opcion::create(["id"=> "176", "ref_campo" => "grupo_etnia", "pregunta_opcion" => "ROM (gitano)", "valor" => "1"]);
 Opcion::create(["id"=> "177", "ref_campo" => "grupo_etnia", "pregunta_opcion" => "Raizal (archipielago de San Andres y Providencia)", "valor" => "1"]);
@@ -280,6 +286,8 @@ Opcion::create(["id"=> "246", "ref_campo" => "ayudas_tenicas", "pregunta_opcion"
 Opcion::create(["id"=> "247", "ref_campo" => "ayudas_tenicas", "pregunta_opcion" => "Gafas", "valor" => "0"]);
 
 
+
+//* vivienda
 Opcion::create(["id"=> "248", "ref_campo" => "encuesta_sisben", "pregunta_opcion" => "NO", "valor" => "1"]);
 Opcion::create(["id"=> "249", "ref_campo" => "encuesta_sisben", "pregunta_opcion" => "SI", "valor" => "3"]);
 //Opcion::create(["id"=> "250", "ref_campo" => "ficha_sisben", "pregunta_opcion" => "texto", "valor" => "0"]);
@@ -394,6 +402,7 @@ Opcion::create(["id"=> "358", "ref_campo" => "tipos_material_paredes", "pregunta
 Opcion::create(["id"=> "359", "ref_campo" => "tipos_material_paredes", "pregunta_opcion" => "Madera pulida", "valor" => "1"]);
 
 
+//* animales
 Opcion::create(["id"=> "360", "ref_campo" => "gatos", "pregunta_opcion" => "NO", "valor" => "1"]);
 Opcion::create(["id"=> "361", "ref_campo" => "gatos", "pregunta_opcion" => "SI", "valor" => "3"]);
 //Opcion::create(["id"=> "362", "ref_campo" => "gatos_cuantos", "pregunta_opcion" => "numero", "valor" => "0"]);
@@ -416,6 +425,7 @@ Opcion::create(["id"=> "375", "ref_campo" => "porcinos", "pregunta_opcion" => "S
 //Opcion::create(["id"=> "379", "ref_campo" => "animales_si_rabia", "pregunta_opcion" => "numero", "valor" => "0"]);
 
 
+//* mortalidad
 Opcion::create(["id"=> "380", "ref_campo" => "fallecido_familiar", "pregunta_opciones" => "NO", "valor" => "1"]);
 Opcion::create(["id"=> "381", "ref_campo" => "fallecido_familiar", "pregunta_opciones" => "SI", "valor" => "3"]);
 Opcion::create(["id"=> "382", "ref_campo" => "sexo_fallecido", "pregunta_opciones" => "Femenino", "valor" => "0"]);
@@ -425,6 +435,7 @@ Opcion::create(["id"=> "383", "ref_campo" => "sexo_fallecido", "pregunta_opcione
 //Opcion::create(["id"=> "386", "ref_campo" => "fecha_muerte", "pregunta_opciones" => "fecha", "valor" => "0"]);
 
 
+//* seguridad_alimentaria
 Opcion::create(["id"=> "387", "ref_campo" => "dinero_alimentos", "pregunta_opcion" => "NO", "valor" => "1"]);
 Opcion::create(["id"=> "388", "ref_campo" => "dinero_alimentos", "pregunta_opcion" => "SI", "valor" => "3"]);
 Opcion::create(["id"=> "389", "ref_campo" => "animales_silvestres", "pregunta_opcion" => "NO", "valor" => "1"]);
@@ -441,6 +452,7 @@ Opcion::create(["id"=> "399", "ref_campo" => "consume_platano_yuca", "pregunta_o
 Opcion::create(["id"=> "400", "ref_campo" => "consume_gaseosas", "pregunta_opcion" => "mayor a 2 = 5", "valor" => ""]);
 
 
+//* primera_infancia
 //Opcion::create(["id"=> "401", "ref_campo" => "pi_peso_al_nacer", "pregunta_opcion" => "mayor 2800 1 si es menor 5 y si es mayor 4000 es 5", "valor" => ""]);
 //Opcion::create(["id"=> "402", "ref_campo" => "pi_peso_actual", "pregunta_opcion" => "Hacer condicional con peso y talla", "valor" => ""]);
 //Opcion::create(["id"=> "403", "ref_campo" => "pi_talla_al_nacer", "pregunta_opcion" => "menor 40cm 5 mayor de 55cm 5", "valor" => ""]);
@@ -532,6 +544,7 @@ Opcion::create(["id"=> "488", "ref_campo" => "pi_consulta_odontologica_6_mes_a_5
 Opcion::create(["id"=> "489", "ref_campo" => "pi_consulta_odontologica_6_mes_a_5_anios", "pregunta_opcion" => "SI", "valor" => "3"]);
 
 
+//* infancia
 //Opcion::create(["id"=> "490", "ref_campo" => "in_peso", "pregunta_opcion" => "numero", "valor" => "0"]);
 //Opcion::create(["id"=> "491", "ref_campo" => "in_talla", "pregunta_opcion" => "numero", "valor" => "0"]);
 Opcion::create(["id"=> "492", "ref_campo" => "in_desarrollo_lenguaje", "pregunta_opcion" => "NO", "valor" => "1"]);
@@ -580,6 +593,7 @@ Opcion::create(["id"=> "534", "ref_campo" => "in_atencion_enfermeria_7_11_anios"
 Opcion::create(["id"=> "535", "ref_campo" => "in_atencion_enfermeria_7_11_anios", "pregunta_opcion" => "SI", "valor" => "3"]);
 
 
+//* adolescencia
 Opcion::create(["id"=> "536", "ref_campo" => "adol_peso", "pregunta_opcion" => "numero", "valor" => "0"]);
 Opcion::create(["id"=> "537", "ref_campo" => "adol_talla", "pregunta_opcion" => "numero", "valor" => "0"]);
 Opcion::create(["id"=> "538", "ref_campo" => "adol_imc", "pregunta_opcion" => "numero", "valor" => "0"]);
@@ -636,6 +650,7 @@ Opcion::create(["id"=> "588", "ref_campo" => "adol_vacuna_toxoide_tetanico", "pr
 Opcion::create(["id"=> "589", "ref_campo" => "adol_vacuna_toxoide_tetanico", "pregunta_opcion" => "SI", "valor" => "3"]);
 
 
+//* juventud
 Opcion::create(["id"=> "590", "ref_campo" => "juv_cancer_cuello_uterino", "pregunta_opcion" => "NO", "valor" => "5"]);
 Opcion::create(["id"=> "591", "ref_campo" => "juv_cancer_cuello_uterino", "pregunta_opcion" => "Normal", "valor" => "1"]);
 Opcion::create(["id"=> "592", "ref_campo" => "juv_cancer_cuello_uterino", "pregunta_opcion" => "Anormal", "valor" => "50"]);
@@ -706,6 +721,7 @@ Opcion::create(["id"=> "656", "ref_campo" => "juv_alteracion_colesterol", "pregu
 Opcion::create(["id"=> "657", "ref_campo" => "juv_perimetro_abdominal", "pregunta_opcion" => "Ingresar dato", "valor" => "0"]);
 
 
+//* adultez
 //Opcion::create(["id"=> "658", "ref_campo" => "adul_valoracion_peso", "pregunta_opcion" => "Ingresar dato", "valor" => "0"]);
 //Opcion::create(["id"=> "659", "ref_campo" => "adul_valoracion_talla", "pregunta_opcion" => "Ingresar dato", "valor" => "0"]);
 //Opcion::create(["id"=> "660", "ref_campo" => "adul_imc", "pregunta_opcion" => "calcular con los datos de peso y talla", "valor" => "0"]);
@@ -791,6 +807,7 @@ Opcion::create(["id"=> "739", "ref_campo" => "adul_prueba_vih", "pregunta_opcion
 Opcion::create(["id"=> "740", "ref_campo" => "adul_prueba_vih", "pregunta_opcion" => "Negativo", "valor" => "1"]);
 
 
+//* vejez
 //Opcion::create(["id"=> "741", "ref_campo" => "ve_valoracion_peso", "pregunta_opcion" => "Ingresar dato", "valor" => "0"]);
 //Opcion::create(["id"=> "742", "ref_campo" => "ve_valoracion_talla", "pregunta_opcion" => "Ingresar dato", "valor" => "0"]);
 //Opcion::create(["id"=> "743", "ref_campo" => "ve_imc", "pregunta_opcion" => "calcular con los datos de peso y talla", "valor" => "0"]);
@@ -881,6 +898,7 @@ Opcion::create(["id"=> "827", "ref_campo" => "ve_prueba_vih", "pregunta_opcion" 
 Opcion::create(["id"=> "828", "ref_campo" => "ve_prueba_vih", "pregunta_opcion" => "Negativo", "valor" => "1"]);
 
 
+//* materno_perinatal
 Opcion::create(["id"=> "829", "ref_campo" => "ma_aceptacion_embarazo", "pregunta_opcion" => "NO", "valor" => "1"]);
 Opcion::create(["id"=> "830", "ref_campo" => "ma_aceptacion_embarazo", "pregunta_opcion" => "SI", "valor" => "3"]);
 //Opcion::create(["id"=> "831", "ref_campo" => "ma_fecha_control_prenatal", "pregunta_opcion" => "Control prenatal (ingresar dato)", "valor" => "0"]);
