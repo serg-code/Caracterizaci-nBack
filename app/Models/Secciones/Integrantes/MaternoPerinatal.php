@@ -92,7 +92,7 @@ class MaternoPerinatal extends Model
         'ma_chagas_recien_nacido',
         'ma_tsh_recien_nacido',
         'ma_tamizaje_genetico_recien_nacido',
-          
+
     ];
 
     protected $hidden = [

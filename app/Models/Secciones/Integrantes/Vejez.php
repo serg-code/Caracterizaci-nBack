@@ -44,26 +44,26 @@ class Vejez extends Model
         've_vacuna_fiebre_amarilla',
         've_vacuna_influenza',
         've_prueba_vih',
-                 
-            ];
-        
-            protected $hidden = [
-                'created_at',
-                'updated_at',
-            ];
-            public function pregunta()
-            {
-                return $this->belongsTo(Pregunta::class, 'ref_campo');
-            }
-        
-            public static function guardarvejez(array $datosvejez)
-            {
-                $pregunta = new Vejez($datosvejez);
-                $pregunta->save();
-            }
-        
-            public function eliminar()
-            {
-                Vejez::where('id_integrante', '=', $this->id_integrante)->delete();
-            }
-        }
+
+    ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+    public function pregunta()
+    {
+        return $this->belongsTo(Pregunta::class, 'ref_campo');
+    }
+
+    public static function guardarvejez(array $datosvejez)
+    {
+        $pregunta = new Vejez($datosvejez);
+        $pregunta->save();
+    }
+
+    public function eliminar()
+    {
+        Vejez::where('id_integrante', '=', $this->id_integrante)->delete();
+    }
+}

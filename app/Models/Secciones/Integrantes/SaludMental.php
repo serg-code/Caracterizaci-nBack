@@ -50,4 +50,3 @@ class SaludMental extends Model
         SaludMental::where('id_integrante', '=', $this->id_integrante)->delete();
     }
 }
-

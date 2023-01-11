@@ -12,14 +12,14 @@ class Morbilidad extends Model
 
     protected $fillable = [
         'id_integrante',
-            'enfermedad_cronica',
-            'enfermedad_cronica',
-            'enfermedad_cronica_cual',
-            'controlada',
-            'propiedades_respiratorio',
-            'propiedades_piel',
-            'enfermedades_congenitas',
-            'enfermedades_congenitas_cual',
+        'enfermedad_cronica',
+        'enfermedad_cronica',
+        'enfermedad_cronica_cual',
+        'controlada',
+        'propiedades_respiratorio',
+        'propiedades_piel',
+        'enfermedades_congenitas',
+        'enfermedades_congenitas_cual',
     ];
 
     protected $hidden = [

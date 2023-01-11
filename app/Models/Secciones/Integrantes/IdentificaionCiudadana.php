@@ -13,16 +13,16 @@ class IdentificaionCiudadana extends Model
     protected $fillable = [
         'id_integrante',
         'grupo_etnia',
-'grupo_atencion_especial',
-'programas',
-'cual_programa',
-'seguridad_social',
-'esta_estudiando',
-'tipo_educacion',
-'por_que',
-'ocupacion_ingreso',
-'discapacidad',
-'ayudas_tenicas',
+        'grupo_atencion_especial',
+        'programas',
+        'cual_programa',
+        'seguridad_social',
+        'esta_estudiando',
+        'tipo_educacion',
+        'por_que',
+        'ocupacion_ingreso',
+        'discapacidad',
+        'ayudas_tenicas',
     ];
 
     protected $hidden = [
