@@ -39,9 +39,7 @@ class PreguntasJuventudSeeder extends Seeder
         Pregunta::create(["ref_campo"=> "juv_antecedentes_hipertension", "ref_seccion" => "juventud", "descripcion" => "Antecedentes de hipertensión", "tipo" => "seleccion"]);
         Pregunta::create(["ref_campo"=> "juv_alteracion_colesterol", "ref_seccion" => "juventud", "descripcion" => "Alteración del colesterol", "tipo" => "seleccion"]);
         Pregunta::create(["ref_campo"=> "juv_perimetro_abdominal", "ref_seccion" => "juventud", "descripcion" => "Perímetro abdominal", "tipo" => "numero"]);
-        Pregunta::create(["ref_campo"=> "juv_enfermedad_cronica", "ref_seccion" => "juventud", "descripcion" => "Enfermedad crónica", "tipo" => "seleccion"]);
-        Pregunta::create(["ref_campo"=> "juv_cual_enfermedad_cronica", "ref_seccion" => "juventud", "descripcion" => "¿Cuál enfermedad crónica?", "tipo" => "texto"]);
-        Pregunta::create(["ref_campo"=> "juv_seguimiento_enfermedad_cronica", "ref_seccion" => "juventud", "descripcion" => "Seguimiento de la enfermedad crónica", "tipo" => "seleccion"]);
+        
 
     }
 }
