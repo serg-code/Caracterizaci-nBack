@@ -90,8 +90,8 @@ Opcion::create(["id"=> "62", "ref_campo" => "vih_sida", "pregunta_opcion" => "NO
 Opcion::create(["id"=> "63", "ref_campo" => "vih_sida", "pregunta_opcion" => "SI", "valor" => "3"]);
 Opcion::create(["id"=> "64", "ref_campo" => "hemofilia", "pregunta_opcion" => "NO", "valor" => "1"]);
 Opcion::create(["id"=> "65", "ref_campo" => "hemofilia", "pregunta_opcion" => "SI", "valor" => "3"]);
-Opcion::create(["id"=> "66", "ref_campo" => "isuficiencia_renal", "pregunta_opcion" => "NO", "valor" => "1"]);
-Opcion::create(["id"=> "67", "ref_campo" => "isuficiencia_renal", "pregunta_opcion" => "SI", "valor" => "3"]);
+Opcion::create(["id"=> "66", "ref_campo" => "insuficiencia_renal", "pregunta_opcion" => "NO", "valor" => "1"]);
+Opcion::create(["id"=> "67", "ref_campo" => "insuficiencia_renal", "pregunta_opcion" => "SI", "valor" => "3"]);
 Opcion::create(["id"=> "68", "ref_campo" => "fuma", "pregunta_opcion" => "NO", "valor" => "1"]);
 Opcion::create(["id"=> "69", "ref_campo" => "fuma", "pregunta_opcion" => "SI", "valor" => "3"]);
 Opcion::create(["id"=> "70", "ref_campo" => "actividad_fisica", "pregunta_opcion" => "NO", "valor" => "1"]);

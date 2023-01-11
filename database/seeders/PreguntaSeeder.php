@@ -16,23 +16,23 @@ class PreguntaSeeder extends Seeder
     public function run()
     {
         //* Factores protectores
-        Pregunta::guardarPregunta(["ref_campo" => "tipo_familia", "ref_seccion" => "factores_protectores", "descripcion" => "Tipo de familia", "tipo" => "selección"]);
-        Pregunta::guardarPregunta(["ref_campo" => "duermen_ninos_ninas_adultos", "ref_seccion" => "factores_protectores", "descripcion" => "¿Duermen los ninos y ninas separados de los adultos?", "tipo" => "selección"]);
-        Pregunta::guardarPregunta(["ref_campo" => "problemas_alcohol", "ref_seccion" => "factores_protectores", "descripcion" => "¿Alguien de la familia tiene problemas con el consumo de bebidas alcoholicas?", "tipo" => "selección"]);
-        Pregunta::guardarPregunta(["ref_campo" => "consume_tranquilizantes", "ref_seccion" => "factores_protectores", "descripcion" => "¿Alguien de la familia consume tranquilizantes?", "tipo" => "selección"]);
-        Pregunta::guardarPregunta(["ref_campo" => "relaciones_cordiales_respetuosas", "ref_seccion" => "factores_protectores", "descripcion" => "Relaciones cordiales y respetuosas", "tipo" => "selección"]);
-        Pregunta::guardarPregunta(["ref_campo" => "lavar_manos_antes_comer", "ref_seccion" => "factores_protectores", "descripcion" => "¿Acostumbra la familia a lavarse las manos antes de comer?", "tipo" => "selección"]);
-        Pregunta::guardarPregunta(["ref_campo" => "lavar_manos_antes_preparar_alimentos", "ref_seccion" => "factores_protectores", "descripcion" => "¿Acostumbra la familia a lavarse las manos antes de preparar los alimentos?", "tipo" => "selección"]);
-        Pregunta::guardarPregunta(["ref_campo" => "fumigar_vivienda", "ref_seccion" => "factores_protectores", "descripcion" => "¿Fumiga su vivienda?", "tipo" => "selección"]);
-        Pregunta::guardarPregunta(["ref_campo" => "secretaria_fumigado", "ref_seccion" => "factores_protectores", "descripcion" => "¿En el último ano la secretarìa ha fumigado?", "tipo" => "selección"]);
-        Pregunta::guardarPregunta(["ref_campo" => "acido_borico_cucarachas", "ref_seccion" => "factores_protectores", "descripcion" => "¿Utiliza acído boríco para las cucarachas?", "tipo" => "selección"]);
+        Pregunta::guardarPregunta(["ref_campo" => "tipo_familia", "ref_seccion" => "factores_protectores", "descripcion" => "Tipo de familia", "tipo" => "seleccion"]);
+        Pregunta::guardarPregunta(["ref_campo" => "duermen_ninos_ninas_adultos", "ref_seccion" => "factores_protectores", "descripcion" => "¿Duermen los ninos y ninas separados de los adultos?", "tipo" => "seleccion"]);
+        Pregunta::guardarPregunta(["ref_campo" => "problemas_alcohol", "ref_seccion" => "factores_protectores", "descripcion" => "¿Alguien de la familia tiene problemas con el consumo de bebidas alcoholicas?", "tipo" => "seleccion"]);
+        Pregunta::guardarPregunta(["ref_campo" => "consume_tranquilizantes", "ref_seccion" => "factores_protectores", "descripcion" => "¿Alguien de la familia consume tranquilizantes?", "tipo" => "seleccion"]);
+        Pregunta::guardarPregunta(["ref_campo" => "relaciones_cordiales_respetuosas", "ref_seccion" => "factores_protectores", "descripcion" => "Relaciones cordiales y respetuosas", "tipo" => "seleccion"]);
+        Pregunta::guardarPregunta(["ref_campo" => "lavar_manos_antes_comer", "ref_seccion" => "factores_protectores", "descripcion" => "¿Acostumbra la familia a lavarse las manos antes de comer?", "tipo" => "seleccion"]);
+        Pregunta::guardarPregunta(["ref_campo" => "lavar_manos_antes_preparar_alimentos", "ref_seccion" => "factores_protectores", "descripcion" => "¿Acostumbra la familia a lavarse las manos antes de preparar los alimentos?", "tipo" => "seleccion"]);
+        Pregunta::guardarPregunta(["ref_campo" => "fumigar_vivienda", "ref_seccion" => "factores_protectores", "descripcion" => "¿Fumiga su vivienda?", "tipo" => "seleccion"]);
+        Pregunta::guardarPregunta(["ref_campo" => "secretaria_fumigado", "ref_seccion" => "factores_protectores", "descripcion" => "¿En el último ano la secretarìa ha fumigado?", "tipo" => "seleccion"]);
+        Pregunta::guardarPregunta(["ref_campo" => "acido_borico_cucarachas", "ref_seccion" => "factores_protectores", "descripcion" => "¿Utiliza acído boríco para las cucarachas?", "tipo" => "seleccion"]);
 
         //* habitos_consumo
-        Pregunta::guardarPregunta(["ref_campo" => "consumo_huevos_crudos", "ref_seccion" => "habitos_consumo", "descripcion" => "¿Alguien de la familia acostumbra a consumir huevos crudos?", "tipo" => "selección"]);
-        Pregunta::guardarPregunta(["ref_campo" => "alimentos_perecederos", "ref_seccion" => "habitos_consumo", "descripcion" => "¿Los alimentos perecederos se almacenan protegídos y refrígerados?", "tipo" => "selección"]);
-        Pregunta::guardarPregunta(["ref_campo" => "hierve_leche", "ref_seccion" => "habitos_consumo", "descripcion" => "¿Habitualmente hierve la leche?", "tipo" => "selección"]);
-        Pregunta::guardarPregunta(["ref_campo" => "lavar_frutas_verduras", "ref_seccion" => "habitos_consumo", "descripcion" => "¿Lava las frutas y verduras antes de consumirlas?", "tipo" => "selección"]);
-        Pregunta::guardarPregunta(["ref_campo" => "alimentos_crudos_separados_cocidos", "ref_seccion" => "habitos_consumo", "descripcion" => "¿Los alimentso crudos se almacenan separados de los cocidos? (verificar)", "tipo" => "selección"]);
+        Pregunta::guardarPregunta(["ref_campo" => "consumo_huevos_crudos", "ref_seccion" => "habitos_consumo", "descripcion" => "¿Alguien de la familia acostumbra a consumir huevos crudos?", "tipo" => "seleccion"]);
+        Pregunta::guardarPregunta(["ref_campo" => "alimentos_perecederos", "ref_seccion" => "habitos_consumo", "descripcion" => "¿Los alimentos perecederos se almacenan protegídos y refrígerados?", "tipo" => "seleccion"]);
+        Pregunta::guardarPregunta(["ref_campo" => "hierve_leche", "ref_seccion" => "habitos_consumo", "descripcion" => "¿Habitualmente hierve la leche?", "tipo" => "seleccion"]);
+        Pregunta::guardarPregunta(["ref_campo" => "lavar_frutas_verduras", "ref_seccion" => "habitos_consumo", "descripcion" => "¿Lava las frutas y verduras antes de consumirlas?", "tipo" => "seleccion"]);
+        Pregunta::guardarPregunta(["ref_campo" => "alimentos_crudos_separados_cocidos", "ref_seccion" => "habitos_consumo", "descripcion" => "¿Los alimentso crudos se almacenan separados de los cocidos? (verificar)", "tipo" => "seleccion"]);
 
         //* accidentes
         Pregunta::create(["ref_campo" => "accidentes_transito", "ref_seccion" => "accidentes", "descripcion" => "¿Ha sufrido accidentes de transito?", "tipo" => "seleccion"]);
@@ -89,17 +89,17 @@ class PreguntaSeeder extends Seeder
         Pregunta::create(["ref_campo" => "violencia_gestacion", "ref_seccion" => "salud_mental", "descripcion" => "Violencia en la gestacion", "tipo" => "seleccion"]);
 
         //* salud_publica
-        Pregunta::create(["ref_campo" => "tuberculosis", "ref_seccion" => "enfermedades_salud_publica", "descripcion" => "Enfermedad crónica", "tipo" => "selección"]);
-        Pregunta::create(["ref_campo" => "lepra", "ref_seccion" => "enfermedades_salud_publica", "descripcion" => "Lepra", "tipo" => "selección"]);
-        Pregunta::create(["ref_campo" => "chagas", "ref_seccion" => "enfermedades_salud_publica", "descripcion" => "Chagas", "tipo" => "selección"]);
-        Pregunta::create(["ref_campo" => "sifilis", "ref_seccion" => "enfermedades_salud_publica", "descripcion" => "Sifílis", "tipo" => "selección"]);
-        Pregunta::create(["ref_campo" => "dengue", "ref_seccion" => "enfermedades_salud_publica", "descripcion" => "Dengue", "tipo" => "selección"]);
-        Pregunta::create(["ref_campo" => "malaria", "ref_seccion" => "enfermedades_salud_publica", "descripcion" => "Malaria", "tipo" => "selección"]);
-        Pregunta::create(["ref_campo" => "leishmaniasis", "ref_seccion" => "enfermedades_salud_publica", "descripcion" => "Leishmaniasis", "tipo" => "selección"]);
-        Pregunta::create(["ref_campo" => "brucelosis", "ref_seccion" => "enfermedades_salud_publica", "descripcion" => "Brucelosis", "tipo" => "selección"]);
-        Pregunta::create(["ref_campo" => "sika_chicungunya", "ref_seccion" => "enfermedades_salud_publica", "descripcion" => "Sika- chicungunya", "tipo" => "selección"]);
-        Pregunta::create(["ref_campo" => "varicela", "ref_seccion" => "enfermedades_salud_publica", "descripcion" => "Varicela", "tipo" => "selección"]);
-        Pregunta::create(["ref_campo" => "intoxicacion", "ref_seccion" => "enfermedades_salud_publica", "descripcion" => "Intoxicación", "tipo" => "selección"]);
+        Pregunta::create(["ref_campo" => "tuberculosis", "ref_seccion" => "enfermedades_salud_publica", "descripcion" => "Enfermedad crónica", "tipo" => "seleccion"]);
+        Pregunta::create(["ref_campo" => "lepra", "ref_seccion" => "enfermedades_salud_publica", "descripcion" => "Lepra", "tipo" => "seleccion"]);
+        Pregunta::create(["ref_campo" => "chagas", "ref_seccion" => "enfermedades_salud_publica", "descripcion" => "Chagas", "tipo" => "seleccion"]);
+        Pregunta::create(["ref_campo" => "sifilis", "ref_seccion" => "enfermedades_salud_publica", "descripcion" => "Sifílis", "tipo" => "seleccion"]);
+        Pregunta::create(["ref_campo" => "dengue", "ref_seccion" => "enfermedades_salud_publica", "descripcion" => "Dengue", "tipo" => "seleccion"]);
+        Pregunta::create(["ref_campo" => "malaria", "ref_seccion" => "enfermedades_salud_publica", "descripcion" => "Malaria", "tipo" => "seleccion"]);
+        Pregunta::create(["ref_campo" => "leishmaniasis", "ref_seccion" => "enfermedades_salud_publica", "descripcion" => "Leishmaniasis", "tipo" => "seleccion"]);
+        Pregunta::create(["ref_campo" => "brucelosis", "ref_seccion" => "enfermedades_salud_publica", "descripcion" => "Brucelosis", "tipo" => "seleccion"]);
+        Pregunta::create(["ref_campo" => "sika_chicungunya", "ref_seccion" => "enfermedades_salud_publica", "descripcion" => "Sika- chicungunya", "tipo" => "seleccion"]);
+        Pregunta::create(["ref_campo" => "varicela", "ref_seccion" => "enfermedades_salud_publica", "descripcion" => "Varicela", "tipo" => "seleccion"]);
+        Pregunta::create(["ref_campo" => "intoxicacion", "ref_seccion" => "enfermedades_salud_publica", "descripcion" => "Intoxicación", "tipo" => "seleccion"]);
 
         //* morbilidad
         Pregunta::create(["ref_campo" => "enfermedad_cronica", "ref_seccion" => "morbilidad", "descripcion" => "Enfermedad crónica", "tipo" => "seleccion"]);
@@ -111,17 +111,17 @@ class PreguntaSeeder extends Seeder
         Pregunta::create(["ref_campo" => "enfermedades_congenitas_cual", "ref_seccion" => "morbilidad", "descripcion" => "¿Cuál enfermedad congenita?", "tipo" => "texto"]);
 
         //* identificacion_ciudadana
-        Pregunta::create(["ref_campo" => "grupo_etnia", "ref_seccion" => "identificacion_ciudadana", "descripcion" => "Grupo de atención- Etnia", "tipo" => "selección"]);
-        Pregunta::create(["ref_campo" => "grupo_atencion_especial", "ref_seccion" => "identificacion_ciudadana", "descripcion" => "Grupo de atención- Grupos de atención especial (G.A.E)", "tipo" => "selección"]);
-        Pregunta::create(["ref_campo" => "programas", "ref_seccion" => "identificacion_ciudadana", "descripcion" => "Programas", "tipo" => "selección"]);
-        Pregunta::create(["ref_campo" => "cual_programa", "ref_seccion" => "identificacion_ciudadana", "descripcion" => "¿Cual programa?", "tipo" => "selección"]);
-        Pregunta::create(["ref_campo" => "seguridad_social", "ref_seccion" => "identificacion_ciudadana", "descripcion" => "Segurídad socual- tipo de afiliación", "tipo" => "selección"]);
-        Pregunta::create(["ref_campo" => "esta_estudiando", "ref_seccion" => "identificacion_ciudadana", "descripcion" => "¿Está estudiando?", "tipo" => "selección"]);
-        Pregunta::create(["ref_campo" => "tipo_educacion", "ref_seccion" => "identificacion_ciudadana", "descripcion" => "Tipo educacion", "tipo" => "selección"]);
-        Pregunta::create(["ref_campo" => "por_que", "ref_seccion" => "identificacion_ciudadana", "descripcion" => "¿Por qué no estudia?", "tipo" => "selección"]);
-        Pregunta::create(["ref_campo" => "ocupacion_ingreso", "ref_seccion" => "identificacion_ciudadana", "descripcion" => "Ocupación/ ingreso", "tipo" => "selección"]);
-        Pregunta::create(["ref_campo" => "discapacidad", "ref_seccion" => "identificacion_ciudadana", "descripcion" => "Discapacidad", "tipo" => "selección"]);
-        Pregunta::create(["ref_campo" => "ayudas_tenicas", "ref_seccion" => "identificacion_ciudadana", "descripcion" => "Ayudas ténicas", "tipo" => "selección"]);
+        Pregunta::create(["ref_campo" => "grupo_etnia", "ref_seccion" => "identificacion_ciudadana", "descripcion" => "Grupo de atención- Etnia", "tipo" => "seleccion"]);
+        Pregunta::create(["ref_campo" => "grupo_atencion_especial", "ref_seccion" => "identificacion_ciudadana", "descripcion" => "Grupo de atención- Grupos de atención especial (G.A.E)", "tipo" => "seleccion"]);
+        Pregunta::create(["ref_campo" => "programas", "ref_seccion" => "identificacion_ciudadana", "descripcion" => "Programas", "tipo" => "seleccion"]);
+        Pregunta::create(["ref_campo" => "cual_programa", "ref_seccion" => "identificacion_ciudadana", "descripcion" => "¿Cual programa?", "tipo" => "seleccion"]);
+        Pregunta::create(["ref_campo" => "seguridad_social", "ref_seccion" => "identificacion_ciudadana", "descripcion" => "Segurídad socual- tipo de afiliación", "tipo" => "seleccion"]);
+        Pregunta::create(["ref_campo" => "esta_estudiando", "ref_seccion" => "identificacion_ciudadana", "descripcion" => "¿Está estudiando?", "tipo" => "seleccion"]);
+        Pregunta::create(["ref_campo" => "tipo_educacion", "ref_seccion" => "identificacion_ciudadana", "descripcion" => "Tipo educacion", "tipo" => "seleccion"]);
+        Pregunta::create(["ref_campo" => "por_que", "ref_seccion" => "identificacion_ciudadana", "descripcion" => "¿Por qué no estudia?", "tipo" => "seleccion"]);
+        Pregunta::create(["ref_campo" => "ocupacion_ingreso", "ref_seccion" => "identificacion_ciudadana", "descripcion" => "Ocupación/ ingreso", "tipo" => "seleccion"]);
+        Pregunta::create(["ref_campo" => "discapacidad", "ref_seccion" => "identificacion_ciudadana", "descripcion" => "Discapacidad", "tipo" => "seleccion"]);
+        Pregunta::create(["ref_campo" => "ayudas_tenicas", "ref_seccion" => "identificacion_ciudadana", "descripcion" => "Ayudas ténicas", "tipo" => "seleccion"]);
 
         //* vivienda
         Pregunta::create(["ref_campo"=> "encuesta_sisben", "ref_seccion" => "vivienda", "descripcion" => "¿Realizó encuesta SISBEN?", "tipo" => "seleccion"]);
