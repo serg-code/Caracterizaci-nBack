@@ -91,10 +91,22 @@ class HogarController extends Controller
             return RespuestaHttp::respuestaObjeto($respuestaCrearHogar);
         }
 
-        $secciones = $hogarPeticion['secciones'];
-        $actualizarHogar = new ActualizarHogar($hogarPeticion, $secciones);
-        $respuesta = $actualizarHogar->getRespuesta();
-        return RespuestaHttp::respuestaObjeto($respuesta);
+        if (!empty($hogarPeticion['secciones']))
+        {
+            $secciones = $hogarPeticion['secciones'];
+            $actualizarHogar = new ActualizarHogar($hogarPeticion, $secciones);
+            $respuesta = $actualizarHogar->getRespuesta();
+            return RespuestaHttp::respuestaObjeto($respuesta);
+        }
+
+        return RespuestaHttp::respuesta(
+            201,
+            'Created',
+            'Hogar Creado exitosamente',
+            [
+                'hogar' => $hogar,
+            ]
+        );
     }
 
     /**
