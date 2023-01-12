@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('table_materno_perinatal', function (Blueprint $table) {
+        Schema::create('materno_perinatal', function (Blueprint $table) {
             $table->uuid('id_integrante')->unique();
             $table->text('ma_aceptacion_embarazo')->nullable();
         $table->text('ma_fecha_control_prenatal')->nullable();
