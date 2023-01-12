@@ -51,7 +51,7 @@ class crearHogar
             );
         }
 
-        unset($this->datosCrearHogar['encuesta']);
+        // unset($this->datosCrearHogar['encuesta']);
         $hogar = new Hogar($this->datosCrearHogar);
         $hogar->save();
 
