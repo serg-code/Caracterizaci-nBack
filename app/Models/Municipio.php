@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Hogar\Hogar;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -36,13 +37,13 @@ class Municipio extends Model
         return $this->belongsTo(Departamento::class, 'cod_dpto');
     }
 
-    public function MunicipioHogar()
-    {
-        return $this->hasMany(Hogar::class, 'cod_mun');
-    }
-
     public function BarrioVereda()
     {
-        return $this->hasMany(BarrioVereda::class . 'id_municipio');
+        return $this->hasMany(BarrioVereda::class, 'id_municipio');
+    }
+
+    public function hogares()
+    {
+        return $this->hasMany(Hogar::class, 'cod_mun');
     }
 }

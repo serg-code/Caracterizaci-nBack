@@ -6,6 +6,7 @@ use App\Dev\Hogar\ActualizarHogar;
 use App\Dev\Hogar\crearHogar;
 use App\Dev\RespuestaHttp;
 use App\Models\Hogar\Hogar;
+use App\Models\Municipio;
 use App\Models\Secciones\Hogar\FactoresProtectores;
 use App\Models\Secciones\Hogar\HabitosConsumo;
 use Illuminate\Http\Request;
@@ -119,10 +120,9 @@ class HogarController extends Controller
     {
         $hogar = Hogar::findOrFail($id);
         $hogar->integrantes;
-        $hogar->secciones = [
-            'factores_protectores' => FactoresProtectores::where('hogar_id', '=', $id)->latest()->first(),
-            'habitos_consumo' => HabitosConsumo::where('hogar_id', '=', $id)->latest()->first(),
-        ];
+        $municipio = Municipio::find($hogar->cod_mun);
+        $municipio->departamento;
+        $hogar->municipio = $municipio;
 
         $respuesta = new RespuestaHttp();
         $respuesta->data = $hogar;
