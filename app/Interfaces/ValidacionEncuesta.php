@@ -5,7 +5,7 @@ namespace App\Interfaces;
 interface ValidacionEncuesta
 {
 
-    public function validar(): void;
+    public function validar();
 
     public function obtenerErrores(): array;
 

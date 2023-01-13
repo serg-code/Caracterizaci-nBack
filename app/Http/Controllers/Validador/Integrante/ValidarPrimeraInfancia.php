@@ -3,24 +3,46 @@
 namespace App\Http\Controllers\Validador\Integrante;
 
 use App\Http\Controllers\Controller;
+use App\Interfaces\ValidacionEncuesta;
 use Illuminate\Http\Request;
 
-class ValidarPrimeraInfancia extends Controller
+class ValidarPrimeraInfancia extends Controller implements ValidacionEncuesta
 {
-    //
+    protected array $errores;
+    protected int $puntaje;
+
     public function __construct(
         protected array $seccion = [],
-        protected int $puntaje = 0,
-        protected int $edad = 0,
+        protected string $fechaNacimiento = '',
     )
     {
+        $this->puntaje = 0;
+        $this->errores = [];
     }
 
     public function validar()
     {
+        $edad = 1;
+
+        if ($edad < 0 || $edad > 5)
+        {
+            array_push($this->errores, ['primera_infancia' => 'El integrante no cuenta con la edad para realizar esta encuesta, debe tener entre 0 y 5 años']);
+            return false;
+        }
+
         $this->PesoNacer();
         $this->PesoNacer();
         $this->TallaNacer();
+    }
+
+    public function obtenerErrores(): array
+    {
+        return $this->errores;
+    }
+
+    public function obtenerPuntaje(): int
+    {
+        return $this->puntaje;
     }
 
     protected function PesoNacer()
