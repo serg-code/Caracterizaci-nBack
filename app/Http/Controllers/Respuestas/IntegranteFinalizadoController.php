@@ -55,6 +55,16 @@ class IntegranteFinalizadoController extends Controller
 
         $integrantePeticion = $request->input('integrante');
         $encuesta = $request->input('encuesta');
+        $this->integrante = Integrantes::find($integrantePeticion['id']);
+
+        if (empty($this->integrante))
+        {
+            return RespuestaHttp::respuesta(
+                404,
+                'Bad request',
+                'Integrante no encontrado'
+            );
+        }
 
         // $errorValidacion = $this->validacion($integrantePeticion, $encuesta);
 
@@ -64,8 +74,9 @@ class IntegranteFinalizadoController extends Controller
         // }
 
 
-        $respuestasIintegrante = new RespuestaIntegrante(['id_integrante' => $this->integrante->id]);
-        $respuestasIintegrante->eliminarRespuestas();
+        // $respuestasIintegrante = new RespuestaIntegrante(['id_integrante' => $this->integrante->id]);
+        // $respuestasIintegrante->eliminarRespuestas();
+        RespuestaIntegrante::where('id_integrante', '=', $this->integrante->id)->delete();
         $this->secciones = $integrantePeticion['secciones'];
 
         // foreach ($this->secciones as $refSeccion => $datos)
@@ -86,14 +97,21 @@ class IntegranteFinalizadoController extends Controller
         foreach ($this->secciones as $seccion)
         {
             $respuestas = $seccion['respuestas'];
-            $this->guardadoFinal($respuestas);
+            try
+            {
+                $this->guardadoFinal($respuestas);
+            }
+            catch (\Throwable $th)
+            {
+                continue;
+            }
         }
 
-        // $this->integrante->actualizarIntegrante([
-        //     'id' => $this->integrante->id,
-        //     'estado_registro' => 'FINALIZADO',
-        //     'puntaje_obtenido' => $this->puntuacion,
-        // ]);
+        $this->integrante->actualizarIntegrante([
+            'id' => $this->integrante->id,
+            'estado_registro' => 'FINALIZADO',
+            'puntaje_obtenido' => $this->puntuacion,
+        ]);
 
         $inducciones = new ControlInduccion($this->integrante, $this->secciones);
         $listaInducciones = $inducciones->getInducciones();
@@ -183,7 +201,7 @@ class IntegranteFinalizadoController extends Controller
         foreach ($respuestas as $refCampo => $respuestaFormulario)
         {
             $pregunta = Pregunta::where('ref_campo', '=', $refCampo)->first();
-            $opcion = new Opcion();
+            $opcion = 0;
 
             if (!empty($pregunta->tipo) && $pregunta->tipo != 'texto' || $pregunta->tipo !== 'texto_largo')
             {

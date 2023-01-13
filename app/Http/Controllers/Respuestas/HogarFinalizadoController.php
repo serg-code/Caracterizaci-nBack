@@ -53,28 +53,35 @@ class HogarFinalizadoController extends Controller
         }
 
         $secciones = $hogarPeticion['secciones'];
-        $actualizarHogar = new ActualizarHogar($hogarPeticion, $secciones);
-        $errores = $actualizarHogar->getErrores();
-        $hogar = $actualizarHogar->getHogar();
+        //? validador del hogar
+        // $actualizarHogar = new ActualizarHogar($hogarPeticion, $secciones);
+        // $errores = $actualizarHogar->getErrores();
+        // $hogar = $actualizarHogar->getHogar();
 
-        if (!empty($errores))
-        {
-            return RespuestaHttp::respuesta(
-                400,
-                'Bad request',
-                'Algo ha salido mal al momento de validar la encuesta',
-                $errores
-            );
-        }
+        // if (!empty($errores))
+        // {
+        //     return RespuestaHttp::respuesta(
+        //         400,
+        //         'Bad request',
+        //         'Algo ha salido mal al momento de validar la encuesta',
+        //         $errores
+        //     );
+        // }
 
-        $secciones = $hogarPeticion['secciones'];
         $this->eliminarRespuesta($hogar->id);
-
         foreach ($secciones as $seccion)
         {
             $respuestas = $seccion['respuestas'];
             $idHogar = $hogar->id;
-            $this->guardadoFinal($respuestas, $idHogar);
+            try
+            {
+
+                $this->guardadoFinal($respuestas, $idHogar);
+            }
+            catch (\Throwable $th)
+            {
+                continue;
+            }
         }
 
         $hogar = $hogar->actualizarHogar([
