@@ -115,6 +115,7 @@ class OpcionesSeeder extends Seeder
         Opcion::create(["id" => "88", "ref_campo" => "enfermedades_costosas", "pregunta_opcion" => "Reemplazos articulares (rodilla, hombro, cadera)", "valor" => "20"]);
         Opcion::create(["id" => "89", "ref_campo" => "enfermedades_costosas", "pregunta_opcion" => "Enfermedad cardiovascular", "valor" => "20"]);
         Opcion::create(["id" => "90", "ref_campo" => "enfermedades_costosas", "pregunta_opcion" => "Patologia congenitas", "valor" => "20"]);
+        Opcion::create(["id" => "990", "ref_campo" => "enfermedades_costosas", "pregunta_opcion" => "Ninguna", "valor" => "0"]);
         Opcion::create(["id" => "91", "ref_campo" => "ha_estado_embarazada", "pregunta_opcion" => "NO", "valor" => "0"]);
         Opcion::create(["id" => "92", "ref_campo" => "ha_estado_embarazada", "pregunta_opcion" => "SI", "valor" => "0"]);
         //Opcion::create(["id"=> "93", "ref_campo" => "cuantos_embarazos_ha_tenido", "pregunta_opcion" => "numero", "valor" => "0"]);
@@ -217,6 +218,7 @@ class OpcionesSeeder extends Seeder
         Opcion::create(["id" => "178", "ref_campo" => "grupo_etnia", "pregunta_opcion" => "Palanquero de San Basilio", "valor" => "1"]);
         Opcion::create(["id" => "179", "ref_campo" => "grupo_etnia", "pregunta_opcion" => "Negro(a), Mulato(a), Afrocolombiano(a) o Afro descendiente", "valor" => "1"]);
         Opcion::create(["id" => "180", "ref_campo" => "grupo_etnia", "pregunta_opcion" => "Otras Etnias", "valor" => "1"]);
+        Opcion::create(["id" => "989", "ref_campo" => "grupo_etnia", "pregunta_opcion" => "Ninguna", "valor" => "0"]);
         Opcion::create(["id" => "181", "ref_campo" => "grupo_atencion_especial", "pregunta_opcion" => "Ninguno", "valor" => "0"]);
         Opcion::create(["id" => "182", "ref_campo" => "grupo_atencion_especial", "pregunta_opcion" => "Desplazado", "valor" => "5"]);
         Opcion::create(["id" => "183", "ref_campo" => "grupo_atencion_especial", "pregunta_opcion" => "Situación especial", "valor" => "5"]);
@@ -322,10 +324,10 @@ class OpcionesSeeder extends Seeder
         Opcion::create(["id" => "281", "ref_campo" => "fuentes_agua", "pregunta_opcion" => "Manantial", "valor" => "5"]);
         Opcion::create(["id" => "282", "ref_campo" => "fuentes_agua", "pregunta_opcion" => "Tanques", "valor" => "5"]);
         Opcion::create(["id" => "283", "ref_campo" => "fuentes_agua", "pregunta_opcion" => "Otra", "valor" => "5"]);
-        Opcion::create(["id" => "284", "ref_campo" => "tipo_tratamiento_agua", "pregunta_opcion" => "Sin tratamiento", "valor" => "5"]);
-        Opcion::create(["id" => "285", "ref_campo" => "tipo_tratamiento_agua", "pregunta_opcion" => "Clorada", "valor" => "2"]);
-        Opcion::create(["id" => "286", "ref_campo" => "tipo_tratamiento_agua", "pregunta_opcion" => "Filtrada", "valor" => "2"]);
-        Opcion::create(["id" => "287", "ref_campo" => "tipo_tratamiento_agua", "pregunta_opcion" => "Hervida", "valor" => "2"]);
+        Opcion::create(["id" => "284", "ref_campo" => "tipos_tratamiento_agua", "pregunta_opcion" => "Sin tratamiento", "valor" => "5"]);
+        Opcion::create(["id" => "285", "ref_campo" => "tipos_tratamiento_agua", "pregunta_opcion" => "Clorada", "valor" => "2"]);
+        Opcion::create(["id" => "286", "ref_campo" => "tipos_tratamiento_agua", "pregunta_opcion" => "Filtrada", "valor" => "2"]);
+        Opcion::create(["id" => "287", "ref_campo" => "tipos_tratamiento_agua", "pregunta_opcion" => "Hervida", "valor" => "2"]);
         Opcion::create(["id" => "288", "ref_campo" => "tratamiento_agua", "pregunta_opcion" => "NO", "valor" => "1"]);
         Opcion::create(["id" => "289", "ref_campo" => "tratamiento_agua", "pregunta_opcion" => "SI", "valor" => "3"]);
         Opcion::create(["id" => "290", "ref_campo" => "tipos_disposicion_basura", "pregunta_opcion" => "Recogida", "valor" => "1"]);

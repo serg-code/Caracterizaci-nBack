@@ -73,7 +73,7 @@ class PreguntaSeeder extends Seeder
                 Pregunta::create(["ref_campo" => "cuantos_gemelos_multiples", "ref_seccion" => "cuidado_enfermedades", "descripcion" => "¿Cuántos gemelos/multiples ha tenido?", "tipo" => "numero"]);
 
                 //* salud_mental
-                Pregunta::create(["ref_campo" => "depresion", "ref_seccion" => "salud_mental", "descripcion" => "Intento de suicidio", "tipo" => "seleccion"]);
+                Pregunta::create(["ref_campo" => "depresion", "ref_seccion" => "salud_mental", "descripcion" => "Depresión", "tipo" => "seleccion"]);
                 Pregunta::create(["ref_campo" => "intento_suicidio", "ref_seccion" => "salud_mental", "descripcion" => "Intento de suicidio", "tipo" => "seleccion"]);
                 Pregunta::create(["ref_campo" => "trastorno_afectivo", "ref_seccion" => "salud_mental", "descripcion" => "Trastorno afectivo", "tipo" => "seleccion"]);
                 Pregunta::create(["ref_campo" => "esquizofrenia", "ref_seccion" => "salud_mental", "descripcion" => "Esquizofrenia", "tipo" => "seleccion"]);
@@ -135,7 +135,7 @@ Pregunta::create(["ref_campo"=> "tipos_alumbrado", "ref_seccion" => "vivienda", 
 Pregunta::create(["ref_campo"=> "dormitorios", "ref_seccion" => "vivienda", "descripcion" => "¿ En alguno de los dormitorios de la vivienda duerme tres o más personas?", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "humo_vivienda", "ref_seccion" => "vivienda", "descripcion" => "¿Hay humo dentro de la vivienda?", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "fuentes_agua", "ref_seccion" => "vivienda", "descripcion" => "¿De dónde se toma el agua para consumo humano?", "tipo" => "seleccion"]);
-Pregunta::create(["ref_campo"=> "tipo_tratamiento_agua", "ref_seccion" => "vivienda", "descripcion" => "Tipo de tratamiento casero al agua", "tipo" => "seleccion"]);
+Pregunta::create(["ref_campo"=> "tipos_tratamiento_agua", "ref_seccion" => "vivienda", "descripcion" => "Tipo de tratamiento casero al agua", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "tratamiento_agua", "ref_seccion" => "vivienda", "descripcion" => "Tratamiento del agua en la fuente", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "tipos_disposicion_basura", "ref_seccion" => "vivienda", "descripcion" => "La basura es", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "reciclan", "ref_seccion" => "vivienda", "descripcion" => "¿Se reciclan (reclasifican) las basuras?", "tipo" => "seleccion"]);
@@ -191,16 +191,16 @@ Pregunta::create(["ref_campo"=> "tipos_material_paredes", "ref_seccion" => "vivi
                 Pregunta::create(["ref_campo" => "consume_gaseosas", "ref_seccion" => "seguridad_alimentaria", "descripcion" => "¿Cuántas veces a la semana consumen Gaseosas", "tipo" => "numero"]);
 
                 //* primera_infancia
-                Pregunta::create(["ref_campo" => "pi_peso_al_nacer", "ref_seccion" => "primera_infancia", "descripcion" => "Valoración nutricional: Peso", "tipo" => "numero"]);
-                Pregunta::create(["ref_campo" => "pi_peso_actual", "ref_seccion" => "primera_infancia", "descripcion" => "Valoración nutricional: Peso", "tipo" => "numero"]);
-                Pregunta::create(["ref_campo" => "pi_talla_al_nacer", "ref_seccion" => "primera_infancia", "descripcion" => "Valoración nutricional: Talla", "tipo" => "numero"]);
-                Pregunta::create(["ref_campo" => "pi_talla_actual", "ref_seccion" => "primera_infancia", "descripcion" => "Valoración nutricional: Talla", "tipo" => "numero"]);
-                Pregunta::create(["ref_campo" => "pi_valoracion_nutricional", "ref_seccion" => "primera_infancia", "descripcion" => "Valoración nutricional: Cinta", "tipo" => "seleccion"]);
-                Pregunta::create(["ref_campo" => "pi_desarrollo_lenguaje", "ref_seccion" => "primera_infancia", "descripcion" => "Valoracion de desarrollo: Lenguaje", "tipo" => "seleccion"]);
-                Pregunta::create(["ref_campo" => "pi_desarrollo_motora", "ref_seccion" => "primera_infancia", "descripcion" => "Valoracion de desarrollo: Motora", "tipo" => "seleccion"]);
-                Pregunta::create(["ref_campo" => "pi_desarrollo_conducta", "ref_seccion" => "primera_infancia", "descripcion" => "Valoracion de desarrollo: Conducta", "tipo" => "seleccion"]);
-                Pregunta::create(["ref_campo" => "pi_desarrollo_probelmas_visuales", "ref_seccion" => "primera_infancia", "descripcion" => "Valoracion de desarrollo: problemas Visuales", "tipo" => "seleccion"]);
-                Pregunta::create(["ref_campo" => "pi_desarrollo_problemas_auditivos", "ref_seccion" => "primera_infancia", "descripcion" => "Valoracion de desarrollo: problemas Auditivos", "tipo" => "seleccion"]);
+                Pregunta::create(["ref_campo" => "pi_peso_al_nacer", "ref_seccion" => "primera_infancia", "descripcion" => "Peso al nacer (kg)", "tipo" => "numero"]);
+                Pregunta::create(["ref_campo" => "pi_peso_actual", "ref_seccion" => "primera_infancia", "descripcion" => "Peso (kg)", "tipo" => "numero"]);
+                Pregunta::create(["ref_campo" => "pi_talla_al_nacer", "ref_seccion" => "primera_infancia", "descripcion" => "Talla al nacer (cm)", "tipo" => "numero"]);
+                Pregunta::create(["ref_campo" => "pi_talla_actual", "ref_seccion" => "primera_infancia", "descripcion" => "Talla (cm)", "tipo" => "numero"]);
+                Pregunta::create(["ref_campo" => "pi_valoracion_nutricional", "ref_seccion" => "primera_infancia", "descripcion" => "Cinta", "tipo" => "seleccion"]);
+                Pregunta::create(["ref_campo" => "pi_desarrollo_lenguaje", "ref_seccion" => "primera_infancia", "descripcion" => "Lenguaje", "tipo" => "seleccion"]);
+                Pregunta::create(["ref_campo" => "pi_desarrollo_motora", "ref_seccion" => "primera_infancia", "descripcion" => "Motora", "tipo" => "seleccion"]);
+                Pregunta::create(["ref_campo" => "pi_desarrollo_conducta", "ref_seccion" => "primera_infancia", "descripcion" => "Conducta", "tipo" => "seleccion"]);
+                Pregunta::create(["ref_campo" => "pi_desarrollo_probelmas_visuales", "ref_seccion" => "primera_infancia", "descripcion" => "problemas Visuales", "tipo" => "seleccion"]);
+                Pregunta::create(["ref_campo" => "pi_desarrollo_problemas_auditivos", "ref_seccion" => "primera_infancia", "descripcion" => "problemas Auditivos", "tipo" => "seleccion"]);
                 Pregunta::create(["ref_campo" => "pi_desparasitado", "ref_seccion" => "primera_infancia", "descripcion" => "Desparasitado en el ultimo año", "tipo" => "seleccion"]);
                 Pregunta::create(["ref_campo" => "pi_hospitalizacion_nacer", "ref_seccion" => "primera_infancia", "descripcion" => "Hospitalización al nacer", "tipo" => "seleccion"]);
                 Pregunta::create(["ref_campo" => "pi_carnet_vacunacion", "ref_seccion" => "primera_infancia", "descripcion" => "Carnet", "tipo" => "seleccion"]);
@@ -239,13 +239,13 @@ Pregunta::create(["ref_campo"=> "tipos_material_paredes", "ref_seccion" => "vivi
                 Pregunta::create(["ref_campo" => "pi_consulta_odontologica", "ref_seccion" => "primera_infancia", "descripcion" => "Consulta odontologia", "tipo" => "seleccion"]);
 
                 //* infancia
-                Pregunta::create(["ref_campo" => "in_peso", "ref_seccion" => "infancia", "descripcion" => "Valoración nutricional: Peso (kgs)", "tipo" => "numero"]);
-                Pregunta::create(["ref_campo" => "in_talla", "ref_seccion" => "infancia", "descripcion" => "Valoración nutricional:  Talla (cm)", "tipo" => "numero"]);
-                Pregunta::create(["ref_campo" => "in_desarrollo_lenguaje", "ref_seccion" => "infancia", "descripcion" => "Valoracion de desarrollo: Lenguaje", "tipo" => "seleccion"]);
-                Pregunta::create(["ref_campo" => "in_desarrollo_motora", "ref_seccion" => "infancia", "descripcion" => "Valoracion de desarrollo: Motora", "tipo" => "seleccion"]);
-                Pregunta::create(["ref_campo" => "in_desarrollo_conducta", "ref_seccion" => "infancia", "descripcion" => "Valoracion de desarrollo: Conducta", "tipo" => "seleccion"]);
-                Pregunta::create(["ref_campo" => "in_desarrollo_probelmas_visuales", "ref_seccion" => "infancia", "descripcion" => "Valoracion de desarrollo: problemas Visuales", "tipo" => "seleccion"]);
-                Pregunta::create(["ref_campo" => "in_desarrollo_problemas_auditivos", "ref_seccion" => "infancia", "descripcion" => "Valoracion de desarrollo: problemas Auditivos", "tipo" => "seleccion"]);
+                Pregunta::create(["ref_campo" => "in_peso", "ref_seccion" => "infancia", "descripcion" => "Peso (kg)", "tipo" => "numero"]);
+                Pregunta::create(["ref_campo" => "in_talla", "ref_seccion" => "infancia", "descripcion" => "Talla (cm)", "tipo" => "numero"]);
+                Pregunta::create(["ref_campo" => "in_desarrollo_lenguaje", "ref_seccion" => "infancia", "descripcion" => "Lenguaje", "tipo" => "seleccion"]);
+                Pregunta::create(["ref_campo" => "in_desarrollo_motora", "ref_seccion" => "infancia", "descripcion" => "Motora", "tipo" => "seleccion"]);
+                Pregunta::create(["ref_campo" => "in_desarrollo_conducta", "ref_seccion" => "infancia", "descripcion" => "Conducta", "tipo" => "seleccion"]);
+                Pregunta::create(["ref_campo" => "in_desarrollo_probelmas_visuales", "ref_seccion" => "infancia", "descripcion" => "problemas Visuales", "tipo" => "seleccion"]);
+                Pregunta::create(["ref_campo" => "in_desarrollo_problemas_auditivos", "ref_seccion" => "infancia", "descripcion" => "problemas Auditivos", "tipo" => "seleccion"]);
                 Pregunta::create(["ref_campo" => "in_desparasitado", "ref_seccion" => "infancia", "descripcion" => "Desparasitado en el ultimo año los ultimos 6 meses", "tipo" => "seleccion"]);
                 Pregunta::create(["ref_campo" => "in_carnet_vacunacion", "ref_seccion" => "infancia", "descripcion" => "Carnet", "tipo" => "seleccion"]);
                 Pregunta::create(["ref_campo" => "in_vacuna_dpt_r2", "ref_seccion" => "infancia", "descripcion" => "DPT", "tipo" => "seleccion"]);
@@ -265,8 +265,8 @@ Pregunta::create(["ref_campo"=> "tipos_material_paredes", "ref_seccion" => "vivi
                 Pregunta::create(["ref_campo" => "in_atencion_enfermeria", "ref_seccion" => "infancia", "descripcion" => "Atención en salud en enfermería", "tipo" => "seleccion"]);
 
                 //* adolescencia
-                Pregunta::create(["ref_campo" => "adol_peso", "ref_seccion" => "adolescencia", "descripcion" => "Valoración nutricional: Peso (kgs)", "tipo" => "numero"]);
-                Pregunta::create(["ref_campo" => "adol_talla", "ref_seccion" => "adolescencia", "descripcion" => "Valoración nutricional:  Talla (cm)", "tipo" => "numero"]);
+                Pregunta::create(["ref_campo" => "adol_peso", "ref_seccion" => "adolescencia", "descripcion" => "Peso (kg)", "tipo" => "numero"]);
+                Pregunta::create(["ref_campo" => "adol_talla", "ref_seccion" => "adolescencia", "descripcion" => "Talla (cm)", "tipo" => "numero"]);
                 Pregunta::create(["ref_campo" => "adol_imc", "ref_seccion" => "adolescencia", "descripcion" => "Indice de Masa Corporal", "tipo" => "numero"]);
                 Pregunta::create(["ref_campo" => "adol_asesoria_anticonceptiva", "ref_seccion" => "adolescencia", "descripcion" => "Atención en salud para la asesoria en anticoncepción", "tipo" => "seleccion"]);
                 Pregunta::create(["ref_campo" => "adol_planifica", "ref_seccion" => "adolescencia", "descripcion" => "Planifica: Método", "tipo" => "seleccion"]);
@@ -312,8 +312,8 @@ Pregunta::create(["ref_campo"=> "tipos_material_paredes", "ref_seccion" => "vivi
                 Pregunta::create(["ref_campo" => "juv_perimetro_abdominal", "ref_seccion" => "juventud", "descripcion" => "Perímetro abdominal", "tipo" => "numero"]);
 
                 //* adultez
-                Pregunta::create(["ref_campo" => "adul_valoracion_peso", "ref_seccion" => "adultez", "descripcion" => "Valoración nutricional: Peso (kgs)", "tipo" => "numero"]);
-                Pregunta::create(["ref_campo" => "adul_valoracion_talla", "ref_seccion" => "adultez", "descripcion" => "Valoración nutricional: Talla (cm)", "tipo" => "numero"]);
+                Pregunta::create(["ref_campo" => "adul_valoracion_peso", "ref_seccion" => "adultez", "descripcion" => "Peso (kg)", "tipo" => "numero"]);
+                Pregunta::create(["ref_campo" => "adul_valoracion_talla", "ref_seccion" => "adultez", "descripcion" => "Talla (cm)", "tipo" => "numero"]);
                 Pregunta::create(["ref_campo" => "adul_imc", "ref_seccion" => "adultez", "descripcion" => "Indice de Masa Corporal", "tipo" => "numero"]);
                 Pregunta::create(["ref_campo" => "adul_asesoria_anticoncepcion", "ref_seccion" => "adultez", "descripcion" => "Atención en salud para la asesoria en anticoncepción", "tipo" => "seleccion"]);
                 Pregunta::create(["ref_campo" => "adul_planifica", "ref_seccion" => "adultez", "descripcion" => "Planifica: Método", "tipo" => "seleccion"]);
@@ -344,8 +344,8 @@ Pregunta::create(["ref_campo"=> "tipos_material_paredes", "ref_seccion" => "vivi
                 Pregunta::create(["ref_campo" => "adul_prueba_vih", "ref_seccion" => "adultez", "descripcion" => "Prueba de VIH", "tipo" => "seleccion"]);
 
                 //* vejez
-                Pregunta::create(["ref_campo" => "ve_valoracion_peso", "ref_seccion" => "vejez", "descripcion" => "Valoración nutricional: Peso (kgs)", "tipo" => "numero"]);
-                Pregunta::create(["ref_campo" => "ve_valoracion_talla", "ref_seccion" => "vejez", "descripcion" => "Valoración nutricional:  Talla (cm)", "tipo" => "numero"]);
+                Pregunta::create(["ref_campo" => "ve_valoracion_peso", "ref_seccion" => "vejez", "descripcion" => "Peso (kg)", "tipo" => "numero"]);
+                Pregunta::create(["ref_campo" => "ve_valoracion_talla", "ref_seccion" => "vejez", "descripcion" => "Talla (cm)", "tipo" => "numero"]);
                 Pregunta::create(["ref_campo" => "ve_imc", "ref_seccion" => "vejez", "descripcion" => "Indice de Masa Corporal", "tipo" => "numero"]);
                 Pregunta::create(["ref_campo" => "ve_asesoria_anticoncepcion", "ref_seccion" => "vejez", "descripcion" => "Atención en salud para la asesoria en anticoncepción", "tipo" => "seleccion"]);
                 Pregunta::create(["ref_campo" => "ve_planifica", "ref_seccion" => "vejez", "descripcion" => "Planifica: Método", "tipo" => "seleccion"]);
@@ -382,7 +382,7 @@ Pregunta::create(["ref_campo"=> "tipos_material_paredes", "ref_seccion" => "vivi
 Pregunta::create(["ref_campo"=> "ma_fecha_control_prenatal", "ref_seccion" => "materno_perinatal", "descripcion" => "fecha de control prenatal", "tipo" => "fecha"]);
 Pregunta::create(["ref_campo"=> "ma_fecha_ultima_regla", "ref_seccion" => "materno_perinatal", "descripcion" => "Fecha de la ultima regla", "tipo" => "fecha"]);
 Pregunta::create(["ref_campo"=> "ma_fecha_parto", "ref_seccion" => "materno_perinatal", "descripcion" => "Fecha probable del parto", "tipo" => "fecha"]);
-Pregunta::create(["ref_campo"=> "ma_ganancia_peso", "ref_seccion" => "materno_perinatal", "descripcion" => "Ganancia de peso (kgs)", "tipo" => "numero"]);
+Pregunta::create(["ref_campo"=> "ma_ganancia_peso", "ref_seccion" => "materno_perinatal", "descripcion" => "Ganancia de peso", "tipo" => "numero"]);
 Pregunta::create(["ref_campo"=> "ma_gestacion", "ref_seccion" => "materno_perinatal", "descripcion" => "semanas de gestación", "tipo" => "numero"]);
 Pregunta::create(["ref_campo"=> "ma_carnet", "ref_seccion" => "materno_perinatal", "descripcion" => "Carnet  de control prenatal", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "ma_prenatal_mensual", "ref_seccion" => "materno_perinatal", "descripcion" => "Control prenantal mensual", "tipo" => "seleccion"]);
@@ -414,7 +414,7 @@ Pregunta::create(["ref_campo"=> "ma_parto_cesarea", "ref_seccion" => "materno_pe
 Pregunta::create(["ref_campo"=> "ma_otras_complicaciones_parto", "ref_seccion" => "materno_perinatal", "descripcion" => "Otras complicaciones del trabajo del parto y partos no clasificadas en otra parte", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "ma_otras_complicaciones_purperio", "ref_seccion" => "materno_perinatal", "descripcion" => "Otras complicaciones del puerperio, no clasificadas en otra parte", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "ma_hospitalizacion_sifilis", "ref_seccion" => "materno_perinatal", "descripcion" => "Hospitalización del recien nacido por sífilis", "tipo" => "seleccion"]);
-Pregunta::create(["ref_campo"=> "ma_edad_gestacional", "ref_seccion" => "materno_perinatal", "descripcion" => "Edad gestacional al nacer", "tipo" => "numero"]);
+Pregunta::create(["ref_campo"=> "ma_edad_gestacional", "ref_seccion" => "materno_perinatal", "descripcion" => "Edad gestacional al nacer (semanas)", "tipo" => "numero"]);
 Pregunta::create(["ref_campo"=> "ma_plan_canguro", "ref_seccion" => "materno_perinatal", "descripcion" => "Plan canguro", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "ma_curso_maternidad_paternidad", "ref_seccion" => "materno_perinatal", "descripcion" => "Curso de preparación de maternidad y paternidad", "tipo" => "seleccion"]);
 Pregunta::create(["ref_campo"=> "ma_atencion_medica", "ref_seccion" => "materno_perinatal", "descripcion" => "Atención en salud médica", "tipo" => "seleccion"]);
