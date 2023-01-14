@@ -62,6 +62,7 @@ class Integrantes extends Model
 
         if (empty($integrante))
         {
+            $datos['puntaje_max'] = 180;
             $integrante = new Integrantes($datos);
             $integrante->save();
             return $integrante;
