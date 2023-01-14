@@ -13,7 +13,7 @@ class Inducciones extends Model
 
     protected $fillable = [
         'id',
-        'idtipo_induccion',
+        'tipo_id',
         'id_integrante',
     ];
 
@@ -26,5 +26,15 @@ class Inducciones extends Model
     {
         $parentesco = new inducciones($datos);
         $parentesco->save();
+    }
+
+    public function integrante()
+    {
+        return $this->belongsTo(Integrantes::class, 'id');
+    }
+
+    public function tipoInduccion()
+    {
+        return $this->belongsTo(TipoInduccion::class, 'id');
     }
 }

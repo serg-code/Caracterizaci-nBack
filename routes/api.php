@@ -50,6 +50,7 @@ Route::group(['middleware' => ['auth:sanctum']], function ()
         'hogar/completo',
         [\App\Http\Controllers\Respuestas\HogarFinalizadoController::class, 'finalizarHogar']
     );
+    Route::get('hogar/{id}/integrantes', [\App\Http\Controllers\HogarController::class, 'integrantesHogar']);
 
     Route::apiResource('integrante', \App\Http\Controllers\IntegrantesController::class)
         ->only(['store', 'show', 'destroy', 'index']);

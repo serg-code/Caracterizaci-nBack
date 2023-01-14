@@ -93,12 +93,12 @@ class Hogar extends Model
 
     public function departamento()
     {
-        return $this->belongsTo(Departamento::class, 'codigo_dane');
+        return $this->belongsTo(Departamento::class, 'cod_dpto');
     }
 
     public function municipio()
     {
-        return $this->belongsTo(Municipio::class, 'codigo_dane');
+        return $this->belongsTo(Municipio::class, 'cod_mun');
     }
 
     public function factoresProtectores()

@@ -51,6 +51,11 @@ class Integrantes extends Model
         return $this->belongsTo(TipoIdentifacion::class, 'tipo_identificacion');
     }
 
+    public function inducciones()
+    {
+        return $this->hasMany(Inducciones::class, 'id_integrante', 'id');
+    }
+
     public static function guardarIntegrante(array $datos): Integrantes
     {
         $integrante = Integrantes::find($datos['id'] ?? '');

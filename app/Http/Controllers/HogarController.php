@@ -28,7 +28,13 @@ class HogarController extends Controller
 
         if (empty($datosUrl))
         {
-            $listadoHogares = Hogar::paginate($cantidadPaginar);
+            $listadoHogares = Hogar::select([
+                'id',
+                'barrio_vereda_id',
+                'zona', 'cod_dpto', 'cod_mun', 'tipo', 'direccion'
+            ])
+                ->with(['municipio.departamento'])
+                ->paginate($cantidadPaginar);
 
             return RespuestaHttp::respuesta(
                 200,
@@ -48,6 +54,7 @@ class HogarController extends Controller
                 'cod_mun',
                 'tipo'
             ])
+            ->with(['municipio.departamento'])
             ->paginate($cantidadPaginar);
 
         return RespuestaHttp::respuesta(
@@ -118,11 +125,9 @@ class HogarController extends Controller
      */
     public function show($id)
     {
-        $hogar = Hogar::findOrFail($id);
-        $hogar->integrantes;
-        $municipio = Municipio::find($hogar->cod_mun);
-        $municipio->departamento;
-        $hogar->municipio = $municipio;
+        $hogar = Hogar::where('id', '=', $id)
+            ->with(['integrantes.inducciones.tipoInduccion'])
+            ->first();
 
         $respuesta = new RespuestaHttp();
         $respuesta->data = $hogar;
@@ -151,5 +156,22 @@ class HogarController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function integrantesHogar($id)
+    {
+        $hogar = Hogar::select([
+            'id',
+            'puntaje_max',
+            'puntaje_obtenido'
+        ])
+            ->where('id', '=', $id)
+            ->with(['integrantes.inducciones.tipoInduccion'])
+            ->first();
+
+        $respuesta = new RespuestaHttp();
+        $respuesta->data = $hogar;
+
+        return response()->json($respuesta, $respuesta->codigoHttp);
     }
 }

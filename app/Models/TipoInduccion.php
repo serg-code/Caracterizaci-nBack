@@ -35,6 +35,6 @@ class TipoInduccion extends Model
 
     public function inducciones()
     {
-        return $this->hasMany(Inducciones::class, 'id_tipo_induccion');
+        return $this->hasMany(Inducciones::class, 'tipo_id', 'id');
     }
 }

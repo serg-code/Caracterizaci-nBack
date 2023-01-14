@@ -58,12 +58,6 @@ class ValidarPrimeraInfancia extends Controller implements ValidacionEncuesta
         }
     }
 
-    protected function PesoActual()
-    {
-        //* Condicional con peso y talla
-        //pi_peso_actual
-    }
-
     protected function TallaNacer()
     {
         if ($this->seccion['pi_talla_al_nacer'] < 40)
@@ -75,5 +69,10 @@ class ValidarPrimeraInfancia extends Controller implements ValidacionEncuesta
         {
             $this->puntaje += 5;
         }
+    }
+
+    protected function vacunacion()
+    {
+        # code...
     }
 }
