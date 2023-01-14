@@ -788,8 +788,8 @@ class OpcionesSeeder extends Seeder
         Opcion::create(["id" => "721", "ref_campo" => "adul_cancer_prostata", "pregunta_opcion" => "NO", "valor" => "5"]);
         Opcion::create(["id" => "722", "ref_campo" => "adul_cancer_prostata", "pregunta_opcion" => "Positivo", "valor" => "30"]);
         Opcion::create(["id" => "723", "ref_campo" => "adul_cancer_prostata", "pregunta_opcion" => "Negativo", "valor" => "1"]);
-        Opcion::create(["id" => "724", "ref_campo" => "adul_asesoria_anticoncepcion", "pregunta_opcion" => "NO", "valor" => "1"]);
-        Opcion::create(["id" => "725", "ref_campo" => "adul_asesoria_anticoncepcion", "pregunta_opcion" => "SI", "valor" => "3"]);
+        //Opcion::create(["id" => "724", "ref_campo" => "adul_asesoria_anticoncepcion", "pregunta_opcion" => "NO", "valor" => "1"]);
+        //Opcion::create(["id" => "725", "ref_campo" => "adul_asesoria_anticoncepcion", "pregunta_opcion" => "SI", "valor" => "3"]);
         Opcion::create(["id" => "726", "ref_campo" => "adul_vasectomia", "pregunta_opcion" => "NO", "valor" => "1"]);
         Opcion::create(["id" => "727", "ref_campo" => "adul_vasectomia", "pregunta_opcion" => "SI", "valor" => "3"]);
         Opcion::create(["id" => "728", "ref_campo" => "adul_esterilizacion_femenina", "pregunta_opcion" => "NO", "valor" => "1"]);
