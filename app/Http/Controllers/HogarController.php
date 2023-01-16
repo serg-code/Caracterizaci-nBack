@@ -31,7 +31,11 @@ class HogarController extends Controller
             $listadoHogares = Hogar::select([
                 'id',
                 'barrio_vereda_id',
-                'zona', 'cod_dpto', 'cod_mun', 'tipo', 'direccion'
+                'zona',
+                'cod_dpto',
+                'cod_mun',
+                'tipo',
+                'direccion'
             ])
                 ->with(['municipio.departamento'])
                 ->paginate($cantidadPaginar);
@@ -46,6 +50,15 @@ class HogarController extends Controller
 
         //filtro de usuarios
         $hogares = QueryBuilder::for(Hogar::class)
+            ->select([
+                'id',
+                'barrio_vereda_id',
+                'zona',
+                'cod_dpto',
+                'cod_mun',
+                'tipo',
+                'direccion'
+            ])
             ->allowedFilters([
                 AllowedFilter::scope('search'),
                 AllowedFilter::exact('id'),
