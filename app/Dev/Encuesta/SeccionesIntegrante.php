@@ -2,6 +2,8 @@
 
 namespace App\Dev\Encuesta;
 
+use App\Http\Controllers\Validador\Integrante\ValidarPrimeraInfancia;
+use App\Interfaces\ValidacionEncuesta;
 use App\Models\Integrantes;
 
 class SeccionesIntegrante
@@ -57,13 +59,6 @@ class SeccionesIntegrante
     public static function obtenerSecciones(): array
     {
         return [
-            'accidentes',
-            'cuidado_enfermedades',
-            'cuidados_domiciliarios',
-            'enfermedades_salud_publica',
-            'morbilidad',
-            'salud_mental',
-            'identificacion_ciudadana',
             'primera_infancia',
             'infancia',
             'adolescencia',
@@ -71,9 +66,40 @@ class SeccionesIntegrante
             'adultez',
             'vejez',
             'materno_perinatal',
+            'accidentes',
+            'cuidado_enfermedades',
+            'cuidados_domiciliarios',
+            'enfermedades_salud_publica',
+            'morbilidad',
+            'salud_mental',
+            'identificacion_ciudadana',
         ];
     }
 
+    public static function obtenerValidador(Integrantes $integrante, array $seccion, string $nombreSeccion = ''): ?ValidacionEncuesta
+    {
+        return match ($nombreSeccion)
+        {
+            'primera_infancia' => new ValidarPrimeraInfancia($integrante, $seccion),
+            'infancia' => null,
+            'adolescencia' => null,
+            'juventud' => null,
+            'adultez' => null,
+            'vejez' => null,
+            'materno_perinatal' => null,
+            'accidentes' => null,
+            'cuidado_enfermedades' => null,
+            'cuidados_domiciliarios' => null,
+            'enfermedades_salud_publica' => null,
+            'morbilidad' => null,
+            'salud_mental' => null,
+            'identificacion_ciudadana' => null,
+
+            default => null,
+        };
+    }
+
+    // ! retirar
     public static function getPreguntasSeccion(string $seccion): ?array
     {
         return match ($seccion)
@@ -85,7 +111,7 @@ class SeccionesIntegrante
             'morbilidad' => SeccionesIntegrante::preguntasMorbiilidad(),
             'salud_mental' => SeccionesIntegrante::preguntasSaludMental(),
             'identificacion_ciudadana', => SeccionesIntegrante::preguntasIdentificacionCiudadana(),
-            'primera_infancia', => SeccionesIntegrante::preguntasPrimeraInfancia(),
+            // 'primera_infancia', => SeccionesIntegrante::preguntasPrimeraInfancia(),
             'infancia', => SeccionesIntegrante::preguntasInfancia(),
             'adolescencia' => SeccionesIntegrante::preguntasAdolescencia(),
             'juventud' => SeccionesIntegrante::preguntasJuventud(),
@@ -214,58 +240,6 @@ class SeccionesIntegrante
             'discapacidad' => null,
             'ayudas_tenicas' => null,
 
-        ];
-    }
-
-    public static function preguntasPrimeraInfancia(): array
-    {
-        return [
-            'pi_peso_al_nacer' => null,
-            'pi_peso_actual' => null,
-            'pi_talla_al_nacer',
-            'pi_talla_actual' => null,
-            'pi_valoracion_nutricional' => null,
-            'pi_desarrollo_lenguaje' => null,
-            'pi_desarrollo_motora' => null,
-            'pi_desarrollo_conducta' => null,
-            'pi_desarrollo_probelmas_visuales' => null,
-            'pi_desarrollo_problemas_auditivos' => null,
-            'pi_desparasitado' => null,
-            'pi_hospitalizacion_nacer' => null,
-            'pi_carnet_vacunacion' => null,
-            'pi_vacuna_bcg_rn' => null,
-            'pi_vacuna_polio_d1' => null,
-            'pi_vacuna_polio_d2' => null,
-            'pi_vacuna_polio_d3' => null,
-            'pi_vacuna_polio_r1' => null,
-            'pi_vacuna_polio_r2' => null,
-            'pi_vacuna_hepatitis' => null,
-            'pi_vacuna_hepatitis_b_rn' => null,
-            'pi_vacuna_influenza_estacional' => null,
-            'pi_vacuna_neumococo_d1' => null,
-            'pi_vacuna_neumococo_d2' => null,
-            'pi_vacuna_neumococo_d3' => null,
-            'pi_vacuna_rotavirus_d1' => null,
-            'pi_vacuna_rotavirus_d2' => null,
-            'pi_vacuna_fiebre_amarilla' => null,
-            'pi_vacuna_dpt_d1' => null,
-            'pi_vacuna_dpt_d2' => null,
-            'pi_vacuna_pentavalente_d1' => null,
-            'pi_vacuna_pentavalente_d2' => null,
-            'pi_vacuna_pentavalente_d3' => null,
-            'pi_vacuna_srp_d1' => null,
-            'pi_vacuna_srp_d2' => null,
-            'pi_vacuna_varicela' => null,
-            'pi_atencion_medica' => null,
-            'pi_atencion_enfermeria' => null,
-            'pi_atencion_lactancia' => null,
-            'pi_tsh' => null,
-            'pi_fluor' => null,
-            'pi_profilaxis' => null,
-            'pi_sellantes' => null,
-            'pi_higiene_bucal' => null,
-            'pi_caries' => null,
-            'pi_consulta_odontologica' => null,
         ];
     }
 

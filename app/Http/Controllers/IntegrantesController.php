@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Dev\ControlIntegrante;
-use App\Dev\Encuesta\Secciones;
 use App\Dev\Encuesta\SeccionesIntegrante;
 use App\Dev\RespuestaHttp;
-use App\Models\Hogar\Hogar;
 use App\Models\Integrantes;
 use App\Models\Secciones\Integrantes\Accidente;
 use App\Models\Secciones\Integrantes\Adolescencia;

@@ -73,26 +73,46 @@ class IntegranteFinalizadoController extends Controller
         //     return RespuestaHttp::respuestaObjeto($errorValidacion);
         // }
 
-
-        // $respuestasIintegrante = new RespuestaIntegrante(['id_integrante' => $this->integrante->id]);
-        // $respuestasIintegrante->eliminarRespuestas();
         RespuestaIntegrante::where('id_integrante', '=', $this->integrante->id)->delete();
         $this->secciones = $integrantePeticion['secciones'];
+
+        $listadoSecciones = SeccionesIntegrante::obtenerSecciones();
+
+        foreach ($listadoSecciones as $nombreSeccion)
+        {
+            if (empty($this->secciones[$nombreSeccion]))
+            {
+                array_push($this->errores, ["$nombreSeccion" => "No encontramos la seccion $nombreSeccion"]);
+                continue;
+            }
+            //buscar validador
+            $validador = SeccionesIntegrante::obtenerValidador($this->integrante, $this->secciones[$nombreSeccion]);
+            if (!empty($validador))
+            {
+                $validador->validar();
+                $errorValidacion = $validador->obtenerErrores();
+                $this->errores = array_merge($this->errores, $errorValidacion);
+                $this->puntuacion += $validador->obtenerPuntaje();
+
+                //actualizar la seccion
+                $this->secciones[$nombreSeccion] = $validador->obtenerSeccion();
+            }
+        }
 
         // foreach ($this->secciones as $refSeccion => $datos)
         // {
         //     $this->recorrerRespuestas($datos['respuestas'], $refSeccion);
         // }
 
-        // if (!empty($this->errores))
-        // {
-        //     return RespuestaHttp::respuesta(
-        //         400,
-        //         'Bad request',
-        //         'Encontrmos errores al validar la encuesta',
-        //         $this->errores
-        //     );
-        // }
+        if (!empty($this->errores))
+        {
+            return RespuestaHttp::respuesta(
+                400,
+                'Bad request',
+                'Encontrmos errores al validar la encuesta',
+                $this->errores
+            );
+        }
 
         foreach ($this->secciones as $seccion)
         {
