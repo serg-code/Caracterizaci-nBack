@@ -2,6 +2,7 @@
 
 namespace App\Dev\Encuesta;
 
+use App\Http\Controllers\Validador\Integrante\ValidarInfancia;
 use App\Http\Controllers\Validador\Integrante\ValidarPrimeraInfancia;
 use App\Interfaces\ValidacionEncuesta;
 use App\Models\Integrantes;
@@ -81,7 +82,7 @@ class SeccionesIntegrante
         return match ($nombreSeccion)
         {
             'primera_infancia' => new ValidarPrimeraInfancia($integrante, $seccion),
-            'infancia' => null,
+            'infancia' => new ValidarInfancia($integrante, $seccion),
             'adolescencia' => null,
             'juventud' => null,
             'adultez' => null,
@@ -112,7 +113,7 @@ class SeccionesIntegrante
             'salud_mental' => SeccionesIntegrante::preguntasSaludMental(),
             'identificacion_ciudadana', => SeccionesIntegrante::preguntasIdentificacionCiudadana(),
             // 'primera_infancia', => SeccionesIntegrante::preguntasPrimeraInfancia(),
-            'infancia', => SeccionesIntegrante::preguntasInfancia(),
+            // 'infancia', => SeccionesIntegrante::preguntasInfancia(),
             'adolescencia' => SeccionesIntegrante::preguntasAdolescencia(),
             'juventud' => SeccionesIntegrante::preguntasJuventud(),
             'adultez' => SeccionesIntegrante::preguntasAdultez(),
@@ -240,36 +241,6 @@ class SeccionesIntegrante
             'discapacidad' => null,
             'ayudas_tenicas' => null,
 
-        ];
-    }
-
-    public static function preguntasInfancia(): array
-    {
-        return [
-            'in_peso' => null,
-            'in_talla' => null,
-            'in_desarrollo_lenguaje' => null,
-            'in_desarrollo_motora' => null,
-            'in_desarrollo_conducta' => null,
-            'in_desarrollo_probelmas_visuales' => null,
-            'in_desarrollo_problemas_auditivos' => null,
-            'in_desparasitado' => null,
-            'in_carnet_vacunacion' => null,
-            'in_vacuna_dpt_r2' => null,
-            'in_vacuna_polio_r2' => null,
-            'in_vacuna_srp_r1' => null,
-            'in_vacuna_fiebre_amarilla' => null,
-            'in_vacuna_vph_d1' => null,
-            'in_vacuna_vph_d2' => null,
-            'in_vacuna_vph_d3' => null,
-            'in_caries' => null,
-            'in_consulta_odontologica' => null,
-            'in_uso_seda_dental' => null,
-            'in_fluor' => null,
-            'in_profilaxis' => null,
-            'in_sellantes' => null,
-            'in_atencion_medica' => null,
-            'in_atencion_enfermeria' => null,
         ];
     }
 

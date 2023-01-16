@@ -38,6 +38,7 @@ class ValidarPrimeraInfancia extends Controller implements ValidacionEncuesta
         if ($this->edad < 0 || $this->edad > 5)
         {
             //Este integrante no es valido para serponser esta seccion
+            $this->seccion = [];
             return false;
         }
 
@@ -253,26 +254,42 @@ class ValidarPrimeraInfancia extends Controller implements ValidacionEncuesta
 
     protected function valoracionIntegral()
     {
-        // TODO preguntar por que no están en el frontend
-        // TODO: ralizar funcion para validar los rangos de edad
-        // $this->puntuacion('pi_atencion_medica');
-        // $this->puntuacion('pi_atencion_enfermeria');
-
-        // if ($this->mesesEdad < 1 || $this->mesesEdad > 6)
-        // {
-        //     unset($this->seccion['pi_atencion_lactancia']);
-        // }
-        // else
-        // {
-        //     $this->puntuacion('pi_atencion_lactancia');
-        // }
-
+        $this->validacionSimple('pi_atencion_medica', $this->rangosAtencionMedica());
+        $this->validacionSimple('pi_atencion_enfermeria', $this->rangosAtencionEnfermeria());
+        $this->validacionSimple('pi_atencion_lactancia', ($this->mesesEdad >= 1 && $this->mesesEdad <= 6));
         $this->puntuacion('pi_tsh');
     }
 
     protected function rangosAtencionMedica(): bool
     {
-        return true;
+        $mesesEdad = $this->mesesEdad;
+        $edad = $this->edad;
+
+        return ($mesesEdad == 1) || ($mesesEdad >= 4 && $mesesEdad <= 5) ||
+            ($mesesEdad >= 12 && $mesesEdad <= 18) || ($mesesEdad >= 24 && $mesesEdad >= 29) ||
+            ($edad == 3) || ($edad == 4);
+    }
+
+    protected function rangosAtencionEnfermeria(): bool
+    {
+        $mesesEdad = $this->mesesEdad;
+        $edad = $this->edad;
+
+        return ($mesesEdad >= 2 && $mesesEdad <= 3) || ($mesesEdad >= 6 && $mesesEdad <= 8) ||
+            ($mesesEdad >= 9 && $mesesEdad <= 11) || ($mesesEdad >= 19 && $mesesEdad <= 23) ||
+            ($mesesEdad >= 30 && $mesesEdad <= 35) || ($edad == 4);
+    }
+
+    protected function validacionSimple(string $refCampo, bool $validar)
+    {
+        if ($validar)
+        {
+            $this->puntuacion($refCampo);
+        }
+        else
+        {
+            unset($this->seccion[$refCampo]);
+        }
     }
 
     protected function proteccionEspeficifica()
