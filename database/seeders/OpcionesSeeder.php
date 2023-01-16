@@ -526,6 +526,8 @@ class OpcionesSeeder extends Seeder
         Opcion::create(["id" => "471", "ref_campo" => "pi_atencion_medica", "pregunta_opcion" => "SI", "valor" => "3"]);
         Opcion::create(["id" => "472", "ref_campo" => "pi_atencion_enfermeria", "pregunta_opcion" => "NO", "valor" => "1"]);
         Opcion::create(["id" => "473", "ref_campo" => "pi_atencion_enfermeria", "pregunta_opcion" => "SI", "valor" => "3"]);
+        Opcion::create(["id" => "991", "ref_campo" => "pi_atencion_lactancia", "pregunta_opcion" => "NO", "valor" => "1"]);
+        Opcion::create(["id" => "992", "ref_campo" => "pi_atencion_lactancia", "pregunta_opcion" => "SI", "valor" => "3"]);
         Opcion::create(["id" => "474", "ref_campo" => "pi_tsh", "pregunta_opcion" => "normal", "valor" => "0"]);
         Opcion::create(["id" => "475", "ref_campo" => "pi_tsh", "pregunta_opcion" => "anormal", "valor" => "5"]);
         Opcion::create(["id" => "476", "ref_campo" => "pi_tsh", "pregunta_opcion" => "sin resultados", "valor" => "5"]);

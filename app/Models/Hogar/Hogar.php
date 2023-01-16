@@ -33,6 +33,9 @@ class Hogar extends Model
         'geolocalizacion',
         'encuesta',
         'estado_registro',
+        'realizo_encuesta',
+        'motivos',
+        'observaciones',
     ];
 
     protected $hidden = [
