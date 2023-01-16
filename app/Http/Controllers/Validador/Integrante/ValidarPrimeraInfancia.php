@@ -253,12 +253,50 @@ class ValidarPrimeraInfancia extends Controller implements ValidacionEncuesta
 
     protected function valoracionIntegral()
     {
-        # code...
+        // TODO preguntar por que no están en el frontend
+        // $this->puntuacion('pi_atencion_medica');
+        // $this->puntuacion('pi_atencion_enfermeria');
+
+        // if ($this->mesesEdad < 1 || $this->mesesEdad > 6)
+        // {
+        //     unset($this->seccion['pi_atencion_lactancia']);
+        // }
+        // else
+        // {
+        //     $this->puntuacion('pi_atencion_lactancia');
+        // }
+
+        $this->puntuacion('pi_tsh');
     }
 
     protected function proteccionEspeficifica()
     {
-        # code...
+        $meses = $this->mesesEdad;
+        $edad = $this->edad;
+
+        if ($edad >= 1 && $edad <= 5)
+        {
+            $this->puntuacion('pi_fluor');
+            $this->puntuacion('pi_profilaxis');
+        }
+        else
+        {
+            unset(
+                $this->seccion['pi_fluor'],
+                $this->seccion['pi_profilaxis'],
+            );
+        }
+
+        if ($meses > 6)
+        {
+            $this->puntuacion('pi_consulta_odontologica');
+        }
+        else
+        {
+            unset(
+                $this->seccion['pi_consulta_odontologica']
+            );
+        }
     }
 
     protected function puntuacion(string $refCampo)
