@@ -110,7 +110,8 @@ class IntegrantesController extends Controller
      */
     public function show($id)
     {
-        $integrante = Integrantes::find($id);
+        $integrante = Integrantes::where('id', '=', $id)->with(['inducciones.tipoInduccion'])->first();
+
 
         if (empty($integrante))
         {
