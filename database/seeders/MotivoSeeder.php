@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Opcion;
+use App\Models\MotivosNoResponde;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -15,8 +15,8 @@ class MotivoSeeder extends Seeder
      */
     public function run()
     {
-        Opcion::create(["id" => "993", "motivos" => "No hay nadie presente"]);
-        Opcion::create(["id" => "994", "motivos" => "No quizo responder"]);
-        Opcion::create(["id" => "995", "motivos" => "Solos habian niños presentes"]);
+        MotivosNoResponde::create(["id" => "1", "motivos" => "No hay nadie presente"]);
+        MotivosNoResponde::create(["id" => "2", "motivos" => "No quizo responder"]);
+        MotivosNoResponde::create(["id" => "3", "motivos" => "Solos habian niños presentes"]);
     }
 }

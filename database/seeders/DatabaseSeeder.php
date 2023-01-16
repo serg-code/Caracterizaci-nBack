@@ -66,10 +66,10 @@ class DatabaseSeeder extends Seeder
 
             //preguntas
             new PreguntaSeeder(),
-            
+
             //opciones
             new OpcionesSeeder(),
-            
+
             //departamentos y municipios
             new DepartamentosSeeder(),
             new MunicipiosSeeder(),
@@ -81,6 +81,8 @@ class DatabaseSeeder extends Seeder
             new cie10Seeder(),
 
             new CiuuSeeder(),
+
+            new MotivoSeeder(),
 
         ];
 

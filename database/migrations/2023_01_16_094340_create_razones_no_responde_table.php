@@ -13,9 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('motivos_no_responde', function (Blueprint $table) {
-            $table->id();
-            $table->bigInteger('motivos');
+        Schema::create('motivos_no_responde', function (Blueprint $table)
+        {
+            $table->integer('id')->autoIncrement()->nullable(false);
+            $table->string('motivos');
             $table->timestamps();
         });
     }

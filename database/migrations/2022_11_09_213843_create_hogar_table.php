@@ -29,6 +29,9 @@ return new class extends Migration
             $table->string('direccion')->nullable();
             $table->string('geolocalizacion')->nullable();
             $table->enum('estado_registro', ['ABIERTO', 'FINALIZADO'])->default('ABIERTO');
+            $table->boolean('realizo_encuesta')->nullable();
+            $table->integer('motivos')->nullable();
+            $table->text('observaciones')->nullable();
             $table->timestamps();
 
             $table->primary('id');

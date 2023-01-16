@@ -254,6 +254,7 @@ class ValidarPrimeraInfancia extends Controller implements ValidacionEncuesta
     protected function valoracionIntegral()
     {
         // TODO preguntar por que no están en el frontend
+        // TODO: ralizar funcion para validar los rangos de edad
         // $this->puntuacion('pi_atencion_medica');
         // $this->puntuacion('pi_atencion_enfermeria');
 
@@ -267,6 +268,11 @@ class ValidarPrimeraInfancia extends Controller implements ValidacionEncuesta
         // }
 
         $this->puntuacion('pi_tsh');
+    }
+
+    protected function rangosAtencionMedica(): bool
+    {
+        return true;
     }
 
     protected function proteccionEspeficifica()

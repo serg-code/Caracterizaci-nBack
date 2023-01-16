@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::table('hogar', function (Blueprint $table)
         {
-            $table->boolean('realizo_encuesta')->nullable()->after('estado_registro');
-                   });
+            $table->foreign('motivos')->references('id')->on('motivos_no_responde');
+        });
     }
 
     /**
@@ -28,8 +28,7 @@ return new class extends Migration
     {
         Schema::table('hogar', function (Blueprint $table)
         {
-        $table->boolean('realizo_encuesta')->nullable();
-            
+            //
         });
     }
 };
