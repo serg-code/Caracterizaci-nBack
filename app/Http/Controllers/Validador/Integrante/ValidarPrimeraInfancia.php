@@ -50,19 +50,29 @@ class ValidarPrimeraInfancia extends Controller implements ValidacionEncuesta
         }
 
         $this->PesoNacer();
-        $this->PesoNacer();
         $this->TallaNacer();
 
-        $this->puntaje += OpcionPregunta::puntajeOpcion('pi_valoracion_nutricional', $this->seccion['pi_valoracion_nutricional']);
-        $this->puntaje += OpcionPregunta::puntajeOpcion('pi_desarrollo_lenguaje', $this->seccion['pi_desarrollo_lenguaje']);
-        $this->puntaje += OpcionPregunta::puntajeOpcion('pi_desarrollo_motora', $this->seccion['pi_desarrollo_motora']);
-        $this->puntaje += OpcionPregunta::puntajeOpcion('pi_desarrollo_conducta', $this->seccion['pi_desarrollo_conducta']);
-        $this->puntaje += OpcionPregunta::puntajeOpcion('pi_desarrollo_probelmas_visuales', $this->seccion['pi_desarrollo_probelmas_visuales']);
-        $this->puntaje += OpcionPregunta::puntajeOpcion('pi_desarrollo_problemas_auditivos', $this->seccion['pi_desarrollo_problemas_auditivos']);
-        $this->puntaje += OpcionPregunta::puntajeOpcion('pi_desparasitado', $this->seccion['pi_desparasitado']);
-        $this->puntaje += OpcionPregunta::puntajeOpcion('pi_hospitalizacion_nacer', $this->seccion['pi_hospitalizacion_nacer']);
+        $this->puntuacion('pi_valoracion_nutricional');
+        $this->puntuacion('pi_desarrollo_lenguaje');
+        $this->puntuacion('pi_desarrollo_motora');
+        $this->puntuacion('pi_desarrollo_conducta');
+        $this->puntuacion('pi_desarrollo_probelmas_visuales');
+        $this->puntuacion('pi_desarrollo_problemas_auditivos');
+        $this->puntuacion('pi_desparasitado');
+        $this->puntuacion('pi_hospitalizacion_nacer');
 
-        $this->vacunacion();
+        //validar el carnet de vacunacion
+        $carnet = OpcionPregunta::opcionPregunta('pi_carnet_vacunacion', $this->seccion['pi_carnet_vacunacion']);
+        if ($carnet->id === 422 || $carnet->pregunta_opcion == 'NO')
+        {
+            $this->eliminarVacunacion();
+        }
+
+        if ($carnet->id === 423 || $carnet->pregunta_opcion == 'SI')
+        {
+            $this->vacunacion();
+        }
+
         $this->valoracionIntegral();
         $this->proteccionEspeficifica();
     }
@@ -136,12 +146,19 @@ class ValidarPrimeraInfancia extends Controller implements ValidacionEncuesta
 
     protected function PesoNacer()
     {
-        if ($this->seccion['pi_peso_al_nacer'] > 2.8)
+        $pesoNacer = $this->seccion['pi_peso_al_nacer'] ?? null;
+
+        if (empty($pesoNacer))
+        {
+            array_push($this->errores, ['pi_peso_al_nacer' => "No encontramos la pregunta (pi_peso_al_nacer)"]);
+        }
+
+        if ($pesoNacer > 2.8)
         {
             $this->puntaje += 1;
         }
 
-        if ($this->seccion['pi_peso_al_nacer'] > 4)
+        if ($pesoNacer > 4)
         {
             $this->puntaje += 5;
         }
@@ -149,12 +166,19 @@ class ValidarPrimeraInfancia extends Controller implements ValidacionEncuesta
 
     protected function TallaNacer()
     {
-        if ($this->seccion['pi_talla_al_nacer'] < 40)
+        $tallaNacer = $this->seccion['pi_talla_al_nacer'] ?? null;
+
+        if (empty($tallaNacer))
+        {
+            array_push($this->errores, ['pi_talla_al_nacer' => "No encontramos la pregunta (pi_talla_al_nacer)"]);
+        }
+
+        if ($tallaNacer < 40)
         {
             $this->puntaje += 5;
         }
 
-        if ($this->seccion['pi_talla_al_nacer'] > 55)
+        if ($tallaNacer > 55)
         {
             $this->puntaje += 5;
         }
@@ -162,27 +186,68 @@ class ValidarPrimeraInfancia extends Controller implements ValidacionEncuesta
 
     protected function vacunacion()
     {
-        $this->puntaje += OpcionPregunta::puntajeOpcion('pi_carnet_vacunacion', $this->seccion['pi_carnet_vacunacion']);
-        $this->puntaje += OpcionPregunta::puntajeOpcion('pi_vacuna_bcg_rn', $this->seccion['pi_vacuna_bcg_rn']);
+        $this->puntuacion('pi_vacuna_bcg_rn');
+        $this->puntuacion('pi_vacuna_hepatitis_b_rn');
 
         if ($this->mesesEdad <= 3)
         {
-            $this->puntaje += OpcionPregunta::puntajeOpcion('pi_vacuna_polio_d1', $this->seccion['pi_vacuna_polio_d1']);
+            $this->puntuacion('pi_vacuna_polio_d1');
         }
 
         if ($this->mesesEdad >= 4 && $this->mesesEdad <= 5)
         {
-            $this->puntaje += OpcionPregunta::puntajeOpcion('pi_vacuna_polio_d2', $this->seccion['pi_vacuna_polio_d2']);
+            $this->puntuacion('pi_vacuna_polio_d2');
         }
 
         if ($this->mesesEdad >= 6 && $this->mesesEdad <= 17)
         {
-            $this->puntaje += OpcionPregunta::puntajeOpcion('pi_vacuna_polio_d3', $this->seccion['pi_vacuna_polio_d3']);
+            $this->puntuacion('pi_vacuna_polio_d3');
         }
 
         if ($this->mesesEdad >= 18 && $this->edad < 5)
         {
-            $this->puntaje += OpcionPregunta::puntajeOpcion('pi_vacuna_polio_r1', $this->seccion['pi_vacuna_polio_r1']);
+            $this->puntuacion('pi_vacuna_polio_r1');
+        }
+
+        if ($this->mesesEdad == 2)
+        {
+            $this->puntuacion('pi_vacuna_neumococo_d1');
+            $this->puntuacion('pi_vacuna_rotavirus_d1');
+            $this->puntuacion('pi_vacuna_pentavalente_d1');
+        }
+
+        if ($this->mesesEdad == 4)
+        {
+            $this->puntuacion('pi_vacuna_neumococo_d2');
+            $this->puntuacion('pi_vacuna_rotavirus_d2');
+            $this->puntuacion('pi_vacuna_pentavalente_d2');
+        }
+
+        if ($this->mesesEdad == 6)
+        {
+            $this->puntuacion('pi_vacuna_influenza_estacional');
+            $this->puntuacion('pi_vacuna_pentavalente_d3');
+        }
+
+        if ($this->mesesEdad == 12 | $this->edad == 1)
+        {
+            $this->puntuacion('pi_vacuna_hepatitis_a');
+            $this->puntuacion('pi_vacuna_neumococo_d3');
+            $this->puntuacion('pi_vacuna_srp_d1');
+            $this->puntuacion('pi_vacuna_varicela');
+        }
+
+        if ($this->mesesEdad == 18)
+        {
+            $this->puntuacion('pi_vacuna_fiebre_amarilla');
+            $this->puntuacion('pi_vacuna_dpt_d1');
+        }
+
+        if ($this->edad == 5)
+        {
+            $this->puntuacion('pi_vacuna_polio_r2');
+            $this->puntuacion('pi_vacuna_srp_d2');
+            $this->puntuacion('pi_vacuna_dpt_d2');
         }
     }
 
@@ -194,5 +259,54 @@ class ValidarPrimeraInfancia extends Controller implements ValidacionEncuesta
     protected function proteccionEspeficifica()
     {
         # code...
+    }
+
+    protected function puntuacion(string $refCampo)
+    {
+        $respuestaEncuesta = $this->seccion[$refCampo] ?? null;
+        if (empty($respuestaEncuesta))
+        {
+            array_push($this->errores, [$refCampo => 'No encontramos la pregunta ' . $refCampo]);
+            return false;
+        }
+
+        $opcion = OpcionPregunta::opcionPregunta($refCampo, $respuestaEncuesta);
+        if (empty($opcion))
+        {
+            array_push($this->errores, [
+                $refCampo => $respuestaEncuesta . " no es un respuesta valida para $refCampo"
+            ]);
+            return false;
+        }
+
+        $this->puntaje += $opcion->valor;
+    }
+
+    protected function eliminarVacunacion()
+    {
+        unset(
+            $this->seccion['pi_vacuna_bcg_rn'],
+            $this->seccion['pi_vacuna_hepatitis_b_rn'],
+            $this->seccion['pi_vacuna_polio_d1'],
+            $this->seccion['pi_vacuna_polio_d2'],
+            $this->seccion['pi_vacuna_polio_d3'],
+            $this->seccion['pi_vacuna_polio_r1'],
+            $this->seccion['pi_vacuna_neumococo_d1'],
+            $this->seccion['pi_vacuna_rotavirus_d1'],
+            $this->seccion['pi_vacuna_pentavalente_d1'],
+            $this->seccion['pi_vacuna_neumococo_d2'],
+            $this->seccion['pi_vacuna_rotavirus_d2'],
+            $this->seccion['pi_vacuna_pentavalente_d2'],
+            $this->seccion['pi_vacuna_influenza_estacional'],
+            $this->seccion['pi_vacuna_pentavalente_d3'],
+            $this->seccion['pi_vacuna_hepatitis_a'],
+            $this->seccion['pi_vacuna_neumococo_d3'],
+            $this->seccion['pi_vacuna_varicela'],
+            $this->seccion['pi_vacuna_fiebre_amarilla'],
+            $this->seccion['pi_vacuna_dpt_d1'],
+            $this->seccion['pi_vacuna_polio_r2'],
+            $this->seccion['pi_vacuna_srp_d2'],
+            $this->seccion['pi_vacuna_dpt_d2'],
+        );
     }
 }

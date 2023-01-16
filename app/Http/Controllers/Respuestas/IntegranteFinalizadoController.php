@@ -66,16 +66,8 @@ class IntegranteFinalizadoController extends Controller
             );
         }
 
-        // $errorValidacion = $this->validacion($integrantePeticion, $encuesta);
-
-        // if (!empty($errorValidacion))
-        // {
-        //     return RespuestaHttp::respuestaObjeto($errorValidacion);
-        // }
-
         RespuestaIntegrante::where('id_integrante', '=', $this->integrante->id)->delete();
         $this->secciones = $integrantePeticion['secciones'];
-
         $listadoSecciones = SeccionesIntegrante::obtenerSecciones();
 
         foreach ($listadoSecciones as $nombreSeccion)
@@ -85,18 +77,25 @@ class IntegranteFinalizadoController extends Controller
                 array_push($this->errores, ["$nombreSeccion" => "No encontramos la seccion $nombreSeccion"]);
                 continue;
             }
-            //buscar validador
-            $validador = SeccionesIntegrante::obtenerValidador($this->integrante, $this->secciones[$nombreSeccion]);
-            if (!empty($validador))
-            {
-                $validador->validar();
-                $errorValidacion = $validador->obtenerErrores();
-                $this->errores = array_merge($this->errores, $errorValidacion);
-                $this->puntuacion += $validador->obtenerPuntaje();
 
-                //actualizar la seccion
-                $this->secciones[$nombreSeccion] = $validador->obtenerSeccion();
+            //buscar validador
+            $validador = SeccionesIntegrante::obtenerValidador(
+                $nombreSeccion,
+                $this->integrante,
+                $this->secciones[$nombreSeccion]['respuestas'] ?? []
+            );
+            if (empty($validador))
+            {
+                continue;
             }
+
+            $validador->validar();
+            $errorValidacion = $validador->obtenerErrores();
+            $this->errores = array_merge($this->errores, $errorValidacion);
+            $this->puntuacion += $validador->obtenerPuntaje();
+
+            //actualizar la seccion
+            $this->secciones[$nombreSeccion]['respuestas'] = $validador->obtenerSeccion();
         }
 
         // foreach ($this->secciones as $refSeccion => $datos)

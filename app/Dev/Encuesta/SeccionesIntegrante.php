@@ -76,7 +76,7 @@ class SeccionesIntegrante
         ];
     }
 
-    public static function obtenerValidador(Integrantes $integrante, array $seccion, string $nombreSeccion = ''): ?ValidacionEncuesta
+    public static function obtenerValidador(string $nombreSeccion = '', Integrantes $integrante, array $seccion,): ?ValidacionEncuesta
     {
         return match ($nombreSeccion)
         {
