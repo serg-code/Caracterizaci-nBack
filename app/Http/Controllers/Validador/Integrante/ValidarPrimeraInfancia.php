@@ -63,6 +63,7 @@ class ValidarPrimeraInfancia extends Controller implements ValidacionEncuesta
         $this->puntuacion('pi_hospitalizacion_nacer');
 
         //validar el carnet de vacunacion
+        $this->puntuacion('pi_carnet_vacunacion');
         $carnet = OpcionPregunta::opcionPregunta('pi_carnet_vacunacion', $this->seccion['pi_carnet_vacunacion']);
         if ($carnet->id === 422 || $carnet->pregunta_opcion == 'NO')
         {

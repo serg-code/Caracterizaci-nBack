@@ -126,6 +126,7 @@ class ValidarAdolescencia extends Controller implements ValidacionEncuesta
         if ($this->integrante->sexo == 'Femenino')
         {
             $planifica = OpcionPregunta::opcionPregunta('adol_planifica', $this->seccion['adol_planifica']);
+            $this->puntuacion('adol_planifica');
 
             if ($planifica->id != 542 || $planifica->pregunta_opcion != 'SI')
             {
@@ -135,8 +136,8 @@ class ValidarAdolescencia extends Controller implements ValidacionEncuesta
                 return false;
             }
 
-            $this->puntuacion('adol_planifica');
             $this->puntuacion('adol_metodo_planficica');
+            $this->puntuacion('adol_desde_cuando_planifica');
         }
 
         if ($this->integrante->sexo != 'Femenino')
@@ -145,6 +146,7 @@ class ValidarAdolescencia extends Controller implements ValidacionEncuesta
                 $this->seccion['adol_planifica'],
                 $this->seccion['adol_metodo_planficica'],
             );
+            $this->puntuacion('adol_razon_no_planifica');
         }
     }
 

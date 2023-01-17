@@ -133,6 +133,8 @@ class ValidarInfancia extends Controller implements ValidacionEncuesta
     protected function validarVacunacion()
     {
         $carnet = OpcionPregunta::opcionPregunta('in_carnet_vacunacion', $this->seccion['in_carnet_vacunacion']);
+        $this->puntuacion('in_carnet_vacunacion');
+
         if ($carnet->id == 504 || $carnet->pregunta_opcion == 'NO')
         {
             $this->eliminarVacunacion();
@@ -140,7 +142,6 @@ class ValidarInfancia extends Controller implements ValidacionEncuesta
 
         if ($carnet->id == 505 || $carnet->pregunta_opcion == 'SI')
         {
-            $this->puntuacion('in_carnet_vacunacion');
             $this->vacunacion();
         }
     }
