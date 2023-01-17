@@ -659,12 +659,16 @@ class OpcionesSeeder extends Seeder
         Opcion::create(["id" => "593", "ref_campo" => "juv_cancer_cuello_uterino", "pregunta_opcion" => "No sabe resultado", "valor" => "5"]);
         Opcion::create(["id" => "594", "ref_campo" => "juv_colposcopia", "pregunta_opcion" => "NO", "valor" => "1"]);
         Opcion::create(["id" => "595", "ref_campo" => "juv_colposcopia", "pregunta_opcion" => "SI", "valor" => "3"]);
+        Opcion::create(["id" => "993", "ref_campo" => "juv_control_medico_examen_colposcopia", "pregunta_opcion" => "NO", "valor" => "1"]);
+        Opcion::create(["id" => "994", "ref_campo" => "juv_control_medico_examen_colposcopia", "pregunta_opcion" => "SI", "valor" => "3"]);
         Opcion::create(["id" => "596", "ref_campo" => "juv_bioscopia_cervico", "pregunta_opcion" => "NO", "valor" => "0"]);
         Opcion::create(["id" => "597", "ref_campo" => "juv_bioscopia_cervico", "pregunta_opcion" => "Positivo", "valor" => "0"]);
         Opcion::create(["id" => "598", "ref_campo" => "juv_bioscopia_cervico", "pregunta_opcion" => "Negativo", "valor" => "0"]);
         Opcion::create(["id" => "599", "ref_campo" => "juv_examen_seno", "pregunta_opcion" => "NO", "valor" => "30"]);
         Opcion::create(["id" => "600", "ref_campo" => "juv_examen_seno", "pregunta_opcion" => "Normal", "valor" => "1"]);
         Opcion::create(["id" => "601", "ref_campo" => "juv_examen_seno", "pregunta_opcion" => "Anormal", "valor" => "50"]);
+        Opcion::create(["id" => "995", "ref_campo" => "juv_control_medico_examen_seno", "pregunta_opcion" => "NO", "valor" => "1"]);
+        Opcion::create(["id" => "996", "ref_campo" => "juv_control_medico_examen_seno", "pregunta_opcion" => "SI", "valor" => "3"]);
         Opcion::create(["id" => "602", "ref_campo" => "juv_planifica", "pregunta_opcion" => "NO", "valor" => "1"]);
         Opcion::create(["id" => "603", "ref_campo" => "juv_planifica", "pregunta_opcion" => "SI", "valor" => "3"]);
         Opcion::create(["id" => "604", "ref_campo" => "juv_metodo_planifica", "pregunta_opcion" => "Hormonales", "valor" => "2"]);
