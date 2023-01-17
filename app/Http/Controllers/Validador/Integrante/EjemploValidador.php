@@ -16,6 +16,7 @@ class EjemploValidador extends Controller implements ValidacionEncuesta
     protected int $puntaje;
     protected int $edad;
     protected int $mesesEdad;
+    protected array $seccionValidada;
 
     public function __construct(
         protected Integrantes $integrante = new Integrantes(),
@@ -24,6 +25,7 @@ class EjemploValidador extends Controller implements ValidacionEncuesta
     {
         $this->puntaje = 0;
         $this->errores = [];
+        $this->seccionValidada = [];
 
         $fechaNacimiento = Carbon::createFromFormat('Y-m-d', $this->integrante->fecha_nacimiento);
         $fechaActual = Carbon::now();
@@ -61,7 +63,7 @@ class EjemploValidador extends Controller implements ValidacionEncuesta
 
     public function obtenerSeccion(): array
     {
-        return $this->seccion;
+        return $this->seccionValidada;
     }
 
     protected function puntuacion(string $refCampo)
@@ -82,7 +84,9 @@ class EjemploValidador extends Controller implements ValidacionEncuesta
             return false;
         }
 
+        array_push($this->seccionValidada, [$refCampo => $this->seccion[$refCampo]]);
         $this->puntaje += $opcion->valor;
+        return true;
     }
 
     protected function validacionSimple(string $refCampo, bool $validar)
@@ -90,10 +94,6 @@ class EjemploValidador extends Controller implements ValidacionEncuesta
         if ($validar)
         {
             $this->puntuacion($refCampo);
-        }
-        else
-        {
-            unset($this->seccion[$refCampo]);
         }
     }
 }
