@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Dev\RespuestaHttp;
 use App\Models\Hogar\TipoHogar;
+use App\Models\MotivosNoResponde;
 use App\Models\TipoIdentifacion;
 use App\Models\Tipos\Parentesco;
 use App\Models\Tipos\TipoInduccion;
@@ -33,6 +34,7 @@ class TipoController extends Controller
                     'descripcion' => 'Rural disperso'
                 ],
             ],
+            'motivos_no_responde' => MotivosNoResponde::all(),
         ];
 
         return response()->json($respuesta, $respuesta->codigoHttp);

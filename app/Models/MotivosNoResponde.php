@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Hogar\Hogar;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -25,5 +26,10 @@ class MotivosNoResponde extends Model
     {
         $parentesco = new MotivosNoResponde($datos);
         $parentesco->save();
+    }
+
+    public function hogares()
+    {
+        return $this->hasMany(Hogar::class, 'motivos', 'id');
     }
 }

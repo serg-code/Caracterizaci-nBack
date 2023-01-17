@@ -4,6 +4,7 @@ namespace App\Models\Hogar;
 
 use App\Models\Departamento;
 use App\Models\Integrantes;
+use App\Models\MotivosNoResponde;
 use App\Models\Municipio;
 use App\Models\Respuesta;
 use App\Models\secciones\FactoresProtectores;
@@ -117,6 +118,11 @@ class Hogar extends Model
     public function tipoHogar()
     {
         return $this->belongsTo(TipoHogar::class, 'tipo');
+    }
+
+    public function motivoNoResponde()
+    {
+        return $this->belongsTo(MotivosNoResponde::class, 'id', 'motivos');
     }
 
     public function scopeSearch(Builder $query, $dato): Builder
