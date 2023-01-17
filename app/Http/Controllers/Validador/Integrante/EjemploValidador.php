@@ -6,6 +6,7 @@ use App\Dev\Encuesta\OpcionPregunta;
 use App\Http\Controllers\Controller;
 use App\Interfaces\ValidacionEncuesta;
 use App\Models\Integrantes;
+use App\Models\Opcion;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -39,7 +40,6 @@ class EjemploValidador extends Controller implements ValidacionEncuesta
         $edad = $this->edad;
         if ($edad < 10 || $edad > 70)
         {
-            $this->seccion = [];
             return false;
         }
 
@@ -66,7 +66,7 @@ class EjemploValidador extends Controller implements ValidacionEncuesta
         return $this->seccionValidada;
     }
 
-    protected function puntuacion(string $refCampo)
+    protected function puntuacion(string $refCampo): Opcion
     {
         $respuestaEncuesta = $this->seccion[$refCampo] ?? null;
         if (empty($respuestaEncuesta))
@@ -86,14 +86,16 @@ class EjemploValidador extends Controller implements ValidacionEncuesta
 
         array_push($this->seccionValidada, [$refCampo => $this->seccion[$refCampo]]);
         $this->puntaje += $opcion->valor;
-        return true;
+        return $opcion;
     }
 
-    protected function validacionSimple(string $refCampo, bool $validar)
+    protected function validacionSimple(string $refCampo, bool $validar): ?Opcion
     {
         if ($validar)
         {
-            $this->puntuacion($refCampo);
+            return $this->puntuacion($refCampo);
         }
+
+        return null;
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Dev\Encuesta;
 
 use App\Http\Controllers\Validador\Integrante\ValidarAdolescencia;
+use App\Http\Controllers\Validador\Integrante\ValidarAdultez;
 use App\Http\Controllers\Validador\Integrante\ValidarInfancia;
 use App\Http\Controllers\Validador\Integrante\ValidarJuventud;
 use App\Http\Controllers\Validador\Integrante\ValidarPrimeraInfancia;
@@ -87,7 +88,7 @@ class SeccionesIntegrante
             'infancia' => new ValidarInfancia($integrante, $seccion),
             'adolescencia' => new ValidarAdolescencia($integrante, $seccion),
             'juventud' => new ValidarJuventud($integrante, $seccion),
-            'adultez' => null,
+            'adultez' => new ValidarAdultez($integrante, $seccion),
             'vejez' => null,
             'materno_perinatal' => null,
             'accidentes' => null,
@@ -118,7 +119,7 @@ class SeccionesIntegrante
             // 'infancia', => SeccionesIntegrante::preguntasInfancia(),
             // 'adolescencia' => SeccionesIntegrante::preguntasAdolescencia(),
             // 'juventud' => SeccionesIntegrante::preguntasJuventud(),
-            'adultez' => SeccionesIntegrante::preguntasAdultez(),
+            // 'adultez' => SeccionesIntegrante::preguntasAdultez(),
             'vejez' => SeccionesIntegrante::preguntasVejez(),
             'materno_perinatal' => SeccionesIntegrante::preguntasMaternoPerinatal(),
 
@@ -243,42 +244,6 @@ class SeccionesIntegrante
             'discapacidad' => null,
             'ayudas_tenicas' => null,
 
-        ];
-    }
-
-    public static function preguntasAdultez(): array
-    {
-        return [
-            'adul_valoracion_peso' => null,
-            'adul_valoracion_talla' => null,
-            'adul_imc' => null,
-            'adul_asesoria_anticoncepcion' => null,
-            'adul_planifica' => null,
-            'adul_metodo_planifica' => null,
-            'adul_desde_cuando_planifica' => null,
-            'adul_razones_no_planifica' => null,
-            'adul_parejas_sexuales_al_anio' => null,
-            'adul_control_adultos' => null,
-            'adul_antecedentes_diabetes' => null,
-            'adul_antecedentes_hipertension' => null,
-            'adul_antecedentes_colesterol' => null,
-            'adul_perimetro_abdominal' => null,
-            'adul_atencion_medica' => null,
-            'adul_salud_bucal' => null,
-            'adul_cancer_cuello_uterino_adn_vph' => null,
-            'adul_cancer_cuello_uterino_adn_vph_positivo' => null,
-            'adul_colposcopia_cervico_uterina' => null,
-            'adul_biopsia_cervico_uterina' => null,
-            'adul_cancer_mama_mamografia' => null,
-            'adul_cancer_mama_valoracion_clinica' => null,
-            'adul_cancer_prostata' => null,
-            'adul_vasectomia' => null,
-            'adul_esterilizacion_femenina' => null,
-            'adul_vias_esterilizacion' => null,
-            'adul_profilaxis' => null,
-            'adul_detartraje_supragingival' => null,
-            'adul_fiebre_amarilla' => null,
-            'adul_prueba_vih' => null,
         ];
     }
 
