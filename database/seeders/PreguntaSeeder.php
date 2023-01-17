@@ -288,9 +288,10 @@ class PreguntaSeeder extends Seeder
                 //* juventud
                 Pregunta::create(["ref_campo" => "juv_cancer_cuello_uterino", "ref_seccion" => "juventud", "descripcion" => "Tamizaje de cancer de cuello uterino (citología)", "tipo" => "seleccion"]);
                 Pregunta::create(["ref_campo" => "juv_colposcopia", "ref_seccion" => "juventud", "descripcion" => "Colposcopia (30 dias desde la citología)", "tipo" => "seleccion"]);
+                Pregunta::create(["ref_campo" => "juv_control_medico_examen_colposcopia", "ref_seccion" => "juventud", "descripcion" => "¿Asistió al control médico con el resultado?", "tipo" => "seleccion"]);
                 Pregunta::create(["ref_campo" => "juv_bioscopia_cervico", "ref_seccion" => "juventud", "descripcion" => "Bioscopia cervico uterina", "tipo" => "seleccion"]);
                 Pregunta::create(["ref_campo" => "juv_examen_seno", "ref_seccion" => "juventud", "descripcion" => "Examen físico de seno (último año)", "tipo" => "seleccion"]);
-                Pregunta::create(["ref_campo" => "juv_control_medico", "ref_seccion" => "juventud", "descripcion" => "¿Asistió al control médico con el resultado?", "tipo" => "seleccion"]);
+                Pregunta::create(["ref_campo" => "juv_control_medico_examen_seno", "ref_seccion" => "juventud", "descripcion" => "¿Asistió al control médico con el resultado?", "tipo" => "seleccion"]);
                 Pregunta::create(["ref_campo" => "juv_planifica", "ref_seccion" => "juventud", "descripcion" => "Planifica: Método", "tipo" => "seleccion"]);
                 Pregunta::create(["ref_campo" => "juv_metodo_planifica", "ref_seccion" => "juventud", "descripcion" => "Metodo", "tipo" => "seleccion"]);
                 Pregunta::create(["ref_campo" => "juv_tiempo_metodo", "ref_seccion" => "juventud", "descripcion" => "Tiempo con el método (meses)", "tipo" => "numero"]);
