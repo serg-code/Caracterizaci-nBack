@@ -16,6 +16,7 @@ class ValidarAccidentes extends Controller implements ValidacionEncuesta
     protected int $puntaje;
     protected int $edad;
     protected int $mesesEdad;
+    protected array $seccionValidada;
 
     public function __construct(
         protected Integrantes $integrante = new Integrantes(),
@@ -34,15 +35,7 @@ class ValidarAccidentes extends Controller implements ValidacionEncuesta
 
     public function validar()
     {
-        $edad = $this->edad;
-        if ($edad < 10 || $edad > 70)
-        {
-            $this->seccion = [];
-            return false;
-        }
-
-        //validaciones del excel
-    }
+            }
 
     public function obtenerErrores(): array
     {
@@ -57,9 +50,9 @@ class ValidarAccidentes extends Controller implements ValidacionEncuesta
     public function obtenerPreguntas(): array
     {
         return [
-            'accidentes_laborales',
-            'accidentes_transito',
-            'tipo_lesion',
+            'accidentes_laborales' => null,
+            'accidentes_transito' => null,
+            'tipo_lesion' => null,
         ];
     }
 
@@ -86,7 +79,9 @@ class ValidarAccidentes extends Controller implements ValidacionEncuesta
             return false;
         }
 
+        array_push($this->seccionValidada, [$refCampo => $this->seccion[$refCampo]]);
         $this->puntaje += $opcion->valor;
+        return true;
     }
 
     protected function validacionSimple(string $refCampo, bool $validar)
@@ -94,10 +89,6 @@ class ValidarAccidentes extends Controller implements ValidacionEncuesta
         if ($validar)
         {
             $this->puntuacion($refCampo);
-        }
-        else
-        {
-            unset($this->seccion[$refCampo]);
         }
     }
 }
