@@ -129,7 +129,7 @@ class SeccionesIntegrante
     {
         return [
             'accidentes_laborales' => null,
-            'accidentes_transito' => new PreguntaEncuesta('tipo_lesion', 69),
+            'accidentes_transito' => new PreguntaEncuesta('tipo_lesion', 36),
             'tipo_lesion' => null,
         ];
     }
@@ -141,7 +141,7 @@ class SeccionesIntegrante
             'diagnostico_principal' => null,
             'causa' => null,
             'fecha_inicio_domiciliario' => null,
-            'oxigeno_domiciliario' => new PreguntaEncuesta('plan_aprobado', 85),
+            'oxigeno_domiciliario' => new PreguntaEncuesta('plan_aprobado', 52),
             'plan_aprobado' => null,
         ];
     }
