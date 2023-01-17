@@ -140,6 +140,7 @@ class ValidarInfancia extends Controller implements ValidacionEncuesta
 
         if ($carnet->id == 505 || $carnet->pregunta_opcion == 'SI')
         {
+            $this->puntuacion('in_carnet_vacunacion');
             $this->vacunacion();
         }
     }
