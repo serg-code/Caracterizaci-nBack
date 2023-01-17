@@ -4,11 +4,12 @@ namespace App\Http\Controllers\Validador\Integrante;
 
 use App\Dev\Encuesta\OpcionPregunta;
 use App\Http\Controllers\Controller;
+use App\Interfaces\ValidacionEncuesta;
 use App\Models\Integrantes;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-class EjemploValidador extends Controller
+class EjemploValidador extends Controller implements ValidacionEncuesta
 {
 
     protected array $errores;
