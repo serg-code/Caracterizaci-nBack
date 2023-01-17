@@ -4,6 +4,7 @@ namespace App\Dev\Encuesta;
 
 use App\Http\Controllers\Validador\Integrante\ValidarAdolescencia;
 use App\Http\Controllers\Validador\Integrante\ValidarInfancia;
+use App\Http\Controllers\Validador\Integrante\ValidarJuventud;
 use App\Http\Controllers\Validador\Integrante\ValidarPrimeraInfancia;
 use App\Interfaces\ValidacionEncuesta;
 use App\Models\Integrantes;
@@ -85,7 +86,7 @@ class SeccionesIntegrante
             'primera_infancia' => new ValidarPrimeraInfancia($integrante, $seccion),
             'infancia' => new ValidarInfancia($integrante, $seccion),
             'adolescencia' => new ValidarAdolescencia($integrante, $seccion),
-            'juventud' => null,
+            'juventud' => new ValidarJuventud($integrante, $seccion),
             'adultez' => null,
             'vejez' => null,
             'materno_perinatal' => null,
@@ -116,7 +117,7 @@ class SeccionesIntegrante
             // 'primera_infancia', => SeccionesIntegrante::preguntasPrimeraInfancia(),
             // 'infancia', => SeccionesIntegrante::preguntasInfancia(),
             // 'adolescencia' => SeccionesIntegrante::preguntasAdolescencia(),
-            'juventud' => SeccionesIntegrante::preguntasJuventud(),
+            // 'juventud' => SeccionesIntegrante::preguntasJuventud(),
             'adultez' => SeccionesIntegrante::preguntasAdultez(),
             'vejez' => SeccionesIntegrante::preguntasVejez(),
             'materno_perinatal' => SeccionesIntegrante::preguntasMaternoPerinatal(),
@@ -241,37 +242,6 @@ class SeccionesIntegrante
             'ocupacion_ingreso' => null,
             'discapacidad' => null,
             'ayudas_tenicas' => null,
-
-        ];
-    }
-
-    public static function preguntasJuventud(): array
-    {
-        return [
-            'juv_cancer_cuello_uterino' => null,
-            'juv_colposcopia' => null,
-            'juv_bioscopia_cervico' => null,
-            'juv_examen_seno' => null,
-            'juv_control_medico' => null,
-            'juv_planifica' => null,
-            'juv_metodo_planifica' => null,
-            'juv_tiempo_metodo' => null,
-            'juv_asesoria_anticoncepcion' => null,
-            'juv_razones_no_planifica' => null,
-            'juv_parejas_sexuales_al_anio' => null,
-            'juv_atencion_medica' => null,
-            'juv_atencion_enfermeria' => null,
-            'juv_salud_vocal' => null,
-            'juv_vasectomia' => null,
-            'juv_esterilizacion_femenina' => null,
-            'juv_vias_esterilizacion' => null,
-            'juv_profilaxis' => null,
-            'juv_detartraje_supragingival' => null,
-            'juv_prueba_vih' => null,
-            'juv_antecedentes_diabetes' => null,
-            'juv_antecedentes_hipertension' => null,
-            'juv_alteracion_colesterol' => null,
-            'juv_perimetro_abdominal' => null,
 
         ];
     }

@@ -28,6 +28,10 @@ class Inducciones extends Model
         $parentesco->save();
     }
 
+    public static function CrearInduccion(Integrantes $integrantes, int $idInduccion)
+    {
+    }
+
     public function integrante()
     {
         return $this->belongsTo(Integrantes::class, 'id');
