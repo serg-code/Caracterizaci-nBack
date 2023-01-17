@@ -35,7 +35,8 @@ class HogarController extends Controller
                 'cod_dpto',
                 'cod_mun',
                 'tipo',
-                'direccion'
+                'direccion',
+                'estado_registro',
             ])
                 ->with(['municipio.departamento'])
                 ->paginate($cantidadPaginar);
@@ -57,7 +58,8 @@ class HogarController extends Controller
                 'cod_dpto',
                 'cod_mun',
                 'tipo',
-                'direccion'
+                'direccion',
+                'estado_registro',
             ])
             ->allowedFilters([
                 AllowedFilter::scope('search'),
