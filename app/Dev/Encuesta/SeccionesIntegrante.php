@@ -2,6 +2,7 @@
 
 namespace App\Dev\Encuesta;
 
+use App\Http\Controllers\Validador\Integrante\ValidarAdolescencia;
 use App\Http\Controllers\Validador\Integrante\ValidarInfancia;
 use App\Http\Controllers\Validador\Integrante\ValidarPrimeraInfancia;
 use App\Interfaces\ValidacionEncuesta;
@@ -83,7 +84,7 @@ class SeccionesIntegrante
         {
             'primera_infancia' => new ValidarPrimeraInfancia($integrante, $seccion),
             'infancia' => new ValidarInfancia($integrante, $seccion),
-            'adolescencia' => null,
+            'adolescencia' => new ValidarAdolescencia($integrante, $seccion),
             'juventud' => null,
             'adultez' => null,
             'vejez' => null,
@@ -114,7 +115,7 @@ class SeccionesIntegrante
             'identificacion_ciudadana', => SeccionesIntegrante::preguntasIdentificacionCiudadana(),
             // 'primera_infancia', => SeccionesIntegrante::preguntasPrimeraInfancia(),
             // 'infancia', => SeccionesIntegrante::preguntasInfancia(),
-            'adolescencia' => SeccionesIntegrante::preguntasAdolescencia(),
+            // 'adolescencia' => SeccionesIntegrante::preguntasAdolescencia(),
             'juventud' => SeccionesIntegrante::preguntasJuventud(),
             'adultez' => SeccionesIntegrante::preguntasAdultez(),
             'vejez' => SeccionesIntegrante::preguntasVejez(),
@@ -241,31 +242,6 @@ class SeccionesIntegrante
             'discapacidad' => null,
             'ayudas_tenicas' => null,
 
-        ];
-    }
-
-    public static function preguntasAdolescencia(): array
-    {
-        return [
-            'adol_peso' => null,
-            'adol_talla' => null,
-            'adol_imc' => null,
-            'adol_asesoria_anticonceptiva' => null,
-            'adol_planifica' => null,
-            'adol_metodo_planficica' => null,
-            'adol_desde_cuando_planifica' => null,
-            'adol_razon_no_planifica' => null,
-            'adol_atencion_medica' => null,
-            'adol_atencion_enfermeria' => null,
-            'adol_salud_bucal' => null,
-            'adol_fluor' => null,
-            'adol_profilaxis' => null,
-            'adol_sellantes' => null,
-            'adol_supragingival' => null,
-            'adol_vacunacion' => null,
-            'adol_vacuna_fiebre_amarilla' => null,
-            'adol_vacuna_vph' => null,
-            'adol_vacuna_toxoide_tetanico' => null,
         ];
     }
 
