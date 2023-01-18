@@ -235,8 +235,8 @@ class ValidarAdultez implements ValidacionEncuesta
 
         if (($edad >= 30 && $edad <= 59) && $this->integrante->sexo == 'Femenino')
         {
-            $this->puntuacion('adul_perimetro_abdominal');
-            $this->puntuacion('adul_cancer_cuello_uterino_adn_vph_positivo');
+            $vph = $this->puntuacion('adul_cancer_cuello_uterino_adn_vph');
+            $this->validacionSimple('adul_cancer_cuello_uterino_adn_vph_positivo', ($vph->id == 705));
 
             $colposcopia = $this->puntuacion('adul_colposcopia_cervico_uterina');
             $this->validacionSimple('adul_biopsia_cervico_uterina', ($colposcopia->id == 711));
