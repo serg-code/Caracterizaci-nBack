@@ -33,7 +33,7 @@ class Cie10Controller extends Controller
             ->allowedFilters([
                 AllowedFilter::scope('search'),
                 AllowedFilter::exact('codigo'),
-                'descrip'
+                'descripcion'
             ])
             ->paginate($cantidadPaginar);
 

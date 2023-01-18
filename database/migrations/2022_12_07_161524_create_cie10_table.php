@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('cie10', function (Blueprint $table)
         {
             $table->string('codigo', 4)->primary()->unique();
-            $table->string('descrip');
+            $table->string('descripcion');
             $table->string('altoCosto')->nullable();
             $table->string('patologia')->nullable();
             $table->string('genero')->nullable();
