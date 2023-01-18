@@ -9,7 +9,7 @@ use App\Models\Integrantes;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-class EjemploValidador extends Controller implements ValidacionEncuesta
+class ValidadarSaludMental extends Controller implements ValidacionEncuesta
 {
 
     protected array $errores;

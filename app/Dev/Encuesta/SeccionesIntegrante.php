@@ -2,8 +2,15 @@
 
 namespace App\Dev\Encuesta;
 
+use App\Http\Controllers\Validador\Integrante\ValidadarIdentificacionCiudadana;
+use App\Http\Controllers\Validador\Integrante\ValidadarMorbilidad;
+use App\Http\Controllers\Validador\Integrante\ValidadarSaludMental;
+use App\Http\Controllers\Validador\Integrante\ValidarAccidentes;
 use App\Http\Controllers\Validador\Integrante\ValidarAdolescencia;
 use App\Http\Controllers\Validador\Integrante\ValidarAdultez;
+use App\Http\Controllers\Validador\Integrante\ValidarCuidadoEnfermedades;
+use App\Http\Controllers\Validador\Integrante\ValidarCuidadosDomiciliarios;
+use App\Http\Controllers\Validador\Integrante\ValidarEnfermedadesSaludPusblica;
 use App\Http\Controllers\Validador\Integrante\ValidarInfancia;
 use App\Http\Controllers\Validador\Integrante\ValidarJuventud;
 use App\Http\Controllers\Validador\Integrante\ValidarPrimeraInfancia;
@@ -91,13 +98,13 @@ class SeccionesIntegrante
             'adultez' => new ValidarAdultez($integrante, $seccion),
             'vejez' => null,
             'materno_perinatal' => null,
-            'accidentes' => null,
-            'cuidado_enfermedades' => null,
-            'cuidados_domiciliarios' => null,
-            'enfermedades_salud_publica' => null,
-            'morbilidad' => null,
-            'salud_mental' => null,
-            'identificacion_ciudadana' => null,
+            'accidentes' => new ValidarAccidentes($integrante, $seccion),
+            'cuidado_enfermedades' => new ValidarCuidadoEnfermedades($integrante, $seccion),
+            'cuidados_domiciliarios' => new ValidarCuidadosDomiciliarios($integrante, $seccion),
+            'enfermedades_salud_publica' => new ValidarEnfermedadesSaludPusblica($integrante, $seccion),
+            'morbilidad' => new ValidadarMorbilidad($integrante, $seccion),
+            'salud_mental' => new ValidadarSaludMental($integrante, $seccion),
+            'identificacion_ciudadana' => new ValidadarIdentificacionCiudadana($integrante, $seccion),
 
             default => null,
         };
