@@ -89,7 +89,7 @@ class PreguntaSeeder extends Seeder
                 Pregunta::create(["ref_campo" => "violencia_gestacion", "ref_seccion" => "salud_mental", "descripcion" => "Violencia en la gestacion", "tipo" => "seleccion"]);
 
                 //* salud_publica
-                Pregunta::create(["ref_campo" => "tuberculosis", "ref_seccion" => "enfermedades_salud_publica", "descripcion" => "Enfermedad crónica", "tipo" => "seleccion"]);
+                Pregunta::create(["ref_campo" => "tuberculosis", "ref_seccion" => "enfermedades_salud_publica", "descripcion" => "Tuberculosis", "tipo" => "seleccion"]);
                 Pregunta::create(["ref_campo" => "lepra", "ref_seccion" => "enfermedades_salud_publica", "descripcion" => "Lepra", "tipo" => "seleccion"]);
                 Pregunta::create(["ref_campo" => "chagas", "ref_seccion" => "enfermedades_salud_publica", "descripcion" => "Chagas", "tipo" => "seleccion"]);
                 Pregunta::create(["ref_campo" => "sifilis", "ref_seccion" => "enfermedades_salud_publica", "descripcion" => "Sifílis", "tipo" => "seleccion"]);
