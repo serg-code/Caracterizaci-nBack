@@ -5,6 +5,7 @@ namespace App\Dev\Encuesta;
 use App\Dev\Puntaje;
 use App\Http\Controllers\Validador\Hogar\ValidarFactoresProtectores;
 use App\Http\Controllers\Validador\Hogar\ValidarHabitosConsumo;
+use App\Http\Controllers\Validador\Hogar\ValidarVivienda;
 use App\Interfaces\ValidacionEncuesta;
 use App\Models\Hogar\Hogar;
 
@@ -79,7 +80,7 @@ class SeccionesHogar
         {
             'factores_protectores' => new ValidarFactoresProtectores($hogar, $seccion),
             'habitos_consumo' => new ValidarHabitosConsumo($hogar, $seccion),
-            'vivienda' => null,
+            'vivienda' => new ValidarVivienda($hogar, $seccion),
             'animales' => null,
             'mortalidad' => null,
             'seguridad_alimentaria' => null,
