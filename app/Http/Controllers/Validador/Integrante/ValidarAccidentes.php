@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Validador\Integrante;
 
 use App\Dev\Encuesta\OpcionPregunta;
+use App\Dev\Encuesta\PreguntaEncuesta;
 use App\Http\Controllers\Controller;
 use App\Interfaces\ValidacionEncuesta;
 use App\Models\Integrantes;
@@ -50,9 +51,9 @@ class ValidarAccidentes extends Controller implements ValidacionEncuesta
     public function obtenerPreguntas(): array
     {
         return [
-            'accidentes_laborales' => null,
-            'accidentes_transito' => null,
+            'accidentes_transito' => new PreguntaEncuesta('tipo_lesion', 36),
             'tipo_lesion' => null,
+            'accidentes_laborales' => null,
         ];
     }
 
