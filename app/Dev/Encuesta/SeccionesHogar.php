@@ -3,6 +3,9 @@
 namespace App\Dev\Encuesta;
 
 use App\Dev\Puntaje;
+use App\Http\Controllers\Validador\Hogar\ValidarFactoresProtectores;
+use App\Http\Controllers\Validador\Hogar\ValidarHabitosConsumo;
+use App\Interfaces\ValidacionEncuesta;
 use App\Models\Hogar\Hogar;
 
 class SeccionesHogar
@@ -68,6 +71,20 @@ class SeccionesHogar
     public function getErrores(): array
     {
         return $this->errores;
+    }
+
+    public function obtenerValidador(Hogar $hogar, array $seccion): ?ValidacionEncuesta
+    {
+        return match ($seccion)
+        {
+            'factores_protectores' => new ValidarFactoresProtectores($hogar, $seccion),
+            'habitos_consumo' => new ValidarHabitosConsumo($hogar, $seccion),
+            'vivienda' => null,
+            'animales' => null,
+            'mortalidad' => null,
+            'seguridad_alimentaria' => null,
+            default => null,
+        };
     }
 
     public static function getPreguntasSeccion(string $seccion): array
