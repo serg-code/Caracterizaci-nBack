@@ -72,7 +72,7 @@ class EjemploValidador extends Controller implements ValidacionEncuesta
         if (empty($respuestaEncuesta))
         {
             array_push($this->errores, [$refCampo => 'No encontramos la pregunta ' . $refCampo]);
-            return false;
+            return new Opcion(['id' => 0, 'valor' => 0]);
         }
 
         $opcion = OpcionPregunta::opcionPregunta($refCampo, $respuestaEncuesta);
@@ -81,7 +81,7 @@ class EjemploValidador extends Controller implements ValidacionEncuesta
             array_push($this->errores, [
                 $refCampo => $respuestaEncuesta . " no es un respuesta valida para $refCampo"
             ]);
-            return false;
+            return new Opcion(['id' => 0, 'valor' => 0]);
         }
 
         array_push($this->seccionValidada, [$refCampo => $this->seccion[$refCampo]]);

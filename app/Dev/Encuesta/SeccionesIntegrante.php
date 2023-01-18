@@ -7,6 +7,7 @@ use App\Http\Controllers\Validador\Integrante\ValidarAdultez;
 use App\Http\Controllers\Validador\Integrante\ValidarInfancia;
 use App\Http\Controllers\Validador\Integrante\ValidarJuventud;
 use App\Http\Controllers\Validador\Integrante\ValidarPrimeraInfancia;
+use App\Http\Controllers\Validador\Integrante\ValidarVejez;
 use App\Interfaces\ValidacionEncuesta;
 use App\Models\Integrantes;
 
@@ -89,7 +90,7 @@ class SeccionesIntegrante
             'adolescencia' => new ValidarAdolescencia($integrante, $seccion),
             'juventud' => new ValidarJuventud($integrante, $seccion),
             'adultez' => new ValidarAdultez($integrante, $seccion),
-            'vejez' => null,
+            'vejez' => new ValidarVejez($integrante, $seccion),
             'materno_perinatal' => null,
             'accidentes' => null,
             'cuidado_enfermedades' => null,
