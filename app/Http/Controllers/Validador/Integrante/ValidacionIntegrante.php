@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Validador\Integrante;
 use App\Dev\Encuesta\OpcionPregunta;
 use App\Models\Integrantes;
 use App\Models\Opcion;
+use App\Models\Pregunta;
 use Carbon\Carbon;
 
 class ValidacionIntegrante
@@ -55,6 +56,7 @@ class ValidacionIntegrante
 
     protected function puntuacion(string $refCampo): Opcion
     {
+
         $respuestaEncuesta = $this->seccion[$refCampo] ?? null;
         if (empty($respuestaEncuesta))
         {
@@ -65,18 +67,28 @@ class ValidacionIntegrante
             return new Opcion(['id' => 0, 'valor' => 0]);
         }
 
-        $opcion = OpcionPregunta::opcionPregunta($refCampo, $respuestaEncuesta);
-        if (empty($opcion))
+        $pregunta = Pregunta::where('ref_campo', '=', $refCampo)->first();
+        $esEscribir = $this->esEscribir($pregunta->tipo);
+
+        if ($esEscribir)
         {
-            array_push($this->errores, [
-                $refCampo => "($respuestaEncuesta) no es un respuesta valida para $refCampo en la seccion " . $this->refSeccion
-            ]);
+            array_push($this->seccionValidada, [$refCampo => $respuestaEncuesta]);
             return new Opcion(['id' => 0, 'valor' => 0]);
         }
 
-        array_push($this->seccionValidada, [$refCampo => $this->seccion[$refCampo]]);
+        $opcion = OpcionPregunta::opcionPregunta($refCampo, $respuestaEncuesta);
+        $opcionVacio = empty($opcion);
+        if ($opcionVacio)
+        {
+            array_push($this->errores, [
+                $refCampo => "($respuestaEncuesta) no es un respuesta valida para $refCampo en la seccion " .
+                    $this->refSeccion
+            ]);
+        }
+
+        array_push($this->seccionValidada, [$refCampo => $respuestaEncuesta]);
         $this->puntaje += $opcion->valor;
-        return $opcion;
+        return $opcionVacio ? new Opcion(['id' => 0, 'valor' => 0]) : $opcion;
     }
 
     protected function validacionSimple(string $refCampo, bool $validar): Opcion
@@ -87,5 +99,11 @@ class ValidacionIntegrante
         }
 
         return new Opcion(['id' => 0, 'valor' => 0]);
+    }
+
+    protected function esEscribir(string $tipoPregunta)
+    {
+        return $tipoPregunta == 'numero' || $tipoPregunta == 'texto' || $tipoPregunta == 'texto_largo'
+            || $tipoPregunta == 'fecha';
     }
 }

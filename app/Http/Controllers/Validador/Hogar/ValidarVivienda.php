@@ -44,7 +44,7 @@ class ValidarVivienda extends ValidacionHogar implements ValidacionEncuesta
         if ($actividadProductiva->id == 314)
         {
             $ciuuRespuesta = $this->seccion['ciuu'] ?? '000';
-            $ciuu = CIUU::find($ciuuRespuesta);
+            $ciuu = CIUU::where('codigo', '=', $ciuuRespuesta);
 
             if (empty($ciuu))
             {

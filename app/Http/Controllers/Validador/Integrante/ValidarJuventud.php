@@ -28,11 +28,9 @@ class ValidarJuventud extends ValidacionIntegrante implements ValidacionEncuesta
             return false;
         }
 
+        $this->deteccionTemprana();
         if ($this->integrante->sexo == 'Femenino')
         {
-            $cuelloUterino = $this->puntuacion('juv_cancer_cuello_uterino');
-            $this->colposcopia($cuelloUterino);
-            $this->validacionSimple('juv_bioscopia_cervico', ($cuelloUterino->id == 592));
             $this->planificacionFemenino();
         }
 
@@ -42,18 +40,28 @@ class ValidarJuventud extends ValidacionIntegrante implements ValidacionEncuesta
         $this->valoracionIntegral();
     }
 
-    protected function colposcopia(Opcion $cuelloUterino)
+    protected function deteccionTemprana()
     {
-        $colposcopia = $this->validacionSimple('juv_colposcopia', ($cuelloUterino->id == 592));
-
-        //si asite a la colposcopia
-        if ($colposcopia->id == 595)
+        if ($this->integrante->sexo == 'Femenino')
         {
-            $this->puntuacion('juv_control_medico');
-        }
+            $cuelloUterino = $this->puntuacion('juv_cancer_cuello_uterino');
 
-        //no asiste a la colposcopia
-        //? si $colposcopia->id == 594 ? (induccion: id ) : null
+            //citologia anormal
+            if ($cuelloUterino->id == 592)
+            {
+                $colposcopia = $this->puntuacion('juv_colposcopia');
+                //si asite a la colposcopia
+                if ($colposcopia->id == 595)
+                {
+                    $this->puntuacion('juv_control_medico_examen_colposcopia');
+                }
+
+                //no asiste a la colposcopia
+                //? si $colposcopia->id == 594 ? (induccion: id ) : null
+
+                $this->validacionSimple('juv_bioscopia_cervico', ($cuelloUterino->id == 592));
+            }
+        }
     }
 
     protected function seno()
@@ -63,7 +71,7 @@ class ValidarJuventud extends ValidacionIntegrante implements ValidacionEncuesta
 
         if ($examenSeno->id == 601)
         {
-            $this->puntuacion('juv_control_medico');
+            $this->puntuacion('juv_control_medico_examen_seno');
         }
     }
 

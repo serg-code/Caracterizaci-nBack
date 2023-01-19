@@ -238,41 +238,6 @@ class IntegranteFinalizadoController extends Controller
         }
     }
 
-    protected function recorrerRespuestas(array $respuestas, string $refSeccion)
-    {
-        $listadoPreguntas = SeccionesIntegrante::getPreguntasSeccion($refSeccion);
-        $listaExcepciones = [];
-
-        foreach ($listadoPreguntas as $ref_campo => $validaciones)
-        {
-            if (!empty($listaExcepciones[$ref_campo]))
-            {
-                continue;
-            }
-
-            if (empty($respuestas[$ref_campo]))
-            {
-                $this->errores[$ref_campo] = ["No encontramos la pregunta $ref_campo"];
-                continue;
-            }
-
-            $error = $this->validarRespuesta($ref_campo, $respuestas[$ref_campo]);
-            if (empty($error) && !empty($validaciones) && $respuestas[$ref_campo] != $validaciones->respuestaHabilita)
-            {
-
-                $listaExcepciones[$validaciones->refCampoHabilita] = true;
-                unset($this->secciones[$refSeccion]['respuestas'][$validaciones->refCampoHabilita]);
-                continue;
-            }
-
-            if (!empty($error) && !empty($respuestas[$ref_campo]))
-            {
-                $this->secciones[$refSeccion];
-                $this->errores[$ref_campo] = [$error];
-            }
-        }
-    }
-
     protected function validarRespuesta(string $ref_campo, $respuesta): ?string
     {
         $pregunta = Pregunta::ObtenerPregunta($ref_campo);
