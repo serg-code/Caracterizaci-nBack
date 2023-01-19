@@ -74,7 +74,7 @@ class IntegranteFinalizadoController extends Controller
         {
             if (empty($this->secciones[$nombreSeccion]))
             {
-                array_push($this->errores, ["$nombreSeccion" => "No encontramos la seccion $nombreSeccion"]);
+                // array_push($this->errores, ["$nombreSeccion" => "No encontramos la seccion $nombreSeccion"]);
                 continue;
             }
 

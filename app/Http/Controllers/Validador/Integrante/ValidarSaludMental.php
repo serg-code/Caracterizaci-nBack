@@ -54,5 +54,4 @@ class ValidarSaludMental extends ValidacionIntegrante implements ValidacionEncue
             array_push($this->seccionValidada, ['cie10' => "$cie10Respuesta"]);
         }
     }
-
 }

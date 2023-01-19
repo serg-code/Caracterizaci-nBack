@@ -66,12 +66,15 @@ class ValidarJuventud extends ValidacionIntegrante implements ValidacionEncuesta
 
     protected function seno()
     {
-        $examenSeno = $this->puntuacion('juv_examen_seno');
-        //? preguntar si asistió a control médico con el resultado, si NO inducir urgente a control medico
-
-        if ($examenSeno->id == 601)
+        if ($this->integrante->sexo == 'Femenino')
         {
-            $this->puntuacion('juv_control_medico_examen_seno');
+            $examenSeno = $this->puntuacion('juv_examen_seno');
+            //? preguntar si asistió a control médico con el resultado, si NO inducir urgente a control medico
+
+            if ($examenSeno->id == 601)
+            {
+                $this->puntuacion('juv_control_medico_examen_seno');
+            }
         }
     }
 

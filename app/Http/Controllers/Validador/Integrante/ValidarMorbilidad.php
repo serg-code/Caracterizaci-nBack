@@ -37,7 +37,6 @@ class ValidarMorbilidad extends ValidacionIntegrante implements ValidacionEncues
             //si la persona tiene alguna enfermedad cronica
             $this->validacionSimple('enfermedad_cronica_cual', ($cronica->id == 150));
             $this->validacionSimple('controlada', ($cronica->id == 150));
-                                 
         }
     }
 
@@ -47,7 +46,6 @@ class ValidarMorbilidad extends ValidacionIntegrante implements ValidacionEncues
             $congenita = $this->puntuacion('enfermedades_congenitas');
             //si la persona tiene alguna enfermedad congenita
             $this->validacionSimple('enfermedades_conjenitas_cual', ($congenita->id == 173));
-                                            
         }
     }
-    }
+}

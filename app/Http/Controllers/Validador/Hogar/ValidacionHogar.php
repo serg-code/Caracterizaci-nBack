@@ -45,7 +45,7 @@ class ValidacionHogar
     protected function puntuacion(string $refCampo): Opcion
     {
         $respuestaEncuesta = $this->seccion[$refCampo] ?? null;
-        if (empty($respuestaEncuesta) && $respuestaEncuesta != 0)
+        if (empty($respuestaEncuesta))
         {
             $this->agregarErrror($refCampo, "No encontramos la pregunta $refCampo en la seccion " . $this->refSeccion);
             return new Opcion(['id' => 0, 'valor' => 0]);
@@ -59,24 +59,24 @@ class ValidacionHogar
             return new Opcion(['id' => 0, 'valor' => 0]);
         }
 
-        try
+        // try
+        // {
+        $opcion = OpcionPregunta::opcionPregunta($refCampo, $respuestaEncuesta);
+        $opcionVacio = empty($opcion);
+        if ($opcionVacio)
         {
-            $opcion = OpcionPregunta::opcionPregunta($refCampo, $respuestaEncuesta);
-            $opcionVacio = empty($opcion);
-            if ($opcionVacio)
-            {
-                $this->agregarErrror(
-                    $refCampo,
-                    "($respuestaEncuesta) no es un respuesta valida para $refCampo en la seccion " .
-                        $this->refSeccion
-                );
-            }
+            $this->agregarErrror(
+                $refCampo,
+                "($respuestaEncuesta) no es un respuesta valida para $refCampo en la seccion " .
+                    $this->refSeccion
+            );
         }
-        catch (\Throwable $th)
-        {
-            // dd($th);
-            dd($refCampo);
-        }
+        // }
+        // catch (\Throwable $th)
+        // {
+        //     // dd($th);
+        //     dd($refCampo);
+        // }
 
         $this->seccionValidada[$refCampo] = $respuestaEncuesta;
         $this->agregarRespuestaSeccion($refCampo, $respuestaEncuesta);

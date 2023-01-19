@@ -34,7 +34,6 @@ class ValidarCuidadosDomiciliarios extends ValidacionIntegrante implements Valid
             $this->validacionSimple('diagnostico_principal', ($domiciliario->id == 45));
             $this->validacionSimple('causa', ($domiciliario->id == 45));
             $this->validacionSimple('fecha_inicio_domiciliario', ($domiciliario->id == 45));
-          
         }
     }
 
@@ -44,8 +43,6 @@ class ValidarCuidadosDomiciliarios extends ValidacionIntegrante implements Valid
             $oxigeno = $this->puntuacion('oxigeno_domiciliario');
             //si la persona recibe oxigeno domiciliario 
             $this->validacionSimple('plan_aprobado', ($oxigeno->id == 52));
-     
         }
     }
 }
-            

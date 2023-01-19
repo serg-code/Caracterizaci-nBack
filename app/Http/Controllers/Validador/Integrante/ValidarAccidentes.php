@@ -18,8 +18,8 @@ class ValidarAccidentes extends ValidacionIntegrante implements ValidacionEncues
 
     public function validar()
     {
-        $accidente=$this->puntuacion('accidentes_transito');
-        $this->validacionSimple('tipo_lesion',($accidente->id==36));
+        $accidente = $this->puntuacion('accidentes_transito');
+        $this->validacionSimple('tipo_lesion', ($accidente->id == 36));
         $this->puntuacion('accidentes_laborales');
     }
 }
