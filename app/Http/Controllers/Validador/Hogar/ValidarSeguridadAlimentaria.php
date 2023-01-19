@@ -16,7 +16,7 @@ class ValidarSeguridadAlimentaria extends ValidacionHogar implements ValidacionE
     {
         $this->puntuacion('falto_dinero');
         $this->puntuacion('animales_silvestres');
-        $this->puntuacion('consume_cerdo_res_pollo');
+        $this->consumoCarne();
         $this->puntuacion('consume_huevos');
         $this->puntuacion('consume_frijol_lentejas');
         $this->puntuacion('consume_lacteos');
@@ -26,5 +26,19 @@ class ValidarSeguridadAlimentaria extends ValidacionHogar implements ValidacionE
         $this->puntuacion('consume_enlatados');
         $this->puntuacion('consume_platano_yuca');
         $this->puntuacion('consume_gaseosas');
+    }
+
+    protected function consumoCarne()
+    {
+        $vecesComeCarne = $this->seccion['consume_cerdo_res_pollo'];
+        if ($vecesComeCarne < 0)
+        {
+            $this->agregarErrror('consume_cerdo_res_pollo', "($vecesComeCarne) no es valido como respuesta");
+        }
+
+        if ($vecesComeCarne >= 0 && $vecesComeCarne < 3)
+        {
+            $this->sumarPuntaje(5);
+        }
     }
 }
