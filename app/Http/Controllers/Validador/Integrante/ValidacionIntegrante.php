@@ -56,14 +56,10 @@ class ValidacionIntegrante
 
     protected function puntuacion(string $refCampo): Opcion
     {
-
         $respuestaEncuesta = $this->seccion[$refCampo] ?? null;
         if (empty($respuestaEncuesta))
         {
-            array_push(
-                $this->errores,
-                [$refCampo => "No encontramos la pregunta $refCampo en la seccion " . $this->refSeccion]
-            );
+            $this->agregarErrror($refCampo, "No encontramos la pregunta $refCampo en la seccion " . $this->refSeccion);
             return new Opcion(['id' => 0, 'valor' => 0]);
         }
 
@@ -72,7 +68,7 @@ class ValidacionIntegrante
 
         if ($esEscribir)
         {
-            array_push($this->seccionValidada, [$refCampo => $respuestaEncuesta]);
+            $this->agregarRespuestaSeccion($refCampo, $respuestaEncuesta);
             return new Opcion(['id' => 0, 'valor' => 0]);
         }
 
@@ -80,14 +76,16 @@ class ValidacionIntegrante
         $opcionVacio = empty($opcion);
         if ($opcionVacio)
         {
-            array_push($this->errores, [
-                $refCampo => "($respuestaEncuesta) no es un respuesta valida para $refCampo en la seccion " .
+            $this->agregarErrror(
+                $refCampo,
+                "($respuestaEncuesta) no es un respuesta valida para $refCampo en la seccion " .
                     $this->refSeccion
-            ]);
+            );
         }
 
-        array_push($this->seccionValidada, [$refCampo => $respuestaEncuesta]);
-        $this->puntaje += $opcion->valor;
+        $this->seccionValidada[$refCampo] = $respuestaEncuesta;
+        $this->agregarRespuestaSeccion($refCampo, $respuestaEncuesta);
+        $this->puntaje += $opcion->valor ?? 0;
         return $opcionVacio ? new Opcion(['id' => 0, 'valor' => 0]) : $opcion;
     }
 
@@ -105,5 +103,15 @@ class ValidacionIntegrante
     {
         return $tipoPregunta == 'numero' || $tipoPregunta == 'texto' || $tipoPregunta == 'texto_largo'
             || $tipoPregunta == 'fecha';
+    }
+
+    protected  function agregarRespuestaSeccion(string $refCampo, $respuestaEncuesta): void
+    {
+        $this->seccionValidada[$refCampo] = $respuestaEncuesta;
+    }
+
+    protected function agregarErrror(string $refCampo, string $textoError)
+    {
+        $this->errores[$refCampo] = $textoError;
     }
 }

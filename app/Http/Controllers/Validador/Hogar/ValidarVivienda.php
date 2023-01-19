@@ -15,14 +15,15 @@ class ValidarVivienda extends ValidacionHogar implements ValidacionEncuesta
 
     public function validar()
     {
+        //tratamiento_agua
+        $this->sisben();
         $this->puntuacion('tipos_vivienda');
         $this->puntuacion('tipos_tenecia');
         $this->puntuacion('servicios_sanitarios');
         $this->puntuacion('tipos_alumbrado');
         $this->puntuacion('dormitorios');
         $this->puntuacion('humo_vivienda');
-        $this->puntuacion('fuentes_agua');
-        $this->puntuacion('tipos_tratamiento_agua');
+        $this->agua();
         $this->puntuacion('tipos_disposicion_basura');
         $this->puntuacion('reciclan');
         $this->puntuacion('iluminacion_adecuada');
@@ -38,6 +39,16 @@ class ValidarVivienda extends ValidacionHogar implements ValidacionEncuesta
         $this->puntuacion('tipos_material_paredes');
     }
 
+    protected function sisben()
+    {
+        $sisben = $this->puntuacion('encuesta_sisben');
+        if ($sisben->id == 249)
+        {
+            $this->puntuacion('ficha_sisben');
+            $this->puntuacion('nivel_sisben');
+        }
+    }
+
     protected function activiadadProductiva()
     {
         $actividadProductiva = $this->puntuacion('actividad_productiva');
@@ -48,14 +59,18 @@ class ValidarVivienda extends ValidacionHogar implements ValidacionEncuesta
 
             if (empty($ciuu))
             {
-                array_push(
-                    $this->errores,
-                    ['ciuu' => 'No encontramos este codigo CIUU en la seccion de Vivienda']
-                );
+                $this->agregarErrror('ciuu', 'No encontramos este codigo CIUU en la seccion de Vivienda');
                 return false;
             }
 
-            array_push($this->seccionValidada, ['ciuu' => "$ciuuRespuesta"]);
+            $this->agregarRespuestaSeccion('ciuu', $ciuuRespuesta);
         }
+    }
+
+    protected function agua()
+    {
+        $this->puntuacion('fuentes_agua');
+        $tratamientoAgua = $this->puntuacion('tratamiento_agua');
+        $this->validacionSimple('tipos_tratamiento_agua', ($tratamientoAgua->id == 289));
     }
 }
