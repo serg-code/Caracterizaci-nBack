@@ -2,104 +2,50 @@
 
 namespace App\Http\Controllers\Validador\Integrante;
 
-use App\Dev\Encuesta\OpcionPregunta;
 use App\Dev\Encuesta\PreguntaEncuesta;
-use App\Http\Controllers\Controller;
 use App\Interfaces\ValidacionEncuesta;
 use App\Models\Integrantes;
-use App\Models\Opcion;
-use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
 
-class ValidarCuidadosDomiciliarios extends Controller implements ValidacionEncuesta
+class ValidarCuidadosDomiciliarios extends ValidacionIntegrante implements ValidacionEncuesta
 {
-
-    protected array $errores;
-    protected int $puntaje;
-    protected int $edad;
-    protected int $mesesEdad;
-    protected array $seccionValidada;
-
     public function __construct(
         protected Integrantes $integrante = new Integrantes(),
         protected array $seccion = [],
     )
     {
-        $this->puntaje = 0;
-        $this->errores = [];
-        $this->seccionValidada = [];
-
-        $fechaNacimiento = Carbon::createFromFormat('Y-m-d', $this->integrante->fecha_nacimiento);
-        $fechaActual = Carbon::now();
-        $diferenciaFechas = $fechaActual->diff($fechaNacimiento);
-        $this->edad = $diferenciaFechas->y;
-        $this->mesesEdad = $diferenciaFechas->format("%m");
+        parent::__construct('cuidados_domiciliarios', $integrante, $seccion);
     }
-
 
     public function validar()
     {
-
-        //validaciones del excel
+        $this->puntuacion('cuidados_domiciliarios');
+        $this->puntuacion('diagnostico_principal');
+        $this->puntuacion('causa');
+        $this->puntuacion('fecha_inicio_domiciliario');
+        $this->puntuacion('oxigeno_domiciliario');
+        $this->puntuacion('plan_aprobado');
     }
 
-    public function obtenerErrores(): array
+    protected function domiciliarios()
     {
-        return $this->errores;
-    }
-
-    public function obtenerPuntaje(): int
-    {
-        return $this->puntaje;
-    }
-
-    public function obtenerPreguntas(): array
-    {
-        return [
-            'cuidados_domiciliarios' => null,
-            'diagnostico_principal' => null,
-            'causa' => null,
-            'fecha_inicio_domiciliario' => null,
-            'oxigeno_domiciliario' => new PreguntaEncuesta('plan_aprobado', 52),
-            'plan_aprobado' => null,
-        ];
-    }
-
-    public function obtenerSeccion(): array
-    {
-        return $this->seccion;
-    }
-
-    protected function puntuacion(string $refCampo): Opcion
-    {
-        $respuestaEncuesta = $this->seccion[$refCampo] ?? null;
-        if (empty($respuestaEncuesta))
         {
-            array_push($this->errores, [$refCampo => 'No encontramos la pregunta ' . $refCampo]);
-            return new Opcion(['id' => 0, 'valor' => 0]);
+            $domiciliario = $this->puntuacion('cuidados_domiciliarios');
+            //si la persona recibe cuidados domiciliarios
+            $this->validacionSimple('diagnostico_principal', ($domiciliario->id == 45));
+            $this->validacionSimple('causa', ($domiciliario->id == 45));
+            $this->validacionSimple('fecha_inicio_domiciliario', ($domiciliario->id == 45));
+          
         }
-
-        $opcion = OpcionPregunta::opcionPregunta($refCampo, $respuestaEncuesta);
-        if (empty($opcion))
-        {
-            array_push($this->errores, [
-                $refCampo => $respuestaEncuesta . " no es un respuesta valida para $refCampo"
-            ]);
-            return new Opcion(['id' => 0, 'valor' => 0]);
-        }
-
-        array_push($this->seccionValidada, [$refCampo => $this->seccion[$refCampo]]);
-        $this->puntaje += $opcion->valor;
-        return $opcion;
     }
 
-    protected function validacionSimple(string $refCampo, bool $validar): Opcion
+    protected function OxigenoDomiciliario()
     {
-        if ($validar)
         {
-            return $this->puntuacion($refCampo);
+            $oxigeno = $this->puntuacion('oxigeno_domiciliario');
+            //si la persona recibe oxigeno domiciliario 
+            $this->validacionSimple('plan_aprobado', ($oxigeno->id == 52));
+     
         }
-
-        return new Opcion(['id' => 0, 'valor' => 0]);
     }
 }
+            
