@@ -89,13 +89,13 @@ class EjemploValidador extends Controller implements ValidacionEncuesta
         return $opcion;
     }
 
-    protected function validacionSimple(string $refCampo, bool $validar): ?Opcion
+    protected function validacionSimple(string $refCampo, bool $validar): Opcion
     {
         if ($validar)
         {
             return $this->puntuacion($refCampo);
         }
 
-        return null;
+        return new Opcion(['id' => 0, 'valor' => 0]);
     }
 }
