@@ -1,0 +1,79 @@
+<?php
+
+namespace App\Http\Controllers\Validador\Hogar;
+
+use App\Dev\Encuesta\OpcionPregunta;
+use App\Models\Opcion;
+
+class ValidacionHogar
+{
+    protected array $errores;
+    protected int $puntaje;
+    protected array $seccionValidada;
+
+    public function __construct(
+        protected string $refSeccion,
+        protected array $seccion = [],
+    )
+    {
+        $this->puntaje = 0;
+        $this->errores = [];
+        $this->seccionValidada = [];
+    }
+
+    public function obtenerErrores(): array
+    {
+        return $this->errores;
+    }
+
+    public function obtenerPuntaje(): int
+    {
+        return $this->puntaje;
+    }
+
+    public function obtenerPreguntas(): array
+    {
+        return [];
+    }
+
+    public function obtenerSeccion(): array
+    {
+        return $this->seccionValidada;
+    }
+
+    protected function puntuacion(string $refCampo): Opcion
+    {
+        $respuestaEncuesta = $this->seccion[$refCampo] ?? null;
+        if (empty($respuestaEncuesta))
+        {
+            array_push(
+                $this->errores,
+                [$refCampo => "No encontramos la pregunta $refCampo en la seccion " . $this->refSeccion]
+            );
+            return new Opcion(['id' => 0, 'valor' => 0]);
+        }
+
+        $opcion = OpcionPregunta::opcionPregunta($refCampo, $respuestaEncuesta);
+        if (empty($opcion))
+        {
+            array_push($this->errores, [
+                $refCampo => "($respuestaEncuesta) no es un respuesta valida para $refCampo en la seccion " . $this->refSeccion
+            ]);
+            return new Opcion(['id' => 0, 'valor' => 0]);
+        }
+
+        array_push($this->seccionValidada, [$refCampo => $this->seccion[$refCampo]]);
+        $this->puntaje += $opcion->valor;
+        return $opcion;
+    }
+
+    protected function validacionSimple(string $refCampo, bool $validar): Opcion
+    {
+        if ($validar)
+        {
+            return $this->puntuacion($refCampo);
+        }
+
+        return new Opcion(['id' => 0, 'valor' => 0]);
+    }
+}
