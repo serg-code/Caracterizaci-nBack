@@ -2,36 +2,19 @@
 
 namespace App\Http\Controllers\Validador\Integrante;
 
-use App\Dev\Encuesta\OpcionPregunta;
 use App\Interfaces\ValidacionEncuesta;
 use App\Models\Integrantes;
 use App\Models\Opcion;
-use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
 
-class ValidarAdultez implements ValidacionEncuesta
+class ValidarAdultez extends ValidacionIntegrante implements ValidacionEncuesta
 {
-
-    protected array $errores;
-    protected int $puntaje;
-    protected int $edad;
-    protected int $mesesEdad;
-    protected array $seccionValidada;
 
     public function __construct(
         protected Integrantes $integrante = new Integrantes(),
         protected array $seccion = [],
     )
     {
-        $this->puntaje = 0;
-        $this->errores = [];
-        $this->seccionValidada = [];
-
-        $fechaNacimiento = Carbon::createFromFormat('Y-m-d', $this->integrante->fecha_nacimiento);
-        $fechaActual = Carbon::now();
-        $diferenciaFechas = $fechaActual->diff($fechaNacimiento);
-        $this->edad = $diferenciaFechas->y;
-        $this->mesesEdad = $diferenciaFechas->format("%m");
+        parent::__construct('adultez', $integrante, $seccion);
     }
 
     public function validar()
@@ -49,90 +32,6 @@ class ValidarAdultez implements ValidacionEncuesta
         $this->planificacion();
         $this->parejas();
         $this->examenMedico();
-    }
-
-    public function obtenerErrores(): array
-    {
-        return $this->errores;
-    }
-
-    public function obtenerPuntaje(): int
-    {
-        return $this->puntaje;
-    }
-
-    public function obtenerPreguntas(): array
-    {
-        return [
-            'adul_valoracion_peso',
-            'adul_valoracion_talla',
-            'adul_imc',
-            'adul_asesoria_anticoncepcion',
-            'adul_planifica',
-            'adul_metodo_planifica',
-            'adul_desde_cuando_planifica',
-            'adul_razones_no_planifica',
-            'adul_parejas_sexuales_al_anio',
-            'adul_control_adultos',
-            'adul_antecedentes_diabetes',
-            'adul_antecedentes_hipertension',
-            'adul_antecedentes_colesterol',
-            'adul_perimetro_abdominal',
-            'adul_atencion_medica',
-            'adul_salud_bucal',
-            'adul_cancer_cuello_uterino_adn_vph',
-            'adul_cancer_cuello_uterino_adn_vph_positivo',
-            'adul_colposcopia_cervico_uterina',
-            'adul_biopsia_cervico_uterina',
-            'adul_cancer_mama_mamografia',
-            'adul_cancer_mama_valoracion_clinica',
-            'adul_cancer_prostata',
-            'adul_vasectomia',
-            'adul_esterilizacion_femenina',
-            'adul_vias_esterilizacion',
-            'adul_profilaxis',
-            'adul_detartraje_supragingival',
-            'adul_fiebre_amarilla',
-            'adul_prueba_vih',
-        ];
-    }
-
-    public function obtenerSeccion(): array
-    {
-        return $this->seccionValidada;
-    }
-
-    protected function puntuacion(string $refCampo): Opcion
-    {
-        $respuestaEncuesta = $this->seccion[$refCampo] ?? null;
-        if (empty($respuestaEncuesta))
-        {
-            array_push($this->errores, [$refCampo => 'No encontramos la pregunta ' . $refCampo]);
-            return new Opcion(['id' => 0, 'valor' => 0]);
-        }
-
-        $opcion = OpcionPregunta::opcionPregunta($refCampo, $respuestaEncuesta);
-        if (empty($opcion))
-        {
-            array_push($this->errores, [
-                $refCampo => $respuestaEncuesta . " no es un respuesta valida para $refCampo"
-            ]);
-            return new Opcion(['id' => 0, 'valor' => 0]);
-        }
-
-        array_push($this->seccionValidada, [$refCampo => $this->seccion[$refCampo]]);
-        $this->puntaje += $opcion->valor;
-        return $opcion;
-    }
-
-    protected function validacionSimple(string $refCampo, bool $validar): Opcion
-    {
-        if ($validar)
-        {
-            return $this->puntuacion($refCampo);
-        }
-
-        return new Opcion(['id' => 0, 'valor' => 0]);
     }
 
     protected function validarIMC()

@@ -6,8 +6,6 @@ use App\Dev\Encuesta\OpcionPregunta;
 use App\Interfaces\ValidacionEncuesta;
 use App\Models\Integrantes;
 use App\Models\Opcion;
-use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
 
 class ValidarPrimeraInfancia extends ValidacionIntegrante implements ValidacionEncuesta
 {
@@ -16,17 +14,8 @@ class ValidarPrimeraInfancia extends ValidacionIntegrante implements ValidacionE
         protected array $seccion = [],
     )
     {
-        $this->puntaje = 0;
-        $this->errores = [];
-        $this->seccionValidada = [];
-
-        $fechaNacimiento = Carbon::createFromFormat('Y-m-d', $this->integrante->fecha_nacimiento);
-        $fechaActual = Carbon::now();
-        $diferenciaFechas = $fechaActual->diff($fechaNacimiento);
-        $this->edad = $diferenciaFechas->y;
-        $this->mesesEdad = $diferenciaFechas->format("%m");
+        parent::__construct('primera_infancia', $integrante, $seccion);
     }
-
 
     public function validar()
     {
@@ -74,73 +63,6 @@ class ValidarPrimeraInfancia extends ValidacionIntegrante implements ValidacionE
 
         $this->valoracionIntegral();
         $this->proteccionEspeficifica();
-    }
-
-    public function obtenerPreguntas(): array
-    {
-        return [
-            'pi_peso_al_nacer',
-            'pi_peso_actual',
-            'pi_talla_al_nacer',
-            'pi_talla_actual',
-            'pi_valoracion_nutricional',
-            'pi_desarrollo_lenguaje',
-            'pi_desarrollo_motora',
-            'pi_desarrollo_conducta',
-            'pi_desarrollo_probelmas_visuales',
-            'pi_desarrollo_problemas_auditivos',
-            'pi_desparasitado',
-            'pi_hospitalizacion_nacer',
-            'pi_carnet_vacunacion',
-            'pi_vacuna_bcg_rn',
-            'pi_vacuna_polio_d1',
-            'pi_vacuna_polio_d2',
-            'pi_vacuna_polio_d3',
-            'pi_vacuna_polio_r1',
-            'pi_vacuna_polio_r2',
-            'pi_vacuna_hepatitis',
-            'pi_vacuna_hepatitis_b_rn',
-            'pi_vacuna_influenza_estacional',
-            'pi_vacuna_neumococo_d1',
-            'pi_vacuna_neumococo_d2',
-            'pi_vacuna_neumococo_d3',
-            'pi_vacuna_rotavirus_d1',
-            'pi_vacuna_rotavirus_d2',
-            'pi_vacuna_fiebre_amarilla',
-            'pi_vacuna_dpt_d1',
-            'pi_vacuna_dpt_d2',
-            'pi_vacuna_pentavalente_d1',
-            'pi_vacuna_pentavalente_d2',
-            'pi_vacuna_pentavalente_d3',
-            'pi_vacuna_srp_d1',
-            'pi_vacuna_srp_d2',
-            'pi_vacuna_varicela',
-            'pi_atencion_medica',
-            'pi_atencion_enfermeria',
-            'pi_atencion_lactancia',
-            'pi_tsh',
-            'pi_fluor',
-            'pi_profilaxis',
-            'pi_sellantes',
-            'pi_higiene_bucal',
-            'pi_caries',
-            'pi_consulta_odontologica',
-        ];
-    }
-
-    public function obtenerErrores(): array
-    {
-        return $this->errores;
-    }
-
-    public function obtenerPuntaje(): int
-    {
-        return $this->puntaje;
-    }
-
-    public function obtenerSeccion(): array
-    {
-        return $this->seccion;
     }
 
     protected function PesoNacer()
@@ -334,38 +256,5 @@ class ValidarPrimeraInfancia extends ValidacionIntegrante implements ValidacionE
             $this->seccion['pi_vacuna_srp_d2'],
             $this->seccion['pi_vacuna_dpt_d2'],
         );
-    }
-
-    protected function puntuacion(string $refCampo): Opcion
-    {
-        $respuestaEncuesta = $this->seccion[$refCampo] ?? null;
-        if (empty($respuestaEncuesta))
-        {
-            array_push($this->errores, [$refCampo => 'No encontramos la pregunta ' . $refCampo]);
-            return new Opcion(['id' => 0, 'valor' => 0]);
-        }
-
-        $opcion = OpcionPregunta::opcionPregunta($refCampo, $respuestaEncuesta);
-        if (empty($opcion))
-        {
-            array_push($this->errores, [
-                $refCampo => $respuestaEncuesta . " no es un respuesta valida para $refCampo"
-            ]);
-            return new Opcion(['id' => 0, 'valor' => 0]);
-        }
-
-        array_push($this->seccionValidada, [$refCampo => $this->seccion[$refCampo]]);
-        $this->puntaje += $opcion->valor;
-        return $opcion;
-    }
-
-    protected function validacionSimple(string $refCampo, bool $validar): Opcion
-    {
-        if ($validar)
-        {
-            return $this->puntuacion($refCampo);
-        }
-
-        return new Opcion(['id' => 0, 'valor' => 0]);
     }
 }

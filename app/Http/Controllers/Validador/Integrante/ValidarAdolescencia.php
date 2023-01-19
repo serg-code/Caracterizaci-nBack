@@ -3,37 +3,20 @@
 namespace App\Http\Controllers\Validador\Integrante;
 
 use App\Dev\Encuesta\OpcionPregunta;
-use App\Http\Controllers\Controller;
 use App\Interfaces\ValidacionEncuesta;
 use App\Models\Integrantes;
 use App\Models\Opcion;
-use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
 
-class ValidarAdolescencia extends Controller implements ValidacionEncuesta
+class ValidarAdolescencia extends ValidacionIntegrante implements ValidacionEncuesta
 {
-    protected array $errores;
-    protected int $puntaje;
-    protected int $edad;
-    protected int $mesesEdad;
-    protected array $seccionValidada;
 
     public function __construct(
         protected Integrantes $integrante = new Integrantes(),
         protected array $seccion = [],
     )
     {
-        $this->puntaje = 0;
-        $this->errores = [];
-        $this->seccionValidada = [];
-
-        $fechaNacimiento = Carbon::createFromFormat('Y-m-d', $this->integrante->fecha_nacimiento);
-        $fechaActual = Carbon::now();
-        $diferenciaFechas = $fechaActual->diff($fechaNacimiento);
-        $this->edad = $diferenciaFechas->y;
-        $this->mesesEdad = $diferenciaFechas->format("%m");
+        parent::__construct('adolescencia', $integrante, $seccion);
     }
-
 
     public function validar()
     {
@@ -50,79 +33,6 @@ class ValidarAdolescencia extends Controller implements ValidacionEncuesta
 
         $this->planificacion();
         $this->proteccionEspecifica();
-    }
-
-    public function obtenerErrores(): array
-    {
-        return $this->errores;
-    }
-
-    public function obtenerPuntaje(): int
-    {
-        return $this->puntaje;
-    }
-
-    public function obtenerPreguntas(): array
-    {
-        return [
-            'adol_peso' => null,
-            'adol_talla' => null,
-            'adol_imc' => null,
-            'adol_asesoria_anticonceptiva' => null,
-            'adol_planifica' => null,
-            'adol_metodo_planficica' => null,
-            'adol_desde_cuando_planifica' => null,
-            'adol_razon_no_planifica' => null,
-            'adol_atencion_medica' => null,
-            'adol_atencion_enfermeria' => null,
-            'adol_salud_bucal' => null,
-            'adol_fluor' => null,
-            'adol_profilaxis' => null,
-            'adol_sellantes' => null,
-            'adol_supragingival' => null,
-            'adol_vacunacion' => null,
-            'adol_vacuna_fiebre_amarilla' => null,
-            'adol_vacuna_vph' => null,
-            'adol_vacuna_toxoide_tetanico' => null,
-        ];
-    }
-
-    public function obtenerSeccion(): array
-    {
-        return $this->seccion;
-    }
-
-    protected function puntuacion(string $refCampo): Opcion
-    {
-        $respuestaEncuesta = $this->seccion[$refCampo] ?? null;
-        if (empty($respuestaEncuesta))
-        {
-            array_push($this->errores, [$refCampo => 'No encontramos la pregunta ' . $refCampo]);
-            return new Opcion(['id' => 0, 'valor' => 0]);
-        }
-
-        $opcion = OpcionPregunta::opcionPregunta($refCampo, $respuestaEncuesta);
-        if (empty($opcion))
-        {
-            array_push($this->errores, [
-                $refCampo => $respuestaEncuesta . " no es un respuesta valida para $refCampo"
-            ]);
-            return new Opcion(['id' => 0, 'valor' => 0]);
-        }
-
-        array_push($this->seccionValidada, [$refCampo => $this->seccion[$refCampo]]);
-        $this->puntaje += $opcion->valor;
-        return $opcion;
-    }
-
-    protected function validacionSimple(string $refCampo, bool $validar): Opcion
-    {
-        if ($validar)
-        {
-            return $this->puntuacion($refCampo);
-        }
-
-        return new Opcion(['id' => 0, 'valor' => 0]);
     }
 
     protected function planificacion()
