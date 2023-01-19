@@ -6,9 +6,6 @@ use App\Dev\Hogar\ActualizarHogar;
 use App\Dev\Hogar\crearHogar;
 use App\Dev\RespuestaHttp;
 use App\Models\Hogar\Hogar;
-use App\Models\Municipio;
-use App\Models\Secciones\Hogar\FactoresProtectores;
-use App\Models\Secciones\Hogar\HabitosConsumo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Spatie\QueryBuilder\AllowedFilter;
@@ -25,19 +22,22 @@ class HogarController extends Controller
     {
         $datosUrl = $_GET;
         $cantidadPaginar = $datosUrl['per_page'] ?? env('LIMITEPAGINA_USUARIO', 10);
+        $select = [
+            'id',
+            'barrio_vereda_id',
+            'zona',
+            'cod_dpto',
+            'cod_mun',
+            'tipo',
+            'direccion',
+            'estado_registro',
+            'puntaje_max',
+            'puntaje_obtenido'
+        ];
 
         if (empty($datosUrl))
         {
-            $listadoHogares = Hogar::select([
-                'id',
-                'barrio_vereda_id',
-                'zona',
-                'cod_dpto',
-                'cod_mun',
-                'tipo',
-                'direccion',
-                'estado_registro',
-            ])
+            $listadoHogares = Hogar::select($select)
                 ->with(['municipio.departamento'])
                 ->paginate($cantidadPaginar);
 
@@ -51,16 +51,7 @@ class HogarController extends Controller
 
         //filtro de usuarios
         $hogares = QueryBuilder::for(Hogar::class)
-            ->select([
-                'id',
-                'barrio_vereda_id',
-                'zona',
-                'cod_dpto',
-                'cod_mun',
-                'tipo',
-                'direccion',
-                'estado_registro',
-            ])
+            ->select($select)
             ->allowedFilters([
                 AllowedFilter::scope('search'),
                 AllowedFilter::exact('id'),
