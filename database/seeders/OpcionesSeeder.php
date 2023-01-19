@@ -348,7 +348,7 @@ class OpcionesSeeder extends Seeder
         Opcion::create(["id" => "305", "ref_campo" => "reservorios_agua", "pregunta_opcion" => "SI", "valor" => "3"]);
         Opcion::create(["id" => "306", "ref_campo" => "anjeos", "pregunta_opcion" => "NO", "valor" => "1"]);
         Opcion::create(["id" => "307", "ref_campo" => "anjeos", "pregunta_opcion" => "SI", "valor" => "3"]);
-        Opcion::create(["id" => "308", "ref_campo" => "tipos_insectos_vectores", "pregunta_opcion" => "Ningun", "valor" => "0"]);
+        Opcion::create(["id" => "308", "ref_campo" => "tipos_insectos_vectores", "pregunta_opcion" => "Ninguno", "valor" => "0"]);
         Opcion::create(["id" => "309", "ref_campo" => "tipos_insectos_vectores", "pregunta_opcion" => "Zancudos", "valor" => "5"]);
         Opcion::create(["id" => "310", "ref_campo" => "tipos_insectos_vectores", "pregunta_opcion" => "Pitos", "valor" => "5"]);
         Opcion::create(["id" => "311", "ref_campo" => "conservacion_alimentos", "pregunta_opcion" => "NO", "valor" => "1"]);

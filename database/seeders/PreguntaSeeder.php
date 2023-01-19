@@ -24,7 +24,7 @@ class PreguntaSeeder extends Seeder
                 Pregunta::guardarPregunta(["ref_campo" => "lavar_manos_antes_comer", "ref_seccion" => "factores_protectores", "descripcion" => "¿Acostumbra la familia a lavarse las manos antes de comer?", "tipo" => "seleccion"]);
                 Pregunta::guardarPregunta(["ref_campo" => "lavar_manos_antes_preparar_alimentos", "ref_seccion" => "factores_protectores", "descripcion" => "¿Acostumbra la familia a lavarse las manos antes de preparar los alimentos?", "tipo" => "seleccion"]);
                 Pregunta::guardarPregunta(["ref_campo" => "fumigar_vivienda", "ref_seccion" => "factores_protectores", "descripcion" => "¿Fumiga su vivienda?", "tipo" => "seleccion"]);
-                Pregunta::guardarPregunta(["ref_campo" => "secretaria_fumigado", "ref_seccion" => "factores_protectores", "descripcion" => "¿En el último ano la secretarìa ha fumigado?", "tipo" => "seleccion"]);
+                Pregunta::guardarPregunta(["ref_campo" => "secretaria_fumigado", "ref_seccion" => "factores_protectores", "descripcion" => "¿En el último año la secretarìa ha fumigado?", "tipo" => "seleccion"]);
                 Pregunta::guardarPregunta(["ref_campo" => "acido_borico_cucarachas", "ref_seccion" => "factores_protectores", "descripcion" => "¿Utiliza acído boríco para las cucarachas?", "tipo" => "seleccion"]);
 
                 //* habitos_consumo
