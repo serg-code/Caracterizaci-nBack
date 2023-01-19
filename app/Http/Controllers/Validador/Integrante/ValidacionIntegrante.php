@@ -15,9 +15,9 @@ class ValidacionIntegrante
     protected int $edad;
     protected int $mesesEdad;
     protected array $seccionValidada;
-    protected string $refSeccion;
 
     public function __construct(
+        protected string $refSeccion,
         protected Integrantes $integrante = new Integrantes(),
         protected array $seccion = [],
     )
@@ -25,24 +25,12 @@ class ValidacionIntegrante
         $this->puntaje = 0;
         $this->errores = [];
         $this->seccionValidada = [];
-        $this->refSeccion = '';
 
         $fechaNacimiento = Carbon::createFromFormat('Y-m-d', $this->integrante->fecha_nacimiento);
         $fechaActual = Carbon::now();
         $diferenciaFechas = $fechaActual->diff($fechaNacimiento);
         $this->edad = $diferenciaFechas->y;
         $this->mesesEdad = $diferenciaFechas->format("%m");
-    }
-
-    public function validar()
-    {
-        $edad = $this->edad;
-        if ($edad < 10 || $edad > 70)
-        {
-            return false;
-        }
-
-        //validaciones del excel
     }
 
     public function obtenerErrores(): array
@@ -70,7 +58,10 @@ class ValidacionIntegrante
         $respuestaEncuesta = $this->seccion[$refCampo] ?? null;
         if (empty($respuestaEncuesta))
         {
-            array_push($this->errores, [$refCampo => 'No encontramos la pregunta ' . $refCampo]);
+            array_push(
+                $this->errores,
+                [$refCampo => "No encontramos la pregunta $refCampo en la seccion " . $this->refSeccion]
+            );
             return new Opcion(['id' => 0, 'valor' => 0]);
         }
 
@@ -78,7 +69,7 @@ class ValidacionIntegrante
         if (empty($opcion))
         {
             array_push($this->errores, [
-                $refCampo => $respuestaEncuesta . " no es un respuesta valida para $refCampo"
+                $refCampo => "($respuestaEncuesta) no es un respuesta valida para $refCampo en la seccion " . $this->refSeccion
             ]);
             return new Opcion(['id' => 0, 'valor' => 0]);
         }
