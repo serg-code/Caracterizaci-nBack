@@ -24,8 +24,11 @@ class ValidarSaludMental extends ValidacionIntegrante implements ValidacionEncue
         $this->puntuacion('trastorno_afectivo');
         $this->puntuacion('bulimia');
         $this->puntuacion('anorexia');
-        $this->puntuacion('tratamiento');
-        $this->puntuacion('diagnostico');
+        $tratamiento = $this->puntuacion('tratamiento');
+        if ($tratamiento->id == 113)
+        {
+            $this->diagnostico();
+        }
         $this->puntuacion('violencia_fisica');
         $this->puntuacion('violencia_psicologica');
         $this->puntuacion('violencia_sexual');
