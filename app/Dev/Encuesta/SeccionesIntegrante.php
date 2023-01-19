@@ -2,19 +2,19 @@
 
 namespace App\Dev\Encuesta;
 
-use App\Http\Controllers\Validador\Integrante\ValidadarIdentificacionCiudadana;
-use App\Http\Controllers\Validador\Integrante\ValidadarMorbilidad;
-use App\Http\Controllers\Validador\Integrante\ValidadarSaludMental;
 use App\Http\Controllers\Validador\Integrante\ValidarAccidentes;
 use App\Http\Controllers\Validador\Integrante\ValidarAdolescencia;
 use App\Http\Controllers\Validador\Integrante\ValidarAdultez;
 use App\Http\Controllers\Validador\Integrante\ValidarCuidadoEnfermedades;
 use App\Http\Controllers\Validador\Integrante\ValidarCuidadosDomiciliarios;
-use App\Http\Controllers\Validador\Integrante\ValidarEnfermedadesSaludPusblica;
+use App\Http\Controllers\Validador\Integrante\ValidarEnfermedadesSaludPublica;
+use App\Http\Controllers\Validador\Integrante\ValidarIdentificacionCiudadana;
 use App\Http\Controllers\Validador\Integrante\ValidarInfancia;
 use App\Http\Controllers\Validador\Integrante\ValidarJuventud;
 use App\Http\Controllers\Validador\Integrante\ValidarMaternoPerinatal;
+use App\Http\Controllers\Validador\Integrante\ValidarMorbilidad;
 use App\Http\Controllers\Validador\Integrante\ValidarPrimeraInfancia;
+use App\Http\Controllers\Validador\Integrante\ValidarSaludMental;
 use App\Http\Controllers\Validador\Integrante\ValidarVejez;
 use App\Interfaces\ValidacionEncuesta;
 use App\Models\Integrantes;
@@ -103,10 +103,10 @@ class SeccionesIntegrante
             'accidentes' => new ValidarAccidentes($integrante, $seccion),
             'cuidado_enfermedades' => new ValidarCuidadoEnfermedades($integrante, $seccion),
             'cuidados_domiciliarios' => new ValidarCuidadosDomiciliarios($integrante, $seccion),
-            'enfermedades_salud_publica' => new ValidarEnfermedadesSaludPusblica($integrante, $seccion),
-            'morbilidad' => new ValidadarMorbilidad($integrante, $seccion),
-            'salud_mental' => new ValidadarSaludMental($integrante, $seccion),
-            'identificacion_ciudadana' => new ValidadarIdentificacionCiudadana($integrante, $seccion),
+            'enfermedades_salud_publica' => new ValidarEnfermedadesSaludPublica($integrante, $seccion),
+            'morbilidad' => new ValidarMorbilidad($integrante, $seccion),
+            'salud_mental' => new ValidarSaludMental($integrante, $seccion),
+            'identificacion_ciudadana' => new ValidarIdentificacionCiudadana($integrante, $seccion),
 
             default => null,
         };
