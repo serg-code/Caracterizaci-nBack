@@ -22,40 +22,29 @@ class ValidarIdentificacionCiudadana extends ValidacionIntegrante implements Val
         $this->puntuacion('grupo_atencion_especial');
         $this->programas();
         $this->puntuacion('seguridad_social');
-        $this->puntuacion('esta_estudiando');
-        $this->TiposEducacion();
+        $this->educacion();
         $this->puntuacion('ocupacion_ingreso');
         $this->discapacidad();
     }
 
     protected function programas()
     {
-        {
-            $programa = $this->puntuacion('programas');
-            //si la persona pertenece a algun programa 
-            $this->validacionSimple('cual_programa', ($programa->id == 186));
-        }
+        $programa = $this->puntuacion('programas');
+        //si la persona pertenece a algun programa 
+        $this->validacionSimple('cual_programa', ($programa->id == 186));
     }
 
-    protected function TiposEducacion()
+    protected function educacion()
     {
-        {
-            $tipo = $this->puntuacion('esta_estudiando');
-            //si la persona si estudia 
-            $this->validacionSimple('tipo_educacion', ($tipo->id == 203));
-
-            $tipo = $this->puntuacion('esta_estudiando');
-            //si la persona no estudia
-            $this->validacionSimple('por_que', ($tipo->id == 202));
-        }
+        $estudia = $this->puntuacion('esta_estudiando');
+        $this->validacionSimple('tipo_educacion', ($estudia->id == 203));
+        $this->validacionSimple('por_que', ($estudia->id == 202));
     }
 
     protected function discapacidad()
     {
-        {
-            $discapacidad = $this->puntuacion('discapacidad');
-            //si la persona si la persona tiene una discapacidad 
-            $this->validacionSimple('ayudas_tecnicas', ($discapacidad->id != 223));
-        }
+        $discapacidad = $this->puntuacion('discapacidad');
+        //si la persona si la persona tiene una discapacidad 
+        $this->validacionSimple('ayudas_tecnicas', ($discapacidad->id != 223));
     }
 }
