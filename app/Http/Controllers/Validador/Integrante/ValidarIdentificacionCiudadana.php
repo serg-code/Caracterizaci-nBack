@@ -20,15 +20,12 @@ class ValidarIdentificacionCiudadana extends ValidacionIntegrante implements Val
     {
         $this->puntuacion('grupo_etnia');
         $this->puntuacion('grupo_atencion_especial');
-        $this->puntuacion('programas');
-        $this->puntuacion('cual_programa');
+        $this->programas();
         $this->puntuacion('seguridad_social');
         $this->puntuacion('esta_estudiando');
-        $this->puntuacion('tipo_educacion');
-        $this->puntuacion('por_que');
+        $this->TiposEducacion();
         $this->puntuacion('ocupacion_ingreso');
-        $this->puntuacion('discapacidad');
-        $this->puntuacion('ayudas_tenicas');
+        $this->discapacidad();
     }
 
     protected function programas()
@@ -53,7 +50,7 @@ class ValidarIdentificacionCiudadana extends ValidacionIntegrante implements Val
         }
     }
 
-    protected function discapacidades()
+    protected function discapacidad()
     {
         {
             $discapacidad = $this->puntuacion('discapacidad');
