@@ -30,4 +30,6 @@ class ValidarAnimales extends ValidacionHogar implements ValidacionEncuesta
         $this->puntuacion('animales_no_rabia');
         $this->puntuacion('animales_si_rabia');
     }
+
+    
 }
