@@ -18,31 +18,26 @@ class ValidarCuidadosDomiciliarios extends ValidacionIntegrante implements Valid
 
     public function validar()
     {
-        $this->puntuacion('cuidados_domiciliarios');
-        $this->puntuacion('diagnostico_principal');
-        $this->puntuacion('causa');
-        $this->puntuacion('fecha_inicio_domiciliario');
-        $this->puntuacion('oxigeno_domiciliario');
-        $this->puntuacion('plan_aprobado');
+        $domiciliario = $this->puntuacion('cuidados_domiciliarios');
+        if ($domiciliario->id == 45)
+        {
+            $this->domiciliarios();
+            $this->OxigenoDomiciliario();
+        }
     }
 
     protected function domiciliarios()
     {
-        {
-            $domiciliario = $this->puntuacion('cuidados_domiciliarios');
-            //si la persona recibe cuidados domiciliarios
-            $this->validacionSimple('diagnostico_principal', ($domiciliario->id == 45));
-            $this->validacionSimple('causa', ($domiciliario->id == 45));
-            $this->validacionSimple('fecha_inicio_domiciliario', ($domiciliario->id == 45));
-        }
+
+        $this->puntuacion('diagnostico_principal');
+        $this->puntuacion('causa');
+        $this->puntuacion('fecha_inicio_domiciliario');
     }
 
     protected function OxigenoDomiciliario()
     {
-        {
-            $oxigeno = $this->puntuacion('oxigeno_domiciliario');
-            //si la persona recibe oxigeno domiciliario 
-            $this->validacionSimple('plan_aprobado', ($oxigeno->id == 52));
-        }
+        $oxigeno = $this->puntuacion('oxigeno_domiciliario');
+        //si la persona recibe oxigeno domiciliario 
+        $this->validacionSimple('plan_aprobado', ($oxigeno->id == 52));
     }
 }
