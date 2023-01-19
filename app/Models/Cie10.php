@@ -37,6 +37,6 @@ class Cie10 extends Model
     public function scopeSearch(Builder $query, $dato): Builder
     {
         return $query->where('codigo', 'like', "%$dato%")
-            ->orWhere('descrip', 'like', "%$dato%");
+            ->orWhere('descripcion', 'like', "%$dato%");
     }
 }
