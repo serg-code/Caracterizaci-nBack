@@ -3,22 +3,14 @@
 namespace App\Http\Controllers\Validador\Integrante;
 
 use App\Dev\Encuesta\OpcionPregunta;
-use App\Http\Controllers\Controller;
 use App\Interfaces\ValidacionEncuesta;
 use App\Models\Integrantes;
 use App\Models\Opcion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
-class ValidarPrimeraInfancia extends Controller implements ValidacionEncuesta
+class ValidarPrimeraInfancia extends ValidacionIntegrante implements ValidacionEncuesta
 {
-
-    protected array $errores;
-    protected int $puntaje;
-    protected int $edad;
-    protected int $mesesEdad;
-    protected array $seccionValidada;
-
     public function __construct(
         protected Integrantes $integrante = new Integrantes(),
         protected array $seccion = [],
