@@ -35,6 +35,7 @@ class ValidarJuventud implements ValidacionEncuesta
         $this->mesesEdad = $diferenciaFechas->format("%m");
     }
 
+
     public function validar()
     {
         $edad = $this->edad;
@@ -104,13 +105,13 @@ class ValidarJuventud implements ValidacionEncuesta
         return $this->seccionValidada;
     }
 
-    protected function puntuacion(string $refCampo): ?Opcion
+    protected function puntuacion(string $refCampo): Opcion
     {
         $respuestaEncuesta = $this->seccion[$refCampo] ?? null;
         if (empty($respuestaEncuesta))
         {
             array_push($this->errores, [$refCampo => 'No encontramos la pregunta ' . $refCampo]);
-            return null;
+            return new Opcion(['id' => 0, 'valor' => 0]);
         }
 
         $opcion = OpcionPregunta::opcionPregunta($refCampo, $respuestaEncuesta);
@@ -119,25 +120,22 @@ class ValidarJuventud implements ValidacionEncuesta
             array_push($this->errores, [
                 $refCampo => $respuestaEncuesta . " no es un respuesta valida para $refCampo"
             ]);
-            return null;
+            return new Opcion(['id' => 0, 'valor' => 0]);
         }
 
-        $this->puntaje += $opcion->valor;
         array_push($this->seccionValidada, [$refCampo => $this->seccion[$refCampo]]);
+        $this->puntaje += $opcion->valor;
         return $opcion;
     }
 
-    protected function validacionSimple(string $refCampo, bool $validar): ?Opcion
+    protected function validacionSimple(string $refCampo, bool $validar): Opcion
     {
         if ($validar)
         {
             return $this->puntuacion($refCampo);
         }
-        else
-        {
-            unset($this->seccion[$refCampo]);
-            return null;
-        }
+
+        return new Opcion(['id' => 0, 'valor' => 0]);
     }
 
     protected function colposcopia(Opcion $cuelloUterino)

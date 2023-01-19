@@ -6,6 +6,7 @@ use App\Dev\Encuesta\OpcionPregunta;
 use App\Http\Controllers\Controller;
 use App\Interfaces\ValidacionEncuesta;
 use App\Models\Integrantes;
+use App\Models\Opcion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
@@ -25,6 +26,7 @@ class ValidarCuidadoEnfermedades extends Controller implements ValidacionEncuest
     {
         $this->puntaje = 0;
         $this->errores = [];
+        $this->seccionValidada = [];
 
         $fechaNacimiento = Carbon::createFromFormat('Y-m-d', $this->integrante->fecha_nacimiento);
         $fechaActual = Carbon::now();
@@ -33,9 +35,10 @@ class ValidarCuidadoEnfermedades extends Controller implements ValidacionEncuest
         $this->mesesEdad = $diferenciaFechas->format("%m");
     }
 
+
     public function validar()
     {
-        
+
         //validaciones del excel
     }
 
@@ -82,13 +85,13 @@ class ValidarCuidadoEnfermedades extends Controller implements ValidacionEncuest
         return $this->seccion;
     }
 
-    protected function puntuacion(string $refCampo)
+    protected function puntuacion(string $refCampo): Opcion
     {
         $respuestaEncuesta = $this->seccion[$refCampo] ?? null;
         if (empty($respuestaEncuesta))
         {
             array_push($this->errores, [$refCampo => 'No encontramos la pregunta ' . $refCampo]);
-            return false;
+            return new Opcion(['id' => 0, 'valor' => 0]);
         }
 
         $opcion = OpcionPregunta::opcionPregunta($refCampo, $respuestaEncuesta);
@@ -97,19 +100,21 @@ class ValidarCuidadoEnfermedades extends Controller implements ValidacionEncuest
             array_push($this->errores, [
                 $refCampo => $respuestaEncuesta . " no es un respuesta valida para $refCampo"
             ]);
-            return false;
+            return new Opcion(['id' => 0, 'valor' => 0]);
         }
 
         array_push($this->seccionValidada, [$refCampo => $this->seccion[$refCampo]]);
         $this->puntaje += $opcion->valor;
-        return true;
+        return $opcion;
     }
 
-    protected function validacionSimple(string $refCampo, bool $validar)
+    protected function validacionSimple(string $refCampo, bool $validar): Opcion
     {
         if ($validar)
         {
-            $this->puntuacion($refCampo);
+            return $this->puntuacion($refCampo);
         }
+
+        return new Opcion(['id' => 0, 'valor' => 0]);
     }
 }

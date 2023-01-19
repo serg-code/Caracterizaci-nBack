@@ -6,6 +6,7 @@ use App\Dev\Encuesta\OpcionPregunta;
 use App\Http\Controllers\Controller;
 use App\Interfaces\ValidacionEncuesta;
 use App\Models\Integrantes;
+use App\Models\Opcion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
@@ -15,6 +16,7 @@ class ValidarInfancia extends Controller implements ValidacionEncuesta
     protected int $puntaje;
     protected int $edad;
     protected int $mesesEdad;
+    protected array $seccionValidada;
 
     public function __construct(
         protected Integrantes $integrante = new Integrantes(),
@@ -23,6 +25,7 @@ class ValidarInfancia extends Controller implements ValidacionEncuesta
     {
         $this->puntaje = 0;
         $this->errores = [];
+        $this->seccionValidada = [];
 
         $fechaNacimiento = Carbon::createFromFormat('Y-m-d', $this->integrante->fecha_nacimiento);
         $fechaActual = Carbon::now();
@@ -98,27 +101,6 @@ class ValidarInfancia extends Controller implements ValidacionEncuesta
         return $this->seccion;
     }
 
-    protected function puntuacion(string $refCampo)
-    {
-        $respuestaEncuesta = $this->seccion[$refCampo] ?? null;
-        if (empty($respuestaEncuesta))
-        {
-            array_push($this->errores, [$refCampo => 'No encontramos la pregunta ' . $refCampo]);
-            return false;
-        }
-
-        $opcion = OpcionPregunta::opcionPregunta($refCampo, $respuestaEncuesta);
-        if (empty($opcion))
-        {
-            array_push($this->errores, [
-                $refCampo => $respuestaEncuesta . " no es un respuesta valida para $refCampo"
-            ]);
-            return false;
-        }
-
-        $this->puntaje += $opcion->valor;
-    }
-
     protected function vacunacion()
     {
         $this->puntuacion('in_vacuna_dpt_r2');
@@ -135,28 +117,10 @@ class ValidarInfancia extends Controller implements ValidacionEncuesta
         $carnet = OpcionPregunta::opcionPregunta('in_carnet_vacunacion', $this->seccion['in_carnet_vacunacion']);
         $this->puntuacion('in_carnet_vacunacion');
 
-        if ($carnet->id == 504 || $carnet->pregunta_opcion == 'NO')
-        {
-            $this->eliminarVacunacion();
-        }
-
         if ($carnet->id == 505 || $carnet->pregunta_opcion == 'SI')
         {
             $this->vacunacion();
         }
-    }
-
-    protected function eliminarVacunacion()
-    {
-        unset(
-            $this->seccion['in_vacuna_dpt_r2'],
-            $this->seccion['in_vacuna_polio_r2'],
-            $this->seccion['in_vacuna_srp_r1'],
-            $this->seccion['in_vacuna_fiebre_amarilla'],
-            $this->seccion['in_vacuna_vph_d1'],
-            $this->seccion['in_vacuna_vph_d2'],
-            $this->seccion['in_vacuna_vph_d3'],
-        );
     }
 
     public function valoracionMedica()
@@ -173,5 +137,38 @@ class ValidarInfancia extends Controller implements ValidacionEncuesta
     {
         $this->puntuacion('in_atencion_medica');
         $this->puntuacion('in_atencion_enfermeria');
+    }
+
+    protected function puntuacion(string $refCampo): Opcion
+    {
+        $respuestaEncuesta = $this->seccion[$refCampo] ?? null;
+        if (empty($respuestaEncuesta))
+        {
+            array_push($this->errores, [$refCampo => 'No encontramos la pregunta ' . $refCampo]);
+            return new Opcion(['id' => 0, 'valor' => 0]);
+        }
+
+        $opcion = OpcionPregunta::opcionPregunta($refCampo, $respuestaEncuesta);
+        if (empty($opcion))
+        {
+            array_push($this->errores, [
+                $refCampo => $respuestaEncuesta . " no es un respuesta valida para $refCampo"
+            ]);
+            return new Opcion(['id' => 0, 'valor' => 0]);
+        }
+
+        array_push($this->seccionValidada, [$refCampo => $this->seccion[$refCampo]]);
+        $this->puntaje += $opcion->valor;
+        return $opcion;
+    }
+
+    protected function validacionSimple(string $refCampo, bool $validar): Opcion
+    {
+        if ($validar)
+        {
+            return $this->puntuacion($refCampo);
+        }
+
+        return new Opcion(['id' => 0, 'valor' => 0]);
     }
 }

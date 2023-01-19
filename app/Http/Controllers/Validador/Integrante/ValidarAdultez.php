@@ -108,7 +108,7 @@ class ValidarAdultez implements ValidacionEncuesta
         if (empty($respuestaEncuesta))
         {
             array_push($this->errores, [$refCampo => 'No encontramos la pregunta ' . $refCampo]);
-            return false;
+            return new Opcion(['id' => 0, 'valor' => 0]);
         }
 
         $opcion = OpcionPregunta::opcionPregunta($refCampo, $respuestaEncuesta);
@@ -117,7 +117,7 @@ class ValidarAdultez implements ValidacionEncuesta
             array_push($this->errores, [
                 $refCampo => $respuestaEncuesta . " no es un respuesta valida para $refCampo"
             ]);
-            return false;
+            return new Opcion(['id' => 0, 'valor' => 0]);
         }
 
         array_push($this->seccionValidada, [$refCampo => $this->seccion[$refCampo]]);
@@ -125,12 +125,14 @@ class ValidarAdultez implements ValidacionEncuesta
         return $opcion;
     }
 
-    protected function validacionSimple(string $refCampo, bool $validar)
+    protected function validacionSimple(string $refCampo, bool $validar): Opcion
     {
         if ($validar)
         {
-            $this->puntuacion($refCampo);
+            return $this->puntuacion($refCampo);
         }
+
+        return new Opcion(['id' => 0, 'valor' => 0]);
     }
 
     protected function validarIMC()
