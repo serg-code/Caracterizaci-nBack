@@ -68,6 +68,11 @@ class ValidarMaternoPerinatal extends ValidacionIntegrante implements Validacion
 
         $this->puntuacion('ma_depresion_postparto');
         $this->puntuacion('ma_atencion_institucional');
+
+        $this->morbilidad();
+        $this->valoracionIntegral();
+        $this->deteccionTemprana();
+        $this->proteccionEspecifica();
     }
 
     protected function ultimoParto()
@@ -90,6 +95,40 @@ class ValidarMaternoPerinatal extends ValidacionIntegrante implements Validacion
 
     protected function morbilidad()
     {
+        $this->puntuacion('ma_aborto_no_especificado');
+        $this->puntuacion('ma_hemorragia_precoz');
+        $this->puntuacion('ma_hemorragia_anteparto');
+        $this->puntuacion('ma_hipertension');
+        $this->puntuacion('ma_vomitos');
+        $this->puntuacion('ma_atencion_madre');
+        $this->puntuacion('ma_diabetes_mellitus');
+        $this->puntuacion('ma_hallazgo_anormal');
+        $this->puntuacion('ma_parto_unico');
+        $this->puntuacion('ma_parto_complicado');
+        $this->puntuacion('ma_hemorragia_postparto');
+        $this->puntuacion('ma_parto_cesarea');
+        $this->puntuacion('ma_otras_complicaciones_parto');
+        $this->puntuacion('ma_otras_complicaciones_purperio');
+        $this->puntuacion('ma_hospitalizacion_sifilis');
+        $this->edadGEstacion();
+        $this->puntuacion('ma_plan_canguro');
+        $this->puntuacion('ma_curso_maternidad_paternidad');
+    }
+
+    protected function edadGEstacion()
+    {
+        $edadGestacion = $this->seccion['ma_edad_gestacional'] ?? null;
+        if (empty($edadGestacion))
+        {
+            return false;
+        }
+
+        if ($edadGestacion < 38)
+        {
+            $this->sumarPuntaje(5);
+        }
+
+        return true;
     }
 
     protected function valoracionIntegral()
