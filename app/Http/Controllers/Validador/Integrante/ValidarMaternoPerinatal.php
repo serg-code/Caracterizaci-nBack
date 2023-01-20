@@ -21,9 +21,8 @@ class ValidarMaternoPerinatal extends ValidacionIntegrante implements Validacion
 
     public function validar()
     {
-        if ($this->integrante->sexo != 'Femenino')
+        if (empty($this->seccion))
         {
-            array_push($this->seccionValidada, ['materno_perinatal' => 'No puede responder a esta seccion']);
             return false;
         }
 
@@ -37,20 +36,29 @@ class ValidarMaternoPerinatal extends ValidacionIntegrante implements Validacion
         $this->puntuacion('ma_fecha_ultima_regla');
         $this->puntuacion('ma_fecha_parto');
         $this->puntuacion('ma_ganancia_peso');
-        $this->puntuacion('ma_gestacion');
+        $this->gestacion();
         $this->puntuacion('ma_carnet');
         $this->puntuacion('ma_prenatal_mensual');
         $this->examen();
+        //ma_tamizaje_genetico_recien_nacido
+    }
+
+    protected function gestacion()
+    {
+        $this->puntuacion('ma_gestacion');
+
+        $this->puntuacion('ma_examen_serologia_1_trimestre');
+        $this->puntuacion('ma_examen_serologia_2_trimestre');
+        $this->puntuacion('ma_examen_serologia_3_trimestre');
+
+        $this->puntuacion('ma_examen_vih_1_trimestre');
+        $this->puntuacion('ma_examen_vih_2_trimestre');
+        $this->puntuacion('ma_examen_vih_3_trimestre');
     }
 
     protected function examen()
     {
-        $this->puntuacion('ma_examen_serologia_1_trimestre');
-        $this->puntuacion('ma_examen_serologia_2_trimestre');
-        $this->puntuacion('ma_examen_serologia_3_trimestre');
-        $this->puntuacion('ma_examen_vih_1_trimestre');
-        $this->puntuacion('ma_examen_vih_2_trimestre');
-        $this->puntuacion('ma_examen_vih_3_trimestre');
+
         $this->puntuacion('ma_odontologico');
         $this->puntuacion('ma_suplementacion');
         $this->puntuacion('ma_sedentarismo');
@@ -78,5 +86,24 @@ class ValidarMaternoPerinatal extends ValidacionIntegrante implements Validacion
                 $this->puntaje += 5;
             }
         }
+    }
+
+    protected function morbilidad()
+    {
+    }
+
+    protected function valoracionIntegral()
+    {
+        # code...
+    }
+
+    protected function deteccionTemprana()
+    {
+        # code...
+    }
+
+    protected function proteccionEspecifica()
+    {
+        # code...
     }
 }
