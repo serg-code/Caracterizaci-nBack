@@ -93,7 +93,7 @@ class ValidarMaternoPerinatal extends ValidacionIntegrante implements Validacion
 
     protected function ultimoParto()
     {
-        $ultimoParto = $this->seccion['ma_fecha_ultimo_parto'] ?? null;
+        $fechaUltimoParto = $this->seccion['ma_fecha_ultimo_parto'] ?? null;
 
         if (!empty($fechaUltimoParto))
         {

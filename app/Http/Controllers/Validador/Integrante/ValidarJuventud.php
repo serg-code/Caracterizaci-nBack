@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Validador\Integrante;
 
 use App\Http\Controllers\Controller;
 use App\Interfaces\ValidacionEncuesta;
+use App\Models\Inducciones;
 use App\Models\Integrantes;
 use App\Models\Opcion;
 use Illuminate\Http\Request;
@@ -58,6 +59,10 @@ class ValidarJuventud extends ValidacionIntegrante implements ValidacionEncuesta
 
                 //no asiste a la colposcopia
                 //? si $colposcopia->id == 594 ? (induccion: id ) : null
+                if ($colposcopia->id == 594)
+                {
+                    $this->generarInduccion(51);
+                }
 
                 $this->validacionSimple('juv_bioscopia_cervico', ($cuelloUterino->id == 592));
             }
@@ -70,6 +75,11 @@ class ValidarJuventud extends ValidacionIntegrante implements ValidacionEncuesta
         {
             $examenSeno = $this->puntuacion('juv_examen_seno');
             //? preguntar si asistió a control médico con el resultado, si NO inducir urgente a control medico
+
+            if ($examenSeno->id == 599)
+            {
+                $this->generarInduccion(58);
+            }
 
             if ($examenSeno->id == 601)
             {
