@@ -114,4 +114,9 @@ class ValidacionIntegrante
     {
         $this->errores[$refCampo] = $textoError;
     }
+
+    protected function sumarPuntaje(int $puntaje)
+    {
+        $this->puntaje += $puntaje;
+    }
 }
