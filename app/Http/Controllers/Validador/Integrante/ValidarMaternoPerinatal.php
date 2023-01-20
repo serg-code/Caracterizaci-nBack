@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers\Validador\Integrante;
 
-use App\Dev\Encuesta\OpcionPregunta;
 use App\Interfaces\ValidacionEncuesta;
 use App\Models\Integrantes;
-use App\Models\Opcion;
-use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
 class ValidarMaternoPerinatal extends ValidacionIntegrante implements ValidacionEncuesta
@@ -133,12 +130,53 @@ class ValidarMaternoPerinatal extends ValidacionIntegrante implements Validacion
 
     protected function valoracionIntegral()
     {
-        # code...
+        if ($this->integrante->sexo != 'Femenino' || $this->edad < 15 || $this->edad > 49)
+        {
+            return false;
+        }
+
+        //examen 1 vez al año
+        $this->puntuacion('ma_atencion_medica');
+        $this->puntuacion('ma_atencion_enfermeria');
+        $this->puntuacion('ma_atencion_odontologica');
     }
 
     protected function deteccionTemprana()
     {
-        # code...
+        if ($this->edad >= 15 && $this->edad <= 49)
+        {
+            $this->puntuacion('ma_antigeno_hepatitis_b');
+            $this->puntuacion('ma_cancer_cuello_uterino');
+            $this->puntuacion('ma_glicemia_ayuna');
+            $this->puntuacion('ma_hemoclasificacion');
+            $this->puntuacion('ma_hemograma');
+            $this->puntuacion('ma_hemoparasitos_chagas');
+            $this->puntuacion('ma_toxoplasma');
+            $this->puntuacion('ma_rubeola');
+            $this->puntuacion('ma_varicela');
+            $this->puntuacion('ma_prueba_treponemica_sifilis');
+            $this->puntuacion('ma_urocultivo');
+            $this->puntuacion('ma_prueba_vih');
+            $this->puntuacion('ma_espermograma');
+            $this->puntuacion('ma_citologia');
+            $this->puntuacion('ma_elisa');
+            $this->puntuacion('ma_micronutrientes');
+            $this->prenatal();
+            $this->puntuacion('ma_vacunacion_toxoide');
+            $this->puntuacion('ma_vacunacion_difteria');
+            $this->puntuacion('ma_vacunacion_tosferina');
+            $this->puntuacion('ma_vacunacion_influenza');
+            $this->puntuacion('ma_ecografia_obstetrica');
+            $this->puntuacion('ma_ecografia_anatomico');
+        }
+    }
+
+    protected function prenatal()
+    {
+        $this->puntuacion('ma_atencion_prenatal_medica_general');
+        $this->puntuacion('ma_atencion_prenatal_enfermeria');
+        $this->puntuacion('ma_atencion_prenatal_medica_obstetra');
+        $this->puntuacion('ma_atencion_prenatal_consulta_nutricion');
     }
 
     protected function proteccionEspecifica()
