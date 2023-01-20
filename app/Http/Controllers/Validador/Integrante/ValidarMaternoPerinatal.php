@@ -42,15 +42,35 @@ class ValidarMaternoPerinatal extends ValidacionIntegrante implements Validacion
 
     protected function gestacion()
     {
-        $this->puntuacion('ma_gestacion');
+        $gestacion = $this->seccion['ma_gestacion'];
 
-        $this->puntuacion('ma_examen_serologia_1_trimestre');
-        $this->puntuacion('ma_examen_serologia_2_trimestre');
-        $this->puntuacion('ma_examen_serologia_3_trimestre');
+        if (empty($gestacion) && $gestacion != 0)
+        {
+            return false;
+        }
 
-        $this->puntuacion('ma_examen_vih_1_trimestre');
-        $this->puntuacion('ma_examen_vih_2_trimestre');
-        $this->puntuacion('ma_examen_vih_3_trimestre');
+        if ($gestacion < 0)
+        {
+            $this->agregarErrror('ma_gestacion', "($gestacion) No es un valor valido para ma_gestacion");
+        }
+
+        if ($gestacion >= 12)
+        {
+            $this->puntuacion('ma_examen_serologia_1_trimestre');
+            $this->puntuacion('ma_examen_vih_1_trimestre');
+        }
+
+        if ($gestacion >= 24)
+        {
+            $this->puntuacion('ma_examen_serologia_2_trimestre');
+            $this->puntuacion('ma_examen_vih_2_trimestre');
+        }
+
+        if ($gestacion >= 36)
+        {
+            $this->puntuacion('ma_examen_serologia_3_trimestre');
+            $this->puntuacion('ma_examen_vih_3_trimestre');
+        }
     }
 
     protected function examen()

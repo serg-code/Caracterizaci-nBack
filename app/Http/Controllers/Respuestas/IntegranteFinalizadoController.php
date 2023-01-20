@@ -98,11 +98,6 @@ class IntegranteFinalizadoController extends Controller
             $this->secciones[$nombreSeccion]['respuestas'] = $validador->obtenerSeccion();
         }
 
-        // foreach ($this->secciones as $refSeccion => $datos)
-        // {
-        //     $this->recorrerRespuestas($datos['respuestas'], $refSeccion);
-        // }
-
         if (!empty($this->errores))
         {
             return RespuestaHttp::respuesta(
@@ -131,17 +126,13 @@ class IntegranteFinalizadoController extends Controller
             'estado_registro' => 'FINALIZADO',
             'puntaje_obtenido' => $this->puntuacion,
         ]);
-
-        $inducciones = new ControlInduccion($this->integrante, $this->secciones);
-        $listaInducciones = $inducciones->getInducciones();
-
         return RespuestaHttp::respuesta(
             201,
             'succes',
             'Encuesta validada y guardada exitosamente',
             [
                 'integrante' => $this->integrante,
-                'inducciones' => $listaInducciones,
+                // 'inducciones' => $listaInducciones,
             ]
         );
     }
@@ -162,57 +153,6 @@ class IntegranteFinalizadoController extends Controller
         }
 
         return $errores;
-    }
-
-    protected function validacion(array $integranteDatos, array $encuesta): ?RespuestaHttp
-    {
-        $controlIntegrante = new ControlIntegrante($integranteDatos, $encuesta);
-        $integrante = Integrantes::find($integranteDatos['id']);
-
-        if (empty($integrante))
-        {
-            $errores = $controlIntegrante->validarCrearIntegrante($integranteDatos);
-            if (empty($errores))
-            {
-                $integrante = new Integrantes($integranteDatos);
-                $integrante->save();
-            }
-        }
-
-
-        $controlIntegrante->actualizarIntegrante(false);
-        $errores = $controlIntegrante->getErrores();
-
-        if (!empty($errores))
-        {
-            return new RespuestaHttp(
-                400,
-                'bad request',
-                'Encontramos algunos errores en la informacion',
-                [
-                    $errores,
-
-                ]
-            );
-        }
-
-        $secciones = $integranteDatos['secciones'];
-        $errorSecciones = $this->validarSecciones($secciones);
-        $errores = array_merge($errorSecciones);
-
-        if (!empty($errores))
-        {
-            return new RespuestaHttp(
-                400,
-                'Bad request',
-                'Encontramos unos errores en la validacion',
-                $errores
-            );
-        }
-
-        $this->integrante = $controlIntegrante->getIntegrante();
-        Inducciones::where('id_integrante', '=', $this->integrante->id)->delete();
-        return null;
     }
 
     protected function guardadoFinal(array $respuestas)
@@ -236,26 +176,5 @@ class IntegranteFinalizadoController extends Controller
             ]);
             $respuesta->save();
         }
-    }
-
-    protected function validarRespuesta(string $ref_campo, $respuesta): ?string
-    {
-        $pregunta = Pregunta::ObtenerPregunta($ref_campo);
-        if (empty($pregunta))
-        {
-            return "$ref_campo no es una pregunta valida";
-        }
-
-        $resultado = OpcionPregunta::buscarRespuestaOpcion($pregunta, $respuesta);
-        if ($resultado->estado === 'error')
-        {
-            return "$respuesta no es una respuesta valida para $ref_campo";
-        }
-
-        if ($resultado->estado !== 'error')
-        {
-            $this->puntuacion += $resultado->datos['puntaje'];
-        }
-        return null;
     }
 }

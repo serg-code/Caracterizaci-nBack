@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class ValidarJuventud extends ValidacionIntegrante implements ValidacionEncuesta
 {
-
+    //juv_parejas_sexuales_al_anio
     public function __construct(
         protected Integrantes $integrante = new Integrantes(),
         protected array $seccion = [],
@@ -107,19 +107,15 @@ class ValidarJuventud extends ValidacionIntegrante implements ValidacionEncuesta
     protected function parejas()
     {
         $respuesta = $this->seccion['juv_parejas_sexuales_al_anio'] ?? null;
-        if (empty($respuesta))
+        if (empty($respuesta) && $respuesta != 0)
         {
-            array_push($this->errores, [
-                'juv_parejas_sexuales_al_anio' => 'No encontramos la pregunta juv_parejas_sexuales_al_anio'
-            ]);
+            $this->agregarErrror('juv_parejas_sexuales_al_anio', 'No encontramos la pregunta juv_parejas_sexuales_al_anio');
             return null;
         }
 
         if ($respuesta < 0)
         {
-            array_push($this->errores, [
-                'juv_parejas_sexuales_al_anio' => "No puede tener ($respuesta) de parejas sexuales"
-            ]);
+            $this->agregarErrror('juv_parejas_sexuales_al_anio', "No puede tener ($respuesta) de parejas sexuales");
             return null;
         }
 
