@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Validador\Integrante;
 
-use App\Http\Controllers\Controller;
 use App\Interfaces\ValidacionEncuesta;
-use App\Models\Inducciones;
 use App\Models\Integrantes;
-use App\Models\Opcion;
-use Illuminate\Http\Request;
 
 class ValidarJuventud extends ValidacionIntegrante implements ValidacionEncuesta
 {
-    //juv_parejas_sexuales_al_anio
+
+    /**
+     * todo: Preguntar induccion 52 (por demanda)
+     */
+
     public function __construct(
         protected Integrantes $integrante = new Integrantes(),
         protected array $seccion = [],
@@ -47,10 +47,16 @@ class ValidarJuventud extends ValidacionIntegrante implements ValidacionEncuesta
         {
             $cuelloUterino = $this->puntuacion('juv_cancer_cuello_uterino');
 
+            if ($cuelloUterino->id == 590)
+            {
+                $this->generarInduccion(51);
+            }
+
             //citologia anormal
             if ($cuelloUterino->id == 592)
             {
                 $colposcopia = $this->puntuacion('juv_colposcopia');
+
                 //si asite a la colposcopia
                 if ($colposcopia->id == 595)
                 {
@@ -58,7 +64,7 @@ class ValidarJuventud extends ValidacionIntegrante implements ValidacionEncuesta
                 }
 
                 //no asiste a la colposcopia
-                //? si $colposcopia->id == 594 ? (induccion: id ) : null
+                //? id induccion colposcopia
                 if ($colposcopia->id == 594)
                 {
                     $this->generarInduccion(51);
@@ -74,7 +80,6 @@ class ValidarJuventud extends ValidacionIntegrante implements ValidacionEncuesta
         if ($this->integrante->sexo == 'Femenino')
         {
             $examenSeno = $this->puntuacion('juv_examen_seno');
-            //? preguntar si asistió a control médico con el resultado, si NO inducir urgente a control medico
 
             if ($examenSeno->id == 599)
             {
@@ -135,9 +140,21 @@ class ValidarJuventud extends ValidacionIntegrante implements ValidacionEncuesta
 
     protected function valoracionIntegral()
     {
-        $this->puntuacion('juv_atencion_medica');
-        $this->puntuacion('juv_salud_vocal');
-        $this->validacionSimple('juv_atencion_enfermeria', ($this->edad > 20));
+        $atencionMedica = $this->puntuacion('juv_atencion_medica');
+
+        if ($atencionMedica->id == 632)
+        {
+            $idInduccion = $this->induccionAtencionMedica();
+            $this->validarGenerarInduccion($idInduccion);
+        }
+
+        $this->atencionBucal();
+        $atencionEnfermeria = $this->validacionSimple('juv_atencion_enfermeria', ($this->edad > 20));
+        if ($atencionEnfermeria->id != 0)
+        {
+            $idInduccion = $this->induccionAtencionEnfermeria();
+            $this->validarGenerarInduccion($idInduccion);
+        }
     }
 
     protected function proteccionEspecifica()
@@ -147,12 +164,64 @@ class ValidarJuventud extends ValidacionIntegrante implements ValidacionEncuesta
         $esterilizacionFemenina = $this->validacionSimple('juv_esterilizacion_femenina', ($sexo == 'Femenino'));
         $this->validacionSimple('juv_vias_esterilizacion', ($sexo == 'Femenino' && $esterilizacionFemenina->id == 641));
         $this->puntuacion('juv_vias_esterilizacion');
-        $this->puntuacion('juv_profilaxis');
+        $this->profilaxis();
         $this->puntuacion('juv_detartraje_supragingival');
         $this->puntuacion('juv_prueba_vih');
         $this->puntuacion('juv_antecedentes_diabetes');
         $this->puntuacion('juv_antecedentes_hipertension');
         $this->puntuacion('juv_alteracion_colesterol');
         $this->puntuacion('juv_perimetro_abdominal');
+    }
+
+    private function profilaxis()
+    {
+        $profilaxis = $this->puntuacion('juv_profilaxis');
+        if ($profilaxis->id == 644)
+        {
+            $this->validarGenerarInduccion(53);
+        }
+    }
+
+    public function atencionBucal()
+    {
+        $atencionBucal = $this->puntuacion('juv_salud_vocal');
+        if ($atencionBucal->id == 636)
+        {
+            $this->generarInduccion(50);
+        }
+    }
+
+
+    /**
+     * ------------------------------------------------------------------------
+     *      Inducciones
+     * ------------------------------------------------------------------------
+     */
+
+    private function induccionAtencionMedica(): int
+    {
+        return match ($this->mesesEdad)
+        {
+            240 => 39,
+            300 => 40,
+            default => 0
+        };
+    }
+
+    private function induccionAtencionEnfermeria(): int
+    {
+        return match ($this->mesesEdad)
+        {
+            216 => 41,
+            228 => 42,
+            252 => 43,
+            264 => 44,
+            276 => 45,
+            288 => 46,
+            312 => 47,
+            324 => 48,
+            336 => 49,
+            default => 0
+        };
     }
 }

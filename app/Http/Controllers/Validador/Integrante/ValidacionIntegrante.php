@@ -128,4 +128,12 @@ class ValidacionIntegrante
             'tipo_id' => $idInduccion
         ]);
     }
+
+    protected function validarGenerarInduccion(int $idInduccion)
+    {
+        if ($idInduccion != 0)
+        {
+            $this->generarInduccion($idInduccion);
+        }
+    }
 }
