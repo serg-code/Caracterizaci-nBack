@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Validador\Integrante;
 
 use App\Dev\Encuesta\OpcionPregunta;
+use App\Models\Inducciones;
 use App\Models\Integrantes;
 use App\Models\Opcion;
 use App\Models\Pregunta;
@@ -118,5 +119,13 @@ class ValidacionIntegrante
     protected function sumarPuntaje(int $puntaje)
     {
         $this->puntaje += $puntaje;
+    }
+
+    protected function generarInduccion(int $idInduccion)
+    {
+        Inducciones::create([
+            'id_integrante' => $this->integrante->id,
+            'tipo_id' => $idInduccion
+        ]);
     }
 }
