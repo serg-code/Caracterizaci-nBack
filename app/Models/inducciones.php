@@ -34,11 +34,11 @@ class Inducciones extends Model
 
     public function integrante()
     {
-        return $this->belongsTo(Integrantes::class, 'id');
+        return $this->belongsTo(Integrantes::class, 'id_integrante');
     }
 
     public function tipoInduccion()
     {
-        return $this->belongsTo(TipoInduccion::class, 'id');
+        return $this->belongsTo(TipoInduccion::class, 'tipo_id', 'id');
     }
 }
