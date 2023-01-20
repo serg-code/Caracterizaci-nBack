@@ -67,6 +67,7 @@ class IntegranteFinalizadoController extends Controller
         }
 
         RespuestaIntegrante::where('id_integrante', '=', $this->integrante->id)->delete();
+        Inducciones::where('id_integrante', '=', $this->integrante->id)->delete();
         $this->secciones = $integrantePeticion['secciones'];
         $listadoSecciones = SeccionesIntegrante::obtenerSecciones();
 
@@ -126,13 +127,17 @@ class IntegranteFinalizadoController extends Controller
             'estado_registro' => 'FINALIZADO',
             'puntaje_obtenido' => $this->puntuacion,
         ]);
+
+        $this->integrante = Integrantes::where('id', '=', $this->integrante->id)
+            ->with(['inducciones.tipoInduccion'])
+            ->first();;
+
         return RespuestaHttp::respuesta(
             201,
             'succes',
             'Encuesta validada y guardada exitosamente',
             [
                 'integrante' => $this->integrante,
-                // 'inducciones' => $listaInducciones,
             ]
         );
     }

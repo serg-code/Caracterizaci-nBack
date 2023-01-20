@@ -75,26 +75,8 @@ class Integrantes extends Model
 
         if (!empty($integrante))
         {
-            $integrante->update([
-                'id' => $datos['id'] ?? $integrante->id,
-                'hogar_id' => $datos['hogar_id'] ?? $integrante->hogar_id,
-                'tipo_identificacion' => $datos['tipo_identificacion'] ?? $integrante->tipo_identificacion,
-                'identificacion' => $datos['identificacion'] ?? $integrante->identificacion,
-                'primer_nombre' => $datos['primer_nombre'] ?? $integrante->primer_nombre,
-                'segundo_nombre' => $datos['segundo_nombre'] ?? $integrante->segundo_nombre,
-                'primer_apellido' => $datos['primer_apellido'] ?? $integrante->primer_apellido,
-                'segundo_apellido' => $datos['segundo_apellido'] ?? $integrante->segundo_apellido,
-                'rh' => $datos['rh'] ?? $integrante->rh,
-                'estado_civil' => $datos['estado_civil'] ?? $integrante->estado_civil,
-                'telefono' => $datos['telefono'] ?? $integrante->telefono,
-                'correo' => $datos['correo'] ?? $integrante->correo,
-                'cabeza_familia' => $datos['cabeza_familia'] ?? $integrante->cabeza_familia,
-                'puntaje_obtenido' => $datos['puntaje_obtenido'] ?? $integrante->puntaje_obtenido,
-                'puntaje_max' => $datos['puntaje_max'] ?? $integrante->puntaje_max,
-                'encuesta' => $datos['encuesta'] ?? $integrante->encuesta,
-                'estado_registro' => $datos['estado_registro'] ?? $integrante->estado_registro,
-                'fecha_nacimiento' => $datos['fecha_nacimiento'] ?? $integrante->fecha_nacimiento,
-            ]);
+            unset($datos['id']);
+            $integrante->update($datos);
             return $integrante;
         }
 
