@@ -90,7 +90,7 @@ class InduccionesSeeder extends Seeder
         TipoInduccion::create([
             'id' => 7,
             'curso_vida' => 'primera infancia',
-            'tipo_atencion' => 'atencion en salud enefermeria',
+            'tipo_atencion' => 'atencion en salud enfermeria',
             'genero' => '',
             'edad_minima' => 2,
             'edad_maxima' => 3,
@@ -102,7 +102,7 @@ class InduccionesSeeder extends Seeder
         TipoInduccion::create([
             'id' => 8,
             'curso_vida' => 'primera infancia',
-            'tipo_atencion' => 'atencion en salud enefermeria',
+            'tipo_atencion' => 'atencion en salud enfermeria',
             'genero' => '',
             'edad_minima' => 6,
             'edad_maxima' => 8,
@@ -114,7 +114,7 @@ class InduccionesSeeder extends Seeder
         TipoInduccion::create([
             'id' => 9,
             'curso_vida' => 'primera infancia',
-            'tipo_atencion' => 'atencion en salud enefermeria',
+            'tipo_atencion' => 'atencion en salud enfermeria',
             'genero' => '',
             'edad_minima' => 9,
             'edad_maxima' => 11,
@@ -126,7 +126,7 @@ class InduccionesSeeder extends Seeder
         TipoInduccion::create([
             'id' => 10,
             'curso_vida' => 'primera infancia',
-            'tipo_atencion' => 'atencion en salud enefermeria',
+            'tipo_atencion' => 'atencion en salud enfermeria',
             'genero' => '',
             'edad_minima' => 19,
             'edad_maxima' => 23,
@@ -138,7 +138,7 @@ class InduccionesSeeder extends Seeder
         TipoInduccion::create([
             'id' => 11,
             'curso_vida' => 'primera infancia',
-            'tipo_atencion' => 'atencion en salud enefermeria',
+            'tipo_atencion' => 'atencion en salud enfermeria',
             'genero' => '',
             'edad_minima' => 30,
             'edad_maxima' => 35,
@@ -150,7 +150,7 @@ class InduccionesSeeder extends Seeder
         TipoInduccion::create([
             'id' => 12,
             'curso_vida' => 'primera infancia',
-            'tipo_atencion' => 'atencion en salud enefermeria',
+            'tipo_atencion' => 'atencion en salud enfermeria',
             'genero' => '',
             'edad_minima' => 48,
             'edad_maxima' => 48,
@@ -258,7 +258,7 @@ class InduccionesSeeder extends Seeder
         TipoInduccion::create([
             'id' => 21,
             'curso_vida' => 'infancia',
-            'tipo_atencion' => 'atencion en salud enefermeria',
+            'tipo_atencion' => 'atencion en salud enfermeria',
             'genero' => '',
             'edad_minima' => 84,
             'edad_maxima' => 84,
@@ -270,7 +270,7 @@ class InduccionesSeeder extends Seeder
         TipoInduccion::create([
             'id' => 22,
             'curso_vida' => 'infancia',
-            'tipo_atencion' => 'atencion en salud enefermeria',
+            'tipo_atencion' => 'atencion en salud enfermeria',
             'genero' => '',
             'edad_minima' => 108,
             'edad_maxima' => 108,
@@ -282,7 +282,7 @@ class InduccionesSeeder extends Seeder
         TipoInduccion::create([
             'id' => 23,
             'curso_vida' => 'infancia',
-            'tipo_atencion' => 'atencion en salud enefermeria',
+            'tipo_atencion' => 'atencion en salud enfermeria',
             'genero' => '',
             'edad_minima' => 132,
             'edad_maxima' => 132,
@@ -378,7 +378,7 @@ class InduccionesSeeder extends Seeder
         TipoInduccion::create([
             'id' => 31,
             'curso_vida' => 'adolescencia',
-            'tipo_atencion' => 'atencion en salud enefermeria',
+            'tipo_atencion' => 'atencion en salud enfermeria',
             'genero' => '',
             'edad_minima' => 156,
             'edad_maxima' => 156,
@@ -390,7 +390,7 @@ class InduccionesSeeder extends Seeder
         TipoInduccion::create([
             'id' => 32,
             'curso_vida' => 'adolescencia',
-            'tipo_atencion' => 'atencion en salud enefermeria',
+            'tipo_atencion' => 'atencion en salud enfermeria',
             'genero' => '',
             'edad_minima' => 180,
             'edad_maxima' => 180,
@@ -402,7 +402,7 @@ class InduccionesSeeder extends Seeder
         TipoInduccion::create([
             'id' => 33,
             'curso_vida' => 'adolescencia',
-            'tipo_atencion' => 'atencion en salud enefermeria',
+            'tipo_atencion' => 'atencion en salud enfermeria',
             'genero' => '',
             'edad_minima' => 204,
             'edad_maxima' => 204,
@@ -498,7 +498,7 @@ class InduccionesSeeder extends Seeder
         TipoInduccion::create([
             'id' => 41,
             'curso_vida' => 'juventud',
-            'tipo_atencion' => 'atencion en salud enefermeria',
+            'tipo_atencion' => 'atencion en salud enfermeria',
             'genero' => '',
             'edad_minima' => 216,
             'edad_maxima' => 216,
@@ -510,7 +510,7 @@ class InduccionesSeeder extends Seeder
         TipoInduccion::create([
             'id' => 42,
             'curso_vida' => 'juventud',
-            'tipo_atencion' => 'atencion en salud enefermeria',
+            'tipo_atencion' => 'atencion en salud enfermeria',
             'genero' => '',
             'edad_minima' => 228,
             'edad_maxima' => 228,
@@ -522,7 +522,7 @@ class InduccionesSeeder extends Seeder
         TipoInduccion::create([
             'id' => 43,
             'curso_vida' => 'juventud',
-            'tipo_atencion' => 'atencion en salud enefermeria',
+            'tipo_atencion' => 'atencion en salud enfermeria',
             'genero' => '',
             'edad_minima' => 252,
             'edad_maxima' => 252,
@@ -534,7 +534,7 @@ class InduccionesSeeder extends Seeder
         TipoInduccion::create([
             'id' => 44,
             'curso_vida' => 'juventud',
-            'tipo_atencion' => 'atencion en salud enefermeria',
+            'tipo_atencion' => 'atencion en salud enfermeria',
             'genero' => '',
             'edad_minima' => 264,
             'edad_maxima' => 264,
@@ -546,7 +546,7 @@ class InduccionesSeeder extends Seeder
         TipoInduccion::create([
             'id' => 45,
             'curso_vida' => 'juventud',
-            'tipo_atencion' => 'atencion en salud enefermeria',
+            'tipo_atencion' => 'atencion en salud enfermeria',
             'genero' => '',
             'edad_minima' => 276,
             'edad_maxima' => 276,
@@ -558,7 +558,7 @@ class InduccionesSeeder extends Seeder
         TipoInduccion::create([
             'id' => 46,
             'curso_vida' => 'juventud',
-            'tipo_atencion' => 'atencion en salud enefermeria',
+            'tipo_atencion' => 'atencion en salud enfermeria',
             'genero' => '',
             'edad_minima' => 288,
             'edad_maxima' => 288,
@@ -570,7 +570,7 @@ class InduccionesSeeder extends Seeder
         TipoInduccion::create([
             'id' => 47,
             'curso_vida' => 'juventud',
-            'tipo_atencion' => 'atencion en salud enefermeria',
+            'tipo_atencion' => 'atencion en salud enfermeria',
             'genero' => '',
             'edad_minima' => 312,
             'edad_maxima' => 312,
@@ -582,7 +582,7 @@ class InduccionesSeeder extends Seeder
         TipoInduccion::create([
             'id' => 48,
             'curso_vida' => 'juventud',
-            'tipo_atencion' => 'atencion en salud enefermeria',
+            'tipo_atencion' => 'atencion en salud enfermeria',
             'genero' => '',
             'edad_minima' => 324,
             'edad_maxima' => 324,
@@ -594,7 +594,7 @@ class InduccionesSeeder extends Seeder
         TipoInduccion::create([
             'id' => 49,
             'curso_vida' => 'juventud',
-            'tipo_atencion' => 'atencion en salud enefermeria',
+            'tipo_atencion' => 'atencion en salud enfermeria',
             'genero' => '',
             'edad_minima' => 336,
             'edad_maxima' => 336,
