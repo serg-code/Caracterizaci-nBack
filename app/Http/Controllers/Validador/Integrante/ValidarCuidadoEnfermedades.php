@@ -34,13 +34,17 @@ class ValidarCuidadoEnfermedades extends ValidacionIntegrante implements Validac
         $this->puntuacion('hemoglobina_glococilada');
         $this->puntuacion('enfermedades_costosas');
 
-        // $this->puntuacion('ha_estado_embarazada');
-        // $this->puntuacion('cuantos_embarazos_ha_tenido');
-        // $this->puntuacion('hijos_muertos_parto_natural');
-        // $this->puntuacion('hijos_vivos_parto_natural');
-        // $this->puntuacion('hijos_muertos_por_cesarea');
-        // $this->puntuacion('hijos_vivos_por_cesarea');
-        // $this->puntuacion('cuantos_abortos');
-        // $this->puntuacion('cuantos_gemelos_multiples');
+        $embarazada = $this->puntuacion('ha_estado_embarazada');
+
+        if ($embarazada->id == 92)
+        {
+            $this->puntuacion('cuantos_embarazos_ha_tenido');
+            $this->puntuacion('hijos_muertos_parto_natural');
+            $this->puntuacion('hijos_vivos_parto_natural');
+            $this->puntuacion('hijos_muertos_por_cesarea');
+            $this->puntuacion('hijos_vivos_por_cesarea');
+            $this->puntuacion('cuantos_abortos');
+            $this->puntuacion('cuantos_gemelos_multiples');
+        }
     }
 }
