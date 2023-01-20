@@ -37,7 +37,6 @@ class ValidarMaternoPerinatal extends ValidacionIntegrante implements Validacion
         $this->puntuacion('ma_carnet');
         $this->puntuacion('ma_prenatal_mensual');
         $this->examen();
-        //ma_tamizaje_genetico_recien_nacido
     }
 
     protected function gestacion()
@@ -201,27 +200,24 @@ class ValidarMaternoPerinatal extends ValidacionIntegrante implements Validacion
 
     protected function proteccionEspecifica()
     {
-        if ($this->edad >=
-         15 && $this->edad <= 49)
+        if ($this->edad >= 15 && $this->edad <= 49)
         {
             $this->puntuacion('ma_interrupcion_voluntaria_embarazo');
-    $this->puntuacion('ma_asesoria_anticonceptiva_ive');
-    $this->puntuacion('ma_atencion_purperio');
-    $this->puntuacion('ma_atencion_pediatria');
-    $this->puntuacion('ma_atencion_recien_nacido');
-    $this->puntuacion('ma_hemograma_recien_nacido');
-    $this->puntuacion('ma_hemoclasificacion_recien_nacido');
-    $this->puntuacion('ma_sifilis_recien_nacido');
-    $this->puntuacion('ma_vih_recien_nacido');
-    //$this->puntuacion('ma_hemoparasitos_chagas');
-    $this->puntuacion('ma_tsh_recien_nacido');
-    $this->puntuacion('ma_tamizaje_genetico_recien_nacido');
+            $this->puntuacion('ma_asesoria_anticonceptiva_ive');
+            $this->puntuacion('ma_atencion_purperio');
+            $this->puntuacion('ma_atencion_pediatria');
+            $this->puntuacion('ma_atencion_recien_nacido');
+            $this->puntuacion('ma_hemograma_recien_nacido');
+            $this->puntuacion('ma_hemoclasificacion_recien_nacido');
+            $this->puntuacion('ma_sifilis_recien_nacido');
+            $this->puntuacion('ma_vih_recien_nacido');
+            $this->puntuacion('ma_tsh_recien_nacido');
+            $this->puntuacion('ma_tamizaje_genetico_recien_nacido');
         }
-        
+
         //examen si tiene chagas positivo
-        $chagas=$this->puntuacion('ma_hemoparasitos_chagas');
+        $chagas = $this->puntuacion('ma_hemoparasitos_chagas');
 
         $this->validacionSimple('ma_chagas_recien_nacido', ($chagas->id == 923));
-
     }
-    }
+}
