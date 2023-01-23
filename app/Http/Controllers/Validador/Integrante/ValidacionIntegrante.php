@@ -136,4 +136,9 @@ class ValidacionIntegrante
             $this->generarInduccion($idInduccion);
         }
     }
+
+    protected function getPreguntaValidada(string $refCampo)
+    {
+        return $this->seccionValidada[$refCampo] ?? 0;
+    }
 }
