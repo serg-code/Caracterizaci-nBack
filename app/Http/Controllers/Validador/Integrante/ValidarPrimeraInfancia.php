@@ -263,7 +263,7 @@ class ValidarPrimeraInfancia extends ValidacionIntegrante implements ValidacionE
     private function matchAtencionMedica(): int
     {
         $meses = $this->mesesEdad;
-        return match ($meses)
+        return match (true)
         {
             ($meses >= 0 & $meses <= 1) => 1,
             ($meses >= 4 & $meses <= 5) => 2,
@@ -279,7 +279,7 @@ class ValidarPrimeraInfancia extends ValidacionIntegrante implements ValidacionE
     private function matchAtencionEnfermeria(): int
     {
         $meses = $this->mesesEdad;
-        return match ($meses)
+        return match (true)
         {
             ($meses >= 2 & $meses <= 3) => 7,
             ($meses >= 6 & $meses <= 8) => 8,
