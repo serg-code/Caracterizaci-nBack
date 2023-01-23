@@ -15,7 +15,7 @@ class Adolescencia extends Model
         'adol_peso',
         'adol_talla',
         'adol_imc',
-        'adol_asesoria_anticonceptiva',
+        'adol_asesoria_anticoncepcion',
         'adol_planifica',
         'adol_metodo_planficica',
         'adol_desde_cuando_planifica',

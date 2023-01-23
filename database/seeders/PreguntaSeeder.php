@@ -268,7 +268,7 @@ class PreguntaSeeder extends Seeder
                 Pregunta::create(["ref_campo" => "adol_peso", "ref_seccion" => "adolescencia", "descripcion" => "Peso (kg)", "tipo" => "numero"]);
                 Pregunta::create(["ref_campo" => "adol_talla", "ref_seccion" => "adolescencia", "descripcion" => "Talla (cm)", "tipo" => "numero"]);
                 Pregunta::create(["ref_campo" => "adol_imc", "ref_seccion" => "adolescencia", "descripcion" => "Indice de Masa Corporal", "tipo" => "numero"]);
-                Pregunta::create(["ref_campo" => "adol_asesoria_anticonceptiva", "ref_seccion" => "adolescencia", "descripcion" => "Atención en salud para la asesoria en anticoncepción", "tipo" => "seleccion"]);
+                Pregunta::create(["ref_campo" => "adol_asesoria_anticoncepcion", "ref_seccion" => "adolescencia", "descripcion" => "Atención en salud para la asesoria en anticoncepción", "tipo" => "seleccion"]);
                 Pregunta::create(["ref_campo" => "adol_planifica", "ref_seccion" => "adolescencia", "descripcion" => "Planifica: Método", "tipo" => "seleccion"]);
                 Pregunta::create(["ref_campo" => "adol_metodo_planficica", "ref_seccion" => "adolescencia", "descripcion" => "Metodo", "tipo" => "seleccion"]);
                 Pregunta::create(["ref_campo" => "adol_desde_cuando_planifica", "ref_seccion" => "adolescencia", "descripcion" => "¿Desde cuando planifica?", "tipo" => "fecha"]);

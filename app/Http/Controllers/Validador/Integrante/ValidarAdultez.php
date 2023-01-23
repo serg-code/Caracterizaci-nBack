@@ -28,7 +28,7 @@ class ValidarAdultez extends ValidacionIntegrante implements ValidacionEncuesta
         $this->puntuacion('adul_valoracion_peso');
         $this->puntuacion('adul_valoracion_talla');
         $this->validarIMC();
-        $this->puntuacion('adul_asesoria_anticoncepcion');
+        $this->anticoncepcion();
         $this->planificacion();
         $this->parejas();
         $this->examenMedico();
@@ -126,8 +126,14 @@ class ValidarAdultez extends ValidacionIntegrante implements ValidacionEncuesta
 
     protected function valoracionIntegral()
     {
-        $this->puntuacion('adul_atencion_medica');
-        $this->puntuacion('adul_salud_bucal');
+        $atencionMedica = $this->puntuacion('adul_atencion_medica');
+
+        if ($atencionMedica->id == 700)
+        {
+            $idInduccion = $this->induccionAtencionMedica();
+            $this->validarGenerarInduccion($idInduccion);
+        }
+        $this->atencionBucal();
     }
 
     protected function deteccionTemprana()
@@ -141,16 +147,16 @@ class ValidarAdultez extends ValidacionIntegrante implements ValidacionEncuesta
 
             $colposcopia = $this->puntuacion('adul_colposcopia_cervico_uterina');
             $this->validacionSimple('adul_biopsia_cervico_uterina', ($colposcopia->id == 711));
-            $this->puntuacion('adul_cancer_mama_mamografia');
-            $this->puntuacion('adul_cancer_mama_valoracion_clinica');
+            $this->mamografia();
+            $this->mamografiaClinica();
         }
 
         if (($edad >= 30 && $edad <= 59) && $this->integrante->sexo == 'Masculino')
         {
-            $this->puntuacion('adul_cancer_prostata');
+            $this->prostata();
         }
 
-        $this->puntuacion('adul_asesoria_anticoncepcion');
+        $this->anticoncepcion();
 
         if ($this->integrante->sexo == 'Masculino')
         {
@@ -163,9 +169,80 @@ class ValidarAdultez extends ValidacionIntegrante implements ValidacionEncuesta
             $this->validacionSimple('adul_vias_esterilizacion', ($esterilizacionFemenina->id == 729));
         }
 
-        $this->puntuacion('adul_profilaxis');
+        $this->profilaxis();
         $this->puntuacion('adul_detartraje_supragingival');
         $this->puntuacion('adul_fiebre_amarilla');
         $this->puntuacion('adul_prueba_vih');
     }
+
+    private function profilaxis()
+    {
+        $profilaxis = $this->puntuacion('adul_profilaxis');
+        if ($profilaxis->id == 732)
+        {
+            $this->validarGenerarInduccion(63);
+        }
+    }
+
+    private function mamografia()
+    {
+        $mamografia = $this->puntuacion('adul_cancer_mama_mamografia');
+        if ($mamografia->id == 715)
+        {
+            $this->validarGenerarInduccion(58);
+        }
+    }
+
+    private function mamografiaClinica()
+    {
+        $mamografiaClinica = $this->puntuacion('adul_cancer_mama_valoracion_clinica');
+        if ($mamografiaClinica->id == 718)
+        {
+            $this->validarGenerarInduccion(59);
+        }
+    }
+
+    private function prostata()
+    {
+        $prostata = $this->puntuacion('adul_cancer_prostata');
+        if ($prostata->id == 721)
+        {
+            $this->validarGenerarInduccion(60);
+        }
+    }
+
+    private function anticoncepcion()
+    {
+        $anticoncepcion = $this->puntuacion('adul_asesoria_anticoncepcion');
+        if ($anticoncepcion->id == 661)
+        {
+            $this->validarGenerarInduccion(62);
+        }
+    }
+
+    public function atencionBucal()
+    {
+        $atencionBucal = $this->puntuacion('adul_salud_vocal');
+        if ($atencionBucal->id == 702)
+        {
+            $this->generarInduccion(56);
+        }
+    }
+
+
+ /**
+     * ------------------------------------------------------------------------
+     *      Inducciones
+     * ------------------------------------------------------------------------
+     */
+
+     private function induccionAtencionMedica(): int
+     {
+         return match ($this->mesesEdad)
+         {
+            708 => 55,
+            default => 0
+         };
+     }
+ 
 }

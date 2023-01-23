@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('adol_peso')->nullable();
             $table->string('adol_talla')->nullable();
             $table->string('adol_imc')->nullable();
-            $table->string('adol_asesoria_anticonceptiva')->nullable();
+            $table->string('adol_asesoria_anticoncepcion')->nullable();
             $table->string('adol_planifica')->nullable();
             $table->string('adol_metodo_planficica')->nullable();
             $table->string('adol_desde_cuando_planifica')->nullable();

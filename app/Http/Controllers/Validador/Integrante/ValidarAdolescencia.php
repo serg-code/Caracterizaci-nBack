@@ -29,7 +29,7 @@ class ValidarAdolescencia extends ValidacionIntegrante implements ValidacionEncu
         $this->puntuacion('adol_peso');
         $this->puntuacion('adol_talla');
         $this->puntuacion('adol_imc');
-        $asesoria = $this->puntuacion('adol_asesoria_anticonceptiva');
+        $asesoria = $this->puntuacion('adol_asesoria_anticoncepcion');
         if ($asesoria->id == 539)
         {
             $this->generarInduccion(35);

@@ -141,8 +141,14 @@ class ValidarVejez extends ValidacionIntegrante implements ValidacionEncuesta
     {
         if ($this->edad >= 63)
         {
-            $this->puntuacion('ve_salud_medica');
-            $this->puntuacion('ve_salud_bucal');
+            $atencionMedica = $this->puntuacion('ve_atencion_medica');
+
+        if ($atencionMedica->id == 784)
+        {
+            $idInduccion = $this->induccionAtencionMedica();
+            $this->validarGenerarInduccion($idInduccion);
+        }
+            $this->atencionBucal();
         }
     }
 
@@ -157,20 +163,20 @@ class ValidarVejez extends ValidacionIntegrante implements ValidacionEncuesta
 
             $colposcopia = $this->puntuacion('ve_colposcopia_uterina');
             $this->validacionSimple('ve_biopsia_cervico_uterina', ($colposcopia->id == 795));
-            $this->puntuacion('ve_cancer_mama_mamografia');
-            $this->puntuacion('ve_cancer_mama_valoracion_clinica');
+            $this->mamografia('ve_cancer_mama_mamografia');
+            $this->mamografiaClinica('ve_cancer_mama_valoracion_clinica');
             $esterilizacionFemenina = $this->puntuacion('ve_esterilizacion_femenina');
             $this->validacionSimple('ve_vias_esterilizacion', ($esterilizacionFemenina->id == 815));
         }
 
         if ($sexo == 'Masculino')
         {
-            $this->puntuacion('ve_cancer_prostata_psa');
-            $this->puntuacion('ve_cancer_prostata_rectal');
+            $this->prostataPSA();
+            $this->prostataRectal();
             $this->puntuacion('ve_vasectomia');
         }
 
-        $this->puntuacion('ve_profilaxis');
+        $this->profilaxis();
         $this->puntuacion('ve_detartraje_supragingival');
     }
 
@@ -179,4 +185,75 @@ class ValidarVejez extends ValidacionIntegrante implements ValidacionEncuesta
         $this->puntuacion('ve_vacuna_fiebre_amarilla');
         $this->puntuacion('ve_vacuna_influenza');
     }
+
+    public function atencionBucal()
+    {
+        $atencionBucal = $this->puntuacion('ve_salud_vocal');
+        if ($atencionBucal->id == 786)
+        {
+            $this->generarInduccion(67);
+        }
+    }
+
+    private function profilaxis()
+    {
+        $profilaxis = $this->puntuacion('ve_profilaxis');
+        if ($profilaxis->id == 818)
+        {
+            $this->validarGenerarInduccion(74);
+        }
+    }
+
+    private function mamografia()
+    {
+        $mamografia = $this->puntuacion('adul_cancer_mama_mamografia');
+        if ($mamografia->id == 799)
+        {
+            $this->validarGenerarInduccion(69);
+        }
+    }
+
+    private function mamografiaClinica()
+    {
+        $mamografiaClinica = $this->puntuacion('adul_cancer_mama_valoracion_clinica');
+        if ($mamografiaClinica->id == 802)
+        {
+            $this->validarGenerarInduccion(70);
+        }
+    }
+
+    private function prostataPSA()
+    {
+        $prostataPSA = $this->puntuacion('adul_cancer_prostata_psa');
+        if ($prostataPSA->id == 721)
+        {
+            $this->validarGenerarInduccion(805);
+        }
+    }
+
+    private function prostataRectal()
+    {
+        $prostataRectal = $this->puntuacion('adul_cancer_prostata_rectal');
+        if ($prostataRectal->id == 721)
+        {
+            $this->validarGenerarInduccion(808);
+        }
+    }
+
+   
+    /**
+     * ------------------------------------------------------------------------
+     *      Inducciones
+     * ------------------------------------------------------------------------
+     */
+
+     private function induccionAtencionMedica(): int
+     {
+         return match ($this->mesesEdad)
+         {
+            720 => 67,
+            default => 0
+         };
+     }
+    
 }

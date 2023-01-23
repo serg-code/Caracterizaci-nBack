@@ -599,8 +599,8 @@ class OpcionesSeeder extends Seeder
         Opcion::create(["id" => "536", "ref_campo" => "adol_peso", "pregunta_opcion" => "numero", "valor" => "0"]);
         Opcion::create(["id" => "537", "ref_campo" => "adol_talla", "pregunta_opcion" => "numero", "valor" => "0"]);
         Opcion::create(["id" => "538", "ref_campo" => "adol_imc", "pregunta_opcion" => "numero", "valor" => "0"]);
-        Opcion::create(["id" => "539", "ref_campo" => "adol_asesoria_anticonceptiva", "pregunta_opcion" => "NO", "valor" => "1"]);
-        Opcion::create(["id" => "540", "ref_campo" => "adol_asesoria_anticonceptiva", "pregunta_opcion" => "SI", "valor" => "3"]);
+        Opcion::create(["id" => "539", "ref_campo" => "adol_asesoria_anticoncepcion", "pregunta_opcion" => "NO", "valor" => "1"]);
+        Opcion::create(["id" => "540", "ref_campo" => "adol_asesoria_anticoncepcion", "pregunta_opcion" => "SI", "valor" => "3"]);
         Opcion::create(["id" => "541", "ref_campo" => "adol_planifica", "pregunta_opcion" => "NO", "valor" => "1"]);
         Opcion::create(["id" => "542", "ref_campo" => "adol_planifica", "pregunta_opcion" => "SI", "valor" => "3"]);
         Opcion::create(["id" => "543", "ref_campo" => "adol_metodo_planficica", "pregunta_opcion" => "Hormonales", "valor" => "2"]);
