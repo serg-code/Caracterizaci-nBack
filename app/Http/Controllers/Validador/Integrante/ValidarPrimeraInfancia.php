@@ -9,6 +9,7 @@ use App\Models\Opcion;
 
 class ValidarPrimeraInfancia extends ValidacionIntegrante implements ValidacionEncuesta
 {
+    //pi_atencion_medica
     public function __construct(
         protected Integrantes $integrante = new Integrantes(),
         protected array $seccion = [],
@@ -51,11 +52,6 @@ class ValidarPrimeraInfancia extends ValidacionIntegrante implements ValidacionE
         //validar el carnet de vacunacion
         $this->puntuacion('pi_carnet_vacunacion');
         $carnet = OpcionPregunta::opcionPregunta('pi_carnet_vacunacion', $this->seccion['pi_carnet_vacunacion']);
-        if ($carnet->id === 422 || $carnet->pregunta_opcion == 'NO')
-        {
-            $this->eliminarVacunacion();
-        }
-
         if ($carnet->id === 423 || $carnet->pregunta_opcion == 'SI')
         {
             $this->vacunacion();
@@ -71,7 +67,7 @@ class ValidarPrimeraInfancia extends ValidacionIntegrante implements ValidacionE
 
         if (empty($pesoNacer))
         {
-            array_push($this->errores, ['pi_peso_al_nacer' => "No encontramos la pregunta (pi_peso_al_nacer)"]);
+            $this->agregarErrror('pi_peso_al_nacer', "No encontramos la pregunta (pi_peso_al_nacer)");
         }
 
         if ($pesoNacer > 2.8)
@@ -91,7 +87,7 @@ class ValidarPrimeraInfancia extends ValidacionIntegrante implements ValidacionE
 
         if (empty($tallaNacer))
         {
-            array_push($this->errores, ['pi_talla_al_nacer' => "No encontramos la pregunta (pi_talla_al_nacer)"]);
+            $this->agregarErrror('pi_talla_al_nacer',  "No encontramos la pregunta (pi_talla_al_nacer)");
         }
 
         if ($tallaNacer < 40)
@@ -130,21 +126,21 @@ class ValidarPrimeraInfancia extends ValidacionIntegrante implements ValidacionE
             $this->puntuacion('pi_vacuna_polio_r1');
         }
 
-        if ($this->mesesEdad == 2)
+        if ($this->mesesEdad >= 2)
         {
             $this->puntuacion('pi_vacuna_neumococo_d1');
             $this->puntuacion('pi_vacuna_rotavirus_d1');
             $this->puntuacion('pi_vacuna_pentavalente_d1');
         }
 
-        if ($this->mesesEdad == 4)
+        if ($this->mesesEdad >= 4)
         {
             $this->puntuacion('pi_vacuna_neumococo_d2');
             $this->puntuacion('pi_vacuna_rotavirus_d2');
             $this->puntuacion('pi_vacuna_pentavalente_d2');
         }
 
-        if ($this->mesesEdad == 6)
+        if ($this->mesesEdad >= 6)
         {
             $this->puntuacion('pi_vacuna_influenza_estacional');
             $this->puntuacion('pi_vacuna_pentavalente_d3');
@@ -158,7 +154,7 @@ class ValidarPrimeraInfancia extends ValidacionIntegrante implements ValidacionE
             $this->puntuacion('pi_vacuna_varicela');
         }
 
-        if ($this->mesesEdad == 18)
+        if ($this->mesesEdad >= 18)
         {
             $this->puntuacion('pi_vacuna_fiebre_amarilla');
             $this->puntuacion('pi_vacuna_dpt_d1');
@@ -174,8 +170,22 @@ class ValidarPrimeraInfancia extends ValidacionIntegrante implements ValidacionE
 
     protected function valoracionIntegral()
     {
-        $this->validacionSimple('pi_atencion_medica', $this->rangosAtencionMedica());
-        $this->validacionSimple('pi_atencion_enfermeria', $this->rangosAtencionEnfermeria());
+        $atencionMedica = $this->validacionSimple('pi_atencion_medica', $this->rangosAtencionMedica());
+
+        if ($atencionMedica->id == 470)
+        {
+            $idInduccion = $this->matchAtencionMedica();
+            $this->validarGenerarInduccion($idInduccion);
+        }
+
+        $atencionEnfermeria = $this->validacionSimple('pi_atencion_enfermeria', $this->rangosAtencionEnfermeria());
+
+        if ($atencionEnfermeria->id == 472)
+        {
+            $idInduccion = $this->matchAtencionEnfermeria();
+            $this->validarGenerarInduccion($idInduccion);
+        }
+
         $this->validacionSimple('pi_atencion_lactancia', ($this->mesesEdad >= 1 && $this->mesesEdad <= 6));
         $this->puntuacion('pi_tsh');
     }
@@ -207,54 +217,78 @@ class ValidarPrimeraInfancia extends ValidacionIntegrante implements ValidacionE
 
         if ($edad >= 1 && $edad <= 5)
         {
-            $this->puntuacion('pi_fluor');
-            $this->puntuacion('pi_profilaxis');
-        }
-        else
-        {
-            unset(
-                $this->seccion['pi_fluor'],
-                $this->seccion['pi_profilaxis'],
-            );
+            $this->fluor();
+            $this->profilaxis();
         }
 
         if ($meses > 6)
         {
-            $this->puntuacion('pi_consulta_odontologica');
-        }
-        else
-        {
-            unset(
-                $this->seccion['pi_consulta_odontologica']
-            );
+            $this->odontologia();
         }
     }
 
-    protected function eliminarVacunacion()
+    private function fluor()
     {
-        unset(
-            $this->seccion['pi_vacuna_bcg_rn'],
-            $this->seccion['pi_vacuna_hepatitis_b_rn'],
-            $this->seccion['pi_vacuna_polio_d1'],
-            $this->seccion['pi_vacuna_polio_d2'],
-            $this->seccion['pi_vacuna_polio_d3'],
-            $this->seccion['pi_vacuna_polio_r1'],
-            $this->seccion['pi_vacuna_neumococo_d1'],
-            $this->seccion['pi_vacuna_rotavirus_d1'],
-            $this->seccion['pi_vacuna_pentavalente_d1'],
-            $this->seccion['pi_vacuna_neumococo_d2'],
-            $this->seccion['pi_vacuna_rotavirus_d2'],
-            $this->seccion['pi_vacuna_pentavalente_d2'],
-            $this->seccion['pi_vacuna_influenza_estacional'],
-            $this->seccion['pi_vacuna_pentavalente_d3'],
-            $this->seccion['pi_vacuna_hepatitis_a'],
-            $this->seccion['pi_vacuna_neumococo_d3'],
-            $this->seccion['pi_vacuna_varicela'],
-            $this->seccion['pi_vacuna_fiebre_amarilla'],
-            $this->seccion['pi_vacuna_dpt_d1'],
-            $this->seccion['pi_vacuna_polio_r2'],
-            $this->seccion['pi_vacuna_srp_d2'],
-            $this->seccion['pi_vacuna_dpt_d2'],
-        );
+        $fluor = $this->puntuacion('pi_fluor');
+        if ($fluor->id == 478)
+        {
+            $this->generarInduccion(15);
+        }
+    }
+
+    private function profilaxis()
+    {
+        $profilaxis = $this->puntuacion('pi_profilaxis');
+        if ($profilaxis->id == 480)
+        {
+            $this->generarInduccion(16);
+        }
+    }
+
+    private function odontologia()
+    {
+        $odontologia = $this->puntuacion('pi_consulta_odontologica');
+        if ($odontologia->id == 488)
+        {
+            $this->generarInduccion(13);
+        }
+    }
+
+    /**
+     * ------------------------------------------------------------------------
+     *      Inducciones
+     * ------------------------------------------------------------------------
+     */
+
+    private function matchAtencionMedica(): int
+    {
+        $meses = $this->mesesEdad;
+        return match ($meses)
+        {
+            ($meses >= 0 & $meses <= 1) => 1,
+            ($meses >= 4 & $meses <= 5) => 2,
+            ($meses >= 12 & $meses <= 18) => 3,
+            ($meses >= 24 & $meses <= 29) => 4,
+            ($meses == 36) => 5,
+            ($meses == 60) => 6,
+
+            default =>  0,
+        };
+    }
+
+    private function matchAtencionEnfermeria(): int
+    {
+        $meses = $this->mesesEdad;
+        return match ($meses)
+        {
+            ($meses >= 2 & $meses <= 3) => 7,
+            ($meses >= 6 & $meses <= 8) => 8,
+            ($meses >= 9 & $meses <= 11) => 9,
+            ($meses >= 19 & $meses <= 23) => 10,
+            ($meses >= 30 & $meses <= 35) => 11,
+            ($meses == 48) => 12,
+
+            default => 0,
+        };
     }
 }
