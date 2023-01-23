@@ -29,7 +29,11 @@ class ValidarAdolescencia extends ValidacionIntegrante implements ValidacionEncu
         $this->puntuacion('adol_peso');
         $this->puntuacion('adol_talla');
         $this->puntuacion('adol_imc');
-        $this->puntuacion('adol_asesoria_anticonceptiva');
+        $asesoria = $this->puntuacion('adol_asesoria_anticonceptiva');
+        if ($asesoria->id == 539)
+        {
+            $this->generarInduccion(35);
+        }
 
         $this->planificacion();
         $this->proteccionEspecifica();
@@ -56,10 +60,6 @@ class ValidarAdolescencia extends ValidacionIntegrante implements ValidacionEncu
 
         if ($this->integrante->sexo != 'Femenino')
         {
-            unset(
-                $this->seccion['adol_planifica'],
-                $this->seccion['adol_metodo_planficica'],
-            );
             $this->puntuacion('adol_razon_no_planifica');
         }
     }
@@ -67,21 +67,81 @@ class ValidarAdolescencia extends ValidacionIntegrante implements ValidacionEncu
     protected function valoracionIntegral()
     {
         $edad = $this->edad;
+        $atencionMedica = $this->validacionSimple('adol_atencion_medica', ($edad != 12 || $edad != 14 || $edad != 16));
+        if ($atencionMedica->id == 568)
+        {
+            $idInduccion = $this->matchAtencionMedica();
+            $this->validarGenerarInduccion($idInduccion);
+        }
 
-        $this->validacionSimple('adol_atencion_medica', ($edad != 12 || $edad != 14 || $edad != 16));
-        $this->validacionSimple('adol_atencion_enfermeria', ($edad != 13 || $edad != 15 || $edad != 17));
+        $atencionEnfermeria = $this->validacionSimple('adol_atencion_enfermeria', ($edad != 13 || $edad != 15 || $edad != 17));
+        if ($atencionEnfermeria->id == 570)
+        {
+            $idInduccion = $this->matchAtencionEnfermeria();
+            $this->validarGenerarInduccion($idInduccion);
+        }
     }
 
     protected function proteccionEspecifica()
     {
-        $this->puntuacion('adol_salud_bucal');
-        $this->puntuacion('adol_fluor');
-        $this->puntuacion('adol_profilaxis');
+        $this->boca();
         $this->puntuacion('adol_sellantes');
         $this->puntuacion('adol_supragingival');
         $this->puntuacion('adol_vacunacion');
         $this->puntuacion('adol_vacuna_fiebre_amarilla');
         $this->puntuacion('adol_vacuna_vph');
         $this->puntuacion('adol_vacuna_toxoide_tetanico');
+    }
+
+    private function boca()
+    {
+        $saludBucal = $this->puntuacion('adol_salud_bucal');
+        $fluor = $this->puntuacion('adol_fluor');
+        $profilaxis = $this->puntuacion('adol_profilaxis');
+
+        if ($saludBucal->id == 572)
+        {
+            $this->generarInduccion(34);
+        }
+
+        if ($fluor->id == 574)
+        {
+            $this->generarInduccion(36);
+        }
+
+        if ($profilaxis->id == 576)
+        {
+            $this->generarInduccion(37);
+        }
+    }
+
+    /**
+     * ------------------------------------------------------------------------
+     *      Inducciones
+     * ------------------------------------------------------------------------
+     */
+
+    private function matchAtencionMedica(): int
+    {
+        return match ($this->mesesEdad)
+        {
+            144 => 28,
+            168 => 29,
+            192 => 30,
+
+            default => 0,
+        };
+    }
+
+    private function matchAtencionEnfermeria(): int
+    {
+        return match ($this->mesesEdad)
+        {
+            156 => 31,
+            180 => 32,
+            204 => 33,
+
+            default => 0,
+        };
     }
 }
