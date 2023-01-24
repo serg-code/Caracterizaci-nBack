@@ -37,6 +37,7 @@ class ValidarMaternoPerinatal extends ValidacionIntegrante implements Validacion
         $this->puntuacion('ma_carnet');
         $this->puntuacion('ma_prenatal_mensual');
         $this->examen();
+        $this->induccion();
     }
 
     protected function gestacion()
@@ -220,4 +221,111 @@ class ValidarMaternoPerinatal extends ValidacionIntegrante implements Validacion
 
         $this->validacionSimple('ma_chagas_recien_nacido', ($chagas->id == 923));
     }
-}
+
+
+/**
+     * ------------------------------------------------------------------------
+     *      Inducciones
+     * ------------------------------------------------------------------------
+     */
+
+     private function induccion()
+     {
+        $atencionPrenatal=$this->getPreguntaValidada('ma_atencion_prenatal_medica_general');
+        if(
+            $atencionPrenatal==945 
+        )
+        {
+$this->generarInduccion(80);
+        }
+
+        $atencionPrenatalEnfermeria=$this->getPreguntaValidada('ma_atencion_prenatal_enfermeria');
+        if(
+            $atencionPrenatalEnfermeria==947 
+        )
+        {
+$this->generarInduccion(81);
+        }
+
+        $atencionPrenatalObstetra=$this->getPreguntaValidada('ma_atencion_prenatal_medica_obstetra');
+        if(
+            $atencionPrenatalObstetra==949 
+        )
+        {
+$this->generarInduccion(83);
+        }
+
+        $atencionPrenatalNutricion=$this->getPreguntaValidada('ma_atencion_prenatal_consulta_nutricion');
+        if(
+            $atencionPrenatalNutricion==951 
+        )
+        {
+$this->generarInduccion(84);
+        }
+
+        $atencionOdontologica=$this->getPreguntaValidada('ma_atencion_odontologica');
+        if(
+            $atencionOdontologica==858 
+        )
+        {
+$this->generarInduccion(82);
+        }
+
+        $Pediatria=$this->getPreguntaValidada('ma_atencion_pediatria');
+        if(
+            $Pediatria==971 
+        )
+        {
+$this->generarInduccion(96);
+        }
+
+        $asesoriaIVE=$this->getPreguntaValidada('ma_asesoria_anticonceptiva_ive');
+        if(
+            $asesoriaIVE==967 
+        )
+        {
+$this->generarInduccion(92);
+        }
+
+        $interrupcionEmbarazo=$this->getPreguntaValidada('ma_interrupcion_voluntaria_embarazo');
+        if(
+            $interrupcionEmbarazo==966 
+        )
+        {
+$this->generarInduccion(91);
+        }
+
+        $ecografiaObstetrica=$this->getPreguntaValidada('ma_ecografia_obstetrica');
+        if(
+            $ecografiaObstetrica==961 
+        )
+        {
+$this->generarInduccion(89);
+        }
+
+        $ecografiaAnatomico=$this->getPreguntaValidada('ma_ecografia_anatomico');
+        if(
+            $ecografiaAnatomico==963 
+        )
+        {
+$this->generarInduccion(90);
+        }
+
+        $vacunacionToxoide=$this->getPreguntaValidada('ma_vacunacion_toxoide');
+        if(
+            $vacunacionToxoide==953 
+        )
+        {
+$this->generarInduccion(88);
+        }
+
+        $suplementacion=$this->getPreguntaValidada('ma_suplementacion');
+        if(
+            $suplementacion==860 
+        )
+        {
+$this->generarInduccion(86);
+        }
+     }
+
+ }
