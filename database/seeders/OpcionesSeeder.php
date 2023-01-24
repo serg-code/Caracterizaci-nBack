@@ -59,7 +59,7 @@ class OpcionesSeeder extends Seeder
         Opcion::create(["id" => "37", "ref_campo" => "tipo_lesión", "pregunta_opcion" => "Sin lesión", "valor" => "0"]);
         Opcion::create(["id" => "38", "ref_campo" => "tipo_lesión", "pregunta_opcion" => "Fractura", "valor" => "3"]);
         Opcion::create(["id" => "39", "ref_campo" => "tipo_lesión", "pregunta_opcion" => "Trauma de tejido blando", "valor" => "3"]);
-        Opcion::create(["id" => "40", "ref_campo" => "tipo_lesión", "pregunta_opcion" => "Danio neurologíco", "valor" => "5"]);
+        Opcion::create(["id" => "40", "ref_campo" => "tipo_lesión", "pregunta_opcion" => "Daño neurologíco", "valor" => "5"]);
         Opcion::create(["id" => "41", "ref_campo" => "tipo_lesión", "pregunta_opcion" => "Discapacidad", "valor" => "10"]);
         Opcion::create(["id" => "42", "ref_campo" => "accidentes_laborales", "pregunta_opcion" => "NO", "valor" => "1"]);
         Opcion::create(["id" => "43", "ref_campo" => "accidentes_laborales", "pregunta_opcion" => "SI", "valor" => "3"]);
