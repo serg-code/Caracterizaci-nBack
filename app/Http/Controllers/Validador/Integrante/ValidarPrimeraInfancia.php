@@ -59,6 +59,8 @@ class ValidarPrimeraInfancia extends ValidacionIntegrante implements ValidacionE
 
         $this->valoracionIntegral();
         $this->proteccionEspeficifica();
+
+        $this->inducciones();
     }
 
     protected function PesoNacer()
@@ -170,22 +172,8 @@ class ValidarPrimeraInfancia extends ValidacionIntegrante implements ValidacionE
 
     protected function valoracionIntegral()
     {
-        $atencionMedica = $this->validacionSimple('pi_atencion_medica', $this->rangosAtencionMedica());
-
-        if ($atencionMedica->id == 470)
-        {
-            $idInduccion = $this->matchAtencionMedica();
-            $this->validarGenerarInduccion($idInduccion);
-        }
-
-        $atencionEnfermeria = $this->validacionSimple('pi_atencion_enfermeria', $this->rangosAtencionEnfermeria());
-
-        if ($atencionEnfermeria->id == 472)
-        {
-            $idInduccion = $this->matchAtencionEnfermeria();
-            $this->validarGenerarInduccion($idInduccion);
-        }
-
+        $this->validacionSimple('pi_atencion_medica', $this->rangosAtencionMedica());
+        $this->validacionSimple('pi_atencion_enfermeria', $this->rangosAtencionEnfermeria());
         $this->validacionSimple('pi_atencion_lactancia', ($this->mesesEdad >= 1 && $this->mesesEdad <= 6));
         $this->puntuacion('pi_tsh');
     }
@@ -217,40 +205,13 @@ class ValidarPrimeraInfancia extends ValidacionIntegrante implements ValidacionE
 
         if ($edad >= 1 && $edad <= 5)
         {
-            $this->fluor();
-            $this->profilaxis();
+            $this->puntuacion('pi_fluor');
+            $this->puntuacion('pi_profilaxis');
         }
 
         if ($meses > 6)
         {
-            $this->odontologia();
-        }
-    }
-
-    private function fluor()
-    {
-        $fluor = $this->puntuacion('pi_fluor');
-        if ($fluor->id == 478)
-        {
-            $this->generarInduccion(15);
-        }
-    }
-
-    private function profilaxis()
-    {
-        $profilaxis = $this->puntuacion('pi_profilaxis');
-        if ($profilaxis->id == 480)
-        {
-            $this->generarInduccion(16);
-        }
-    }
-
-    private function odontologia()
-    {
-        $odontologia = $this->puntuacion('pi_consulta_odontologica');
-        if ($odontologia->id == 488)
-        {
-            $this->generarInduccion(13);
+            $this->puntuacion('pi_consulta_odontologica');
         }
     }
 
@@ -259,6 +220,41 @@ class ValidarPrimeraInfancia extends ValidacionIntegrante implements ValidacionE
      *      Inducciones
      * ------------------------------------------------------------------------
      */
+
+    private function inducciones()
+    {
+        $atencionMedica = $this->getPreguntaValidada('pi_atencion_medica');
+        if ($atencionMedica == 470)
+        {
+            $idInduccion = $this->matchAtencionMedica();
+            $this->validarGenerarInduccion($idInduccion);
+        }
+
+        $atencionEnfermeria = $this->getPreguntaValidada('pi_atencion_enfermeria');
+        if ($atencionEnfermeria == 472)
+        {
+            $idInduccion = $this->matchAtencionEnfermeria();
+            $this->validarGenerarInduccion($idInduccion);
+        }
+
+        $fluor = $this->getPreguntaValidada('pi_fluor');
+        if ($fluor == 478)
+        {
+            $this->generarInduccion(15);
+        }
+
+        $profilaxis = $this->getPreguntaValidada('pi_profilaxis');
+        if ($profilaxis == 480)
+        {
+            $this->generarInduccion(16);
+        }
+
+        $odontologia = $this->getPreguntaValidada('pi_consulta_odontologica');
+        if ($odontologia == 488)
+        {
+            $this->generarInduccion(13);
+        }
+    }
 
     private function matchAtencionMedica(): int
     {

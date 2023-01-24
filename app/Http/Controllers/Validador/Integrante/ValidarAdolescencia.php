@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Validador\Integrante;
 use App\Dev\Encuesta\OpcionPregunta;
 use App\Interfaces\ValidacionEncuesta;
 use App\Models\Integrantes;
-use App\Models\Opcion;
 
 class ValidarAdolescencia extends ValidacionIntegrante implements ValidacionEncuesta
 {
@@ -29,28 +28,20 @@ class ValidarAdolescencia extends ValidacionIntegrante implements ValidacionEncu
         $this->puntuacion('adol_peso');
         $this->puntuacion('adol_talla');
         $this->puntuacion('adol_imc');
-        $asesoria = $this->puntuacion('adol_asesoria_anticoncepcion');
-        if ($asesoria->id == 539)
-        {
-            $this->generarInduccion(35);
-        }
-
+        $this->puntuacion('adol_asesoria_anticoncepcion');
         $this->planificacion();
         $this->proteccionEspecifica();
+
+        $this->inducciones();
     }
 
     protected function planificacion()
     {
         if ($this->integrante->sexo == 'Femenino')
         {
-            $planifica = OpcionPregunta::opcionPregunta('adol_planifica', $this->seccion['adol_planifica']);
-            $this->puntuacion('adol_planifica');
-
+            $planifica = $this->puntuacion('adol_planifica');
             if ($planifica->id != 542 || $planifica->pregunta_opcion != 'SI')
             {
-                unset(
-                    $this->seccion['adol_metodo_planficica'],
-                );
                 return false;
             }
 
@@ -67,19 +58,8 @@ class ValidarAdolescencia extends ValidacionIntegrante implements ValidacionEncu
     protected function valoracionIntegral()
     {
         $edad = $this->edad;
-        $atencionMedica = $this->validacionSimple('adol_atencion_medica', ($edad != 12 || $edad != 14 || $edad != 16));
-        if ($atencionMedica->id == 568)
-        {
-            $idInduccion = $this->matchAtencionMedica();
-            $this->validarGenerarInduccion($idInduccion);
-        }
-
-        $atencionEnfermeria = $this->validacionSimple('adol_atencion_enfermeria', ($edad != 13 || $edad != 15 || $edad != 17));
-        if ($atencionEnfermeria->id == 570)
-        {
-            $idInduccion = $this->matchAtencionEnfermeria();
-            $this->validarGenerarInduccion($idInduccion);
-        }
+        $this->validacionSimple('adol_atencion_medica', ($edad != 12 || $edad != 14 || $edad != 16));
+        $this->validacionSimple('adol_atencion_enfermeria', ($edad != 13 || $edad != 15 || $edad != 17));
     }
 
     protected function proteccionEspecifica()
@@ -95,24 +75,9 @@ class ValidarAdolescencia extends ValidacionIntegrante implements ValidacionEncu
 
     private function boca()
     {
-        $saludBucal = $this->puntuacion('adol_salud_bucal');
-        $fluor = $this->puntuacion('adol_fluor');
-        $profilaxis = $this->puntuacion('adol_profilaxis');
-
-        if ($saludBucal->id == 572)
-        {
-            $this->generarInduccion(34);
-        }
-
-        if ($fluor->id == 574)
-        {
-            $this->generarInduccion(36);
-        }
-
-        if ($profilaxis->id == 576)
-        {
-            $this->generarInduccion(37);
-        }
+        $this->puntuacion('adol_salud_bucal');
+        $this->puntuacion('adol_fluor');
+        $this->puntuacion('adol_profilaxis');
     }
 
     /**
@@ -120,6 +85,48 @@ class ValidarAdolescencia extends ValidacionIntegrante implements ValidacionEncu
      *      Inducciones
      * ------------------------------------------------------------------------
      */
+
+    private function inducciones()
+    {
+        $asesoria = $this->getPreguntaValidada('adol_asesoria_anticoncepcion');
+        if ($asesoria == 539)
+        {
+            $this->generarInduccion(35);
+        }
+
+        $atencionMedica = $this->getPreguntaValidada('adol_atencion_medica');
+        if ($atencionMedica == 568)
+        {
+            $idInduccion = $this->matchAtencionMedica();
+            $this->validarGenerarInduccion($idInduccion);
+        }
+
+        $atencionEnfermeria = $this->getPreguntaValidada('adol_atencion_enfermeria');
+        if ($atencionEnfermeria == 570)
+        {
+            $idInduccion = $this->matchAtencionEnfermeria();
+            $this->validarGenerarInduccion($idInduccion);
+        }
+
+        $saludBucal = $this->getPreguntaValidada('adol_salud_bucal');
+        $fluor = $this->getPreguntaValidada('adol_fluor');
+        $profilaxis = $this->getPreguntaValidada('adol_profilaxis');
+
+        if ($saludBucal == 572)
+        {
+            $this->generarInduccion(34);
+        }
+
+        if ($fluor == 574)
+        {
+            $this->generarInduccion(36);
+        }
+
+        if ($profilaxis == 576)
+        {
+            $this->generarInduccion(37);
+        }
+    }
 
     private function matchAtencionMedica(): int
     {

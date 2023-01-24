@@ -40,6 +40,8 @@ class ValidarInfancia extends ValidacionIntegrante implements ValidacionEncuesta
 
         $this->validarVacunacion();
         $this->valoracionMedica();
+
+        $this->inducciones();
     }
 
     protected function vacunacion()
@@ -65,62 +67,59 @@ class ValidarInfancia extends ValidacionIntegrante implements ValidacionEncuesta
     public function valoracionMedica()
     {
         $this->puntuacion('in_caries');
-        $this->odontologia();
+        $this->puntuacion('in_consulta_odontologica');
         $this->puntuacion('in_uso_seda_dental');
-        $this->fluor();
-        $this->profilaxis();
+        $this->puntuacion('in_fluor');
+        $this->puntuacion('in_profilaxis');
         $this->puntuacion('in_sellantes');
     }
 
     protected function valoracionIntegral()
     {
-        $atencionMedica = $this->puntuacion('in_atencion_medica');
-        if ($atencionMedica->id == 532)
+        $this->puntuacion('in_atencion_medica');
+        $this->puntuacion('in_atencion_enfermeria');
+    }
+
+    /**
+     * ------------------------------------------------------------------------
+     *      Inducciones
+     * ------------------------------------------------------------------------
+     */
+
+    private function inducciones()
+    {
+        $fluor = $this->getPreguntaValidada('in_fluor');
+        if ($fluor == 526)
+        {
+            $this->generarInduccion(25);
+        }
+
+        $profilaxis = $this->getPreguntaValidada('in_profilaxis');
+        if ($profilaxis == 528)
+        {
+            $this->generarInduccion(26);
+        }
+
+        $odontologia = $this->getPreguntaValidada('in_consulta_odontologica');
+        if ($odontologia == 522)
+        {
+            $this->generarInduccion(24);
+        }
+
+        $atencionMedica = $this->getPreguntaValidada('in_atencion_medica');
+        if ($atencionMedica == 532)
         {
             $idInduccion = $this->matchAtencionMedica();
             $this->validarGenerarInduccion($idInduccion);
         }
 
-        $atencionEnfermeria = $this->puntuacion('in_atencion_enfermeria');
-        if ($atencionEnfermeria->id == 534)
+        $atencionEnfermeria = $this->getPreguntaValidada('in_atencion_enfermeria');
+        if ($atencionEnfermeria == 534)
         {
             $idInduccion = $this->matchAtencionEnfermeria();
             $this->validarGenerarInduccion($idInduccion);
         }
     }
-
-    private function odontologia()
-    {
-        $odontologia = $this->puntuacion('in_consulta_odontologica');
-        if ($odontologia->id == 522)
-        {
-            $this->generarInduccion(24);
-        }
-    }
-
-    private function fluor()
-    {
-        $fluor = $this->puntuacion('in_fluor');
-        if ($fluor->id == 526)
-        {
-            $this->generarInduccion(25);
-        }
-    }
-
-    private function profilaxis()
-    {
-        $profilaxis = $this->puntuacion('in_profilaxis');
-        if ($profilaxis->id == 528)
-        {
-            $this->generarInduccion(26);
-        }
-    }
-
-    /**
-     * ------------------------------------------------------------------------
-     *      Inducciones     27  vph
-     * ------------------------------------------------------------------------
-     */
 
     private function matchAtencionMedica(): int
     {

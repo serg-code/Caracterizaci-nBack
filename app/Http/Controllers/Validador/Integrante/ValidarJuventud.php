@@ -39,6 +39,8 @@ class ValidarJuventud extends ValidacionIntegrante implements ValidacionEncuesta
         $this->puntuacion('juv_asesoria_anticoncepcion');
         $this->parejas();
         $this->valoracionIntegral();
+
+        $this->inducciones();
     }
 
     protected function deteccionTemprana()
@@ -46,11 +48,6 @@ class ValidarJuventud extends ValidacionIntegrante implements ValidacionEncuesta
         if ($this->integrante->sexo == 'Femenino')
         {
             $cuelloUterino = $this->puntuacion('juv_cancer_cuello_uterino');
-
-            if ($cuelloUterino->id == 590)
-            {
-                $this->generarInduccion(51);
-            }
 
             //citologia anormal
             if ($cuelloUterino->id == 592)
@@ -63,13 +60,6 @@ class ValidarJuventud extends ValidacionIntegrante implements ValidacionEncuesta
                     $this->puntuacion('juv_control_medico_examen_colposcopia');
                 }
 
-                //no asiste a la colposcopia
-                //? id induccion colposcopia
-                if ($colposcopia->id == 594)
-                {
-                    $this->generarInduccion(51);
-                }
-
                 $this->validacionSimple('juv_bioscopia_cervico', ($cuelloUterino->id == 592));
             }
         }
@@ -80,12 +70,6 @@ class ValidarJuventud extends ValidacionIntegrante implements ValidacionEncuesta
         if ($this->integrante->sexo == 'Femenino')
         {
             $examenSeno = $this->puntuacion('juv_examen_seno');
-
-            if ($examenSeno->id == 599)
-            {
-                $this->generarInduccion(58);
-            }
-
             if ($examenSeno->id == 601)
             {
                 $this->puntuacion('juv_control_medico_examen_seno');
@@ -109,9 +93,7 @@ class ValidarJuventud extends ValidacionIntegrante implements ValidacionEncuesta
         $tiempoMetodo = $this->seccion['juv_tiempo_metodo'];
         if ($tiempoMetodo < 0 || $tiempoMetodo > $this->mesesEdad)
         {
-            array_push($this->errores, [
-                'juv_tiempo_metodo' => "No puede tener $tiempoMetodo en planificacion"
-            ]);
+            $this->agregarErrror('juv_tiempo_metodo', "No puede tener $tiempoMetodo en planificacion");
             return false;
         }
 
@@ -124,7 +106,10 @@ class ValidarJuventud extends ValidacionIntegrante implements ValidacionEncuesta
         $respuesta = $this->seccion['juv_parejas_sexuales_al_anio'] ?? null;
         if (empty($respuesta) && $respuesta != 0)
         {
-            $this->agregarErrror('juv_parejas_sexuales_al_anio', 'No encontramos la pregunta juv_parejas_sexuales_al_anio');
+            $this->agregarErrror(
+                'juv_parejas_sexuales_al_anio',
+                'No encontramos la pregunta juv_parejas_sexuales_al_anio'
+            );
             return null;
         }
 
@@ -140,21 +125,9 @@ class ValidarJuventud extends ValidacionIntegrante implements ValidacionEncuesta
 
     protected function valoracionIntegral()
     {
-        $atencionMedica = $this->puntuacion('juv_atencion_medica');
-
-        if ($atencionMedica->id == 632)
-        {
-            $idInduccion = $this->induccionAtencionMedica();
-            $this->validarGenerarInduccion($idInduccion);
-        }
-
-        $this->atencionBucal();
-        $atencionEnfermeria = $this->validacionSimple('juv_atencion_enfermeria', ($this->edad > 20));
-        if ($atencionEnfermeria->id != 0)
-        {
-            $idInduccion = $this->induccionAtencionEnfermeria();
-            $this->validarGenerarInduccion($idInduccion);
-        }
+        $this->puntuacion('juv_atencion_medica');
+        $this->puntuacion('juv_salud_vocal');
+        $this->validacionSimple('juv_atencion_enfermeria', ($this->edad > 20));
     }
 
     protected function proteccionEspecifica()
@@ -164,7 +137,7 @@ class ValidarJuventud extends ValidacionIntegrante implements ValidacionEncuesta
         $esterilizacionFemenina = $this->validacionSimple('juv_esterilizacion_femenina', ($sexo == 'Femenino'));
         $this->validacionSimple('juv_vias_esterilizacion', ($sexo == 'Femenino' && $esterilizacionFemenina->id == 641));
         $this->puntuacion('juv_vias_esterilizacion');
-        $this->profilaxis();
+        $this->puntuacion('juv_profilaxis');
         $this->puntuacion('juv_detartraje_supragingival');
         $this->puntuacion('juv_prueba_vih');
         $this->puntuacion('juv_antecedentes_diabetes');
@@ -173,30 +146,59 @@ class ValidarJuventud extends ValidacionIntegrante implements ValidacionEncuesta
         $this->puntuacion('juv_perimetro_abdominal');
     }
 
-    private function profilaxis()
-    {
-        $profilaxis = $this->puntuacion('juv_profilaxis');
-        if ($profilaxis->id == 644)
-        {
-            $this->validarGenerarInduccion(53);
-        }
-    }
-
-    public function atencionBucal()
-    {
-        $atencionBucal = $this->puntuacion('juv_salud_vocal');
-        if ($atencionBucal->id == 636)
-        {
-            $this->generarInduccion(50);
-        }
-    }
-
 
     /**
      * ------------------------------------------------------------------------
      *      Inducciones
      * ------------------------------------------------------------------------
      */
+
+    private function inducciones()
+    {
+        $cuelloUterino = $this->getPreguntaValidada('juv_cancer_cuello_uterino');
+        if ($cuelloUterino == 590)
+        {
+            $this->generarInduccion(51);
+        }
+
+        $colposcopia = $this->getPreguntaValidada('juv_colposcopia');
+        if ($colposcopia == 594)
+        {
+            $this->generarInduccion(51);
+        }
+
+        $examenSeno = $this->getPreguntaValidada('juv_examen_seno');
+        if ($examenSeno == 599)
+        {
+            $this->generarInduccion(58);
+        }
+
+        $atencionMedica = $this->getPreguntaValidada('juv_atencion_medica');
+        if ($atencionMedica == 632)
+        {
+            $idInduccion = $this->induccionAtencionMedica();
+            $this->validarGenerarInduccion($idInduccion);
+        }
+
+        $atencionEnfermeria = $this->getPreguntaValidada('juv_atencion_enfermeria');
+        if ($atencionEnfermeria == 634)
+        {
+            $idInduccion = $this->induccionAtencionEnfermeria();
+            $this->validarGenerarInduccion($idInduccion);
+        }
+
+        $atencionBucal = $this->getPreguntaValidada('juv_salud_vocal');
+        if ($atencionBucal == 636)
+        {
+            $this->generarInduccion(50);
+        }
+
+        $profilaxis = $this->getPreguntaValidada('juv_profilaxis');
+        if ($profilaxis == 644)
+        {
+            $this->validarGenerarInduccion(53);
+        }
+    }
 
     private function induccionAtencionMedica(): int
     {
