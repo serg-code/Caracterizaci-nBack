@@ -167,11 +167,11 @@ class ValidarJuventud extends ValidacionIntegrante implements ValidacionEncuesta
             $this->generarInduccion(51);
         }
 
-        $examenSeno = $this->getPreguntaValidada('juv_examen_seno');
-        if ($examenSeno == 599)
-        {
-            $this->generarInduccion(58);
-        }
+        // $examenSeno = $this->getPreguntaValidada('juv_examen_seno');
+        // if ($examenSeno == 599)
+        // {
+        //     $this->generarInduccion(58);
+        // }
 
         $atencionMedica = $this->getPreguntaValidada('juv_atencion_medica');
         if ($atencionMedica == 632)
