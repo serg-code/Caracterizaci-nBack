@@ -71,16 +71,16 @@ class ValidarVejez extends ValidacionIntegrante implements ValidacionEncuesta
 
     protected function planificacion()
     {
-        $anticoncepcion = $this->puntuacion('ve_asesoria_anticoncepcion');
+        $this->puntuacion('ve_asesoria_anticoncepcion');
+        $planifica = $this->puntuacion('ve_planifica');
 
-        if ($anticoncepcion->id == 745 && $this->integrante->sexo == 'Femenino')
+        if ($planifica->id == 747 && $this->integrante->sexo == 'Femenino')
         {
-            $planifica = $this->puntuacion('ve_planifica');
-            $this->validacionSimple('ve_metodo_planifica', ($planifica->id == 747));
-            $this->validacionSimple('ve_desde_cuando_planifica', ($planifica->id == 747));
+            $this->puntuacion('ve_metodo_planifica');
+            $this->puntuacion('ve_desde_cuando_planifica');
         }
 
-        if ($anticoncepcion->id == 744)
+        if ($planifica->id == 746)
         {
             $this->puntuacion('ve_razones_no_planifica');
         }
@@ -143,11 +143,11 @@ class ValidarVejez extends ValidacionIntegrante implements ValidacionEncuesta
         {
             $atencionMedica = $this->puntuacion('ve_atencion_medica');
 
-        if ($atencionMedica->id == 784)
-        {
-            $idInduccion = $this->induccionAtencionMedica();
-            $this->validarGenerarInduccion($idInduccion);
-        }
+            if ($atencionMedica->id == 784)
+            {
+                $idInduccion = $this->induccionAtencionMedica();
+                $this->validarGenerarInduccion($idInduccion);
+            }
             $this->atencionBucal();
         }
     }
@@ -240,20 +240,19 @@ class ValidarVejez extends ValidacionIntegrante implements ValidacionEncuesta
         }
     }
 
-   
+
     /**
      * ------------------------------------------------------------------------
      *      Inducciones
      * ------------------------------------------------------------------------
      */
 
-     private function induccionAtencionMedica(): int
-     {
-         return match ($this->mesesEdad)
-         {
+    private function induccionAtencionMedica(): int
+    {
+        return match ($this->mesesEdad)
+        {
             720 => 67,
             default => 0
-         };
-     }
-    
+        };
+    }
 }
