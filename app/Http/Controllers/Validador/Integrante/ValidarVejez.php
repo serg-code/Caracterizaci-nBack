@@ -29,10 +29,11 @@ class ValidarVejez extends ValidacionIntegrante implements ValidacionEncuesta
         $this->puntuacion('ve_valoracion_talla');
         $this->validarIMC();
         $this->perimetroAbdominal();
+        $this->anticoncepcion();
         $this->planificacion();
         $this->parejas();
         $this->examenMedico();
-        $this->perimetroAbdominal();
+        //$this->perimetroAbdominal();
         $this->valoracionIntegral();
         $this->detencionTemprana();
         $this->vacunacion();
@@ -71,7 +72,7 @@ class ValidarVejez extends ValidacionIntegrante implements ValidacionEncuesta
 
     protected function planificacion()
     {
-        $this->puntuacion('ve_asesoria_anticoncepcion');
+        $this->anticoncepcion();
         $planifica = $this->puntuacion('ve_planifica');
 
         if ($planifica->id == 747 && $this->integrante->sexo == 'Femenino')
@@ -186,6 +187,15 @@ class ValidarVejez extends ValidacionIntegrante implements ValidacionEncuesta
         $this->puntuacion('ve_vacuna_influenza');
     }
 
+    private function anticoncepcion()
+    {
+        $anticoncepcion = $this->puntuacion('ve_asesoria_anticoncepcion');
+        if ($anticoncepcion->id == 744)
+        {
+            $this->validarGenerarInduccion(73);
+        }
+    }
+   
     public function atencionBucal()
     {
         $atencionBucal = $this->puntuacion('ve_salud_vocal');
