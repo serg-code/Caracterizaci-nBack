@@ -18,7 +18,7 @@ class ValidarMaternoPerinatal extends ValidacionIntegrante implements Validacion
 
     public function validar()
     {
-        if (empty($this->seccion))
+        if (empty($this->seccion) || $this->integrante != 'Femenino')
         {
             return false;
         }
@@ -223,109 +223,108 @@ class ValidarMaternoPerinatal extends ValidacionIntegrante implements Validacion
     }
 
 
-/**
+    /**
      * ------------------------------------------------------------------------
      *      Inducciones
      * ------------------------------------------------------------------------
      */
 
-     private function induccion()
-     {
-        $atencionPrenatal=$this->getPreguntaValidada('ma_atencion_prenatal_medica_general');
-        if(
-            $atencionPrenatal==945 
+    private function induccion()
+    {
+        $atencionPrenatal = $this->getPreguntaValidada('ma_atencion_prenatal_medica_general');
+        if (
+            $atencionPrenatal == 945
         )
         {
-$this->generarInduccion(80);
+            $this->generarInduccion(80);
         }
 
-        $atencionPrenatalEnfermeria=$this->getPreguntaValidada('ma_atencion_prenatal_enfermeria');
-        if(
-            $atencionPrenatalEnfermeria==947 
+        $atencionPrenatalEnfermeria = $this->getPreguntaValidada('ma_atencion_prenatal_enfermeria');
+        if (
+            $atencionPrenatalEnfermeria == 947
         )
         {
-$this->generarInduccion(81);
+            $this->generarInduccion(81);
         }
 
-        $atencionPrenatalObstetra=$this->getPreguntaValidada('ma_atencion_prenatal_medica_obstetra');
-        if(
-            $atencionPrenatalObstetra==949 
+        $atencionPrenatalObstetra = $this->getPreguntaValidada('ma_atencion_prenatal_medica_obstetra');
+        if (
+            $atencionPrenatalObstetra == 949
         )
         {
-$this->generarInduccion(83);
+            $this->generarInduccion(83);
         }
 
-        $atencionPrenatalNutricion=$this->getPreguntaValidada('ma_atencion_prenatal_consulta_nutricion');
-        if(
-            $atencionPrenatalNutricion==951 
+        $atencionPrenatalNutricion = $this->getPreguntaValidada('ma_atencion_prenatal_consulta_nutricion');
+        if (
+            $atencionPrenatalNutricion == 951
         )
         {
-$this->generarInduccion(84);
+            $this->generarInduccion(84);
         }
 
-        $atencionOdontologica=$this->getPreguntaValidada('ma_atencion_odontologica');
-        if(
-            $atencionOdontologica==858 
+        $atencionOdontologica = $this->getPreguntaValidada('ma_atencion_odontologica');
+        if (
+            $atencionOdontologica == 858
         )
         {
-$this->generarInduccion(82);
+            $this->generarInduccion(82);
         }
 
-        $Pediatria=$this->getPreguntaValidada('ma_atencion_pediatria');
-        if(
-            $Pediatria==971 
+        $Pediatria = $this->getPreguntaValidada('ma_atencion_pediatria');
+        if (
+            $Pediatria == 971
         )
         {
-$this->generarInduccion(96);
+            $this->generarInduccion(96);
         }
 
-        $asesoriaIVE=$this->getPreguntaValidada('ma_asesoria_anticonceptiva_ive');
-        if(
-            $asesoriaIVE==967 
+        $asesoriaIVE = $this->getPreguntaValidada('ma_asesoria_anticonceptiva_ive');
+        if (
+            $asesoriaIVE == 967
         )
         {
-$this->generarInduccion(92);
+            $this->generarInduccion(92);
         }
 
-        $interrupcionEmbarazo=$this->getPreguntaValidada('ma_interrupcion_voluntaria_embarazo');
-        if(
-            $interrupcionEmbarazo==966 
+        $interrupcionEmbarazo = $this->getPreguntaValidada('ma_interrupcion_voluntaria_embarazo');
+        if (
+            $interrupcionEmbarazo == 966
         )
         {
-$this->generarInduccion(91);
+            $this->generarInduccion(91);
         }
 
-        $ecografiaObstetrica=$this->getPreguntaValidada('ma_ecografia_obstetrica');
-        if(
-            $ecografiaObstetrica==961 
+        $ecografiaObstetrica = $this->getPreguntaValidada('ma_ecografia_obstetrica');
+        if (
+            $ecografiaObstetrica == 961
         )
         {
-$this->generarInduccion(89);
+            $this->generarInduccion(89);
         }
 
-        $ecografiaAnatomico=$this->getPreguntaValidada('ma_ecografia_anatomico');
-        if(
-            $ecografiaAnatomico==963 
+        $ecografiaAnatomico = $this->getPreguntaValidada('ma_ecografia_anatomico');
+        if (
+            $ecografiaAnatomico == 963
         )
         {
-$this->generarInduccion(90);
+            $this->generarInduccion(90);
         }
 
-        $vacunacionToxoide=$this->getPreguntaValidada('ma_vacunacion_toxoide');
-        if(
-            $vacunacionToxoide==953 
+        $vacunacionToxoide = $this->getPreguntaValidada('ma_vacunacion_toxoide');
+        if (
+            $vacunacionToxoide == 953
         )
         {
-$this->generarInduccion(88);
+            $this->generarInduccion(88);
         }
 
-        $suplementacion=$this->getPreguntaValidada('ma_suplementacion');
-        if(
-            $suplementacion==860 
+        $suplementacion = $this->getPreguntaValidada('ma_suplementacion');
+        if (
+            $suplementacion == 860
         )
         {
-$this->generarInduccion(86);
+            $this->generarInduccion(86);
         }
-     }
-
- }
+    }
+}
