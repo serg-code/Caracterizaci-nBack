@@ -20,7 +20,7 @@ return new class extends Migration
                 'green',
                 'orange',
                 'red',
-            ])->nullable()->comment('Color para identificar el riesgo');
+            ])->nullable()->comment('Color para identificar el riesgo')->after('porcentaje');
         });
     }
 
