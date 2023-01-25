@@ -168,22 +168,14 @@ class IntegranteFinalizadoController extends Controller
 
     protected function guardadoFinal(array $respuestas)
     {
-        foreach ($respuestas as $refCampo => $respuestaFormulario)
+        foreach ($respuestas as $refCampo => $opcion)
         {
-            $pregunta = Pregunta::where('ref_campo', '=', $refCampo)->first();
-            $opcion = 0;
-
-            if (!empty($pregunta->tipo) && $pregunta->tipo != 'texto' || $pregunta->tipo !== 'texto_largo')
-            {
-                $opcion = Opcion::find($respuestaFormulario);
-            }
-
             $respuesta = new RespuestaIntegrante([
                 'id_integrante' => $this->integrante->id,
                 'ref_campo' => $refCampo,
-                'pregunta' => $pregunta->descripcion,
-                'respuesta' => $respuestaFormulario,
-                'puntaje' => $opcion->valor ?? 0,
+                'puntaje' => $opcion['puntaje'],
+                'pregunta' => $opcion['pregunta'],
+                'respuesta' => $opcion['respuesta'],
             ]);
             $respuesta->save();
         }

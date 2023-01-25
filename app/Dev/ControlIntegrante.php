@@ -37,7 +37,8 @@ class ControlIntegrante
             );
         }
 
-        $integrante = Integrantes::guardarIntegrante($this->datosIntegrante);
+        $integrante = new Integrantes($this->datosIntegrante);
+        $integrante->save();
         $secciones = $this->datosIntegrante['secciones'];
         $this->integrante = $integrante;
         if (!empty($secciones))
