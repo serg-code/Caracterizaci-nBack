@@ -35,15 +35,16 @@ class ActualizarHogar
             $hogar = $this->recorrecSecciones($hogar, $this->secciones);
             $hogar->integrantes;
             $this->hogar = $hogar;
-            $this->respuesta = new RespuestaHttp(
-                200,
-                'succes',
-                'hogar actualizado',
-                [
-                    'hogar' => $hogar,
-                ]
-            );
         }
+
+        $this->respuesta = new RespuestaHttp(
+            200,
+            'succes',
+            'hogar actualizado',
+            [
+                'hogar' => $hogar,
+            ]
+        );
     }
 
     protected function recorrecSecciones(Hogar $hogar, array $secciones = []): Hogar

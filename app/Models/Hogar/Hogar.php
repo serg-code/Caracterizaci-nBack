@@ -62,9 +62,6 @@ class Hogar extends Model
     public static function actualizarHogar(array $datos): ?Hogar
     {
         $hogar =  Hogar::find($datos['id'] ?? 'uuid');
-        // $encuesta = $datos['encuesta'] ?? $hogar->encuesta;
-        // $hogar->encuesta = $encuesta;
-        // $hogar->encuesta = (object) $encuesta;
         if (!empty($hogar))
         {
             $hogar->update([
@@ -78,7 +75,6 @@ class Hogar extends Model
                 'encuesta' => $datos['encuesta'] ?? $hogar->encuesta,
                 'estado_registro' => $datos['estado_registro'] ?? $hogar->estado_registro,
             ]);
-
             return $hogar;
         }
 

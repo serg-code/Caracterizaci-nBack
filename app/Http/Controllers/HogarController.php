@@ -106,7 +106,7 @@ class HogarController extends Controller
             return RespuestaHttp::respuestaObjeto($respuestaCrearHogar);
         }
 
-        if (!empty($hogarPeticion['secciones']))
+        if (!empty($hogar))
         {
             $secciones = $hogarPeticion['secciones'];
             $actualizarHogar = new ActualizarHogar($hogarPeticion, $secciones);
