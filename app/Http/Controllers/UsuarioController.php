@@ -121,9 +121,11 @@ class UsuarioController extends Controller
     {
         $usuario = User::find($id);
         $usuario->getRoleNames();
+        $listado = $usuario->getAllPermissions();
         $respuesta = new RespuestaHttp();
         $respuesta->data = [
-            'usuario' => $usuario
+            'usuario' => $usuario,
+            'permisos' => $listado,
         ];
         return response()->json($respuesta, $respuesta->codigoHttp);
     }
@@ -201,7 +203,10 @@ class UsuarioController extends Controller
         $usuario = $request->user();
         $respuesta = new RespuestaHttp();
         $usuario = User::find($usuario->id);
+        $usuario->permisos = $usuario->getAllPermissions();
+        unset($usuario->roles, $usuario->permissions);
         $usuario->getRoleNames();
+
 
         $respuesta->data = [
             // 'usuario' => User::find($usuario->id),
