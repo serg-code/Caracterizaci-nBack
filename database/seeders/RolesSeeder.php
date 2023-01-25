@@ -17,24 +17,56 @@ class RolesSeeder extends Seeder
      */
     public function run()
     {
+
+        /**
+         * ------------------------------------------------------------------------
+         *      Crear Roles
+         * ------------------------------------------------------------------------
+         */
+
         //crear roles y permisos
         $rolSuperAdmin = Role::create(['name' => 'Super Administrador']);
         $rolAdmin = Role::create(['name' => 'Administrador']);
         $rolUsuario = Role::create(['name' => 'Usuario']);
+
+        /**
+         * ------------------------------------------------------------------------
+         *      Permisos Usuarios
+         * ------------------------------------------------------------------------
+         */
 
         //* Usuarios
         $listarUsuario = Permission::create(['name' => 'listar usuarios']);
         $editarUsuario = Permission::create(['name' => 'editar usuarios']);
         $crearUsario = Permission::create(['name' => 'crear usuarios']);
 
+        /**
+         * ------------------------------------------------------------------------
+         *      Permisos Modulo Roles
+         * ------------------------------------------------------------------------
+         */
+
         //* roles
         $listarRoles = Permission::create(['name' => 'listar roles']);
         $editarRoles = Permission::create(['name' => 'editar roles']);
+
+        /**
+         * ------------------------------------------------------------------------
+         *      Permisos BarriosVeredas
+         * ------------------------------------------------------------------------
+         */
 
         //* BarriosVeredas
         $listarBarrioVereda = Permission::create(['name' => 'listar BarrioVereda']);
         $editarBarrioVereda = Permission::create(['name' => 'editar BarrioVereda']);
         $eliminarBarrioVereda = Permission::create(['name' => 'eliminar BarrioVereda']);
+
+
+        /**
+         * ------------------------------------------------------------------------
+         *      Asignar lista de permisos a los roles
+         * ------------------------------------------------------------------------
+         */
 
         //* permisos sueper admin
         $this->agregarPermisos($rolSuperAdmin, [
