@@ -37,6 +37,8 @@ class Hogar extends Model
         'realizo_encuesta',
         'motivos',
         'observaciones',
+        'porcentaje',
+        'color',
     ];
 
     protected $hidden = [

@@ -63,7 +63,7 @@ class ValidarVivienda extends ValidacionHogar implements ValidacionEncuesta
                 return false;
             }
 
-            $this->agregarRespuestaSeccion('ciuu', $ciuuRespuesta);
+            $this->agregarRespuestaSeccion('ciuu', $ciuuRespuesta, '¿Hay actividad productiva en la vivienda?');
         }
     }
 

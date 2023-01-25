@@ -67,15 +67,11 @@ class ValidarAnimales extends ValidacionHogar implements ValidacionEncuesta
 
     protected function rabia()
     {
-        $animalesNoRabia = $this->seccion['animales_no_rabia'];
-        $this->agregarRespuestaSeccion('animales_no_rabia', $animalesNoRabia);
-        $animalesRabia = $this->seccion['animales_si_rabia'];
-        $this->agregarRespuestaSeccion('animales_si_rabia', $animalesRabia);
-
-
-        // $noRabia = $this->puntuacion('animales_no_rabia');
-        // $this->puntuacion('animales_si_rabia');
+        $this->puntuacion('animales_no_rabia');
+        $this->puntuacion('animales_si_rabia');
+        // $animalesNoRabia = $this->seccion['animales_no_rabia'];
+        // $this->agregarRespuestaSeccion('animales_no_rabia', $animalesNoRabia);
+        // $animalesRabia = $this->seccion['animales_si_rabia'];
+        // $this->agregarRespuestaSeccion('animales_si_rabia', $animalesRabia);
     }
-
-    
 }

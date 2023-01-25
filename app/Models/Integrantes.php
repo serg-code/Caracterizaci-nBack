@@ -34,6 +34,8 @@ class Integrantes extends Model
         'puntaje_obtenido',
         'puntaje_max',
         'estado_registro',
+        'porcentaje',
+        'color',
     ];
 
     protected $hidden = [

@@ -45,7 +45,7 @@ class ValidacionHogar
     protected function puntuacion(string $refCampo): Opcion
     {
         $respuestaEncuesta = $this->seccion[$refCampo] ?? null;
-        if (empty($respuestaEncuesta))
+        if (empty($respuestaEncuesta) && $respuestaEncuesta != 0)
         {
             $this->agregarErrror($refCampo, "No encontramos la pregunta $refCampo en la seccion " . $this->refSeccion);
             return new Opcion(['id' => 0, 'valor' => 0]);
@@ -79,7 +79,7 @@ class ValidacionHogar
         // }
 
         $this->seccionValidada[$refCampo] = $respuestaEncuesta;
-        $this->agregarRespuestaSeccion($refCampo, $respuestaEncuesta);
+        $this->agregarRespuestaSeccion($refCampo, $respuestaEncuesta, $pregunta->descripcion, $opcion->valor);
         $this->puntaje += $opcion->valor ?? 0;
         return $opcionVacio ? new Opcion(['id' => 0, 'valor' => 0]) : $opcion;
     }
@@ -100,9 +100,18 @@ class ValidacionHogar
             || $tipoPregunta == 'fecha';
     }
 
-    protected  function agregarRespuestaSeccion(string $refCampo, $respuestaEncuesta): void
+    protected  function agregarRespuestaSeccion(
+        string $refCampo,
+        $respuestaEncuesta,
+        string $pregunta = '',
+        int $puntaje = 0
+    ): void
     {
-        $this->seccionValidada[$refCampo] = $respuestaEncuesta;
+        $this->seccionValidada[$refCampo] = [
+            'respuesta' => $respuestaEncuesta,
+            'puntaje' => $puntaje,
+            'pregunta' => $pregunta,
+        ];
     }
 
     protected function agregarErrror(string $refCampo, string $textoError)

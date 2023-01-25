@@ -13,7 +13,6 @@ use Illuminate\Support\MessageBag;
 
 class ControlIntegrante
 {
-
     protected array $errores;
     protected Integrantes $integrante;
 

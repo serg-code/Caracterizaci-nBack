@@ -96,6 +96,7 @@ class IntegrantesController extends Controller
 
         if (empty($integrante))
         {
+            $integrantePeticion['puntaje_max'] = env('PUNTAJE_MAX', 180);
             return $this->crearIntegrante($integrantePeticion, $encuesta);
         }
 

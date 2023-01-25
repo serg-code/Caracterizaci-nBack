@@ -100,7 +100,7 @@ class HogarController extends Controller
 
         if (empty($hogar))
         {
-            $hogarPeticion['puntaje_max'] = 180;
+            $hogarPeticion['puntaje_max'] = env('PUNTAJE_MAX', 180);
             $crearHogar = new crearHogar($hogarPeticion);
             $respuestaCrearHogar = $crearHogar->getRespuesta();
             return RespuestaHttp::respuestaObjeto($respuestaCrearHogar);

@@ -3,12 +3,10 @@
 namespace App\Http\Controllers\Respuestas;
 
 use App\Dev\Encuesta\SeccionesHogar;
-use App\Dev\Hogar\ActualizarHogar;
 use App\Dev\Hogar\crearHogar;
 use App\Dev\RespuestaHttp;
 use App\Http\Controllers\Controller;
 use App\Models\Hogar\Hogar;
-use App\Models\Pregunta;
 use App\Models\respuestas\RespuestaHogar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -20,6 +18,7 @@ class HogarFinalizadoController extends Controller
     protected array $errores;
     protected array $secciones;
     protected int $puntuacion;
+
 
     public function __construct()
     {
@@ -68,7 +67,6 @@ class HogarFinalizadoController extends Controller
         $this->eliminarRespuesta($hogar->id);
         $this->secciones = $hogarPeticion['secciones'];
         $listadoSecciones = SeccionesHogar::obtenerSecciones();
-
         foreach ($listadoSecciones as $refSeccion)
         {
             $seccion = $this->secciones[$refSeccion]['respuestas'];
@@ -102,54 +100,18 @@ class HogarFinalizadoController extends Controller
         {
             $respuestas = $seccion['respuestas'];
             $idHogar = $hogar->id;
-            try
-            {
-
-                $this->guardadoFinal($respuestas, $idHogar);
-            }
-            catch (\Throwable $th)
-            {
-                continue;
-            }
+            $this->guardadoFinal($respuestas, $idHogar);
         }
 
-
-
-        //? validador del hogar
-        // $actualizarHogar = new ActualizarHogar($hogarPeticion, $secciones);
-        // $errores = $actualizarHogar->getErrores();
-        // $hogar = $actualizarHogar->getHogar();
-
-        // if (!empty($errores))
-        // {
-        //     return RespuestaHttp::respuesta(
-        //         400,
-        //         'Bad request',
-        //         'Algo ha salido mal al momento de validar la encuesta',
-        //         $errores
-        //     );
-        // }
-
-        // $this->eliminarRespuesta($hogar->id);
-        // foreach ($secciones as $seccion)
-        // {
-        //     $respuestas = $seccion['respuestas'];
-        //     $idHogar = $hogar->id;
-        //     try
-        //     {
-
-        //         $this->guardadoFinal($respuestas, $idHogar);
-        //     }
-        //     catch (\Throwable $th)
-        //     {
-        //         continue;
-        //     }
-        // }
-
-        // $hogar = $hogar->actualizarHogar([
-        //     'id' => $hogar->id,
-        //     'estado_registro' => 'FINALIZADO'
-        // ]);
+        $puntajeMaximo = env('PUNTAJE_MAX', 180);
+        $porcentaje = ($this->puntuacion * 100) / $puntajeMaximo;
+        $color = $this->matchColor($porcentaje);
+        $hogar->update([
+            'color' => $color,
+            'porcentaje' => $porcentaje,
+            'estado_registro' => 'FINALIZADO',
+            // 'puntaje_obtenido' => $this->puntuacion
+        ]);
 
         return RespuestaHttp::respuesta(200, 'succes', 'Encuesta del hogar finalizada', [
             'hogar' => $hogar,
@@ -163,17 +125,28 @@ class HogarFinalizadoController extends Controller
 
     protected function guardadoFinal(array $respuestas, string $idHogar)
     {
-        foreach ($respuestas as $refCampo => $respuestaFormulario)
+        foreach ($respuestas as $refCampo => $opcion)
         {
-            $pregunta = Pregunta::where('ref_campo', '=', $refCampo)->first();
-            $respuesta = new RespuestaHogar([
+            $respuestaHogar = new RespuestaHogar([
                 'hogar_uuid' => $idHogar,
                 'ref_campo' => $refCampo,
-                // 'puntaje' => ?,
-                'pregunta' => $pregunta->descripcion,
-                'respuesta' => $respuestaFormulario,
+                'puntaje' => $opcion['puntaje'],
+                'pregunta' => $opcion['pregunta'],
+                'respuesta' => $opcion['respuesta'],
             ]);
-            $respuesta->save();
+            $respuestaHogar->save();
         }
+    }
+
+    private function matchColor(int $porcentaje): string
+    {
+        return match (true)
+        {
+            ($porcentaje <= 30) => 'green',
+            ($porcentaje > 30 && $porcentaje <= 70) => 'orange',
+            ($porcentaje > 7) => 'red',
+
+            default => 'red',
+        };
     }
 }

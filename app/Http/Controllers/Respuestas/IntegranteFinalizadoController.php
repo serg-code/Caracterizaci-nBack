@@ -122,10 +122,16 @@ class IntegranteFinalizadoController extends Controller
             }
         }
 
+        $puntajeMaximo = env('PUNTAJE_MAX', 180);
+        $porcentaje = ($this->puntuacion * 100) / $puntajeMaximo;
+        $color = $this->matchColor($porcentaje);
+
         $this->integrante->actualizarIntegrante([
             'id' => $this->integrante->id,
             'estado_registro' => 'FINALIZADO',
             'puntaje_obtenido' => $this->puntuacion,
+            'porcentaje' => $porcentaje,
+            'color' => $color,
         ]);
 
         $this->integrante = Integrantes::where('id', '=', $this->integrante->id)
@@ -181,5 +187,17 @@ class IntegranteFinalizadoController extends Controller
             ]);
             $respuesta->save();
         }
+    }
+
+    private function matchColor(int $porcentaje): string
+    {
+        return match (true)
+        {
+            ($porcentaje <= 30) => 'green',
+            ($porcentaje > 30 && $porcentaje <= 70) => 'orange',
+            ($porcentaje > 7) => 'red',
+
+            default => 'red',
+        };
     }
 }
