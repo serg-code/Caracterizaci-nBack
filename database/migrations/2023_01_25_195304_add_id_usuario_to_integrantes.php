@@ -13,8 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('integrantes', function (Blueprint $table) {
+        Schema::table('integrantes', function (Blueprint $table)
+        {
             $table->bigInteger('id_usuario')->nullable()->after('id');
+            $table->foreign('id_usuario')->references('id')->on('users');
         });
     }
 
@@ -25,7 +27,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('integrantes', function (Blueprint $table) {
+        Schema::table('integrantes', function (Blueprint $table)
+        {
             //
         });
     }

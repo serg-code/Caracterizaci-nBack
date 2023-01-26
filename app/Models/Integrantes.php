@@ -18,7 +18,7 @@ class Integrantes extends Model
     protected $fillable = [
         'id',
         'hogar_id',
-        'id_usuarios',
+        'id_usuario',
         'tipo_identificacion',
         'identificacion',
         'primer_nombre',

@@ -12,7 +12,8 @@ class crearHogar
     protected RespuestaHttp $respuesta;
 
     public function __construct(
-        protected array $datosCrearHogar
+        protected array $datosCrearHogar,
+        protected string $idUsuario,
     )
     {
         $this->respuesta = new RespuestaHttp();
@@ -52,6 +53,7 @@ class crearHogar
         }
 
         // unset($this->datosCrearHogar['encuesta']);
+        $this->datosCrearHogar['id_usuario'] = $this->idUsuario;
         $hogar = new Hogar($this->datosCrearHogar);
         $hogar->save();
 

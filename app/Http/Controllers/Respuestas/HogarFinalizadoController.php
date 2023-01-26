@@ -53,15 +53,7 @@ class HogarFinalizadoController extends Controller
 
         if (empty($hogar))
         {
-            $encuesta = $hogarPeticion['encuesta'];
-            unset($hogarPeticion['encuesta']);
-            $crearHogar = new crearHogar($hogarPeticion);
-            $hogar = $crearHogar->getHogar();
-
-            $hogar = Hogar::actualizarHogar([
-                'id' => $hogar->id,
-                'encuesta' => $encuesta,
-            ]);
+            return RespuestaHttp::respuesta(404, 'not found', 'Hogar no encontrado');
         }
 
         $this->eliminarRespuesta($hogar->id);

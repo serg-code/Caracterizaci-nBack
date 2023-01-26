@@ -18,14 +18,15 @@ class ControlIntegrante
 
     public function __construct(
         protected array $datosIntegrante,
-        protected $encuesta
+        protected $encuesta,
     )
     {
         $this->errores = [];
     }
 
-    public function crearIntegrante()
+    public function crearIntegrante(string $idUsuario,)
     {
+        $this->datosIntegrante['id_usuario'] = $idUsuario;
         $errores = $this->validarCrearIntegrante($this->datosIntegrante);
         if (!empty($errores))
         {

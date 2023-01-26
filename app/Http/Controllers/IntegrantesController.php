@@ -97,7 +97,7 @@ class IntegrantesController extends Controller
         if (empty($integrante))
         {
             $integrantePeticion['puntaje_max'] = env('PUNTAJE_MAX', 180);
-            return $this->crearIntegrante($integrantePeticion, $encuesta);
+            return $this->crearIntegrante($integrantePeticion, $encuesta, $request->user()->id);
         }
 
         return $this->actualizarIntegrante($integrantePeticion, $encuesta);
@@ -169,10 +169,10 @@ class IntegrantesController extends Controller
         );
     }
 
-    protected function crearIntegrante(array $datos, $encuesta)
+    protected function crearIntegrante(array $datos, $encuesta, string $idUsuario)
     {
         $controlIntegrante = new ControlIntegrante($datos, $encuesta);
-        return $controlIntegrante->crearIntegrante();
+        return $controlIntegrante->crearIntegrante($idUsuario);
     }
 
     protected function actualizarIntegrante(array $datosActualizar, array $encuesta)
