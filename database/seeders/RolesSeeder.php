@@ -28,6 +28,8 @@ class RolesSeeder extends Seeder
         $rolSuperAdmin = Role::create(['name' => 'Super Administrador']);
         $rolAdmin = Role::create(['name' => 'Administrador']);
         $rolUsuario = Role::create(['name' => 'Usuario']);
+        $rolEncuestador = Role::create(['name' => 'Encuestador']);
+
 
         /**
          * ------------------------------------------------------------------------
@@ -39,6 +41,9 @@ class RolesSeeder extends Seeder
         $listarUsuario = Permission::create(['name' => 'listar usuarios']);
         $editarUsuario = Permission::create(['name' => 'editar usuarios']);
         $crearUsario = Permission::create(['name' => 'crear usuarios']);
+        $HabilitarRoles = Permission::create(['name' => 'habilitar usuarios']);
+        $DeshabilitarRoles = Permission::create(['name' => 'deshabilitar usuarios']);
+       
 
         /**
          * ------------------------------------------------------------------------
@@ -49,6 +54,7 @@ class RolesSeeder extends Seeder
         //* roles
         $listarRoles = Permission::create(['name' => 'listar roles']);
         $editarRoles = Permission::create(['name' => 'editar roles']);
+        $crearRoles = Permission::create(['name' => 'crear roles']); 
 
         /**
          * ------------------------------------------------------------------------
@@ -61,12 +67,19 @@ class RolesSeeder extends Seeder
         $editarBarrioVereda = Permission::create(['name' => 'editar BarrioVereda']);
         $eliminarBarrioVereda = Permission::create(['name' => 'eliminar BarrioVereda']);
 
+        //* VerMapa
+        $Vermapa = Permission::create(['name' => 'ver mapa']);
 
+        //* Ecuestador
+        $ListarHogar = Permission::create(['name' => 'listar hogar']);
+        $CrearHogar = Permission::create(['name' => 'crear hogar']);
+        $EliminarHogar = Permission::create(['name' => 'eliminar hogar']);
         /**
          * ------------------------------------------------------------------------
          *      Asignar lista de permisos a los roles
          * ------------------------------------------------------------------------
          */
+
 
         //* permisos sueper admin
         $this->agregarPermisos($rolSuperAdmin, [
@@ -75,9 +88,14 @@ class RolesSeeder extends Seeder
             $crearUsario,
             $listarRoles,
             $editarRoles,
+            $crearRoles,
             $listarBarrioVereda,
             $editarBarrioVereda,
-            $eliminarBarrioVereda
+            $eliminarBarrioVereda,
+            $Vermapa,
+            $ListarHogar,
+            $CrearHogar,
+            $EliminarHogar,
         ]);
 
         //* permiso admin
@@ -88,11 +106,22 @@ class RolesSeeder extends Seeder
             $listarRoles,
             $listarBarrioVereda,
             $editarBarrioVereda,
-            $eliminarBarrioVereda
+            $eliminarBarrioVereda,
+            $Vermapa,
         ]);
 
         //* permisos usuario
-        $this->agregarPermisos($rolUsuario, []);
+        $this->agregarPermisos($rolUsuario, [
+            $HabilitarRoles,
+            $DeshabilitarRoles
+        ]);
+
+        //* permisos encuestador
+        $this->agregarPermisos($rolEncuestador, [
+            $ListarHogar,
+            $CrearHogar,
+            $EliminarHogar,
+        ]);
     }
 
     /**
