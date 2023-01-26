@@ -143,7 +143,7 @@ class Hogar extends Model
         $fechaIncioFiltro = Carbon::parse($fechaIncio);
         $fechaFinFiltro = $this->escojerDia($fechaFIn);
         $fechaFinFiltro->endOfDay();
-        return $query->where('created_at', '>=', $fechaIncioFiltro)->where('updated_at', '<=', $fechaFinFiltro);
+        return $query->where('created_at', '>=', $fechaIncioFiltro)->where('created_at', '<=', $fechaFinFiltro);
     }
 
     private function escojerDia(string $fecha)
