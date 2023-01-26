@@ -113,7 +113,7 @@ class RolesSeeder extends Seeder
         //* permisos usuario
         $this->agregarPermisos($rolUsuario, [
             $HabilitarRoles,
-            $DeshabilitarRoles
+            $DeshabilitarRoles,
         ]);
 
         //* permisos encuestador
