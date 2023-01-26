@@ -9,6 +9,7 @@ use App\Models\Municipio;
 use App\Models\Respuesta;
 use App\Models\secciones\FactoresProtectores;
 use App\Models\secciones\HabitosConsumo;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -39,12 +40,11 @@ class Hogar extends Model
         'observaciones',
         'porcentaje',
         'color',
-    ];
-
-    protected $hidden = [
         'created_at',
         'updated_at',
     ];
+
+    protected $hidden = [];
 
     public static function guardarHogar(array $datos): ?Hogar
     {
@@ -129,10 +129,29 @@ class Hogar extends Model
             ->join('departamentos', 'hogar.cod_dpto', '=', 'departamentos.codigo_dane')
             ->join('municipios', 'hogar.cod_mun', '=', 'municipios.codigo_dane')
             ->join('integrantes', 'hogar.id', '=', 'integrantes.hogar_id')
-            ->where('direccion', 'like', "%$dato%")
-            ->orWhere('id', 'like', "%$dato%")
+            ->orWhere('hogar.direccion', 'like', "%$dato%")
+            ->orWhere('hogar.id', 'like', "%$dato%")
             ->orWhere('departamentos.nombre', 'like', "%$dato%")
             ->orWhere('municipios.nombre', 'like', "%$dato%")
-            ->orWhere('integrantes.', 'like');
+            ->orWhere('integrantes.identificacion', 'like', "%$dato%")
+            ->orWhere('integrantes.correo', 'like', "%$dato%");
+    }
+
+    public function scopeFechas(Builder $query, $fechaIncio, $fechaFIn = ''): Builder
+    {
+        $fechaIncioFiltro = Carbon::parse($fechaIncio);
+        $fechaFinFiltro = $this->escojerDia($fechaFIn);
+        $fechaFinFiltro->endOfDay();
+        return $query->where('created_at', '>=', $fechaIncioFiltro)->where('updated_at', '<=', $fechaFinFiltro);
+    }
+
+    private function escojerDia(string $fecha)
+    {
+        if (empty($fecha))
+        {
+            return Carbon::now();
+        }
+
+        Carbon::parse($fecha);
     }
 }

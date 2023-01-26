@@ -23,16 +23,18 @@ class HogarController extends Controller
         $datosUrl = $_GET;
         $cantidadPaginar = $datosUrl['per_page'] ?? env('LIMITEPAGINA_USUARIO', 10);
         $select = [
-            'id',
-            'barrio_vereda_id',
-            'zona',
-            'cod_dpto',
-            'cod_mun',
-            'tipo',
-            'direccion',
-            'estado_registro',
-            'puntaje_max',
-            'puntaje_obtenido'
+            'hogar.id',
+            'hogar.barrio_vereda_id',
+            'hogar.zona',
+            'hogar.cod_dpto',
+            'hogar.cod_mun',
+            'hogar.tipo',
+            'hogar.direccion',
+            'hogar.estado_registro',
+            'hogar.puntaje_max',
+            'hogar.puntaje_obtenido',
+            'hogar.created_at',
+            'hogar.updated_at',
         ];
 
         if (empty($datosUrl))
@@ -54,6 +56,7 @@ class HogarController extends Controller
             ->select($select)
             ->allowedFilters([
                 AllowedFilter::scope('search'),
+                AllowedFilter::scope('fechas'),
                 AllowedFilter::exact('id'),
                 'zona',
                 'cod_dpto',
