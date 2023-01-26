@@ -33,6 +33,8 @@ class HogarController extends Controller
             'hogar.estado_registro',
             'hogar.puntaje_max',
             'hogar.puntaje_obtenido',
+            'hogar.color',
+            'hogar.porcentaje',
             'hogar.created_at',
             'hogar.updated_at',
         ];
