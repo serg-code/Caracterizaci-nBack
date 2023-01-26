@@ -64,6 +64,10 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'hogar.listar' => \App\Http\Middleware\Hogar\HogarListar::class,
+        'hogar.crear' => \App\Http\Middleware\Hogar\HogarCrear::class,
         'usuario.listar' => \App\Http\Middleware\Usuario\UsuarioListar::class,
+        'usuario.crear' => \App\Http\Middleware\Usuario\UsuarioCrear::class,
+        'integrante.crear' => \App\Http\Middleware\Integrante\IntegrantCrear::class,
+        'integrante.listar' => \App\Http\Middleware\Integrante\IntegranteListar::class,
     ];
 }

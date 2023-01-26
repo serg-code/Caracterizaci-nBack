@@ -17,6 +17,7 @@ class UsuarioController extends Controller
     public function __construct()
     {
         $this->middleware('usuario.listar', ['only' => ['show', 'index']]);
+        $this->middleware('usuario.crear', ['only' => ['store']]);
     }
 
     /**

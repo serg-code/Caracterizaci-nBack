@@ -20,13 +20,19 @@ use App\Models\Secciones\Integrantes\PrimeraInfancia;
 use App\Models\Secciones\Integrantes\SaludMental;
 use App\Models\Secciones\Integrantes\Vejez;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class IntegrantesController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('integrante.crear', ['only' => ['store']]);
+        $this->middleware('integrante.listar', ['only' => ['index', 'show']]);
+    }
+
     /**
      * Display a listing of the resource.
      *

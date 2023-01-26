@@ -16,7 +16,8 @@ class HogarController extends Controller
 
     public function __construct()
     {
-        $this->middleware('hogar.listar', ['only' => 'index', 'show']);
+        $this->middleware('hogar.listar', ['only' => ['index', 'show']]);
+        $this->middleware('hogar.crear', ['only' => 'store']);
     }
 
     /**
