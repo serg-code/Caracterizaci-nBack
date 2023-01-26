@@ -14,6 +14,11 @@ use Spatie\QueryBuilder\QueryBuilder;
 class UsuarioController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('usuario.listar', ['only' => ['show', 'index']]);
+    }
+
     /**
      * Display a listing of the resource.
      *

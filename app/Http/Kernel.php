@@ -64,5 +64,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'hogar.listar' => \App\Http\Middleware\Hogar\HogarListar::class,
+        'usuario.listar' => \App\Http\Middleware\Usuario\UsuarioListar::class,
     ];
 }
