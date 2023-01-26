@@ -24,6 +24,7 @@ class Hogar extends Model
     protected $keyType = 'uuid';
     protected $fillable = [
         'id',
+        'id_usuarios',
         'barrio_vereda_id',
         'zona',
         'cod_dpto',
