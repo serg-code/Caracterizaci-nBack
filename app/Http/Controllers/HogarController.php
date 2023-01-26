@@ -61,7 +61,8 @@ class HogarController extends Controller
                 'zona',
                 'cod_dpto',
                 'cod_mun',
-                'tipo'
+                'tipo',
+                'estado_registro',
             ])
             ->with(['municipio.departamento'])
             ->paginate($cantidadPaginar);
