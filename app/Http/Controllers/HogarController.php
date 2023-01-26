@@ -13,6 +13,12 @@ use Spatie\QueryBuilder\QueryBuilder;
 
 class HogarController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('hogar.listar', ['only' => 'index', 'show']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -97,7 +103,12 @@ class HogarController extends Controller
 
         if ($validacion->fails())
         {
-            return RespuestaHttp::respuesta(400, 'Bad request', 'No encontramos informacion', $validacion->getMessageBag());
+            return RespuestaHttp::respuesta(
+                400,
+                'Bad request',
+                'No encontramos informacion',
+                $validacion->getMessageBag()
+            );
         }
 
         $hogarPeticion = $request->input('hogar');
