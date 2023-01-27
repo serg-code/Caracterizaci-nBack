@@ -5404,5 +5404,11 @@ class BarrioVeredaSeeder extends Seeder
       'tipo' => 'Vereda',
       'id_municipio' => '85001',
     ]);
+
+    BarrioVereda::create([
+      'nombre' => 'Prado',
+      'tipo' => 'Barrio',
+      'id_municipio' => '05001',
+    ]);
   }
 }
