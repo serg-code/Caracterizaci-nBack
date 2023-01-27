@@ -6,6 +6,8 @@ use App\Dev\RespuestaHttp;
 use App\Dev\Usuario\Usuario;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Spatie\Permission\Models\Role;
 use Spatie\QueryBuilder\AllowedFilter;
@@ -209,13 +211,9 @@ class UsuarioController extends Controller
         $usuario = $request->user();
         $respuesta = new RespuestaHttp();
         $usuario = User::find($usuario->id);
-        $usuario->permisos = $usuario->getAllPermissions();
-        unset($usuario->roles, $usuario->permissions);
-        $usuario->getRoleNames();
-
+        $usuario->permisos = $this->listadoPermisos($usuario);
 
         $respuesta->data = [
-            // 'usuario' => User::find($usuario->id),
             'usuario' => $usuario,
         ];
 
@@ -285,5 +283,20 @@ class UsuarioController extends Controller
             $rol = Role::find($idRol);
             return $rol->name ?? null;
         }, $listadoRoles);
+    }
+
+    private function listadoPermisos(User $usuario): Collection
+    {
+        $permisos = $usuario->getAllPermissions();
+        $listadoIds = [];
+        foreach ($permisos as $permiso)
+        {
+            array_push($listadoIds, $permiso->id);
+        }
+
+        return DB::table('permissions')->whereIn('id', $listadoIds)->get([
+            'name',
+            'referencia'
+        ]);
     }
 }

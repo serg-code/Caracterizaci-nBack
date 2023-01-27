@@ -36,11 +36,11 @@ class RolesSeeder extends Seeder
          * ------------------------------------------------------------------------
          */
 
-        $listarUsuario = Permission::create(['name' => 'listar usuarios','referencia'=>'usuarios.listar']);
-        $editarUsuario = Permission::create(['name' => 'editar usuarios','referencia'=>'usuarios.editar']);
-        $crearUsario = Permission::create(['name' => 'crear usuarios','referencia'=>'usuarios.crear']);
-        $habilitarRoles = Permission::create(['name' => 'habilitar roles','referencia'=>'roles.habilitar']);
-        $deshabilitarRoles = Permission::create(['name' => 'deshabilitar role','referencia'=>'roles.deshabilitar']);
+        $listarUsuario = Permission::create(['name' => 'listar usuarios', 'referencia' => 'usuarios.listar']);
+        $editarUsuario = Permission::create(['name' => 'editar usuarios', 'referencia' => 'usuarios.editar']);
+        $crearUsario = Permission::create(['name' => 'crear usuarios', 'referencia' => 'usuarios.crear']);
+        $habilitarRoles = Permission::create(['name' => 'habilitar roles', 'referencia' => 'roles.habilitar']);
+        $deshabilitarRoles = Permission::create(['name' => 'deshabilitar role', 'referencia' => 'roles.deshabilitar']);
 
 
 
@@ -50,9 +50,9 @@ class RolesSeeder extends Seeder
          * ------------------------------------------------------------------------
          */
 
-        $listarRoles = Permission::create(['name' => 'listar roles','referencia'=>'roles.listar']);
-        $editarRoles = Permission::create(['name' => 'editar roles','referencia'=>'roles.editar']);
-        $crearRoles = Permission::create(['name' => 'crear roles','referencia'=>'roles.crear']);
+        $listarRoles = Permission::create(['name' => 'listar roles', 'referencia' => 'roles.listar']);
+        $editarRoles = Permission::create(['name' => 'editar roles', 'referencia' => 'roles.editar']);
+        $crearRoles = Permission::create(['name' => 'crear roles', 'referencia' => 'roles.crear']);
 
 
 
@@ -62,9 +62,9 @@ class RolesSeeder extends Seeder
          * ------------------------------------------------------------------------
          */
 
-        $listarBarrioVereda = Permission::create(['name' => 'listar BarrioVereda','referencia'=>'BarrioVereda.listar']);
-        $editarBarrioVereda = Permission::create(['name' => 'editar BarrioVereda','referencia'=>'BarrioVereda.editar']);
-        $eliminarBarrioVereda = Permission::create(['name' => 'eliminar BarrioVereda','referencia'=>'BarrioVereda.eliminar']);
+        $listarBarrioVereda = Permission::create(['name' => 'listar BarrioVereda', 'referencia' => 'BarrioVereda.listar']);
+        $editarBarrioVereda = Permission::create(['name' => 'editar BarrioVereda', 'referencia' => 'BarrioVereda.editar']);
+        $eliminarBarrioVereda = Permission::create(['name' => 'eliminar BarrioVereda', 'referencia' => 'BarrioVereda.eliminar']);
 
 
 
@@ -74,7 +74,7 @@ class RolesSeeder extends Seeder
          * ------------------------------------------------------------------------
          */
 
-        $verMapa = Permission::create(['name' => 'ver mapa','referencia'=>'mapa.ver']);
+        $verMapa = Permission::create(['name' => 'ver mapa', 'referencia' => 'mapa.ver']);
 
 
 
@@ -84,11 +84,11 @@ class RolesSeeder extends Seeder
          * ------------------------------------------------------------------------
          */
 
-        $listarHogar = Permission::create(['name' => 'listar hogar','referencia'=>'hogar.listar']);
-        $crearHogar = Permission::create(['name' => 'crear hogar','referencia'=>'hogar.crear']);
-        $eliminarHogar = Permission::create(['name' => 'eliminar hogar','referencia'=>'hogar.eliminar']);
-        $crearIntegrante = Permission::create(['name' => 'crear integrante','referencia'=>'integrante.crear']);
-        $listarIntegrante = Permission::create(['name' => 'listar integrante','referencia'=>'integrante.listar']);
+        $listarHogar = Permission::create(['name' => 'listar hogar', 'referencia' => 'hogar.listar']);
+        $crearHogar = Permission::create(['name' => 'crear hogar', 'referencia' => 'hogar.crear']);
+        $eliminarHogar = Permission::create(['name' => 'eliminar hogar', 'referencia' => 'hogar.eliminar']);
+        $crearIntegrante = Permission::create(['name' => 'crear integrante', 'referencia' => 'integrante.crear']);
+        $listarIntegrante = Permission::create(['name' => 'listar integrante', 'referencia' => 'integrante.listar']);
 
 
 
@@ -149,7 +149,7 @@ class RolesSeeder extends Seeder
      * @param any rol rol al que que se desea agregar permisos
      * @param array lsitado de permisos a agregar
      */
-    public function agregarPermisos($rol, array $listaPermisos): void
+    public function agregarPermisos(Role $rol, array $listaPermisos): void
     {
         foreach ($listaPermisos as $permiso)
         {
