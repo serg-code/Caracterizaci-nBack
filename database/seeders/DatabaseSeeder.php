@@ -84,6 +84,9 @@ class DatabaseSeeder extends Seeder
 
             new MotivoSeeder(),
 
+            //
+            new ReportesSeeder(),
+
         ];
 
         $this->correrSeeders($listadoSeeders);

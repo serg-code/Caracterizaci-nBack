@@ -14,8 +14,8 @@ class Reportes extends Model
         'id',
         'descripcion',
         'columns',
-        'nombre',
-        'user_id',
+        // 'nombre',
+        'id_usuario',
     ];
 
     protected $hidden = [
@@ -26,7 +26,7 @@ class Reportes extends Model
 
     public function variables()
     {
-        return $this->hasMany(Variables::class, 'reporte_id', 'id');
+        return $this->hasMany(Variable::class, 'reporte_id', 'id');
     }
 
     public function usuarios()
