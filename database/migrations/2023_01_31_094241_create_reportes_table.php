@@ -13,15 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('variables', function (Blueprint $table) {
+        Schema::create('reportes', function (Blueprint $table) {
             $table->bigInteger('id')->unique();
-            $table->bigInteger('reporte_id')->unique();
-            $table->string('ref')->nullable();
-            $table->string('tipo')->nullable();
-            $table->string('label')->nullable();
+            $table->string('descripcion')->nullable();
+            $table->string('columns')->nullable();
+            $table->string('query')->nullable();
+            $table->bigInteger('user_id');
             $table->timestamps();
 
-            $table->foreign('reporte_id')->references('reporte_id')->on('reporte');
+            $table->primary('id');
+            $table->foreign('user_id')->references('id')->on('users');    
         });
     }
 
@@ -32,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('variables');
+        Schema::dropIfExists('reportes');
     }
 };

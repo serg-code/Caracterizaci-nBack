@@ -13,13 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('reportes', function (Blueprint $table) {
+        Schema::create('variables', function (Blueprint $table) {
             $table->bigInteger('id')->unique();
-            $table->string('descripcion')->nullable();
-            $table->string('columns')->nullable();
-            $table->string('query')->nullable();
-            $table->bigInteger('user_id')->unique();
+            $table->bigInteger('reporte_id');
+            $table->string('ref')->nullable();
+            $table->string('tipo')->nullable();
+            $table->string('label')->nullable();
             $table->timestamps();
+
+            $table->primary('id');
+            $table->foreign('reporte_id')->references('reporte_id')->on('acceso_reporte');
         });
     }
 
@@ -30,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reportes');
+        Schema::dropIfExists('variables');
     }
 };
