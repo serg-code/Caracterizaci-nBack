@@ -13,12 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('acceso_reporte', function (Blueprint $table) {
-            $table->unsignedBigInteger('reporte_id')->unique();
+        Schema::create('acceso_reporte', function (Blueprint $table)
+        {
+            $table->unsignedBigInteger('reporte_id');
             $table->unsignedBigInteger('role_id');
             $table->timestamps();
 
-            $table->foreign('role_id')->references('id')->on('roles');    
+            $table->foreign('reporte_id')->references('id')->on('reportes');
+            $table->foreign('role_id')->references('id')->on('roles');
         });
     }
 

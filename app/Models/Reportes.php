@@ -28,4 +28,14 @@ class Reportes extends Model
     {
         return $this->hasMany(Variables::class, 'reporte_id', 'id');
     }
+
+    public function usuarios()
+    {
+        return $this->belongsTo(User::class, 'id', 'user_id');
+    }
+
+    public function acceso()
+    {
+        return $this->hasMany(AccesoReporte::class, 'reporte_id', 'id');
+    }
 }

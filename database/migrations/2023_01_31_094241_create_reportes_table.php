@@ -13,16 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('reportes', function (Blueprint $table) {
-            $table->bigInteger('id')->unique();
+        Schema::create('reportes', function (Blueprint $table)
+        {
+            // $table->bigInteger('id')->unique();
+            $table->id();
             $table->string('descripcion')->nullable();
             $table->string('columns')->nullable();
             $table->string('query')->nullable();
             $table->bigInteger('id_usuario');
             $table->timestamps();
 
-            $table->primary('id');
-            $table->foreign('id_usuario')->references('id')->on('users');    
+            // $table->primary('id');
+            $table->foreign('id_usuario')->references('id')->on('users');
         });
     }
 

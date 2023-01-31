@@ -13,7 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('variables', function (Blueprint $table) {
+        Schema::create('variables', function (Blueprint $table)
+        {
             $table->bigInteger('id')->unique();
             $table->unsignedBigInteger('reporte_id');
             $table->string('ref')->nullable();
@@ -22,7 +23,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->primary('id');
-            $table->foreign('reporte_id')->references('reporte_id')->on('acceso_reporte');
+            $table->foreign('reporte_id')->references('id')->on('reportes');
         });
     }
 
