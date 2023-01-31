@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('reporte', function (Blueprint $table) {
-            $table->int('reporte_id');
-            $table->int('role_id');
+            $table->bigInteger('reporte_id')->unique();
+            $table->bigInteger('role_id')->unique();
             $table->timestamps();
         });
     }

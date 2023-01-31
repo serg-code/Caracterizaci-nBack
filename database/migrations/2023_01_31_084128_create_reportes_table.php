@@ -14,11 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('reportes', function (Blueprint $table) {
-            $table->int('id')->unique();
+            $table->bigInteger('id')->unique();
             $table->string('descripcion')->nullable();
             $table->string('columns')->nullable();
             $table->string('query')->nullable();
-            $table->int('user_id')->unique();
+            $table->bigInteger('user_id')->unique();
             $table->timestamps();
         });
     }

@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('variables', function (Blueprint $table) {
-            $table->int('id')->unique();
-            $table->int('reporte_id');
+            $table->bigInteger('id')->unique();
+            $table->bigInteger('reporte_id')->unique();
             $table->string('ref')->nullable();
             $table->string('tipo')->nullable();
             $table->string('label')->nullable();
