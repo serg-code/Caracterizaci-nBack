@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('acceso_reporte', function (Blueprint $table) {
-            $table->bigInteger('reporte_id')->unique();
-            $table->bigInteger('role_id');
+            $table->unsignedBigInteger('reporte_id')->unique();
+            $table->unsignedBigInteger('role_id');
             $table->timestamps();
 
             $table->foreign('role_id')->references('id')->on('roles');    

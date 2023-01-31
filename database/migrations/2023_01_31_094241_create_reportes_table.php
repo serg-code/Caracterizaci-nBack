@@ -18,11 +18,11 @@ return new class extends Migration
             $table->string('descripcion')->nullable();
             $table->string('columns')->nullable();
             $table->string('query')->nullable();
-            $table->bigInteger('user_id');
+            $table->bigInteger('id_usuario');
             $table->timestamps();
 
             $table->primary('id');
-            $table->foreign('user_id')->references('id')->on('users');    
+            $table->foreign('id_usuario')->references('id')->on('users');    
         });
     }
 

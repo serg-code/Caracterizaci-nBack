@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('variables', function (Blueprint $table) {
             $table->bigInteger('id')->unique();
-            $table->bigInteger('reporte_id');
+            $table->unsignedBigInteger('reporte_id');
             $table->string('ref')->nullable();
             $table->string('tipo')->nullable();
             $table->string('label')->nullable();
