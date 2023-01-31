@@ -138,7 +138,7 @@ class Hogar extends Model
             ->orWhere('integrantes.correo', 'like', "%$dato%");
     }
 
-    public function scopeFechas(Builder $query, $fechaIncio, $fechaFIn = ''): Builder
+    public function scopeFechas(Builder $query, $fechaIncio, $fechaFIn = null): Builder
     {
         $fechaIncioFiltro = Carbon::parse($fechaIncio);
         $fechaFinFiltro = $this->escojerDia($fechaFIn);
@@ -153,6 +153,6 @@ class Hogar extends Model
             return Carbon::now();
         }
 
-        Carbon::parse($fecha);
+        return Carbon::parse($fecha);
     }
 }
