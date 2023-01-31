@@ -11,7 +11,7 @@ class Reportes extends Model
     protected $table = 'reportes';
 
     protected $fillable = [
-      'id',
+        'id',
         'descripcion',
         'columns',
         'nombre',
@@ -23,4 +23,9 @@ class Reportes extends Model
         'created_at',
         'updated_at',
     ];
+
+    public function variables()
+    {
+        return $this->hasMany(Variables::class, 'reporte_id', 'id');
+    }
 }
