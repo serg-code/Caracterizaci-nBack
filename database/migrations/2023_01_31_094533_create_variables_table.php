@@ -18,7 +18,11 @@ return new class extends Migration
             $table->bigInteger('id')->unique();
             $table->unsignedBigInteger('reporte_id');
             $table->string('ref')->nullable();
-            $table->string('tipo')->nullable();
+            $table->enum('tipo', [
+                'date',
+                'number',
+                'text',
+            ])->nullable();
             $table->string('label')->nullable();
             $table->timestamps();
 
