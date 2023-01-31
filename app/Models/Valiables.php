@@ -11,8 +11,12 @@ class Valiables extends Model
     protected $table = 'variables';
 
     protected $fillable = [
+        'id',
         'reporte_id',
-        'role_id',
+        'ref',
+        'tipo',
+        'label',
+
     ];
 
     protected $hidden = [

@@ -11,11 +11,8 @@ class Reporte extends Model
     protected $table = 'reporte';
 
     protected $fillable = [
-      'id',
         'reporte_id',
-        'ref',
-        'tipo',
-        'label',
+        'role_id',
     ];
 
     protected $hidden = [
