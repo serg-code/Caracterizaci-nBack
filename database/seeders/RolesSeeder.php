@@ -41,7 +41,8 @@ class RolesSeeder extends Seeder
         $crearUsario = Permission::create(['name' => 'crear usuarios', 'referencia' => 'usuarios.crear']);
         $habilitarRoles = Permission::create(['name' => 'habilitar roles', 'referencia' => 'roles.habilitar']);
         $deshabilitarRoles = Permission::create(['name' => 'deshabilitar role', 'referencia' => 'roles.deshabilitar']);
-
+        $listarReporte = Permission::create(['name' => 'listar reporte', 'referencia' => 'reporte.listar']);
+        $editarReporte = Permission::create(['name' => 'editar reporte', 'referencia' => 'reporte.editar']);
 
 
         /**
@@ -115,6 +116,8 @@ class RolesSeeder extends Seeder
             $deshabilitarRoles,
             $crearIntegrante,
             $listarIntegrante,
+            $listarReporte,
+            $editarReporte,
         ]);
 
         //* permiso admin
@@ -130,6 +133,8 @@ class RolesSeeder extends Seeder
             $habilitarRoles,
             $deshabilitarRoles,
             $listarIntegrante,
+            $listarReporte,
+            $editarReporte,
         ]);
 
         //* permisos usuario
