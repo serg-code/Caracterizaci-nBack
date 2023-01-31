@@ -68,6 +68,8 @@ Route::group(['middleware' => ['auth:sanctum']], function ()
     Route::get('cie10', [\App\Http\Controllers\Cie10Controller::class, 'listar']);
 
     Route::apiResource('barrio_vereda', \App\Http\Controllers\BarrioVeredaController::class);
+
+    Route::get('reporte/{reporteId}', [\App\Http\Controllers\ReporteController::class, 'show']);
 });
 
 Route::group([], function ()
