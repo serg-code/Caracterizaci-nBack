@@ -12,9 +12,8 @@ class Reportes extends Model
 
     protected $fillable = [
         'id',
+        'nombre',
         'descripcion',
-        'columns',
-        // 'nombre',
         'id_usuario',
     ];
 

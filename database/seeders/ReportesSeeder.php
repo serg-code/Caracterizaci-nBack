@@ -18,6 +18,7 @@ class ReportesSeeder extends Seeder
     {
         Reportes::create([
             'id' => 1,
+            'nombre' =>'Listar',
             'descripcion' => 'Listar todos los hogares a partir de una fecha',
             'columns' => null,
             'id_usuario' => 1,

@@ -17,8 +17,8 @@ return new class extends Migration
         {
             // $table->bigInteger('id')->unique();
             $table->id();
+            $table->string('nombre')->nullable();
             $table->string('descripcion')->nullable();
-            $table->string('columns')->nullable();
             $table->string('query')->nullable();
             $table->bigInteger('id_usuario');
             $table->timestamps();
