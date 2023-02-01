@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Dev\RespuestaHttp;
+use App\Models\AccesoReporte;
 use App\Models\Reportes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -76,9 +77,67 @@ class ReporteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $reporteId)
     {
-        //
+        $validador = Validator::make(
+            $request->all(),
+            [
+                'nombre' => 'required|string',
+                'descripcion' => 'required|string',
+                'roles' => "required|array",
+            ],
+            [
+                'nombre.required' => 'El nombre es necesario',
+                'nombre.string' => 'El nombre debe ser texto',
+                'descripcion.required' => 'La descripcion es necesaria',
+                'descripcion.string' => 'La descripcion debe ser texto',
+                'roles.required' => 'El listado de roles es obligatorio',
+                'roles.array' => 'Los roles debe ser un listado'
+            ]
+        );
+
+        if ($validador->fails())
+        {
+            return RespuestaHttp::respuesta(
+                400,
+                'Bad request',
+                'Encontramos un error en los datos',
+                $validador->getMessageBag()
+            );
+        }
+
+        $reporte = Reportes::find($reporteId);
+        if (empty($reporte))
+        {
+            return RespuestaHttp::respuesta(404, 'Not Found', 'Reporte no encontrado');
+        }
+
+        $datosActualizarReporte = $request->only(['nombre', 'descripcion']);
+        $reporte->update($datosActualizarReporte);
+
+        AccesoReporte::where('reporte_id', '=', $reporteId)->delete();
+        $listadoId = $request->input('roles');
+        $accesoReporte = [];
+        $fecha = now();
+        foreach ($listadoId as $id)
+        {
+            array_push($accesoReporte, [
+                'reporte_id' => $reporteId,
+                'role_id' => $id,
+                'created_at' => $fecha,
+                'updated_at' => $fecha,
+            ]);
+        }
+
+        DB::table('acceso_reporte')->insertOrIgnore($accesoReporte);
+        return RespuestaHttp::respuesta(
+            200,
+            'Updated',
+            'Reporte actualizado con exito',
+            [
+                'reporte' => $reporte,
+            ]
+        );
     }
 
     /**

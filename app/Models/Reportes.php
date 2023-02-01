@@ -14,10 +14,10 @@ class Reportes extends Model
         'id',
         'nombre',
         'descripcion',
-        'id_usuario',
     ];
 
     protected $hidden = [
+        'id_usuario',
         'query',
         'created_at',
         'updated_at',
