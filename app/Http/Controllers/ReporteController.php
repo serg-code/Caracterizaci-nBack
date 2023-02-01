@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Dev\RespuestaHttp;
+use App\Exports\ReporteExport;
 use App\Models\AccesoReporte;
 use App\Models\Reportes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ReporteController extends Controller
 {
@@ -59,6 +61,9 @@ class ReporteController extends Controller
         // $query = str_replace($datosQuery['busqueda'], $datosQuery['remplazar'], $reporte->query);
         $query = str_replace($datosQuery['busqueda'], $datosQuery['remplazar'], $reporte->query);
         $consulta = DB::select($query);
+
+        return Excel::download(new ReporteExport($consulta), $reporte->nombre . '.xlsx');
+        // return Excel::download(new ReporteExport($query), 'reporte.xlsx');
 
         return RespuestaHttp::respuesta(
             200,
