@@ -69,5 +69,8 @@ class Kernel extends HttpKernel
         'usuario.crear' => \App\Http\Middleware\Usuario\UsuarioCrear::class,
         'integrante.crear' => \App\Http\Middleware\Integrante\IntegrantCrear::class,
         'integrante.listar' => \App\Http\Middleware\Integrante\IntegranteListar::class,
+        'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
+        'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
+        'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
     ];
 }
