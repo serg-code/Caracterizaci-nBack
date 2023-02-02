@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::post('/usuarios', [\App\Http\Controllers\UsuarioController::class, 'store']);
 Route::post('login', [
     \App\Http\Controllers\LoginController::class,
     'login'
@@ -24,12 +23,10 @@ Route::group(['middleware' => ['auth:sanctum']], function ()
 {
     /**
      * para utilizar filtros de los uarios
-     * http://sosaludaps.backend.test/api/usuarios/?filter[email]=example&cantidad=cantidad_listar
      */
     Route::get('usuario', [\App\Http\Controllers\UsuarioController::class, 'actual']);
     Route::post('logout', [\App\Http\Controllers\LoginController::class, 'cerrar']);
-    Route::apiResource('usuarios', \App\Http\Controllers\UsuarioController::class)
-        ->except(['store']);
+    Route::apiResource('usuarios', \App\Http\Controllers\UsuarioController::class);
 
     Route::apiResource('roles', \App\Http\Controllers\RolesController::class);
     Route::post('roles/otorgar', [\App\Http\Controllers\RolesController::class, 'otorgarRol']);

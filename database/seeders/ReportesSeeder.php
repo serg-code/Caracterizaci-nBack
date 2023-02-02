@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\AccesoReporte;
 use App\Models\Reportes;
 use App\Models\Variable;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -33,6 +34,11 @@ class ReportesSeeder extends Seeder
             'ref' => 'fecha_mostrar',
             'tipo' => 'date',
             'label' => 'Fecha creacion de encuesta',
+        ]);
+
+        AccesoReporte::create([
+            'reporte_id' => 1,
+            'role_id' => 1,
         ]);
     }
 }

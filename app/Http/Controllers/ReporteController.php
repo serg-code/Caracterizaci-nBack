@@ -14,6 +14,11 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class ReporteController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware(['role:Super Administrador'], ['only' => ['show']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -58,21 +63,10 @@ class ReporteController extends Controller
             );
         }
 
-        // $query = str_replace($datosQuery['busqueda'], $datosQuery['remplazar'], $reporte->query);
         $query = str_replace($datosQuery['busqueda'], $datosQuery['remplazar'], $reporte->query);
         $consulta = DB::select($query);
 
         return Excel::download(new ReporteExport($consulta), $reporte->nombre . '.xlsx');
-        // return Excel::download(new ReporteExport($query), 'reporte.xlsx');
-
-        return RespuestaHttp::respuesta(
-            200,
-            'succes',
-            'Reporte',
-            [
-                'consulta' => $consulta,
-            ]
-        );
     }
 
     /**
