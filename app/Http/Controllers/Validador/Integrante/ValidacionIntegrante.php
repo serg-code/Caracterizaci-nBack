@@ -73,22 +73,20 @@ class ValidacionIntegrante
         }
 
         $opcion = OpcionPregunta::opcionPregunta($refCampo, $respuestaEncuesta);
-        $opcionVacio = empty($opcion);
-        if ($opcionVacio)
+        if (empty($opcion))
         {
             $this->agregarErrror(
                 $refCampo,
-                "($respuestaEncuesta) no es un respuesta valida para $refCampo en la seccion " .
-                    $this->refSeccion
+                "La respuesta a la pregunta $refCampo en la sección " . $this->refSeccion . " no es valida."
             );
+            return new Opcion(['id' => 0, 'valor' => 0]);
         }
 
         $this->seccionValidada[$refCampo] = $respuestaEncuesta;
         $this->agregarRespuestaSeccion($refCampo, $respuestaEncuesta, $pregunta->descripcion, $opcion->valor);
         $this->puntaje += $opcion->valor ?? 0;
-        return $opcionVacio ? new Opcion(['id' => 0, 'valor' => 0]) : $opcion;
+        return $opcion;
     }
-
     protected function validacionSimple(string $refCampo, bool $validar): Opcion
     {
         if ($validar)

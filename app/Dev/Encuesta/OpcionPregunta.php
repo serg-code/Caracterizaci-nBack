@@ -22,7 +22,7 @@ class OpcionPregunta
         );
     }
 
-    public static function opcionPregunta(string $refCampo, int $idRespuesta): ?Opcion
+    public static function opcionPregunta(string $refCampo, $idRespuesta): ?Opcion
     {
         $opcion = Opcion::where('id', '=', $idRespuesta)->where('ref_campo', '=', $refCampo)->first() ?? null;
         return $opcion;
