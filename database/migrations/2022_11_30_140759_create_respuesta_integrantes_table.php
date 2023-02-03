@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('respuesta');
             $table->timestamps();
 
-            $table->foreign('id_integrante')->references('id')->on('integrantes');
+            $table->foreign('id_integrante')->references('id')->on('integrantes')->onDelete('cascade');
         });
     }
 

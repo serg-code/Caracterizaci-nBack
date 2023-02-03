@@ -13,7 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('identificacion_ciudadana', function (Blueprint $table) {
+        Schema::create('identificacion_ciudadana', function (Blueprint $table)
+        {
             $table->uuid('id_integrante')->unique();
             $table->string('grupo_etnia')->nullable();
             $table->string('grupo_atencion_especial')->nullable();
@@ -35,10 +36,10 @@ return new class extends Migration
             $table->string('ayudas_tenicas')->nullable();
             $table->timestamps();
 
-            $table->foreign('id_integrante')->references('id')->on('integrantes');
+            $table->foreign('id_integrante')->references('id')->on('integrantes')->onDelete('cascade');
         });
     }
-    
+
 
     /**
      * Reverse the migrations.

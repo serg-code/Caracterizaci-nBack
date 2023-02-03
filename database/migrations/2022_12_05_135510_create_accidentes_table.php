@@ -13,14 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('accidentes', function (Blueprint $table) {
+        Schema::create('accidentes', function (Blueprint $table)
+        {
             $table->uuid('id_integrante')->unique();
             $table->string('accidentes_transito')->nullable();
             $table->string('tipo_lesion')->nullable();
             $table->string('accidentes_laborales')->nullable();
             $table->timestamps();
 
-            $table->foreign('id_integrante')->references('id')->on('integrantes');
+            $table->foreign('id_integrante')->references('id')->on('integrantes')->onDelete('cascade');
         });
     }
 

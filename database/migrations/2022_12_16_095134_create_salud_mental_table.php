@@ -13,7 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('salud_mental', function (Blueprint $table) {
+        Schema::create('salud_mental', function (Blueprint $table)
+        {
             $table->uuid('id_integrante')->unique();
             $table->string('depresion')->nullable();
             $table->string('intento_suicidio')->nullable();
@@ -30,8 +31,8 @@ return new class extends Migration
             $table->string('violencia_social')->nullable();
             $table->string('violencia_gestacion')->nullable();
             $table->timestamps();
-            
-            $table->foreign('id_integrante')->references('id')->on('integrantes');            
+
+            $table->foreign('id_integrante')->references('id')->on('integrantes')->onDelete('cascade');
         });
     }
 

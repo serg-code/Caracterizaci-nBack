@@ -13,7 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('enfermedades_salud_publica', function (Blueprint $table) {
+        Schema::create('enfermedades_salud_publica', function (Blueprint $table)
+        {
             $table->uuid('id_integrante')->unique();
             $table->string('tuberculosis')->nullable();
             $table->string('lepra')->nullable();
@@ -28,7 +29,7 @@ return new class extends Migration
             $table->string('intoxicacion')->nullable();
             $table->timestamps();
 
-            $table->foreign('id_integrante')->references('id')->on('integrantes');
+            $table->foreign('id_integrante')->references('id')->on('integrantes')->onDelete('cascade');
         });
     }
 

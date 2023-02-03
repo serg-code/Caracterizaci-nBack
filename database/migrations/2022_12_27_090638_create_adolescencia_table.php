@@ -13,7 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('adolescencia', function (Blueprint $table) {
+        Schema::create('adolescencia', function (Blueprint $table)
+        {
             $table->uuid('id_integrante')->unique();
             $table->string('adol_peso')->nullable();
             $table->string('adol_talla')->nullable();
@@ -36,7 +37,7 @@ return new class extends Migration
             $table->string('adol_vacuna_toxoide_tetanico')->nullable();
             $table->timestamps();
 
-            $table->foreign('id_integrante')->references('id')->on('integrantes');
+            $table->foreign('id_integrante')->references('id')->on('integrantes')->onDelete('cascade');
         });
     }
 
