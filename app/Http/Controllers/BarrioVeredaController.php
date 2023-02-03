@@ -11,6 +11,14 @@ use Spatie\QueryBuilder\QueryBuilder;
 
 class BarrioVeredaController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('permission:listar BarrioVereda', ['only' => ['show', 'index']]);
+        $this->middleware('permission:editar BarrioVereda', ['only' => ['update']]);
+        $this->middleware('permission:eliminar BarrioVereda', ['only' => ['destroy']]);
+    }
+
     /**
      * Display a listing of the resource.
      *

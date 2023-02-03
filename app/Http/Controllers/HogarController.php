@@ -18,6 +18,7 @@ class HogarController extends Controller
     {
         $this->middleware('hogar.listar', ['only' => ['index', 'show']]);
         $this->middleware('hogar.crear', ['only' => 'store']);
+        $this->middleware('permission:eliminar hogar', ['only' => ['destroy']]);
     }
 
     /**

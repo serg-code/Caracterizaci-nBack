@@ -17,7 +17,7 @@ class ReporteController extends Controller
 
     public function __construct()
     {
-        $this->middleware(['role:Super Administrador'], ['only' => ['show']]);
+        $this->middleware(['role:Super Administrador',], ['only' => ['show',]]);
     }
     /**
      * Display a listing of the resource.

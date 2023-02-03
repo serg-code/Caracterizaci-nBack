@@ -11,6 +11,16 @@ use Spatie\Permission\Models\Permission;
 class PermisosController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('permission:listar roles', ['only' => ['show', 'index']]);
+        $this->middleware('permission:crear roles', ['only' => ['store']]);
+        $this->middleware('permission:editar roles', ['only' => ['update']]);
+        $this->middleware(
+            ['permission:habilitar roles', 'permission:deshabilitar role'],
+            ['only' => ['controlPermisos', 'revocarPermisos']]
+        );
+    }
     public function index()
     {
         $permisos = Permission::all();

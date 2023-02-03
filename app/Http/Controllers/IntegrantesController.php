@@ -31,6 +31,7 @@ class IntegrantesController extends Controller
     {
         $this->middleware('integrante.crear', ['only' => ['store']]);
         $this->middleware('integrante.listar', ['only' => ['index', 'show']]);
+        $this->middleware('permission:eliminar integrante', ['only' => ['destroy']]);
     }
 
     /**
