@@ -51,17 +51,9 @@ class TablaController extends Controller
         }
 
         $sql = "CREATE TABLE `$nombreTabla` $sqlColumnas;";
-        $creado = DB::statement($sql);
-        if (!$creado) {
-            return RespuestaHttp::respuesta(400, 'Bad request', 'Algo ha salido mal');
-        }
+        $estadoCrear = $this->crearTablaSql($sql);
 
-        return RespuestaHttp::respuesta(
-            201,
-            'Created',
-            'Tabla creada de manera exitosa',
-            ['talba' => 'Tabla creada']
-        );
+        return RespuestaHttp::respuestaObjeto($estadoCrear);
     }
 
     private function sqlColumnas(array $columnas): string
@@ -117,5 +109,25 @@ class TablaController extends Controller
 
             default => 'bool',
         };
+    }
+
+    private function crearTablaSql(string $sql): RespuestaHttp
+    {
+        try {
+            $creado = DB::statement($sql);
+            if (!$creado) {
+                return new RespuestaHttp(400, 'Bad request', 'Algo ha salido mal');
+            }
+
+            return new RespuestaHttp(
+                201,
+                'Created',
+                'Tabla creada de manera exitosa',
+                ['talba' => 'Tabla creada']
+            );
+        } catch (\Throwable $th) {
+            // throw $th;
+            return new RespuestaHttp(400, 'Bad Request', 'Algo salio mal al momento de crear la tabla');
+        }
     }
 }
