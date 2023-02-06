@@ -66,6 +66,7 @@ class RolesSeeder extends Seeder
         $listarBarrioVereda = Permission::create(['name' => 'listar BarrioVereda', 'referencia' => 'BarrioVereda.listar']);
         $editarBarrioVereda = Permission::create(['name' => 'editar BarrioVereda', 'referencia' => 'BarrioVereda.editar']);
         $eliminarBarrioVereda = Permission::create(['name' => 'eliminar BarrioVereda', 'referencia' => 'BarrioVereda.eliminar']);
+        $crearBarrioVereda = Permission::create(['name' => 'crear BarrioVereda', 'referencia' => 'BarrioVereda.crear']);
 
 
 
@@ -91,6 +92,8 @@ class RolesSeeder extends Seeder
         $crearIntegrante = Permission::create(['name' => 'crear integrante', 'referencia' => 'integrante.crear']);
         $listarIntegrante = Permission::create(['name' => 'listar integrante', 'referencia' => 'integrante.listar']);
         $eliminarIntegrante = Permission::create(['name' => 'eliminar integrante', 'referencia' => 'integrante.eliminar']);
+        $resultadosHogar = Permission::create(['name' => 'resultados BarrioVereda', 'referencia' => 'BarrioVereda.resultados']);
+        $editarHogar = Permission::create(['name' => 'editar BarrioVereda', 'referencia' => 'BarrioVereda.editar']);
 
 
 
@@ -119,6 +122,9 @@ class RolesSeeder extends Seeder
             $listarIntegrante,
             $listarReporte,
             $editarReporte,
+            $resultadosHogar,
+            $editarHogar,
+            $crearBarrioVereda,
         ]);
 
         //* permiso admin
