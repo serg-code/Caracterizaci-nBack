@@ -95,8 +95,7 @@ class RolesSeeder extends Seeder
         $resultadosHogar = Permission::create(['name' => 'resultados BarrioVereda', 'referencia' => 'BarrioVereda.resultados']);
         $editarHogar = Permission::create(['name' => 'editar BarrioVereda', 'referencia' => 'BarrioVereda.editar']);
 
-
-
+        
         /**
          * ------------------------------------------------------------------------
          *      Asignar lista de permisos a los roles
@@ -125,6 +124,7 @@ class RolesSeeder extends Seeder
             $resultadosHogar,
             $editarHogar,
             $crearBarrioVereda,
+            $eliminarIntegrante,
         ]);
 
         //* permiso admin
@@ -154,6 +154,7 @@ class RolesSeeder extends Seeder
             $eliminarHogar,
             $crearIntegrante,
             $listarIntegrante,
+            $eliminarIntegrante,
         ]);
     }
 
