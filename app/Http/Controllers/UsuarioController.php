@@ -209,15 +209,12 @@ class UsuarioController extends Controller
     public function actual(Request $request)
     {
         $usuario = $request->user();
-        $respuesta = new RespuestaHttp();
         $usuario = User::find($usuario->id);
         $usuario->permisos = $this->listadoPermisos($usuario);
 
-        $respuesta->data = [
-            'usuario' => $usuario,
-        ];
-
-        return response()->json($respuesta, $respuesta->codigoHttp);
+        return RespuestaHttp::respuesta(200, 'succes', 'usuario actual', [
+            'usuario' => $usuario
+        ]);
     }
     protected function controlRol(array $datosValidar, int $id, bool $revocar = false): RespuestaHttp
     {
