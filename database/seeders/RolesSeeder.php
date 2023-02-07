@@ -127,8 +127,7 @@ class RolesSeeder extends Seeder
          $rolEncuestador = Role::create(['name' => 'Encuestador']);
 
 
-
-
+        
         /**
          * ------------------------------------------------------------------------
          *      * Asignar lista de permisos a los roles
