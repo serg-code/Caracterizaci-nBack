@@ -43,6 +43,7 @@ class TablaController extends Controller
         }
 
         $nombreTabla = $request->input('nombreTabla');
+        $nombreTablaSlug = str_replace(' ', '_', $request->input('nombreTabla'));
         $columnas = $request->input('columnas');
         $sqlColumnas = $this->sqlColumnas($columnas);
 
@@ -51,7 +52,11 @@ class TablaController extends Controller
         }
 
         $sql = "CREATE TABLE `$nombreTabla` $sqlColumnas;";
-        $estadoCrear = $this->crearTablaSql($sql);
+        $estadoCrear = $this->crearTablaSql($sql, $nombreTablaSlug);
+
+        if ($estadoCrear->codigoHttp == 201) {
+            //Crear cargador
+        }
 
         return RespuestaHttp::respuestaObjeto($estadoCrear);
     }
@@ -60,18 +65,25 @@ class TablaController extends Controller
     {
         $sql = '(';
         $this->errores = [];
-        foreach ($columnas as $columna) {
-            $validar = $this->validarColumna($columna);
+        foreach ($columnas as $nombreColumna => $columna) {
+            $validar = $this->validarColumna($columna, $nombreColumna);
 
             if (!empty($validar)) {
                 array_push($this->errores, $validar);
                 continue;
             }
 
-            $nombreColumna = $columna['nombre'];
-            $tipoDato = $this->tipoDato($columna['tipo']);
+            $columnaNombre = str_replace(' ', '_', $nombreColumna);
+            $tipoDato = $this->tipoDato($columna['tipo'], $columna['parametros']);
+
+            if (empty($tipoDato)) {
+                array_push($this->errores, "No encontramos el tipo de dato en la columna $nombreColumna");
+                continue;
+            }
+
+            $unique = $columna['unico'];
             $nullable = $columna['nulo'];
-            $sql .= "`$nombreColumna` $tipoDato " . (($nullable) ? ',' : 'NOT NULL,');
+            $sql .= "`$columnaNombre` $tipoDato" . (($unique) ? ' UNIQUE' : '') . (($nullable) ? ',' : ' NOT NULL,');
         }
 
         $sql = substr($sql, 0, -1);
@@ -79,39 +91,54 @@ class TablaController extends Controller
         return $sql;
     }
 
-    private function validarColumna(array $columna): array
+    private function validarColumna(array $columna, string $nombreColumna): array
     {
         $validador = Validator::make(
             $columna,
             [
-                'nombre' => 'required|string',
                 'tipo' => 'required',
-                'nulo' => 'required|boolean'
+                'nulo' => 'required|boolean',
+                'unico' => 'required|boolean',
+                // 'parametros' => 'required'
             ],
             [
-                'nombre.required' => 'El nombre de la columna es requerido',
-                'nombre.string' => 'El nombre de la columna debe ser texto',
-                'tipo.required' => 'El tipo de la columna es necesario',
-                'nulo.required' => 'Es obligatorio marcar si la columna es nula',
-                'nulo.boolean' => 'El valor de nulo debe ser (true o false)'
+                'tipo.required' => "El tipo de dato de la columna ($nombreColumna) es necesario",
+                'nulo.required' => "Es obligatorio marcar si la columna ($nombreColumna) es nula",
+                'nulo.boolean' => "El valor de nulo en la columna ($nombreColumna) debe ser (true o false)",
+                'unico.required' => "Es necesario determinar si la columna ($nombreColumna) es única",
+                'unico.boolean' => "El valor de nulo en la columna ($nombreColumna) debe ser (true o false)",
+                'parametros.required' => "Los parametros de la columna ($nombreColumna) son necesarios",
             ]
         );
 
         return $validador->getMessageBag()->toArray();
     }
 
-    private function tipoDato(string $tipo): string
+    private function tipoDato(string $tipo, $parametros): ?string
     {
         return match ($tipo) {
-            'entero' => 'int',
-            'texto' => 'varchar(250)',
+            'entero' => 'int' . $this->logitudTipoDato($parametros, ''),
+            'texto' => 'varchar' . $this->logitudTipoDato($parametros, 255),
             'texto largo' => 'TEXT',
+            'fecha' => 'datetime',
+            'decimal' => 'decimal' . $this->logitudTipoDato($parametros, ''),
+            'boolean' => 'bool',
 
-            default => 'bool',
+            default => null,
         };
     }
 
-    private function crearTablaSql(string $sql): RespuestaHttp
+    private function logitudTipoDato(array $parametros, string|int $valorMaximo): string
+    {
+        if (empty($parametros['longitud'])) {
+            return "($valorMaximo)";
+        }
+
+        $logitud = $parametros['longitud'];
+        return "($logitud)";
+    }
+
+    private function crearTablaSql(string $sql, string $nombreTabla): RespuestaHttp
     {
         try {
             $creado = DB::statement($sql);
@@ -123,7 +150,10 @@ class TablaController extends Controller
                 201,
                 'Created',
                 'Tabla creada de manera exitosa',
-                ['talba' => 'Tabla creada']
+                [
+                    'talba' => "Tabla ($nombreTabla) creada exitosamente",
+                    'nombre' => $nombreTabla,
+                ]
             );
         } catch (\Throwable $th) {
             // throw $th;

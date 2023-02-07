@@ -25,8 +25,6 @@ class ArchivoController extends Controller
                 'archivo.mimes' => 'El archivo debe tener una extensión (csv, xlsx)',
                 'nombreTabla.required' => 'El nombre es necesario',
                 'nombreTabla.string' => 'El nombre debe ser un texto',
-                'columnas.required' => 'La columnas son necesarias',
-                'columnas.array' => 'Las columnas deben ser un listado',
             ]
         );
 
