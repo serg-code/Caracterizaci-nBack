@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Cargador;
 
 use App\Dev\RespuestaHttp;
 use App\Http\Controllers\Controller;
+use App\Models\Cargadores;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -43,6 +44,7 @@ class TablaController extends Controller
         }
 
         $nombreTabla = $request->input('nombreTabla');
+        $procesarErrores = $request->input('procesarErrores');
         $nombreTablaSlug = str_replace(' ', '_', $request->input('nombreTabla'));
         $columnas = $request->input('columnas');
         $sqlColumnas = $this->sqlColumnas($columnas);
@@ -51,11 +53,17 @@ class TablaController extends Controller
             return RespuestaHttp::respuesta(400, 'Bad request', 'Hemos encontrado un error', $this->errores);
         }
 
-        $sql = "CREATE TABLE `$nombreTabla` $sqlColumnas;";
+        $sql = "CREATE TABLE `$nombreTablaSlug` $sqlColumnas;";
         $estadoCrear = $this->crearTablaSql($sql, $nombreTablaSlug);
 
         if ($estadoCrear->codigoHttp == 201) {
-            //Crear cargador
+            $cargadores = new Cargadores([
+                'id_usuario' => $request->user()->id,
+                'nombre' => $nombreTabla,
+                'sql' => $sql,
+                'procesarErrores' => $procesarErrores,
+            ]);
+            $cargadores->save();
         }
 
         return RespuestaHttp::respuestaObjeto($estadoCrear);
@@ -63,7 +71,7 @@ class TablaController extends Controller
 
     private function sqlColumnas(array $columnas): string
     {
-        $sql = '(';
+        $sql = '(' . $this->sub();
         $this->errores = [];
         foreach ($columnas as $nombreColumna => $columna) {
             $validar = $this->validarColumna($columna, $nombreColumna);
@@ -159,5 +167,10 @@ class TablaController extends Controller
             // throw $th;
             return new RespuestaHttp(400, 'Bad Request', 'Algo salio mal al momento de crear la tabla');
         }
+    }
+
+    private function sub(): string
+    {
+        return "`sub` BIGINT AUTO_INCREMENT UNIQUE,";
     }
 }
