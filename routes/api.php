@@ -15,12 +15,11 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::post('login', [
-    \App\Http\Controllers\LoginController::class,
+        \App\Http\Controllers\LoginController::class,
     'login'
 ]);
 
-Route::group(['middleware' => ['auth:sanctum']], function ()
-{
+Route::group(['middleware' => ['auth:sanctum']], function () {
     /**
      * para utilizar filtros de los uarios
      */
@@ -70,10 +69,10 @@ Route::group(['middleware' => ['auth:sanctum']], function ()
     Route::put('reporte/{reporteId}', [\App\Http\Controllers\ReporteController::class, 'update']);
 
     Route::post('cargador/tabla', [\App\Http\Controllers\Cargador\TablaController::class, 'crearTabla']);
+    Route::post('cargador/archivo', [\App\Http\Controllers\Cargador\ArchivoController::class, 'guardarArchivos']);
 });
 
-Route::group([], function ()
-{
+Route::group([], function () {
     Route::get('tipo-identificacion', [\App\Http\Controllers\TipoIdentificacionController::class, 'index']);
     // Route::get('reporte/{reporteId}', [\App\Http\Controllers\ReporteController::class, 'show']);
 });

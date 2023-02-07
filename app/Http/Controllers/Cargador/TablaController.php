@@ -22,12 +22,12 @@ class TablaController extends Controller
         $validador = Validator::make(
             $request->all(),
             [
-                'nombre' => 'required|string',
+                'nombreTabla' => 'required|string',
                 'columnas' => 'required|array',
             ],
             [
-                'nombre.required' => 'El nombre es necesario',
-                'nombre.string' => 'El nombre debe ser un texto',
+                'nombreTabla.required' => 'El nombre es necesario',
+                'nombreTabla.string' => 'El nombre debe ser un texto',
                 'columnas.required' => 'La columnas son necesarias',
                 'columnas.array' => 'Las columnas deben ser un listado',
             ]
@@ -42,7 +42,7 @@ class TablaController extends Controller
             );
         }
 
-        $nombreTabla = $request->input('nombre');
+        $nombreTabla = $request->input('nombreTabla');
         $columnas = $request->input('columnas');
         $sqlColumnas = $this->sqlColumnas($columnas);
 
