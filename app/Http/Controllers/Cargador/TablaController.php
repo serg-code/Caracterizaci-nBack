@@ -43,6 +43,7 @@ class TablaController extends Controller
         }
 
         $nombreTabla = $request->input('nombreTabla');
+        $nombreTablaSlug = str_replace(' ', '_', $request->input('nombreTabla'));
         $columnas = $request->input('columnas');
         $sqlColumnas = $this->sqlColumnas($columnas);
 
@@ -51,8 +52,11 @@ class TablaController extends Controller
         }
 
         $sql = "CREATE TABLE `$nombreTabla` $sqlColumnas;";
-        dd($sql);
-        $estadoCrear = $this->crearTablaSql($sql);
+        $estadoCrear = $this->crearTablaSql($sql, $nombreTablaSlug);
+
+        if ($estadoCrear->codigoHttp == 201) {
+            //Crear cargador
+        }
 
         return RespuestaHttp::respuestaObjeto($estadoCrear);
     }
@@ -118,6 +122,7 @@ class TablaController extends Controller
             'texto largo' => 'TEXT',
             'fecha' => 'datetime',
             'decimal' => 'decimal' . $this->logitudTipoDato($parametros, ''),
+            'boolean' => 'bool',
 
             default => null,
         };
@@ -133,7 +138,7 @@ class TablaController extends Controller
         return "($logitud)";
     }
 
-    private function crearTablaSql(string $sql): RespuestaHttp
+    private function crearTablaSql(string $sql, string $nombreTabla): RespuestaHttp
     {
         try {
             $creado = DB::statement($sql);
@@ -145,7 +150,10 @@ class TablaController extends Controller
                 201,
                 'Created',
                 'Tabla creada de manera exitosa',
-                ['talba' => 'Tabla creada']
+                [
+                    'talba' => "Tabla ($nombreTabla) creada exitosamente",
+                    'nombre' => $nombreTabla,
+                ]
             );
         } catch (\Throwable $th) {
             // throw $th;
