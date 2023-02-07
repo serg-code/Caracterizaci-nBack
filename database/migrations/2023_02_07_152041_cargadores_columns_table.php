@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('nombre');
             $table->text('json');
             $table->timestamps();
+
+            $table->foreign('id_cargador')->references('id')->on('cargadores');
 });
     }
 

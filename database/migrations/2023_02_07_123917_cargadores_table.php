@@ -22,6 +22,8 @@ return new class extends Migration
             $table->boolean('delete_temp')->nullable();
             $table->boolean('procesarErrores');
             $table->timestamps();
+
+            $table->foreign('id_usuario')->references('id')->on('users');
 });
     }
 
