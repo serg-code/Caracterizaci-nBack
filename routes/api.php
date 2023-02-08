@@ -69,7 +69,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::put('reporte/{reporteId}', [\App\Http\Controllers\ReporteController::class, 'update']);
 
     Route::post('cargador/tabla', [\App\Http\Controllers\Cargador\TablaController::class, 'crearTabla']);
-    Route::post('cargador/archivo', [\App\Http\Controllers\Cargador\ArchivoController::class, 'guardarArchivos']);
+    Route::post('cargador/archivo/{cargadorId}', [\App\Http\Controllers\Cargador\ArchivoController::class, 'guardarArchivos']);
 });
 
 Route::group([], function () {

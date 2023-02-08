@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Cargador;
 use App\Dev\RespuestaHttp;
 use App\Http\Controllers\Controller;
 use App\Models\Cargadores;
+use App\Models\CargadoresColumns;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -12,10 +13,12 @@ use Illuminate\Support\Facades\Validator;
 class TablaController extends Controller
 {
     protected array $errores;
+    protected array $columnas;
 
     public function __construct()
     {
         $this->errores = [];
+        $this->columnas = [];
     }
 
     public function crearTabla(Request $request)
@@ -25,12 +28,15 @@ class TablaController extends Controller
             [
                 'nombreTabla' => 'required|string',
                 'columnas' => 'required|array',
+                'procesarErrores' => 'required|boolean',
             ],
             [
                 'nombreTabla.required' => 'El nombre es necesario',
                 'nombreTabla.string' => 'El nombre debe ser un texto',
                 'columnas.required' => 'La columnas son necesarias',
                 'columnas.array' => 'Las columnas deben ser un listado',
+                'procesarErrores.required' => 'Es necesario saber si se procesan los datos con errores',
+                'procesarErrores.boolean' => 'procesarErrores debe ser (true o false)',
             ]
         );
 
@@ -44,38 +50,62 @@ class TablaController extends Controller
         }
 
         $nombreTabla = $request->input('nombreTabla');
-        $procesarErrores = $request->input('procesarErrores');
-        $nombreTablaSlug = str_replace(' ', '_', $request->input('nombreTabla'));
-        $columnas = $request->input('columnas');
-        $sqlColumnas = $this->sqlColumnas($columnas);
-
+        $nombreTablaSlug = str_replace(' ', '_', $nombreTabla);
+        $sqlColumnas = $this->sqlColumnas($request->input('columnas'));
         if (!empty($this->errores)) {
             return RespuestaHttp::respuesta(400, 'Bad request', 'Hemos encontrado un error', $this->errores);
         }
 
         $sql = "CREATE TABLE `$nombreTablaSlug` $sqlColumnas;";
-        $estadoCrear = $this->crearTablaSql($sql, $nombreTablaSlug);
+        $cargadores = new Cargadores([
+            'id_usuario' => $request->user()->id,
+            'nombre' => $nombreTabla,
+            'sql' => $sql,
+            'procesarErrores' => $request->input('procesarErrores'),
+        ]);
 
-        if ($estadoCrear->codigoHttp == 201) {
-            $cargadores = new Cargadores([
-                'id_usuario' => $request->user()->id,
-                'nombre' => $nombreTabla,
-                'sql' => $sql,
-                'procesarErrores' => $procesarErrores,
-            ]);
-            $cargadores->save();
-        }
+        $cargadores->save();
+        $this->guardarColumnas($cargadores->id);
+        return RespuestaHttp::respuesta(
+            201,
+            'Created',
+            'Tabla creada exitosamente',
+            [
+                "cargador" => $cargadores,
+            ]
+        );
+        // $estadoCrear = $this->crearTablaSql($sql, $nombreTablaSlug);
+        // if ($estadoCrear->codigoHttp == 201) {
+
+        //     $cargadores = new Cargadores([
+        //         'id_usuario' => $request->user()->id,
+        //         'nombre' => $nombreTabla,
+        //         'sql' => $sql,
+        //         'procesarErrores' => $request->input('procesarErrores'),
+        //     ]);
+
+        //     $cargadores->save();
+        //     // $this->guardarColumnas($cargadores->id);
+        //     return RespuestaHttp::respuesta(
+        //         201,
+        //         'Created',
+        //         'Tabla creada exitosamente',
+        //         [
+        //             "cargador" => $cargadores,
+        //         ]
+        //     );
+        // }
 
         return RespuestaHttp::respuestaObjeto($estadoCrear);
     }
 
     private function sqlColumnas(array $columnas): string
     {
-        $sql = '(' . $this->sub();
+        $sql = "(`sub` BIGINT AUTO_INCREMENT UNIQUE";
         $this->errores = [];
         foreach ($columnas as $nombreColumna => $columna) {
-            $validar = $this->validarColumna($columna, $nombreColumna);
 
+            $validar = $this->validarColumna($columna, $nombreColumna);
             if (!empty($validar)) {
                 array_push($this->errores, $validar);
                 continue;
@@ -83,7 +113,6 @@ class TablaController extends Controller
 
             $columnaNombre = str_replace(' ', '_', $nombreColumna);
             $tipoDato = $this->tipoDato($columna['tipo'], $columna['parametros']);
-
             if (empty($tipoDato)) {
                 array_push($this->errores, "No encontramos el tipo de dato en la columna $nombreColumna");
                 continue;
@@ -91,10 +120,14 @@ class TablaController extends Controller
 
             $unique = $columna['unico'];
             $nullable = $columna['nulo'];
-            $sql .= "`$columnaNombre` $tipoDato" . (($unique) ? ' UNIQUE' : '') . (($nullable) ? ',' : ' NOT NULL,');
+            $sql .= ", `$columnaNombre` $tipoDato" . (($unique) ? ' UNIQUE' : '') . (($nullable) ? '' : ' NOT NULL');
+
+            array_push($this->columnas, [
+                'nombre' => $columnaNombre,
+                'json' => json_encode($columnas[$nombreColumna]),
+            ]);
         }
 
-        $sql = substr($sql, 0, -1);
         $sql .= ')';
         return $sql;
     }
@@ -169,8 +202,16 @@ class TablaController extends Controller
         }
     }
 
-    private function sub(): string
+    private function guardarColumnas(int $idCargador)
     {
-        return "`sub` BIGINT AUTO_INCREMENT UNIQUE,";
+        $fecha = now();
+        for ($i = 0; $i < sizeof($this->columnas); $i++) {
+            $this->columnas[$i]['id_cargador'] = $idCargador;
+            $this->columnas[$i]['created_at'] = $fecha;
+            $this->columnas[$i]['updated_at'] = $fecha;
+        }
+
+        // dd($this->columnas);
+        DB::table('cargadores_columns')->insert($this->columnas);
     }
 }

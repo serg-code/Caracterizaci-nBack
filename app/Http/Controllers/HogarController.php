@@ -47,8 +47,7 @@ class HogarController extends Controller
             'hogar.updated_at',
         ];
 
-        if (empty($datosUrl))
-        {
+        if (empty($datosUrl)) {
             $listadoHogares = Hogar::select($select)
                 ->with(['municipio.departamento'])
                 ->paginate($cantidadPaginar);
@@ -62,7 +61,7 @@ class HogarController extends Controller
         }
 
         //filtro de usuarios
-        $hogares = QueryBuilder::for(Hogar::class)
+        $hogares = QueryBuilder::for (Hogar::class)
             ->select($select)
             ->allowedFilters([
                 AllowedFilter::scope('search'),
@@ -103,8 +102,7 @@ class HogarController extends Controller
             ]
         );
 
-        if ($validacion->fails())
-        {
+        if ($validacion->fails()) {
             return RespuestaHttp::respuesta(
                 400,
                 'Bad request',
@@ -117,16 +115,14 @@ class HogarController extends Controller
         $id = $hogarPeticion['id'];
         $hogar = Hogar::find($id);
 
-        if (empty($hogar))
-        {
+        if (empty($hogar)) {
             $hogarPeticion['puntaje_max'] = env('PUNTAJE_MAX', 180);
             $crearHogar = new crearHogar($hogarPeticion, $request->user()->id);
             $respuestaCrearHogar = $crearHogar->getRespuesta();
             return RespuestaHttp::respuestaObjeto($respuestaCrearHogar);
         }
 
-        if (!empty($hogar))
-        {
+        if (!empty($hogar)) {
             $secciones = $hogarPeticion['secciones'];
             $actualizarHogar = new ActualizarHogar($hogarPeticion, $secciones);
             $respuesta = $actualizarHogar->getRespuesta();

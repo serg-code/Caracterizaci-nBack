@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Auth;
 
 class Cargadores extends Model
 {
@@ -12,14 +11,18 @@ class Cargadores extends Model
         "id",
         "id_usuario",
         "nombre",
+        "procesarErrores",
+    ];
+
+    protected $hidden = [
         "sql",
         "delete_temp",
-        "procesarErrores"
+        "updated_at",
     ];
 
     public function columnas()
     {
-        return $this->hasMany(CargadoresColumn::class, 'id_cargador', 'id');
+        return $this->hasMany(CargadoresColumns::class, 'id_cargador', 'id');
     }
     public function usuarios()
     {
