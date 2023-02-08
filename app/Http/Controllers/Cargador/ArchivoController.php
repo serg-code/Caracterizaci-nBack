@@ -6,6 +6,7 @@ use App\Dev\RespuestaHttp;
 use App\Http\Controllers\Controller;
 use App\Imports\CargadorImport;
 use App\Models\Cargadores;
+use App\Models\Intentos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
@@ -19,7 +20,7 @@ class ArchivoController extends Controller
             $request->all(),
             [
                 'archivo' => 'required|mimes:csv,txt,xlsx',
-                'nombreTabla' => 'required|string',
+                // 'nombreTabla' => 'required|string',
             ],
             [
                 'archivo.required' => 'El archivo es necesario',
@@ -39,7 +40,6 @@ class ArchivoController extends Controller
         }
 
         $cargador = Cargadores::find($cargadorId);
-
         if (empty($cargador)) {
             return RespuestaHttp::respuesta(
                 404,
@@ -48,9 +48,14 @@ class ArchivoController extends Controller
             );
         }
         $cargador->columnas;
-        $nombreTabla = $request->input('nombreTabla');
-        $archivo = $request->file('archivo');
-        // $guardarArchivo = $this->guardarArchivoServidor($archivo);
+        $nombreTabla = str_replace(' ', '_', $cargador->nombre);
+        $archivo = $request->archivo;
+        $guardarArchivo = $this->guardarArchivoServidor($archivo);
+        $inteto = new Intentos([
+            'id_usuario' => $request->user()->id,
+            'id_cargador' => $cargadorId,
+            'nombre_archivo' => $guardarArchivo,
+        ]);
 
         // Excel::import(new CargadorImport($nombreTabla), $archivo);
 
@@ -61,6 +66,7 @@ class ArchivoController extends Controller
             [
                 // 'archivo' => $guardarArchivo,
                 'cargador' => $cargador,
+                'intento' => $inteto,
             ]
         );
     }

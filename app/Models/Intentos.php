@@ -9,8 +9,8 @@ class Intentos extends Model
 {
     protected $fillable = [
         'id',
-        "usuario", 
-        "cardador",
+        "id_usuario",
+        "id_cargador",
         "nombre_archivo",
     ];
 
