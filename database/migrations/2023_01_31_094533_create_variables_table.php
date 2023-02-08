@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('variables', function (Blueprint $table)
         {
-            $table->bigInteger('id')->unique();
+            $table->id();
             $table->unsignedBigInteger('reporte_id');
             $table->string('ref')->nullable();
             $table->enum('tipo', [
@@ -26,7 +26,6 @@ return new class extends Migration
             $table->string('label')->nullable();
             $table->timestamps();
 
-            $table->primary('id');
             $table->foreign('reporte_id')->references('id')->on('reportes');
         });
     }
