@@ -12,13 +12,13 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $validacion = Validator::make(
-            data: $request->all(),
-            rules: [
+            $request->all(),
+            [
                 'email' => 'required|email',
                 'password' => 'required',
                 'device' => 'required',
             ],
-            messages: [
+            [
                 'email.required' => 'El correo es necesario',
                 'email.email' => 'El correo ingresado debe se un correo valido',
                 'password' => 'La contraseña es requerida',
@@ -27,8 +27,7 @@ class LoginController extends Controller
         );
 
         //validar si los datos recibidos son validos
-        if ($validacion->fails())
-        {
+        if ($validacion->fails()) {
             return RespuestaHttp::respuesta(
                 400,
                 'Bad request',
@@ -38,11 +37,9 @@ class LoginController extends Controller
         }
 
         //realizar la autenticacion
-        if (Auth::attempt($request->only('email', 'password')))
-        {
+        if (Auth::attempt($request->only('email', 'password'))) {
             $usuario = $request->user();
-            if ($usuario->activo === 0)
-            {
+            if ($usuario->activo === 0) {
                 return RespuestaHttp::respuesta(
                     403,
                     'Forbidden',
@@ -58,8 +55,8 @@ class LoginController extends Controller
             ];
 
             return response()->json(
-                data: $respuesta,
-                status: $respuesta->codigoHttp
+            data: $respuesta,
+            status: $respuesta->codigoHttp
             );
         }
 
@@ -77,8 +74,8 @@ class LoginController extends Controller
         $respuesta->mensaje = 'Ha terminado la sesion';
 
         return response()->json(
-            data: $respuesta,
-            status: $respuesta->codigoHttp
+        data: $respuesta,
+        status: $respuesta->codigoHttp
         );
     }
 }

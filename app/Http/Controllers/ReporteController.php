@@ -26,7 +26,15 @@ class ReporteController extends Controller
      */
     public function index()
     {
-        //
+        $reportes = Reportes::select()->with(['variables'])->get();
+        // $reportes = DB::table('reportes')->select()->get();
+
+        return RespuestaHttp::respuesta(
+            200,
+            'Succes',
+            'Listado de reportes',
+            $reportes
+        );
     }
 
     /**
@@ -48,13 +56,12 @@ class ReporteController extends Controller
      */
     public function show($reporteId)
     {
-        $reporte = Reportes::find($reporteId);
+        $reporte = Reportes::find($reporteId)->with(['variables']);
         $variables = $reporte->variables;
 
         $datosQuery = $this->datosReemplazar($variables, $_GET);
 
-        if (!empty($datosQuery['error']))
-        {
+        if (!empty($datosQuery['error'])) {
             return RespuestaHttp::respuesta(
                 400,
                 'Bad request',
@@ -95,8 +102,7 @@ class ReporteController extends Controller
             ]
         );
 
-        if ($validador->fails())
-        {
+        if ($validador->fails()) {
             return RespuestaHttp::respuesta(
                 400,
                 'Bad request',
@@ -106,8 +112,7 @@ class ReporteController extends Controller
         }
 
         $reporte = Reportes::find($reporteId);
-        if (empty($reporte))
-        {
+        if (empty($reporte)) {
             return RespuestaHttp::respuesta(404, 'Not Found', 'Reporte no encontrado');
         }
 
@@ -118,8 +123,7 @@ class ReporteController extends Controller
         $listadoId = $request->input('roles');
         $accesoReporte = [];
         $fecha = now();
-        foreach ($listadoId as $id)
-        {
+        foreach ($listadoId as $id) {
             array_push($accesoReporte, [
                 'reporte_id' => $reporteId,
                 'role_id' => $id,
@@ -156,18 +160,15 @@ class ReporteController extends Controller
         $remplazar = [];
         $error = [];
 
-        foreach ($variables as $variable)
-        {
+        foreach ($variables as $variable) {
             $referencia = $variable->ref;
-            if (empty($parametrosUrl[$referencia]))
-            {
+            if (empty($parametrosUrl[$referencia])) {
                 $error[$referencia] = "No encontramos $referencia";
                 continue;
             }
 
             $dato = $this->convertirDato($variable->tipo, $parametrosUrl[$referencia]);
-            if (empty($dato))
-            {
+            if (empty($dato)) {
                 $error[$referencia] = "$referencia no es del tipo de dato necesario";
                 continue;
             }
@@ -187,17 +188,13 @@ class ReporteController extends Controller
     private function convertirDato(string $tipoDato, $dato)
     {
 
-        try
-        {
-            return match ($tipoDato)
-            {
+        try {
+            return match ($tipoDato) {
                 'date' => $this->validacion($dato, 'date') ? "'" . Carbon::parse($dato) . "'" : null,
                 'number' => is_numeric($dato) ? $dato : null,
                 'text' => $this->validacion($dato, 'string') ? "'$dato'" : null,
             };
-        }
-        catch (\Throwable $th)
-        {
+        } catch (\Throwable $th) {
             return null;
         }
     }
