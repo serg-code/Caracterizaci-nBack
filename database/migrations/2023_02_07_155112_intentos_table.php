@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->bigInteger('id_usuario');
             $table->unsignedBigInteger('id_cargador');
             $table->string('nombre_archivo')->nullable();
+            $table->string('nombre_archivo_original');
             $table->timestamps();
 
             $table->foreign('id_usuario')->references('id')->on('users');
