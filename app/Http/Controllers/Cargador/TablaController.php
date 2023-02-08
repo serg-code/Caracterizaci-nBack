@@ -57,44 +57,27 @@ class TablaController extends Controller
         }
 
         $sql = "CREATE TABLE `$nombreTablaSlug` $sqlColumnas;";
-        $cargadores = new Cargadores([
-            'id_usuario' => $request->user()->id,
-            'nombre' => $nombreTabla,
-            'sql' => $sql,
-            'procesarErrores' => $request->input('procesarErrores'),
-        ]);
+        $estadoCrear = $this->crearTablaSql($sql, $nombreTablaSlug);
+        if ($estadoCrear->codigoHttp == 201) {
 
-        $cargadores->save();
-        $this->guardarColumnas($cargadores->id);
-        return RespuestaHttp::respuesta(
-            201,
-            'Created',
-            'Tabla creada exitosamente',
-            [
-                "cargador" => $cargadores,
-            ]
-        );
-        // $estadoCrear = $this->crearTablaSql($sql, $nombreTablaSlug);
-        // if ($estadoCrear->codigoHttp == 201) {
+            $cargadores = new Cargadores([
+                'id_usuario' => $request->user()->id,
+                'nombre' => $nombreTabla,
+                'sql' => $sql,
+                'procesarErrores' => $request->input('procesarErrores'),
+            ]);
 
-        //     $cargadores = new Cargadores([
-        //         'id_usuario' => $request->user()->id,
-        //         'nombre' => $nombreTabla,
-        //         'sql' => $sql,
-        //         'procesarErrores' => $request->input('procesarErrores'),
-        //     ]);
-
-        //     $cargadores->save();
-        //     // $this->guardarColumnas($cargadores->id);
-        //     return RespuestaHttp::respuesta(
-        //         201,
-        //         'Created',
-        //         'Tabla creada exitosamente',
-        //         [
-        //             "cargador" => $cargadores,
-        //         ]
-        //     );
-        // }
+            $cargadores->save();
+            $this->guardarColumnas($cargadores->id);
+            return RespuestaHttp::respuesta(
+                201,
+                'Created',
+                'Tabla creada exitosamente',
+                [
+                    "cargador" => $cargadores,
+                ]
+            );
+        }
 
         return RespuestaHttp::respuestaObjeto($estadoCrear);
     }
