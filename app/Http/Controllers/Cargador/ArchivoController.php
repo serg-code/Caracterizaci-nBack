@@ -14,6 +14,7 @@ use Maatwebsite\Excel\Facades\Excel;
 class ArchivoController extends Controller
 {
 
+    private string $disco = 'public';
     public function guardarArchivos(Request $request, $cargadorId)
     {
         $validador = Validator::make(
@@ -47,36 +48,31 @@ class ArchivoController extends Controller
                 'No encontramos este cargador'
             );
         }
+
+        //guardar archivo enviado
+        $archivo = $request->file('archivo');
+        $fecha = now();
+        $nombreGuardar = $request->user()->id . '-' . $fecha->getTimestamp() . '-' . $archivo->getClientOriginalName();
+        $archivo->storeAs('Cargadores', $nombreGuardar, $this->disco);
+
         $cargador->columnas;
-        $nombreTabla = str_replace(' ', '_', $cargador->nombre);
-        $archivo = $request->archivo;
-        $guardarArchivo = $this->guardarArchivoServidor($archivo);
         $inteto = new Intentos([
             'id_usuario' => $request->user()->id,
             'id_cargador' => $cargadorId,
-            'nombre_archivo' => $guardarArchivo,
+            'nombre_archivo' => $nombreGuardar,
+            'nombre_archivo_original' => $archivo->getClientOriginalName(),
         ]);
 
-        // Excel::import(new CargadorImport($nombreTabla), $archivo);
+        // $inteto->save();
+        Excel::import(new CargadorImport($cargador), $archivo);
 
         return RespuestaHttp::respuesta(
             200,
             'Succes',
             'Datos guardados exitosamente',
             [
-                // 'archivo' => $guardarArchivo,
-                'cargador' => $cargador,
                 'intento' => $inteto,
             ]
         );
-    }
-
-    private function guardarArchivoServidor($archivo): string
-    {
-        try {
-            return $archivo->store("Cargadores");
-        } catch (\Throwable $th) {
-            return '';
-        }
     }
 }
