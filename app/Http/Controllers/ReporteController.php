@@ -19,11 +19,9 @@ class ReporteController extends Controller
     {
         $this->middleware(['role:Super Administrador',], ['only' => ['show',]]);
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+
+
     public function index()
     {
         $reportes = Reportes::select()->with(['variables'])->get();
@@ -37,30 +35,31 @@ class ReporteController extends Controller
         );
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
+
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
+
     public function show($reporteId)
     {
-        $reporte = Reportes::find($reporteId)->with(['variables']);
-        $variables = $reporte->variables;
+        $reporte = $this->getReporte($reporteId);
 
-        $datosQuery = $this->datosReemplazar($variables, $_GET);
+        if (empty($reporte)) {
+            return RespuestaHttp::respuesta(
+                404,
+                'Not found',
+                'Reporte no encontrado',
+                [
+                    'reporte' => $reporte,
+                ]
+            );
+        }
 
+        $datosQuery = $this->datosReemplazar($reporte->variables, $_GET);
         if (!empty($datosQuery['error'])) {
             return RespuestaHttp::respuesta(
                 400,
@@ -72,17 +71,11 @@ class ReporteController extends Controller
 
         $query = str_replace($datosQuery['busqueda'], $datosQuery['remplazar'], $reporte->query);
         $consulta = DB::select($query);
-
         return Excel::download(new ReporteExport($consulta), $reporte->nombre . '.xlsx');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
+
     public function update(Request $request, $reporteId)
     {
         $validador = Validator::make(
@@ -143,15 +136,21 @@ class ReporteController extends Controller
         );
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
         //
+    }
+
+    private function getReporte(int $idReporte): ?Reportes
+    {
+        $reporte = Reportes::find($idReporte);
+
+        if (empty($reporte)) {
+            return null;
+        }
+
+        return $reporte;
     }
 
     private function datosReemplazar($variables, array $parametrosUrl): array
