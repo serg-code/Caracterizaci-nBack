@@ -8,6 +8,7 @@ use App\Imports\CargadorImport;
 use App\Models\Cargadores;
 use App\Models\Intentos;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -86,8 +87,11 @@ class ArchivoController extends Controller
         foreach ($columnas as $columna) {
             $json = json_decode($columna->json);
             $validador = explode('|', $json->parametros->validar);
-            $sql = $this->matchTipoValidador($validador[2], $columna->nombre, $nombreTabla);
-            dd($sql);
+            for ($i = 0; $i < sizeof($validador); $i++) {
+                $sql = $this->matchTipoValidador($validador[$i], $columna->nombre, $nombreTabla, $inteto->id);
+                DB::statement($sql);
+                dd($sql);
+            }
         }
 
         return RespuestaHttp::respuesta(
@@ -101,11 +105,17 @@ class ArchivoController extends Controller
         );
     }
 
-    private function matchTipoValidador(string $tipoValidar, string $nombreColumna, string $nombreTabla): string
+    private function matchTipoValidador(string $tipoValidar, string $nombreColumna, string $nombreTabla, int $idIntento): string
     {
+        $fecha = now();
+        $insert = "INSERT INTO log_errores (texto_error, ubicacion_error, intento, created_at, updated_at)";
         $validador = explode(':', $tipoValidar);
+
         return match ($validador[0]) {
-            'long' => "SELECT sub, cc FROM $nombreTabla WHERE NOT(CHAR_LENGTH($nombreColumna) $validador[1]);",
+            'long' => $insert .
+            "SELECT CONCAT('Error en la linea ', sub, ' $nombreColumna no cumple con el rango $validador[1]'), sub, '$idIntento', '$fecha', '$fecha' FROM" .
+            "(SELECT sub, cc FROM $nombreTabla WHERE NOT(CHAR_LENGTH($nombreColumna) $validador[1])) as error;",
+
             'type' => "SELECT sub, cc FROM $nombreTabla WHERE " . $this->matchType($validador[1], $nombreColumna) . ';',
         };
     }
