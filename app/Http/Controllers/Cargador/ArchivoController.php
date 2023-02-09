@@ -112,9 +112,12 @@ class ArchivoController extends Controller
         $validador = explode(':', $tipoValidar);
 
         return match ($validador[0]) {
-            'long' => $insert .
-            "SELECT CONCAT('Error en la linea ', sub, ' $nombreColumna no cumple con el rango $validador[1]'), sub, '$idIntento', '$fecha', '$fecha' FROM" .
-            "(SELECT sub, cc FROM $nombreTabla WHERE NOT(CHAR_LENGTH($nombreColumna) $validador[1])) as error;",
+            // 'long' => $insert .
+            // "SELECT CONCAT('Error en la linea ', sub, ' $nombreColumna no cumple con el rango $validador[1]'), sub, '$idIntento', '$fecha', '$fecha' FROM" .
+            // "(SELECT sub, cc FROM $nombreTabla WHERE NOT(CHAR_LENGTH($nombreColumna) $validador[1])) as error;",
+            'long' => "$insert
+            SELECT CONCAT('Error en la linea ', sub, ' $nombreColumna no cumple con el rango $validador[1]'), sub, '$idIntento', '$fecha', '$fecha' FROM
+            (SELECT sub, cc FROM $nombreTabla WHERE NOT(CHAR_LENGTH($nombreColumna) $validador[1])) as error;",
 
             'type' => "SELECT sub, cc FROM $nombreTabla WHERE " . $this->matchType($validador[1], $nombreColumna) . ';',
         };

@@ -17,10 +17,10 @@ class Intentos extends Model
 
     public function cargador()
     {
-        return $this->hasMany(Cargadores::class, 'id_cargador', 'cargador');
+        return $this->belongsTo(Cargadores::class, 'id_cargador', 'id');
     }
-    public function usuarios()
+    public function usuario()
     {
-        return $this->belongsTo(User::class, 'id', 'usuarios');
+        return $this->belongsTo(User::class, 'id_usuario', 'id');
     }
 }

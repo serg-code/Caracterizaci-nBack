@@ -24,8 +24,19 @@ class Cargadores extends Model
     {
         return $this->hasMany(CargadoresColumns::class, 'id_cargador', 'id');
     }
-    public function usuarios()
+
+    public function usuarioCrea()
     {
-        return $this->belongsTo(User::class, 'id', 'id_usuarios');
+        return $this->belongsTo(User::class, 'id_usuario', 'id');
+    }
+
+    public function contarIntentos(): int
+    {
+        return Intentos::where('id_cargador', '=', $this->id)->count();
+    }
+
+    public function intentos()
+    {
+        return $this->hasMany(Intentos::class, 'id_cargador');
     }
 }
