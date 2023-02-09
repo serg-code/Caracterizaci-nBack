@@ -16,6 +16,7 @@ class Cargadores extends Model
         "id_usuario",
         "nombre",
         "procesarErrores",
+        "created_at",
     ];
 
     protected $hidden = [

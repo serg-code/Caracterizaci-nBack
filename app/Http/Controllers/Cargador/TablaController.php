@@ -26,13 +26,16 @@ class TablaController extends Controller
         $validador = Validator::make(
             $request->all(),
             [
-                'nombreTabla' => 'required|string',
+                'nombre' => 'required|string',
+                'nombre_tabla' => 'required|string|unique:cargadores,nombre_tabla',
                 'columnas' => 'required|array',
                 'procesarErrores' => 'required|boolean',
             ],
             [
-                'nombreTabla.required' => 'El nombre es necesario',
-                'nombreTabla.string' => 'El nombre debe ser un texto',
+                'nombre.required' => 'El nombre es necesario',
+                'nombre.string' => 'El nombre debe ser un texto',
+                'nombre_tabla.required' => 'El nombre es necesario',
+                'nombre_tabla.string' => 'El nombre debe ser un texto',
                 'columnas.required' => 'La columnas son necesarias',
                 'columnas.array' => 'Las columnas deben ser un listado',
                 'procesarErrores.required' => 'Es necesario saber si se procesan los datos con errores',
@@ -49,7 +52,7 @@ class TablaController extends Controller
             );
         }
 
-        $nombreTabla = $request->input('nombreTabla');
+        $nombreTabla = $request->input('nombre_tabla');
         $nombreTablaSlug = str_replace(' ', '_', $nombreTabla);
         $sqlColumnas = $this->sqlColumnas($request->input('columnas'));
         if (!empty($this->errores)) {
@@ -57,29 +60,48 @@ class TablaController extends Controller
         }
 
         $sql = "CREATE TABLE `$nombreTablaSlug` $sqlColumnas;";
-        $estadoCrear = $this->crearTablaSql($sql, $nombreTablaSlug);
-        if ($estadoCrear->codigoHttp == 201) {
+        $data = $request->only(['nombre', 'procesarErrores']);
+        $data['nombre_tabla'] = $nombreTablaSlug;
+        $data['id_usuario'] = $request->user()->id;
+        $data['sql'] = $sql;
+        $cargador = $this->generarCargador($data);
 
-            $cargadores = new Cargadores([
-                'id_usuario' => $request->user()->id,
-                'nombre' => $nombreTabla,
-                'sql' => $sql,
-                'procesarErrores' => $request->input('procesarErrores'),
-            ]);
-
-            $cargadores->save();
-            $this->guardarColumnas($cargadores->id);
+        if (empty($cargador)) {
             return RespuestaHttp::respuesta(
-                201,
-                'Created',
-                'Tabla creada exitosamente',
-                [
-                    "cargador" => $cargadores,
-                ]
+                400,
+                'Bad request',
+                'No se puede generar una tabla con ese nombre'
             );
         }
 
-        return RespuestaHttp::respuestaObjeto($estadoCrear);
+        $cargador->save();
+        $this->guardarColumnas($cargador->id);
+
+        return RespuestaHttp::respuesta(
+            201,
+            'created',
+            'Cargador creado con exito',
+            [
+                'cargador' => $cargador,
+            ]
+        );
+
+    }
+
+    private function generarCargador(array $datosCargador): ?Cargadores
+    {
+        try {
+            $tablaExiste = DB::select('select 1 from ' . $datosCargador['nombre_tabla']);
+            return null;
+        } catch (\Throwable $th) {
+            $cargador = new Cargadores();
+            $cargador->id_usuario = $datosCargador['id_usuario'];
+            $cargador->nombre = $datosCargador['nombre'];
+            $cargador->nombre_tabla = $datosCargador['nombre_tabla'];
+            $cargador->sql = $datosCargador['sql'];
+            $cargador->procesarErrores = $datosCargador['procesarErrores'];
+            return $cargador;
+        }
     }
 
     private function sqlColumnas(array $columnas): string
@@ -162,29 +184,6 @@ class TablaController extends Controller
         return "($logitud)";
     }
 
-    private function crearTablaSql(string $sql, string $nombreTabla): RespuestaHttp
-    {
-        try {
-            $creado = DB::statement($sql);
-            if (!$creado) {
-                return new RespuestaHttp(400, 'Bad request', 'Algo ha salido mal');
-            }
-
-            return new RespuestaHttp(
-                201,
-                'Created',
-                'Tabla creada de manera exitosa',
-                [
-                    'talba' => "Tabla ($nombreTabla) creada exitosamente",
-                    'nombre' => $nombreTabla,
-                ]
-            );
-        } catch (\Throwable $th) {
-            // throw $th;
-            return new RespuestaHttp(400, 'Bad Request', 'Algo salio mal al momento de crear la tabla');
-        }
-    }
-
     private function guardarColumnas(int $idCargador)
     {
         $fecha = now();
@@ -194,7 +193,6 @@ class TablaController extends Controller
             $this->columnas[$i]['updated_at'] = $fecha;
         }
 
-        // dd($this->columnas);
         DB::table('cargadores_columns')->insert($this->columnas);
     }
 }
