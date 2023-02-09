@@ -20,6 +20,7 @@ class Cargadores extends Model
 
     protected $hidden = [
         "sql",
+        "nombre_tabla",
         "delete_temp",
         "updated_at",
     ];
