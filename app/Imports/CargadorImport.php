@@ -18,7 +18,7 @@ class CargadorImport implements ToCollection
         protected Cargadores $cargador
     )
     {
-        $this->columnas = CargadoresColumns::where('id_cargador', '=', $this->cargador->id)->get()->toArray();
+        $this->columnas = CargadoresColumns::where('id_cargador', '=', $this->cargador->id)->get(['nombre'])->toArray();
         $this->cantidadColumna = sizeof($this->columnas);
         $this->nombreTabla = str_replace(' ', '_', $this->cargador->nombre);
     }
@@ -31,18 +31,8 @@ class CargadorImport implements ToCollection
         $datos = array_map(function ($columna) {
             $datoGuardar = [];
 
-            // for ($i = 0; $i < $this->cantidadColumnas; $i++) {
-            //     $datoGuardar[$this->nombreColumnas[$i]] = $columna[$i];
-            // }
             for ($i = 0; $i < $this->cantidadColumna; $i++) {
-                try {
-
-                    $datoGuardar[$this->columnas[$i]['nombre']] = $columna[$i];
-                } catch (\Throwable $th) {
-                    //throw $th;
-                    // dd($this->columnas[$i]['nombre']);
-                    dd($columna);
-                }
+                $datoGuardar[$this->columnas[$i]['nombre']] = $columna[$i];
             }
 
             return $datoGuardar;
