@@ -19,18 +19,13 @@ class BarrioVeredaController extends Controller
         $this->middleware('permission:eliminar BarrioVereda', ['only' => ['destroy']]);
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $datosUrl = $_GET;
         $cantidadPaginar = $datosUrl['per_page'] ?? 10;
 
-        if (empty($datosUrl))
-        {
+        if (empty($datosUrl)) {
             $listadoHogares = BarrioVereda::with(['municipio.departamento'])->paginate($cantidadPaginar);
 
             return RespuestaHttp::respuesta(
@@ -42,7 +37,7 @@ class BarrioVeredaController extends Controller
         }
 
         //filtro de usuarios
-        $hogares = QueryBuilder::for(BarrioVereda::class)
+        $hogares = QueryBuilder::for (BarrioVereda::class)
             ->allowedFilters([
                 AllowedFilter::exact('id'),
                 AllowedFilter::exact('id_municipio'),
@@ -84,8 +79,7 @@ class BarrioVeredaController extends Controller
             ]
         );
 
-        if ($validacion->fails())
-        {
+        if ($validacion->fails()) {
             return RespuestaHttp::respuesta(
                 400,
                 'Bad request',
@@ -117,8 +111,7 @@ class BarrioVeredaController extends Controller
     {
         $barrioVereda = BarrioVereda::find($id);
 
-        if (empty($barrioVereda))
-        {
+        if (empty($barrioVereda)) {
             return RespuestaHttp::respuesta(
                 404,
                 'Not found',
@@ -152,8 +145,7 @@ class BarrioVeredaController extends Controller
     {
         $barrioVereda = BarrioVereda::find($id);
 
-        if (empty($barrioVereda))
-        {
+        if (empty($barrioVereda)) {
             return RespuestaHttp::respuesta(
                 404,
                 'Not found',
@@ -186,17 +178,14 @@ class BarrioVeredaController extends Controller
      */
     public function destroy($id)
     {
-        try
-        {
+        try {
             BarrioVereda::where('id', '=', $id)->delete();
             return RespuestaHttp::respuesta(
                 200,
                 'succes',
                 'Barrio/Vereda eliminado con exito'
             );
-        }
-        catch (\Throwable $th)
-        {
+        } catch (\Throwable $th) {
             return RespuestaHttp::respuesta(
                 400,
                 'bad request',

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Dev\RespuestaHttp;
 use App\Models\Cargadores;
 use Illuminate\Http\Request;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class CargadoresController extends Controller
 {
@@ -16,7 +18,34 @@ class CargadoresController extends Controller
 
     public function index()
     {
-        //
+        $datosUrl = $_GET;
+        $cantidadPaginar = $datosUrl['per_page'] ?? 10;
+
+        if (empty($datosUrl)) {
+            $listadoHogares = Cargadores::select()->paginate($cantidadPaginar);
+
+            return RespuestaHttp::respuesta(
+                200,
+                'Succes',
+                'Listado de cargadores',
+                $listadoHogares
+            );
+        }
+
+        //filtro de usuarios
+        $hogares = QueryBuilder::for (Cargadores::class)
+            ->allowedFilters([
+                AllowedFilter::exact('id'),
+                AllowedFilter::scope('search'),
+            ])
+            ->paginate($cantidadPaginar);
+
+        return RespuestaHttp::respuesta(
+            200,
+            'succes',
+            'listado de cargadores',
+            $hogares
+        );
     }
 
     public function store(Request $request)
@@ -26,9 +55,9 @@ class CargadoresController extends Controller
 
     public function show($idCargador)
     {
-        $this->cargador = Cargadores::where('id', $idCargador)->with(['usuarioCrea', 'intentos.usuario'])->first();
+        $cargador = Cargadores::find($idCargador);
 
-        if (empty($this->cargador)) {
+        if (empty($cargador)) {
             return RespuestaHttp::respuesta(
                 404,
                 'Not found',
@@ -36,7 +65,7 @@ class CargadoresController extends Controller
             );
         }
 
-        // $this->cargador->intentos;
+        $this->cargador = Cargadores::find($idCargador)->with(['usuarioCrea', 'intentos.usuario'])->first();
         return RespuestaHttp::respuesta(200, 'succes', 'Cargador', [$this->cargador]);
     }
 
