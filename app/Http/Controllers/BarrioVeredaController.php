@@ -25,17 +25,6 @@ class BarrioVeredaController extends Controller
         $datosUrl = $_GET;
         $cantidadPaginar = $datosUrl['per_page'] ?? 10;
 
-        if (empty($datosUrl)) {
-            $listadoHogares = BarrioVereda::with(['municipio.departamento'])->paginate($cantidadPaginar);
-
-            return RespuestaHttp::respuesta(
-                200,
-                'Succes',
-                'Listado de barrios / veredas',
-                $listadoHogares
-            );
-        }
-
         //filtro de usuarios
         $hogares = QueryBuilder::for (BarrioVereda::class)
             ->allowedFilters([

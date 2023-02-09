@@ -9,10 +9,15 @@ class Intentos extends Model
 {
     protected $fillable = [
         'id',
-        "id_usuario",
-        "id_cargador",
+        'id_usuario',
+        'id_cargador',
         'nombre_archivo_original',
-        "nombre_archivo",
+        'nombre_archivo',
+        'created_at'
+    ];
+
+    protected $hidden = [
+        'updated_at',
     ];
 
     public function cargador()
