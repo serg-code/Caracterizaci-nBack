@@ -18,6 +18,7 @@ return new class extends Migration
             $table->id('id');
             $table->bigInteger('id_usuario');
             $table->string('nombre')->nullable();
+            $table->string('nombre_tabla')->unique();
             $table->text('sql')->nullable();
             $table->boolean('delete_temp')->nullable();
             $table->boolean('procesarErrores');
