@@ -12,10 +12,11 @@ use Spatie\QueryBuilder\QueryBuilder;
 
 class CargadoresController extends Controller
 {
-    private Cargadores $cargador;
+    private ?Cargadores $cargador;
 
     public function __construct()
     {
+        $this->cargador = new Cargadores();
     }
 
     public function index()
@@ -67,7 +68,7 @@ class CargadoresController extends Controller
             $request->all(),
             [
                 'nombre' => 'required|string',
-                'roles' => "required|array",
+                'roles' => "array",
             ],
             [
                 'nombre.required' => 'El nombre es necesario',
@@ -85,6 +86,27 @@ class CargadoresController extends Controller
                 $validador->getMessageBag()
             );
         }
+
+        $this->cargador = Cargadores::find($idCargador);
+        if (empty($this->cargador)) {
+            return RespuestaHttp::respuesta(
+                404,
+                'Not foind',
+                'No encontramos el cargador'
+            );
+        }
+
+        $this->cargador->nombre = $request->input('nombre');
+        $this->cargador->save();
+
+        return RespuestaHttp::respuesta(
+            200,
+            'succes',
+            'Cargador actualizado con exito',
+            [
+                'cargador' => $this->cargador,
+            ]
+        );
     }
 
 
