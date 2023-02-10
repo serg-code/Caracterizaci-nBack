@@ -50,4 +50,9 @@ class Cargadores extends Model
     {
         return $query->where('id', $dato)->orWhere('nombre', 'like', "%$dato%");
     }
+
+    public function acceso()
+    {
+        return $this->hasMany(AccesoCargadores::class, 'id_cargador', 'id');
+    }
 }
