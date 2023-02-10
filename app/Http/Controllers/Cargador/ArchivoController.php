@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Imports\CargadorImport;
 use App\Models\Cargadores;
 use App\Models\Intentos;
+use App\Models\LogErrores;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -59,11 +60,8 @@ class ArchivoController extends Controller
             );
         }
 
-        //guardar archivo enviado
         $archivo = $request->file('archivo');
-        $fecha = now();
-        $nombreGuardar = $request->user()->id . '-' . $fecha->getTimestamp() . '-' . $archivo->getClientOriginalName();
-        $archivo->storeAs('Cargadores', $nombreGuardar, $this->disco);
+        $nombreGuardar = $this->guardarArchivo($request->user()->id, $archivo);
         $inteto = new Intentos([
             'id_usuario' => $request->user()->id,
             'id_cargador' => $cargadorId,
@@ -72,35 +70,32 @@ class ArchivoController extends Controller
         ]);
 
         $inteto->save();
-        try {
-            Excel::import(new CargadorImport($cargador), $archivo);
-        } catch (\Throwable $th) {
-            return RespuestaHttp::respuesta(
-                400,
-                'Bad Request',
-                'Valide la informacion del archivo subido'
-            );
-        }
-
+        $this->crearTabla($cargador->sql, $cargador->nombre_tabla);
+        $this->importarArchivo($cargador, $archivo);
         $columnas = $cargador->columnas;
-        $nombreTabla = str_replace(' ', '_', $cargador->nombre);
+        $nombreTabla = $cargador->nombre_tabla;
         foreach ($columnas as $columna) {
             $json = json_decode($columna->json);
+            if (empty($json->parametros->validar)) {
+                continue;
+            }
+
             $validador = explode('|', $json->parametros->validar);
             for ($i = 0; $i < sizeof($validador); $i++) {
                 $sql = $this->matchTipoValidador($validador[$i], $columna->nombre, $nombreTabla, $inteto->id);
                 DB::statement($sql);
-                dd($sql);
             }
         }
 
+        $cantidadErrores = LogErrores::where('intento', $inteto->id)->count();
         return RespuestaHttp::respuesta(
             200,
             'Succes',
             'Datos guardados exitosamente',
             [
+                'cantidadErrores' => $cantidadErrores,
+                'descarga' => "",
                 'intento' => $inteto,
-                'cargador' => $cargador,
             ]
         );
     }
@@ -110,16 +105,14 @@ class ArchivoController extends Controller
         $fecha = now();
         $insert = "INSERT INTO log_errores (texto_error, ubicacion_error, intento, created_at, updated_at)";
         $validador = explode(':', $tipoValidar);
-
         return match ($validador[0]) {
-            // 'long' => $insert .
-            // "SELECT CONCAT('Error en la linea ', sub, ' $nombreColumna no cumple con el rango $validador[1]'), sub, '$idIntento', '$fecha', '$fecha' FROM" .
-            // "(SELECT sub, cc FROM $nombreTabla WHERE NOT(CHAR_LENGTH($nombreColumna) $validador[1])) as error;",
             'long' => "$insert
-            SELECT CONCAT('Error en la linea ', sub, ' $nombreColumna no cumple con el rango $validador[1]'), sub, '$idIntento', '$fecha', '$fecha' FROM
-            (SELECT sub, cc FROM $nombreTabla WHERE NOT(CHAR_LENGTH($nombreColumna) $validador[1])) as error;",
+            SELECT CONCAT('Error en la linea ', sub, ' el campo $nombreColumna no cumple con el rango $validador[1]'), sub, '$idIntento', '$fecha', '$fecha' 
+            FROM (SELECT sub, cc FROM $nombreTabla WHERE NOT(CHAR_LENGTH($nombreColumna) $validador[1])) as error;",
 
-            'type' => "SELECT sub, cc FROM $nombreTabla WHERE " . $this->matchType($validador[1], $nombreColumna) . ';',
+            'type' => "$insert SELECT CONCAT('Error en la linea ', sub, ' el campo $nombreColumna no es del tipo " . $validador[1] . "')" .
+            ",sub, '$idIntento', '$fecha', '$fecha' FROM " .
+            "(SELECT sub, cc FROM $nombreTabla WHERE " . $this->matchType($validador[1], $nombreColumna) . ') AS error;',
         };
     }
 
@@ -127,10 +120,43 @@ class ArchivoController extends Controller
     {
         $regularEmail = "^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$";
         return match ($type) {
-            'number' => 'NOT(' . $nombreColumna . ' REGEXP ' . '"' . $regularEmail . '")',
-            'decimal' => 'NOT(' . $nombreColumna . ' REGEXP "' . "^[0-9]+([.][0-9]+)?$" . '")',
+            'numero' => 'NOT(' . $nombreColumna . ' REGEXP ' . '"^[0-9]+$")',
+            'decimal' => 'NOT(' . $nombreColumna . ' REGEXP ' . '"^[0-9]+([.][0-9]+)?$")',
             'email' => 'NOT(' . $nombreColumna . ' REGEXP ' . '"' . $regularEmail . '")',
         };
+    }
+
+    private function crearTabla(string $sql, string $nombreTabla)
+    {
+        try {
+            DB::statement($sql);
+        } catch (\Throwable $th) {
+            //throw $th;
+            DB::statement("DROP TABLE $nombreTabla");
+            DB::statement($sql);
+        }
+    }
+
+    private function guardarArchivo(int $idUsuario, $archivo): string
+    {
+        $fecha = now();
+        $nombreGuardar = $idUsuario . '-' . $fecha->getTimestamp() . '-' . $archivo->getClientOriginalName();
+        $archivo->storeAs('Cargadores', $nombreGuardar, $this->disco);
+        return $nombreGuardar;
+    }
+
+    private function importarArchivo(Cargadores $cargador, $archivo)
+    {
+        try {
+            Excel::import(new CargadorImport($cargador), $archivo);
+        } catch (\Throwable $th) {
+            dd($th);
+            return RespuestaHttp::respuesta(
+                400,
+                'Bad Request',
+                'Valide la informacion del archivo subido'
+            );
+        }
     }
 
 }

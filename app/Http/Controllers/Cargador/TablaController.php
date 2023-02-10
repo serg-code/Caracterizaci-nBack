@@ -36,6 +36,7 @@ class TablaController extends Controller
                 'nombre.string' => 'El nombre debe ser un texto',
                 'nombre_tabla.required' => 'El nombre es necesario',
                 'nombre_tabla.string' => 'El nombre debe ser un texto',
+                'nombre_tabla.unique' => 'Este nombre para la tabla no es valido',
                 'columnas.required' => 'La columnas son necesarias',
                 'columnas.array' => 'Las columnas deben ser un listado',
                 'procesarErrores.required' => 'Es necesario saber si se procesan los datos con errores',

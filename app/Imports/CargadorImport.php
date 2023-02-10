@@ -11,7 +11,6 @@ use Maatwebsite\Excel\Concerns\ToCollection;
 class CargadorImport implements ToCollection
 {
     protected array $columnas;
-    protected string $nombreTabla;
     private int $cantidadColumna;
 
     public function __construct(
@@ -20,7 +19,7 @@ class CargadorImport implements ToCollection
     {
         $this->columnas = CargadoresColumns::where('id_cargador', '=', $this->cargador->id)->get(['nombre'])->toArray();
         $this->cantidadColumna = sizeof($this->columnas);
-        $this->nombreTabla = str_replace(' ', '_', $this->cargador->nombre);
+        $this->nombreTabla = $cargador->nombre_tabla;
     }
 
     /**
@@ -37,7 +36,7 @@ class CargadorImport implements ToCollection
 
             return $datoGuardar;
         }, $collection->toArray());
-        DB::table($this->nombreTabla)->insertOrIgnore($datos);
+        DB::table($this->cargador->nombre_tabla)->insertOrIgnore($datos);
     }
 
 }

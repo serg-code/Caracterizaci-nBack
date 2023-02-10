@@ -9,9 +9,14 @@ class LogErrores extends Model
 {
     protected $fillable = [
         'id',
-        "texto_error", 
+        "texto_error",
         "ubicacion_error",
         "intento",
+    ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at',
     ];
 
     public function intentos()
