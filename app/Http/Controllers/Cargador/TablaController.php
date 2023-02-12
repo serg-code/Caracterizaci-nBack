@@ -19,6 +19,7 @@ class TablaController extends Controller
     {
         $this->errores = [];
         $this->columnas = [];
+        $this->middleware('permission:crear cargador', ['only' => ['crearTabla']]);
     }
 
     public function crearTabla(Request $request)

@@ -68,6 +68,10 @@ class User extends Authenticatable
         return $query->where('name', 'like', "%$dato%")->orWhere('email', 'like', "%$dato%");
     }
 
+    /**
+     * obtener un arreglo con los id de los roles que tiene el usuario
+     * @return array<int>
+     */
     public function idRoles(): array
     {
         $roles = $this->roles;

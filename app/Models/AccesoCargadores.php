@@ -10,7 +10,7 @@ class AccesoCargadores extends Model
 {
     use HasFactory;
 
-    protected $table = 'acceso_reporte';
+    protected $table = 'acceso_cargadores';
 
     protected $fillable = [
         'id_cargador',

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Cargador;
 
 use App\Dev\RespuestaHttp;
+use App\Models\AccesoCargadores;
 use App\Models\Cargadores;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -17,6 +19,8 @@ class CargadoresController extends Controller
     public function __construct()
     {
         $this->cargador = new Cargadores();
+        $this->middleware('permission:listar cargador', ['only' => ['index']]);
+        // $this->middleware('permission:editar cargador', ['only' => ['update']]);
     }
 
     public function index()
@@ -45,7 +49,7 @@ class CargadoresController extends Controller
         //
     }
 
-    public function show($idCargador)
+    public function show(Request $request, $idCargador)
     {
         $cargador = Cargadores::find($idCargador);
 
@@ -54,6 +58,15 @@ class CargadoresController extends Controller
                 404,
                 'Not found',
                 'Cargador no encontrado'
+            );
+        }
+
+        $accesoValido = $this->validarRolesAcceso($request->user(), $idCargador);
+        if (!$accesoValido) {
+            return RespuestaHttp::respuesta(
+                403,
+                'Forbidden',
+                'No se puede encontrar este recurso'
             );
         }
 
@@ -69,12 +82,14 @@ class CargadoresController extends Controller
             [
                 'nombre' => 'required|string',
                 'roles' => "array",
+                'roles.*' => 'numeric|exists:roles,id'
             ],
             [
                 'nombre.required' => 'El nombre es necesario',
                 'nombre.string' => 'El nombre debe ser texto',
                 'roles.required' => 'El listado de roles es obligatorio',
-                'roles.array' => 'Los roles debe ser un listado'
+                'roles.array' => 'Los roles debe ser un listado',
+                'roles.*' => 'En el listado de los roles un valor no es valido',
             ]
         );
 
@@ -91,13 +106,14 @@ class CargadoresController extends Controller
         if (empty($this->cargador)) {
             return RespuestaHttp::respuesta(
                 404,
-                'Not foind',
+                'Not found',
                 'No encontramos el cargador'
             );
         }
 
         $this->cargador->nombre = $request->input('nombre');
         $this->cargador->save();
+        $this->guardarAccesoCargadores($request->input('roles'));
 
         return RespuestaHttp::respuesta(
             200,
@@ -113,5 +129,34 @@ class CargadoresController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    private function validarRolesAcceso(User $usuario, $idCargador): bool
+    {
+        $roles = $usuario->idRoles();
+        $acceso = AccesoCargadores::where('id_cargador', $idCargador)->whereIn('role_id', $roles);
+
+        if (empty($acceso)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * @param array<int> $idRoles
+     */
+    private function guardarAccesoCargadores(array $idRoles): void
+    {
+        AccesoCargadores::where('id_cargador', '=', $this->cargador->id)->delete();
+        $accesoCargadores = array_map(function ($id) {
+            $fecha = now();
+            return [
+                'id_cargador' => $this->cargador->id,
+                'role_id' => $id,
+                'created_at' => $fecha,
+                'updated_at' => $fecha,
+            ];
+        }, $idRoles);
     }
 }

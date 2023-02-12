@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Dev\Encuesta\OpcionPregunta;
 use App\Dev\Encuesta\SeccionesHogar;
-use App\Dev\Notificacion;
 use App\Dev\RespuestaHttp;
 use App\Models\Hogar\Hogar;
 use App\Models\Integrantes;
@@ -13,9 +12,6 @@ use App\Models\Respuesta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-/**
- * todo: validar el tipo de respuesta a guardar
- */
 class RespuestasController extends Controller
 {
     public function guardarRespuestaParcial(Request $request)
@@ -23,8 +19,7 @@ class RespuestasController extends Controller
         $datos = $request->input('hogar');
         $hogar = Hogar::guardarHogar($datos);
 
-        if (empty($hogar))
-        {
+        if (empty($hogar)) {
             return RespuestaHttp::respuesta(400, 'Bad request', 'No se puede obtener el hogar');
         }
 
@@ -49,14 +44,12 @@ class RespuestasController extends Controller
 
         $validacion = $this->validarDatosActualizacion($datos);
 
-        if (!empty($validacion))
-        {
+        if (!empty($validacion)) {
             return response()->json($validacion, $validacion->codigoHttp);
         }
 
         $hogar = Hogar::actualizarHogar($datos);
-        if (empty($hogar))
-        {
+        if (empty($hogar)) {
             return RespuestaHttp::respuesta(
                 404,
                 'Not found',
@@ -85,8 +78,7 @@ class RespuestasController extends Controller
         $hogar = Hogar::guardarHogar($datos);
         $errores = [];
 
-        if (empty($hogar) || empty($datos['secciones']))
-        {
+        if (empty($hogar) || empty($datos['secciones'])) {
             $respuesta->cambiar(
                 400,
                 'Bad request',
@@ -101,23 +93,19 @@ class RespuestasController extends Controller
             return response()->json($respuesta, $respuesta->codigoHttp);
         }
 
-        foreach ($datos['secciones'] as $seccion)
-        {
+        foreach ($datos['secciones'] as $seccion) {
 
-            foreach ($seccion['respuestas'] as $respuestaClave => $respuestaValor)
-            {
+            foreach ($seccion['respuestas'] as $respuestaClave => $respuestaValor) {
                 $pregunta = Pregunta::ObtenerPregunta($respuestaClave);
 
-                if (empty($pregunta))
-                {
+                if (empty($pregunta)) {
                     array_push($errores, "$respuestaClave no es una pregunta valida");
                     break;
                 }
 
                 //validar que valor de la opcion sea igual al del puntaje de la opcion
                 $respuestaEsOpcion = OpcionPregunta::buscarRespuestaOpcion($respuestaValor, $pregunta->opciones);
-                if ($respuestaEsOpcion->estado === 'error')
-                {
+                if ($respuestaEsOpcion->estado === 'error') {
                     array_push(
                         $errores,
                         "$respuestaValor no es una respuesta valida valida para la pregunta ($pregunta->descripcion)"
@@ -146,8 +134,7 @@ class RespuestasController extends Controller
     protected function recorrerSecciones(Hogar $hogar, array $secciones = [])
     {
 
-        if (!empty($secciones))
-        {
+        if (!empty($secciones)) {
             $seccionesHogar = new SeccionesHogar($hogar, $secciones);
             $seccionesHogar->recorrer();
             $hogar->puntaje_obtenido = $seccionesHogar->obtenerPuntaje();
@@ -159,13 +146,11 @@ class RespuestasController extends Controller
 
     protected function recorrerIntegrantes(Hogar $hogar, array $integrantes = [])
     {
-        if (empty($integrantes))
-        {
+        if (empty($integrantes)) {
             return null;
         }
 
-        foreach ($integrantes as $integrante)
-        {
+        foreach ($integrantes as $integrante) {
             $integrante['hogar_id'] = $integrante['hogar_id'] ?? $hogar->id;
             $integrante = Integrantes::guardarIntegrante($integrante);
             // if (!empty($integrante['secciones']))
@@ -188,8 +173,7 @@ class RespuestasController extends Controller
             ]
         );
 
-        if ($validacion->fails())
-        {
+        if ($validacion->fails()) {
             return new RespuestaHttp(400, 'Bad Request', 'Datos erroneos', $validacion->getMessageBag());
         }
 
