@@ -67,4 +67,13 @@ class User extends Authenticatable
     {
         return $query->where('name', 'like', "%$dato%")->orWhere('email', 'like', "%$dato%");
     }
+
+    public function idRoles(): array
+    {
+        $roles = $this->roles;
+        $ids = array_map(function ($rol) {
+            return $rol['id'];
+        }, $roles->toArray());
+        return $ids;
+    }
 }

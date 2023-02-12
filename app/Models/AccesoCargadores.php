@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Permission\Models\Role;
 
-class AccesoReporte extends Model
+class AccesoCargadores extends Model
 {
     use HasFactory;
 

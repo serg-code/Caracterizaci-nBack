@@ -6,6 +6,7 @@ use App\Dev\RespuestaHttp;
 use App\Exports\ReporteExport;
 use App\Models\AccesoReporte;
 use App\Models\Reportes;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -15,9 +16,11 @@ use Maatwebsite\Excel\Facades\Excel;
 class ReporteController extends Controller
 {
 
+    private User $usuario;
+
     public function __construct()
     {
-        $this->middleware(['role:Super Administrador',], ['only' => ['show',]]);
+        // $this->middleware(['role:*',], ['only' => ['show',]]);
     }
 
 
@@ -44,7 +47,7 @@ class ReporteController extends Controller
 
 
 
-    public function show($reporteId)
+    public function show(Request $request, $reporteId)
     {
         $reporte = $this->getReporte($reporteId);
 
@@ -56,6 +59,18 @@ class ReporteController extends Controller
                 [
                     'reporte' => $reporte,
                 ]
+            );
+        }
+
+        $this->usuario = $request->user();
+        $roles = $this->usuario->idRoles();
+        $acceso = AccesoReporte::where('reporte_id', $reporteId)->whereIn('role_id', $roles)->get();
+        if (empty($acceso)) {
+
+            return RespuestaHttp::respuesta(
+                403,
+                'Forbidden',
+                'No se peude acceder a este recurso'
             );
         }
 
@@ -210,5 +225,12 @@ class ReporteController extends Controller
         );
 
         return !$validador->fails();
+    }
+
+    public function validarRolesAcceso(User $usuario, Reportes $reporte)
+    {
+        $roles = $usuario->roles();
+        // $accesoReporte = AccesoReporte::
+        dd($roles);
     }
 }
