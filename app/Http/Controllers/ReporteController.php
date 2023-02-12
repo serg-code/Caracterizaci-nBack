@@ -99,6 +99,7 @@ class ReporteController extends Controller
                 'nombre' => 'required|string',
                 'descripcion' => 'required|string',
                 'roles' => "required|array",
+                'roles.*' => 'numeric|exists:roles,id'
             ],
             [
                 'nombre.required' => 'El nombre es necesario',
@@ -106,7 +107,8 @@ class ReporteController extends Controller
                 'descripcion.required' => 'La descripcion es necesaria',
                 'descripcion.string' => 'La descripcion debe ser texto',
                 'roles.required' => 'El listado de roles es obligatorio',
-                'roles.array' => 'Los roles debe ser un listado'
+                'roles.array' => 'Los roles debe ser un listado',
+                'roles.*' => 'En el listado de los roles un valor no es valido',
             ]
         );
 

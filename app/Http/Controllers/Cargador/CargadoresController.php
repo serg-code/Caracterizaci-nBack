@@ -158,5 +158,7 @@ class CargadoresController extends Controller
                 'updated_at' => $fecha,
             ];
         }, $idRoles);
+
+        AccesoCargadores::insert($accesoCargadores);
     }
 }
