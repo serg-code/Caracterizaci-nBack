@@ -17,10 +17,13 @@ class ReporteController extends Controller
 {
 
     private User $usuario;
+    private Reportes $reporte;
 
     public function __construct()
     {
         // $this->middleware(['role:*',], ['only' => ['show',]]);
+        $this->middleware(['permission:listar reporte'], ['only' => ['index']]);
+        $this->middleware(['permission:editar reporte'], ['only' => ['update']]);
     }
 
 
@@ -47,7 +50,47 @@ class ReporteController extends Controller
 
 
 
-    public function show(Request $request, $reporteId)
+    public function show(Request $request, $idReporte)
+    {
+
+        $acceso = $this->validarRolesAcceso($request->user(), $idReporte);
+        if (!empty($acceso)) {
+            return RespuestaHttp::respuestaObjeto($acceso);
+        }
+
+        $validador = Validator::make(
+            [
+                'idReporte' => $idReporte,
+            ],
+            [
+                'idReporte' => 'required|exists:reportes,id'
+            ],
+            [
+                'idReporte.required' => 'El id del reporte es necesario',
+                'idReporte.exists' => 'No encontramos el reporte',
+            ]
+        );
+
+        if ($validador->fails()) {
+            return RespuestaHttp::respuesta(
+                404,
+                'Not found',
+                'No encontramos el reporte'
+            );
+        }
+
+        $reporte = Reportes::find($idReporte);
+        $reporte->acceso;
+        return RespuestaHttp::respuesta(
+            200,
+            'Succes',
+            'Reporte encontrado',
+            $reporte
+        );
+
+    }
+
+    public function descargar(Request $request, $reporteId)
     {
         $reporte = $this->getReporte($reporteId);
 
@@ -93,6 +136,11 @@ class ReporteController extends Controller
 
     public function update(Request $request, $reporteId)
     {
+        $accesoRoles = $this->validarRolesAcceso($request->user(), $reporteId);
+        if (!empty($accesoRoles)) {
+            return RespuestaHttp::respuestaObjeto($accesoRoles);
+        }
+
         $validador = Validator::make(
             $request->all(),
             [
@@ -121,34 +169,35 @@ class ReporteController extends Controller
             );
         }
 
-        $reporte = Reportes::find($reporteId);
-        if (empty($reporte)) {
+        $this->reporte = Reportes::find($reporteId);
+        if (empty($this->reporte)) {
             return RespuestaHttp::respuesta(404, 'Not Found', 'Reporte no encontrado');
         }
 
         $datosActualizarReporte = $request->only(['nombre', 'descripcion']);
-        $reporte->update($datosActualizarReporte);
+        $this->reporte->update($datosActualizarReporte);
 
+        //actualizar roles de acceso
         AccesoReporte::where('reporte_id', '=', $reporteId)->delete();
         $listadoId = $request->input('roles');
-        $accesoReporte = [];
-        $fecha = now();
-        foreach ($listadoId as $id) {
-            array_push($accesoReporte, [
-                'reporte_id' => $reporteId,
+        $accesoReporte = array_map(function (int $id) {
+            $fecha = now();
+            return [
+                'reporte_id' => $this->reporte->id,
                 'role_id' => $id,
                 'created_at' => $fecha,
                 'updated_at' => $fecha,
-            ]);
-        }
+            ];
+        }, $listadoId);
 
-        DB::table('acceso_reporte')->insertOrIgnore($accesoReporte);
+        AccesoReporte::insert($accesoReporte);
+        $this->reporte->acceso;
         return RespuestaHttp::respuesta(
             200,
             'Updated',
             'Reporte actualizado con exito',
             [
-                'reporte' => $reporte,
+                'reporte' => $this->reporte,
             ]
         );
     }
@@ -229,10 +278,19 @@ class ReporteController extends Controller
         return !$validador->fails();
     }
 
-    public function validarRolesAcceso(User $usuario, Reportes $reporte)
+    private function validarRolesAcceso(User $usuario, int $idPermiso): ?RespuestaHttp
     {
-        $roles = $usuario->roles();
-        // $accesoReporte = AccesoReporte::
-        dd($roles);
+        $roles = $usuario->idRoles();
+        $acceso = AccesoReporte::where('reporte_id', $idPermiso)->whereIn('role_id', $roles)->get();
+
+        if (empty($acceso->toArray())) {
+            return new RespuestaHttp(
+                403,
+                'Forbiden',
+                'No puede acceder a este recurso'
+            );
+        }
+
+        return null;
     }
 }

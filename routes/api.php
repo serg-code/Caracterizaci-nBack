@@ -65,7 +65,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::apiResource('barrio_vereda', \App\Http\Controllers\BarrioVeredaController::class);
 
-    Route::apiResource('reporte', \App\Http\Controllers\ReporteController::class)->except(['destroy']);
+    Route::apiResource('reporte', \App\Http\Controllers\ReporteController::class)->except(['destroy', 'store']);
+    Route::get('reporte/descarga/{idReporte}', [\App\Http\Controllers\ReporteController::class, 'descargar']);
 
     Route::post('cargador', [\App\Http\Controllers\Cargador\TablaController::class, 'crearTabla']);
     Route::apiResource('cargador', \App\Http\Controllers\Cargador\CargadoresController::class)->except(['store', 'destroy']);

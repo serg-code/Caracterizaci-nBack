@@ -134,7 +134,7 @@ class CargadoresController extends Controller
     private function validarRolesAcceso(User $usuario, $idCargador): bool
     {
         $roles = $usuario->idRoles();
-        $acceso = AccesoCargadores::where('id_cargador', $idCargador)->whereIn('role_id', $roles);
+        $acceso = AccesoCargadores::where('id_cargador', $idCargador)->whereIn('role_id', $roles)->get();
 
         if (empty($acceso)) {
             return false;
