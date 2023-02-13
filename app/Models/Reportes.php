@@ -14,6 +14,7 @@ class Reportes extends Model
         'id',
         'nombre',
         'descripcion',
+        'estado',
     ];
 
     protected $hidden = [
