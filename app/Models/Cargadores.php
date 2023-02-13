@@ -15,7 +15,9 @@ class Cargadores extends Model
         "id",
         "id_usuario",
         "nombre",
+        "descripcion",
         "procesarErrores",
+        "estado",
         "created_at",
     ];
 
