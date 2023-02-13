@@ -51,22 +51,17 @@ class CargadoresController extends Controller
 
     public function show(Request $request, $idCargador)
     {
-        $cargador = Cargadores::find($idCargador);
+        $accesoValido = $this->validarRolesAcceso($request->user(), $idCargador);
+        if (!empty($accesoValido)) {
+            return RespuestaHttp::respuestaObjeto($accesoValido);
+        }
 
+        $cargador = Cargadores::find($idCargador);
         if (empty($cargador)) {
             return RespuestaHttp::respuesta(
                 404,
                 'Not found',
                 'Cargador no encontrado'
-            );
-        }
-
-        $accesoValido = $this->validarRolesAcceso($request->user(), $idCargador);
-        if (!$accesoValido) {
-            return RespuestaHttp::respuesta(
-                403,
-                'Forbidden',
-                'No se puede encontrar este recurso'
             );
         }
 
@@ -77,19 +72,30 @@ class CargadoresController extends Controller
 
     public function update(Request $request, $idCargador)
     {
+        $accesoValido = $this->validarRolesAcceso($request->user(), $idCargador);
+        if (!empty($accesoValido)) {
+            return RespuestaHttp::respuestaObjeto($accesoValido);
+        }
+
+
         $validador = Validator::make(
             $request->all(),
             [
                 'nombre' => 'required|string',
+                'descripcion' => 'string',
                 'roles' => "array",
-                'roles.*' => 'numeric|exists:roles,id'
+                'roles.*' => 'numeric|exists:roles,id',
+                'estado' => 'string|in:ACTIVO,INACTIVO',
             ],
             [
                 'nombre.required' => 'El nombre es necesario',
+                'descripcion' => 'La descripcion debe ser de tipo texto',
                 'nombre.string' => 'El nombre debe ser texto',
                 'roles.required' => 'El listado de roles es obligatorio',
                 'roles.array' => 'Los roles debe ser un listado',
                 'roles.*' => 'En el listado de los roles un valor no es valido',
+                'estado.strig' => 'El estado debe se de tipo texto',
+                'estado.in' => 'El valor del estado no es una opcioens valida',
             ]
         );
 
@@ -111,7 +117,7 @@ class CargadoresController extends Controller
             );
         }
 
-        $this->cargador->nombre = $request->input('nombre');
+        $this->cargador->update($request->only(['nombre', 'descripcion', 'estado']));
         $this->cargador->save();
         $this->guardarAccesoCargadores($request->input('roles'));
 
@@ -131,16 +137,20 @@ class CargadoresController extends Controller
         //
     }
 
-    private function validarRolesAcceso(User $usuario, $idCargador): bool
+    private function validarRolesAcceso(User $usuario, $idCargador): ?RespuestaHttp
     {
         $roles = $usuario->idRoles();
         $acceso = AccesoCargadores::where('id_cargador', $idCargador)->whereIn('role_id', $roles)->get();
 
         if (empty($acceso)) {
-            return false;
+            return new RespuestaHttp(
+                403,
+                'Forbiden',
+                'No puede acceder al recurso solicitado'
+            );
         }
 
-        return true;
+        return null;
     }
 
     /**

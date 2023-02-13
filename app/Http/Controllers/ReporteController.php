@@ -63,7 +63,7 @@ class ReporteController extends Controller
                 'idReporte' => $idReporte,
             ],
             [
-                'idReporte' => 'required|exists:reportes,id'
+                'idReporte' => 'required|exists:reportes,id',
             ],
             [
                 'idReporte.required' => 'El id del reporte es necesario',
@@ -90,10 +90,15 @@ class ReporteController extends Controller
 
     }
 
-    public function descargar(Request $request, $reporteId)
+    public function descargar(Request $request, $idReporte)
     {
-        $reporte = $this->getReporte($reporteId);
+        $this->usuario = $request->user();
+        $acceso = $this->validarRolesAcceso($this->usuario, $idReporte);
+        if (!empty($acceso)) {
+            return RespuestaHttp::respuestaObjeto($acceso);
+        }
 
+        $reporte = $this->getReporte($idReporte);
         if (empty($reporte)) {
             return RespuestaHttp::respuesta(
                 404,
@@ -102,18 +107,6 @@ class ReporteController extends Controller
                 [
                     'reporte' => $reporte,
                 ]
-            );
-        }
-
-        $this->usuario = $request->user();
-        $roles = $this->usuario->idRoles();
-        $acceso = AccesoReporte::where('reporte_id', $reporteId)->whereIn('role_id', $roles)->get();
-        if (empty($acceso)) {
-
-            return RespuestaHttp::respuesta(
-                403,
-                'Forbidden',
-                'No se peude acceder a este recurso'
             );
         }
 
@@ -147,7 +140,8 @@ class ReporteController extends Controller
                 'nombre' => 'required|string',
                 'descripcion' => 'required|string',
                 'roles' => "required|array",
-                'roles.*' => 'numeric|exists:roles,id'
+                'roles.*' => 'numeric|exists:roles,id',
+                'estado' => 'string|in:ACTIVO,INACTIVO',
             ],
             [
                 'nombre.required' => 'El nombre es necesario',
@@ -157,6 +151,8 @@ class ReporteController extends Controller
                 'roles.required' => 'El listado de roles es obligatorio',
                 'roles.array' => 'Los roles debe ser un listado',
                 'roles.*' => 'En el listado de los roles un valor no es valido',
+                'estado.strig' => 'El estado debe se de tipo texto',
+                'estado.in' => 'El valor del estado no es una opcioens valida',
             ]
         );
 
@@ -174,23 +170,10 @@ class ReporteController extends Controller
             return RespuestaHttp::respuesta(404, 'Not Found', 'Reporte no encontrado');
         }
 
-        $datosActualizarReporte = $request->only(['nombre', 'descripcion']);
+        $datosActualizarReporte = $request->only(['nombre', 'descripcion', 'estado']);
         $this->reporte->update($datosActualizarReporte);
+        $this->guardarAccesoReporte($request->input('roles'), $reporteId);
 
-        //actualizar roles de acceso
-        AccesoReporte::where('reporte_id', '=', $reporteId)->delete();
-        $listadoId = $request->input('roles');
-        $accesoReporte = array_map(function (int $id) {
-            $fecha = now();
-            return [
-                'reporte_id' => $this->reporte->id,
-                'role_id' => $id,
-                'created_at' => $fecha,
-                'updated_at' => $fecha,
-            ];
-        }, $listadoId);
-
-        AccesoReporte::insert($accesoReporte);
         $this->reporte->acceso;
         return RespuestaHttp::respuesta(
             200,
@@ -292,5 +275,21 @@ class ReporteController extends Controller
         }
 
         return null;
+    }
+
+    private function guardarAccesoReporte(array $listadoIds, int $reporteId): void
+    {
+        AccesoReporte::where('reporte_id', '=', $reporteId)->delete();
+        $accesoReporte = array_map(function (int $id) {
+            $fecha = now();
+            return [
+                'reporte_id' => $this->reporte->id,
+                'role_id' => $id,
+                'created_at' => $fecha,
+                'updated_at' => $fecha,
+            ];
+        }, $listadoIds);
+
+        AccesoReporte::insert($accesoReporte);
     }
 }
