@@ -39,7 +39,7 @@ class Intentos extends Model
             ->where('cargadores.nombre', 'like', "%$dato%");
     }
 
-    public function scopeFechas(Builder $query, $fechaIncio, $fechaFIn = null): Builder
+    public function scopeFechas(Builder $query, $fechaIncio, $fechaFIn = ''): Builder
     {
         $fechaIncioFiltro = Carbon::parse($fechaIncio);
         $fechaFinFiltro = $this->escojerDia($fechaFIn);

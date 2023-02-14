@@ -49,10 +49,9 @@ class Hogar extends Model
 
     public static function guardarHogar(array $datos): ?Hogar
     {
-        $hogar =  Hogar::find($datos['id'] ?? 'uuid');
+        $hogar = Hogar::find($datos['id'] ?? 'uuid');
 
-        if (empty($hogar))
-        {
+        if (empty($hogar)) {
             $hogar = new Hogar($datos);
             $hogar->save();
 
@@ -64,9 +63,8 @@ class Hogar extends Model
 
     public static function actualizarHogar(array $datos): ?Hogar
     {
-        $hogar =  Hogar::find($datos['id'] ?? 'uuid');
-        if (!empty($hogar))
-        {
+        $hogar = Hogar::find($datos['id'] ?? 'uuid');
+        if (!empty($hogar)) {
             $hogar->update([
                 'barrio_vereda_id' => $datos['barrio_vereda_id'] ?? $hogar->barrio_vereda_id,
                 'zona' => $datos['zona'] ?? $hogar->zona,
@@ -138,7 +136,7 @@ class Hogar extends Model
             ->orWhere('integrantes.correo', 'like', "%$dato%");
     }
 
-    public function scopeFechas(Builder $query, $fechaIncio, $fechaFIn = null): Builder
+    public function scopeFechas(Builder $query, $fechaIncio, $fechaFIn = ''): Builder
     {
         $fechaIncioFiltro = Carbon::parse($fechaIncio);
         $fechaFinFiltro = $this->escojerDia($fechaFIn);
@@ -148,8 +146,7 @@ class Hogar extends Model
 
     private function escojerDia(string $fecha)
     {
-        if (empty($fecha))
-        {
+        if (empty($fecha)) {
             return Carbon::now();
         }
 

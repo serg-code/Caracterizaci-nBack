@@ -36,7 +36,8 @@ class IntentosController extends Controller
         $intentos = QueryBuilder::for (Intentos::class)
             ->allowedFilters([
                 AllowedFilter::exact('id'),
-                AllowedFilter::scope('fechas')
+                AllowedFilter::scope('fechas'),
+                AllowedFilter::scope('search'),
             ])
             ->with([
                 'cargador:id,nombre,estado,created_at'
