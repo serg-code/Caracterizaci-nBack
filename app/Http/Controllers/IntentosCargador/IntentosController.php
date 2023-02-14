@@ -6,6 +6,8 @@ use App\Dev\RespuestaHttp;
 use App\Http\Controllers\Controller;
 use App\Models\Intentos;
 use Illuminate\Http\Request;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class IntentosController extends Controller
 {
@@ -21,7 +23,33 @@ class IntentosController extends Controller
 
     public function index()
     {
-        //
+        $datosUrl = $_GET;
+        $cantidadPaginar = $datosUrl['per_page'] ?? env('LIMITEPAGINA_USUARIO', 10);
+        $select = [
+            'intentos.id',
+            'intentos.id_cargador',
+            'intentos.id_usuario',
+            'intentos.cantidad_errores',
+            'intentos.created_at',
+        ];
+
+        $intentos = QueryBuilder::for (Intentos::class)
+            ->allowedFilters([
+                AllowedFilter::exact('id'),
+                AllowedFilter::scope('fechas')
+            ])
+            ->with([
+                'cargador:id,nombre,estado,created_at'
+            ])
+            ->select($select)
+            ->paginate($cantidadPaginar);
+
+        return RespuestaHttp::respuesta(
+            200,
+            'succes',
+            'Listado de intentos de carga',
+            $intentos
+        );
     }
 
 
