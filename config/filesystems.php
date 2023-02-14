@@ -59,7 +59,7 @@ return [
         'cargadores' => [
             'driver' => 'local',
             'root' => storage_path('app/Cargadores'),
-            // 'url' => env('APP_URL') . '/storage',
+            'url' => env('APP_URL') . '/Cargadores',
             // 'visibility' => 'public',
             'throw' => false,
         ],

@@ -28,13 +28,23 @@ class ArchivoOriginalController extends Controller
             return RespuestaHttp::respuesta(
                 404,
                 'Not found',
-                'No encontramos el archivo solcitado',
+                'No es id valido para efectuar la búsqueda',
             );
         }
 
-        $path = Storage::disk($this->disco)->path($this->intento->nombre_archivo);
-        // dd($path);
-        // return Storage::disk($this->disco)->downloadAs($this->$idIntento->nombre_archivo, $this->intento->nombre_archivo_original);
-        return Storage::download($this->intento->nombre_archivo, $this->intento->nombre_archivo_original);
+        $existe = Storage::disk($this->disco)->exists($this->intento->nombre_archivo);
+
+        if (!$existe) {
+            return RespuestaHttp::respuesta(
+                404,
+                'Not found',
+                'No encontramos el archivo asociado a este intento ',
+                [
+                    'archivo' => 'No encontramos el archivo solicitado'
+                ]
+            );
+        }
+
+        return Storage::disk($this->disco)->download($this->intento->nombre_archivo, $this->intento->nombre_archivo_original);
     }
 }
