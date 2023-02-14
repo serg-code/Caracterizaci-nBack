@@ -72,6 +72,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::apiResource('cargador', \App\Http\Controllers\Cargador\CargadoresController::class)->except(['store', 'destroy']);
     Route::post('cargador/archivo/{cargadorId}', [\App\Http\Controllers\Cargador\ArchivoController::class, 'guardarArchivos']);
 
+    Route::apiResource('intento', \App\Http\Controllers\IntentosCargador\IntentosController::class)->except(['store', 'destroy']);
     Route::get('intento/logs/{idIntento}', [\App\Http\Controllers\LogErroresController::class, 'descargarLog']);
     Route::get('intento/archivo/{idIntento}', [\App\Http\Controllers\IntentosCargador\ArchivoOriginalController::class, 'archivoOriginal']);
 });

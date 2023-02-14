@@ -11,13 +11,13 @@ class Intentos extends Model
         'id',
         'id_usuario',
         'id_cargador',
-        'nombre_archivo',
         'nombre_archivo_original',
         'cantidad_errores',
         'created_at'
     ];
 
     protected $hidden = [
+        'nombre_archivo',
         'updated_at',
     ];
 
@@ -29,4 +29,5 @@ class Intentos extends Model
     {
         return $this->belongsTo(User::class, 'id_usuario', 'id');
     }
+
 }
