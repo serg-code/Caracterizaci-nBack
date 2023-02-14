@@ -11,8 +11,9 @@ class Intentos extends Model
         'id',
         'id_usuario',
         'id_cargador',
-        'nombre_archivo_original',
         'nombre_archivo',
+        'nombre_archivo_original',
+        'cantidad_errores',
         'created_at'
     ];
 
