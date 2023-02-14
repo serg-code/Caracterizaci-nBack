@@ -17,6 +17,7 @@ class ArchivoOriginalController extends Controller
     public function __construct(
     )
     {
+        $this->middleware('permission:descargar intento', ['only' => ['archivoOriginal']]);
         $this->intento = new Intentos();
         $this->disco = env('DISCO_GUARDAR_ARCHIVOS', 'cargadores');
     }

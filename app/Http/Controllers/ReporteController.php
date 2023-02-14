@@ -24,6 +24,7 @@ class ReporteController extends Controller
         // $this->middleware(['role:*',], ['only' => ['show',]]);
         $this->middleware(['permission:listar reporte'], ['only' => ['index']]);
         $this->middleware(['permission:editar reporte'], ['only' => ['update']]);
+        $this->middleware('permission:descargar reporte', ['only' => ['descargar']]);
     }
 
 
