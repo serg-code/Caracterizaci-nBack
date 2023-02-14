@@ -125,7 +125,15 @@ class RolesSeeder extends Seeder
         $editarCargadores = Permission::create(['name' => 'editar cargador', 'referencia' => 'cargador.editar']);
         $descargarCargadores = Permission::create(['name' => 'descargar cargador', 'referencia' => 'cargador.descargar']);
 
+ /**
+         * ------------------------------------------------------------------------
+         *      Permisos Intentos
+         * ------------------------------------------------------------------------
+         */
 
+         $listarIntento = Permission::create(['name' => 'listar intento', 'referencia' => 'intento.listar']);
+         $detalleIntento = Permission::create(['name' => 'detalle intento', 'referencia' => 'intento.editar']);
+         $descargarIntento = Permission::create(['name' => 'descargar intento', 'referencia' => 'intento.descargar']);
 
 
         /**
@@ -182,6 +190,10 @@ class RolesSeeder extends Seeder
             $listarCargadores,
             $editarCargadores,
             $descargarCargadores,
+
+            $listarIntento,
+            $detalleIntento,
+            $descargarIntento,
 
         ]);
 

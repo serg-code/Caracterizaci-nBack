@@ -18,6 +18,7 @@ return new class extends Migration {
             $table->unsignedBigInteger('id_cargador');
             $table->string('nombre_archivo')->nullable();
             $table->string('nombre_archivo_original');
+            $table->string('cantidad_errores')->default('0');
             $table->timestamps();
 
             $table->foreign('id_usuario')->references('id')->on('users');
