@@ -72,12 +72,13 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::apiResource('cargador', \App\Http\Controllers\Cargador\CargadoresController::class)->except(['store', 'destroy']);
     Route::post('cargador/archivo/{cargadorId}', [\App\Http\Controllers\Cargador\ArchivoController::class, 'guardarArchivos']);
 
-    // Route::get('intento/logs/{idIntento}', [\App\Http\Controllers\LogErroresController::class, 'descargarLog']);
+    Route::get('intento/logs/{idIntento}', [\App\Http\Controllers\LogErroresController::class, 'descargarLog']);
 });
 
 Route::group([], function () {
     Route::get('tipo-identificacion', [\App\Http\Controllers\TipoIdentificacionController::class, 'index']);
-    Route::get('intento/logs/{idIntento}', [\App\Http\Controllers\LogErroresController::class, 'descargarLog']);
+    // Route::get('intento/logs/{idIntento}', [\App\Http\Controllers\LogErroresController::class, 'descargarLog']);
+    Route::get('intento/archivo/{idIntento}', [\App\Http\Controllers\IntentosCargador\ArchivoOriginalController::class, 'archivoOriginal']);
 
     // Route::get('reporte/{reporteId}', [\App\Http\Controllers\ReporteController::class, 'show']);
 });

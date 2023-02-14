@@ -16,7 +16,7 @@ use Maatwebsite\Excel\Facades\Excel;
 class ArchivoController extends Controller
 {
 
-    private string $disco = 'public';
+    private string $disco;
     private array $sqlValidador;
     private array $error;
 
@@ -24,6 +24,7 @@ class ArchivoController extends Controller
     {
         $this->sqlValidador = [];
         $this->error = [];
+        $this->disco = env('DISCO_GUARDAR_ARCHIVOS', 'cargadores');
     }
 
     public function guardarArchivos(Request $request, $cargadorId)
@@ -88,6 +89,7 @@ class ArchivoController extends Controller
         }
 
         $cantidadErrores = LogErrores::where('intento', $inteto->id)->count();
+        $inteto->update(['cantidad_errores' => $cantidadErrores]);
         return RespuestaHttp::respuesta(
             200,
             'Succes',
@@ -141,7 +143,7 @@ class ArchivoController extends Controller
     {
         $fecha = now();
         $nombreGuardar = $idUsuario . '-' . $fecha->getTimestamp() . '-' . $archivo->getClientOriginalName();
-        $archivo->storeAs('Cargadores', $nombreGuardar, $this->disco);
+        $archivo->storeAs('/', $nombreGuardar, $this->disco);
         return $nombreGuardar;
     }
 
