@@ -31,7 +31,7 @@ class ReporteController extends Controller
 
     public function index()
     {
-        $reportes = Reportes::select()->with(['variables'])->get();
+        $reportes = Reportes::where('estado', 'ACTIVO')->with(['variables'])->get();
         // $reportes = DB::table('reportes')->select()->get();
 
         return RespuestaHttp::respuesta(
