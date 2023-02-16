@@ -34,6 +34,7 @@ class CargadoresController extends Controller
                 AllowedFilter::exact('id'),
                 AllowedFilter::scope('search'),
             ])
+            ->where('estado', 'ACTIVO')
             ->paginate($cantidadPaginar);
 
         return RespuestaHttp::respuesta(
