@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::post('login', [
-        \App\Http\Controllers\LoginController::class,
+    \App\Http\Controllers\LoginController::class,
     'login'
 ]);
 

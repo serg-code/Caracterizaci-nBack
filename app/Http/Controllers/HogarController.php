@@ -16,8 +16,8 @@ class HogarController extends Controller
 
     public function __construct()
     {
-        $this->middleware('hogar.listar', ['only' => ['index', 'show']]);
-        $this->middleware('hogar.crear', ['only' => 'store']);
+        $this->middleware('permission:listar hogar', ['only' => ['index', 'show']]);
+        $this->middleware('permission:crear hogar', ['only' => 'store']);
         $this->middleware('permission:eliminar hogar', ['only' => ['destroy']]);
     }
 
@@ -61,7 +61,7 @@ class HogarController extends Controller
         }
 
         //filtro de usuarios
-        $hogares = QueryBuilder::for (Hogar::class)
+        $hogares = QueryBuilder::for(Hogar::class)
             ->select($select)
             ->allowedFilters([
                 AllowedFilter::scope('search'),

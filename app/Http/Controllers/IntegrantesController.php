@@ -29,8 +29,8 @@ class IntegrantesController extends Controller
 
     public function __construct()
     {
-        $this->middleware('integrante.crear', ['only' => ['store']]);
-        $this->middleware('integrante.listar', ['only' => ['index', 'show']]);
+        $this->middleware('permission:crear integrante', ['only' => ['store']]);
+        $this->middleware('permission:listar integrante', ['only' => ['index', 'show']]);
         $this->middleware('permission:eliminar integrante', ['only' => ['destroy']]);
     }
 
@@ -45,8 +45,7 @@ class IntegrantesController extends Controller
         $cantidadPaginar = $datosUrl['per_page'] ?? 10;
         $respuesta = new RespuestaHttp();
 
-        if (empty($datosUrl))
-        {
+        if (empty($datosUrl)) {
             $usuarios = Integrantes::all();
             $respuesta->data = $usuarios;
         }
@@ -84,8 +83,7 @@ class IntegrantesController extends Controller
             ]
         );
 
-        if ($validacion->fails())
-        {
+        if ($validacion->fails()) {
             return RespuestaHttp::respuesta(
                 400,
                 'Bad request',
@@ -101,8 +99,7 @@ class IntegrantesController extends Controller
         $id = $integrantePeticion['id'] ?? 'a';
         $integrante = Integrantes::find($id);
 
-        if (empty($integrante))
-        {
+        if (empty($integrante)) {
             $integrantePeticion['puntaje_max'] = env('PUNTAJE_MAX', 180);
             return $this->crearIntegrante($integrantePeticion, $encuesta, $request->user()->id);
         }
@@ -121,8 +118,7 @@ class IntegrantesController extends Controller
         $integrante = Integrantes::where('id', '=', $id)->with(['inducciones.tipoInduccion'])->first();
 
 
-        if (empty($integrante))
-        {
+        if (empty($integrante)) {
             return $this->noEncontrado();
         }
 
@@ -146,14 +142,12 @@ class IntegrantesController extends Controller
     {
         $integrante = Integrantes::find($id);
 
-        if (empty($integrante))
-        {
+        if (empty($integrante)) {
             return $this->noEncontrado();
         }
 
         $seccionesIntegrantes = SeccionesIntegrante::obtenerSecciones();
-        foreach ($seccionesIntegrantes as $seccion)
-        {
+        foreach ($seccionesIntegrantes as $seccion) {
             $this->seleccionarSeccion($seccion, $id);
         }
 
@@ -190,8 +184,7 @@ class IntegrantesController extends Controller
 
     protected static function seleccionarSeccion(string $seccion, string $id)
     {
-        return match ($seccion)
-        {
+        return match ($seccion) {
             //secciones de integrantes
             'accidentes' => Accidente::where('id_integrante', '=', $id)->delete(),
             'cuidado_enfermedades' => CuidadoEnfermedad::where('id_integrante', '=', $id)->delete(),

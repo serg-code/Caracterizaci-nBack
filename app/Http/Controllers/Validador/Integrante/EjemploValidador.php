@@ -11,8 +11,7 @@ class EjemploValidador extends ValidacionIntegrante implements ValidacionEncuest
     public function __construct(
         protected Integrantes $integrante = new Integrantes(),
         protected array $seccion = [],
-    )
-    {
+    ) {
         parent::__construct('adolescencia', $integrante, $seccion);
     }
 
